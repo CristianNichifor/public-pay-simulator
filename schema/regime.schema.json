@@ -22,13 +22,18 @@
     "reference": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["amount", "factor", "baseDate", "unit", "rounding", "provenance"],
+      "required": ["amount", "factor", "baseDate", "unit", "period", "rounding", "provenance"],
       "description": "The single multiplier both systems share. base = positionValue x amount x factor, rounded. RO: amount = valoarea de referinta (4100 RON), factor = 1, unit = coefficient. DK: amount = 1, factor = reguleringsprocent, unit = absolute, and positionValue is the frozen basisbeloeb at baseDate.",
       "properties": {
         "amount":   { "$ref": "#/$defs/valueSeries" },
         "factor":   { "$ref": "#/$defs/valueSeries" },
         "baseDate": { "type": "string", "format": "date", "description": "Date the position values are expressed in. RO: date the coefficients were set. DK stat: 2012-03-31, region: 2018-03-31, kommune: 2000-03-31." },
         "unit":     { "enum": ["coefficient", "absolute"], "description": "Presentation hint only. The arithmetic is identical." },
+        "period": {
+          "enum": ["month", "year"],
+          "default": "month",
+          "description": "The period a position value resolves to. Romanian coefficients yield a monthly salariu de baza; the Danish basic amounts are annual. Without this the engine would happily add a Danish year to a Romanian month, so payslip() refuses to emit a figure whose period it cannot name."
+        },
         "rounding": { "$ref": "#/$defs/rounding", "description": "Default rounding for anything derived from this reference. Individual ladders, positions and supplements may override it - the Danish state tables round the basic salary scale to whole kroner but leave supplements at two decimals." },
         "growthCapId": { "type": "string", "description": "id of a cap of kind 'growth' that constrains how amount may rise year on year" },
         "provenance": { "$ref": "#/$defs/provenance" }

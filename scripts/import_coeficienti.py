@@ -367,7 +367,7 @@ def section_kind(rows: list[tuple], upto: int, sheet: str, default: str) -> str:
     """Walk upward for the nearest section heading that names conducere or execuție."""
     if sheet.startswith("IX"):
         return "dignitary"
-    if "Armata" in sheet or sheet.startswith("VI"):
+    if "Armata" in sheet or annex_of(sheet) == "VI":
         return "uniformed"
     for r in range(upto, -1, -1):
         joined = strip_accents(
@@ -387,6 +387,16 @@ def extract_sheet(name: str, rows: list[tuple], stats: Counter, skipped: list) -
     coefficient_cols = sorted(c for c, r in roles.items() if r == "coefficient")
     code_cols = sorted(c for c, r in roles.items() if r == "code")
     text_cols = sorted(c for c, r in roles.items() if r == "text")
+    lengths: dict[int, list[int]] = {c: [] for c in text_cols}
+    for row in rows:
+        for c in text_cols:
+            if c < len(row) and isinstance(row[c], str) and WORD.search(row[c]):
+                lengths[c].append(len(row[c].strip()))
+    title_col = max(
+        (c for c in text_cols if lengths[c]),
+        key=lambda c: sum(lengths[c]) / len(lengths[c]),
+        default=None,
+    )
     study_cols = sorted(c for c, r in roles.items() if r == "studyLevel")
 
     if not coefficient_cols:
@@ -431,10 +441,14 @@ def extract_sheet(name: str, rows: list[tuple], stats: Counter, skipped: list) -
             continue
 
         title_cell = ""
-        for c in text_cols:
-            if c < len(row) and isinstance(row[c], str) and WORD.search(row[c]):
-                if len(row[c]) > len(title_cell):
-                    title_cell = row[c]
+        if title_col is not None and title_col < len(row) and isinstance(row[title_col], str):
+            if WORD.search(row[title_col]):
+                title_cell = row[title_col]
+        if not title_cell:
+            for c in text_cols:
+                if c < len(row) and isinstance(row[c], str) and WORD.search(row[c]):
+                    if len(row[c]) > len(title_cell):
+                        title_cell = row[c]
 
         base_code = codes[0][1].rsplit(".", 1)[0] if codes else None
         extra_dims = row_dims(row, roles, title_cell)
@@ -518,8 +532,17 @@ def extract_sheet(name: str, rows: list[tuple], stats: Counter, skipped: list) -
                 variant["dims"] = dims
             variants.append(variant)
 
+        # Which seniority mechanism applies is decided from the row itself. Art. 13(1)
+        # excepts dignitaries and uniformed staff outright. Where the annex already
+        # prints a coefficient per seniority band - Annexes I and V - the vechime is
+        # inside the coefficient and the gradatii must not be applied on top of it.
+        has_vechime = any("vechime" in (v.get("dims") or {}) for v in variants)
+        kind_now = section_kind(rows, r, name, "execution")
+        ladder = None if (kind_now in ("dignitary", "uniformed") or has_vechime) else "gradatii"
+
         position = {
             "code": base_code,
+            "ladder": ladder,
             "name": titles[0]["name"] if titles else title_cell,
             "titles": titles,
             "assimilation": {
@@ -534,7 +557,7 @@ def extract_sheet(name: str, rows: list[tuple], stats: Counter, skipped: list) -
             },
             "family": family,
             "chapter": f"Anexa {annex} - {name}" if annex else name,
-            "kind": section_kind(rows, r, name, "execution"),
+            "kind": kind_now,
             "variants": variants,
             "provenance": {
                 "source": SOURCE,

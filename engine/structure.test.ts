@@ -19,6 +19,7 @@ function regime(positions: Position[], grades = defaultGrades()): Regime {
       factor: 1,
       baseDate: '2026-12-01',
       unit: 'coefficient',
+      period: 'month',
       rounding: { step: 100, mode: 'ceil' },
       provenance,
     },

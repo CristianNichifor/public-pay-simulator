@@ -49,17 +49,11 @@ jobs:
         with:
           node-version: '22'
 
-      # The engine is a contract until it is implemented. Typecheck what exists rather
-      # than failing on an absent test suite.
+      - name: Install
+        run: npm ci
+
       - name: Typecheck
-        run: |
-          npm install --no-save typescript@5
-          npx tsc --noEmit --strict engine/types.ts
+        run: npm run typecheck
 
       - name: Tests
-        run: |
-          if [ -f package.json ] && grep -q '"test"' package.json; then
-            npm ci && npm test
-          else
-            echo "No test suite yet — engine is still a contract."
-          fi
+        run: npm test

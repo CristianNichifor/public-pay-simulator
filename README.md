@@ -23,8 +23,14 @@ implementation.
 - [ ] `ro-153-2017.json` — blocked on the consolidated 153/2017 annexes
 - [x] `engine/structure.ts` + vitest — view 2's metric, 14 tests
 - [x] **View 2 — system shape, live**
-- [ ] `payslip()` / `aggregate()` + tests
+- [x] `payslip()` / `aggregate()` + tests — Danish figures reproduce to the krone
+- [ ] `data/headcount/` — blocked: no filled-post counts are published per position
 - [ ] Views 1 (payslip diff) and 3 (envelope)
+
+`aggregate()` is implemented and tested, but no headcount document is committed, because
+none is published. Romania releases no per-position filled-post counts, and inventing them
+would break the provenance rule. The function is exercised against fixtures in its test
+file; the moment a real state of posts exists it drops straight in.
 
 Live: <https://cristiannichifor.github.io/public-pay-simulator/>
 

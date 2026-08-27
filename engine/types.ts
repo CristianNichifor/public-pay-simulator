@@ -26,13 +26,31 @@ export interface Provenance {
   note?: string;
 }
 
+/**
+ * The fields a caveat can attach to. Shared by engine diagnostics and by the
+ * `limitations` a regime document carries, so the two use one vocabulary and the UI can
+ * render either beside the number it affects. Mirrors the enum in regime.schema.json.
+ */
+export type OutputField =
+  | 'base'
+  | 'seniority'
+  | 'supplements'
+  | 'gross'
+  | 'net'
+  | 'employerCost'
+  | 'pensionSplit'
+  | 'capUtilisation'
+  | 'aggregate'
+  | 'structure'
+  | 'regime';
+
 /** Anything the engine wants the UI to say out loud next to a number. */
 export interface Diagnostic {
   code: string;
   severity: 'blocking' | 'material' | 'note';
   message: string;
   /** Which output field the caveat is attached to, so the UI can render it in place. */
-  affects: keyof Payslip | keyof Aggregate | 'regime';
+  affects: OutputField;
   provenance?: Provenance;
 }
 
@@ -72,6 +90,9 @@ export interface Reference {
   factor: ValueSeries;
   baseDate: IsoDate;
   unit: 'coefficient' | 'absolute';
+  /** The period a position value resolves to. RO coefficients are monthly; the Danish
+   *  basic amounts are annual. Never add across a period boundary. */
+  period: 'month' | 'year';
   rounding: Rounding;
   growthCapId?: string;
   provenance: Provenance;
@@ -233,7 +254,7 @@ export interface Levy {
 export interface Limitation {
   id: string;
   text: string;
-  affects: ReadonlyArray<string>;
+  affects: ReadonlyArray<OutputField>;
   severity?: 'blocking' | 'material' | 'note';
 }
 
