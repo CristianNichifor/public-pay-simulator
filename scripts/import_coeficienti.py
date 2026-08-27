@@ -84,7 +84,12 @@ FAMILY_BY_CODE_PREFIX = {
     "81": "VIII", "82": "VIII",
 }
 
-MANAGEMENT_MARKERS = ("de conducere", "de conducer", "inalti functionari", "înalți funcționari")
+# Stems, not whole phrases. Romanian declines its nouns, and the sheets say
+# "categoriei înalţilor funcţionari publici" — against which a literal "inalti
+# functionari" never matches. That miss put every înalt funcţionar public on the
+# gradatii ladder, which Art. 13(1) explicitly excludes them from.
+MANAGEMENT_MARKERS = ("de conducere", "de conducer")
+MANAGEMENT_STEMS = (("inalt", "functionar"),)
 EXECUTION_MARKERS = ("de execut", "de execuţ", "de execuție")
 
 HEAD_NOUN = re.compile(
@@ -376,6 +381,8 @@ def section_kind(rows: list[tuple], upto: int, sheet: str, default: str) -> str:
         if not joined:
             continue
         if any(m in joined for m in (strip_accents(x).lower() for x in MANAGEMENT_MARKERS)):
+            return "management"
+        if any(all(stem in joined for stem in stems) for stems in MANAGEMENT_STEMS):
             return "management"
         if any(m in joined for m in (strip_accents(x).lower() for x in EXECUTION_MARKERS)):
             return "execution"

@@ -54,7 +54,7 @@ export default function CompareView({
       cells: [
         { value: pct(m.backSolvedShare) },
         { value: pct(o.backSolvedShare), good: true },
-        dkNA('sistemul danez nu folosește coeficienți: sumele sunt sume'),
+        { value: '0%', note: 'treptele daneze poartă direct suma, la două zecimale' },
       ],
     },
     {
@@ -63,7 +63,7 @@ export default function CompareView({
       cells: [
         { value: ro(m.distinctValues) },
         { value: ro(o.distinctValues), good: true, note: `cu ${ro(m.distinctValues - o.distinctValues)} mai puține` },
-        dkNA('8 trepte publicate, restul se negociază local'),
+        { value: '≈23', good: true, note: 'atâtea sume distincte apar în tabelele de stat publicate' },
       ],
     },
     {
@@ -72,7 +72,7 @@ export default function CompareView({
       cells: [
         { value: ro(m.variantsInGaps) },
         { value: ro(o.variantsInGaps), good: true },
-        dkNA('nu există structură de grade centralizată'),
+        { value: '0', note: 'fiecare treaptă e o sumă, deci nu există goluri între ele' },
       ],
     },
     {

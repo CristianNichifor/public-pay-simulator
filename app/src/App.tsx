@@ -14,6 +14,7 @@ const AVAILABLE = ['ro-draft-2026-07-16', 'dk-stat-2026'];
 const PROPOSAL_ID = 'propunere-v1';
 const CROSSWALK_ID = 'ro-draft-2026-07-16--dk-stat-2026';
 const FX_ID = 'ecb-fx';
+const BENCHMARKS_ID = 'benchmarks';
 
 /**
  * The hash is the state. There is no store: every control writes a scenario into
@@ -46,6 +47,9 @@ export default function App() {
   const [proposal, setProposal] = useState<Proposal | null>(null);
   const [crosswalk, setCrosswalk] = useState<Crosswalk | null>(null);
   const [fx, setFx] = useState<{ dkkToRon: number; eurToRon: number; date: string } | null>(null);
+  const [benchmarks, setBenchmarks] = useState<{
+    avgRo: number; avgDk: number; floorRo: number; floorDk: number; year: string;
+  } | null>(null);
 
   const wanted = scenario.regimeIds;
 
@@ -71,6 +75,21 @@ export default function App() {
         const rate = (id: string) =>
           doc.series.find((s: { id: string }) => s.id === id)?.observations.at(-1)?.value;
         setFx({ dkkToRon: rate('dkk-ron'), eurToRon: rate('eur-ron'), date: doc.retrieved });
+      })
+      .catch((e: Error) => setError(e.message));
+
+    fetch(`${base}data/fiscal/${BENCHMARKS_ID}.json`)
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`benchmarks: ${r.status}`))))
+      .then((doc) => {
+        const val = (id: string) =>
+          doc.series.find((s: { id: string }) => s.id === id)?.observations.at(-1)?.value;
+        setBenchmarks({
+          avgRo: val('avg-gross-monthly-ro'),
+          avgDk: val('avg-gross-monthly-dk'),
+          floorRo: val('floor-monthly-ro'),
+          floorDk: val('floor-monthly-dk'),
+          year: doc.retrieved,
+        });
       })
       .catch((e: Error) => setError(e.message));
   }, []);
@@ -176,12 +195,14 @@ export default function App() {
         ministry &&
         regimes['dk-stat-2026'] &&
         crosswalk &&
-        fx && (
+        fx &&
+        benchmarks && (
           <EquivalenceView
             ro={ministry}
             dk={regimes['dk-stat-2026']}
             crosswalk={crosswalk}
             fx={fx}
+            benchmarks={benchmarks}
           />
         )}
       {loaded.length > 0 && scenario.view === 'structure' && (

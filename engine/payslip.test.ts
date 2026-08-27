@@ -72,6 +72,21 @@ describe('payslip — Romania', () => {
     expect(director.seniority.amount).toBe(0);
   });
 
+  it('excludes the senior civil service from the gradatii', () => {
+    // Art. 13(1) excepts inaltii functionari publici by name. The sheets label that
+    // section "categoriei inaltilor functionari publici" — declined — so a literal
+    // phrase match missed it and every one of them was silently drawing seniority
+    // increments the statute denies them.
+    const secretarGeneral = payslip(
+      { positionCode: '81.10101001.01', seniorityYears: 30 },
+      RO,
+    );
+    expect(secretarGeneral.seniority.bakedIn).toBe(true);
+    expect(secretarGeneral.seniority.amount).toBe(0);
+    // 5,4 x 4100 = 22 140, with no uplift on top.
+    expect(major(secretarGeneral.base)).toBe(22140);
+  });
+
   it('charges income tax after the contributions, not on gross', () => {
     // The chain matters more than the arithmetic. CAS 25% and CASS 10% come off first,
     // and the 10% tax applies to what is left: net/gross settles at 0,585. Taxing gross

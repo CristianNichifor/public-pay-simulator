@@ -46,7 +46,104 @@
       "note": "Same arithmetic as Romania: a frozen per-position value times a single system-wide factor. Denmark froze the values at 31.03.2012 and moves the factor; Romania freezes the coefficients and moves the reference value. reference.amount is 1 because the Danish position values are already in kroner."
     }
   },
-  "grades": [],
+  "grades": [
+    {
+      "id": "lr35",
+      "label": "Lønramme 35 (skalatrin 48)",
+      "min": 441027,
+      "max": 441027,
+      "description": "Treaptă publicată a scării daneze pentru funcționari de carieră. Spre deosebire de România, treapta poartă suma direct, nu un coeficient care se înmulțește cu o valoare de referință.",
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 12, bracket 35 / scale grade 48",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "lr36",
+      "label": "Lønramme 36 (skalatrin 49)",
+      "min": 471781,
+      "max": 471781,
+      "description": "Treaptă publicată a scării daneze pentru funcționari de carieră. Spre deosebire de România, treapta poartă suma direct, nu un coeficient care se înmulțește cu o valoare de referință.",
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 12, bracket 36 / scale grade 49",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "lr37",
+      "label": "Lønramme 37 (skalatrin 50)",
+      "min": 521094,
+      "max": 521094,
+      "description": "Treaptă publicată a scării daneze pentru funcționari de carieră. Spre deosebire de România, treapta poartă suma direct, nu un coeficient care se înmulțește cu o valoare de referință.",
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 12, bracket 37 / scale grade 50",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "lr38",
+      "label": "Lønramme 38 (skalatrin 51)",
+      "min": 592911,
+      "max": 592911,
+      "description": "Treaptă publicată a scării daneze pentru funcționari de carieră. Spre deosebire de România, treapta poartă suma direct, nu un coeficient care se înmulțește cu o valoare de referință.",
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 12, bracket 38 / scale grade 51",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "lr39",
+      "label": "Lønramme 39 (skalatrin 52)",
+      "min": 650993,
+      "max": 650993,
+      "description": "Treaptă publicată a scării daneze pentru funcționari de carieră. Spre deosebire de România, treapta poartă suma direct, nu un coeficient care se înmulțește cu o valoare de referință.",
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 12, bracket 39 / scale grade 52",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "lr40",
+      "label": "Lønramme 40 (skalatrin 53)",
+      "min": 728408,
+      "max": 728408,
+      "description": "Treaptă publicată a scării daneze pentru funcționari de carieră. Spre deosebire de România, treapta poartă suma direct, nu un coeficient care se înmulțește cu o valoare de referință.",
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 12, bracket 40 / scale grade 53",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "lr41",
+      "label": "Lønramme 41 (skalatrin 54)",
+      "min": 821385,
+      "max": 821385,
+      "description": "Treaptă publicată a scării daneze pentru funcționari de carieră. Spre deosebire de România, treapta poartă suma direct, nu un coeficient care se înmulțește cu o valoare de referință.",
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 12, bracket 41 / scale grade 54",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "lr42",
+      "label": "Lønramme 42 (skalatrin 55)",
+      "min": 925652,
+      "max": 925652,
+      "description": "Treaptă publicată a scării daneze pentru funcționari de carieră. Spre deosebire de România, treapta poartă suma direct, nu un coeficient care se înmulțește cu o valoare de referință.",
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 12, bracket 42 / scale grade 55",
+        "confidence": "verbatim"
+      }
+    }
+  ],
   "ladders": {
     "stat-nyt-loensystem": {
       "id": "stat-nyt-loensystem",
@@ -499,6 +596,126 @@
         }
       ],
       "studyLevel": "MSc"
+    },
+    {
+      "code": "dk-stat-tjenestemand-38",
+      "name": "Civil servant, salary bracket 38",
+      "family": "stat-tjenestemaend",
+      "kind": "management",
+      "studyLevel": "MSc",
+      "ladder": null,
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 12, 'Salary for civil servants', bracket 38 / scale grade 51",
+        "confidence": "verbatim"
+      },
+      "variants": [
+        {
+          "value": 592911,
+          "gradeId": "lr38",
+          "provenance": {
+            "source": "ida-loentabeller-2026-04-01",
+            "locator": "p. 12, bracket 38, basic amount 31.03.2012",
+            "confidence": "verbatim"
+          }
+        }
+      ]
+    },
+    {
+      "code": "dk-stat-tjenestemand-39",
+      "name": "Civil servant, salary bracket 39",
+      "family": "stat-tjenestemaend",
+      "kind": "management",
+      "studyLevel": "MSc",
+      "ladder": null,
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 12, 'Salary for civil servants', bracket 39 / scale grade 52",
+        "confidence": "verbatim"
+      },
+      "variants": [
+        {
+          "value": 650993,
+          "gradeId": "lr39",
+          "provenance": {
+            "source": "ida-loentabeller-2026-04-01",
+            "locator": "p. 12, bracket 39, basic amount 31.03.2012",
+            "confidence": "verbatim"
+          }
+        }
+      ]
+    },
+    {
+      "code": "dk-stat-tjenestemand-40",
+      "name": "Civil servant, salary bracket 40",
+      "family": "stat-tjenestemaend",
+      "kind": "management",
+      "studyLevel": "MSc",
+      "ladder": null,
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 12, 'Salary for civil servants', bracket 40 / scale grade 53",
+        "confidence": "verbatim"
+      },
+      "variants": [
+        {
+          "value": 728408,
+          "gradeId": "lr40",
+          "provenance": {
+            "source": "ida-loentabeller-2026-04-01",
+            "locator": "p. 12, bracket 40, basic amount 31.03.2012",
+            "confidence": "verbatim"
+          }
+        }
+      ]
+    },
+    {
+      "code": "dk-stat-tjenestemand-41",
+      "name": "Civil servant, salary bracket 41",
+      "family": "stat-tjenestemaend",
+      "kind": "management",
+      "studyLevel": "MSc",
+      "ladder": null,
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 12, 'Salary for civil servants', bracket 41 / scale grade 54",
+        "confidence": "verbatim"
+      },
+      "variants": [
+        {
+          "value": 821385,
+          "gradeId": "lr41",
+          "provenance": {
+            "source": "ida-loentabeller-2026-04-01",
+            "locator": "p. 12, bracket 41, basic amount 31.03.2012",
+            "confidence": "verbatim"
+          }
+        }
+      ]
+    },
+    {
+      "code": "dk-stat-tjenestemand-42",
+      "name": "Civil servant, salary bracket 42",
+      "family": "stat-tjenestemaend",
+      "kind": "management",
+      "studyLevel": "MSc",
+      "ladder": null,
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 12, 'Salary for civil servants', bracket 42 / scale grade 55",
+        "confidence": "verbatim"
+      },
+      "variants": [
+        {
+          "value": 925652,
+          "gradeId": "lr42",
+          "provenance": {
+            "source": "ida-loentabeller-2026-04-01",
+            "locator": "p. 12, bracket 42, basic amount 31.03.2012",
+            "confidence": "verbatim"
+          }
+        }
+      ]
     }
   ],
   "supplements": [
@@ -668,6 +885,14 @@
       "text": "IDA publica tabelele pentru ingineri si academici. Personalul cu studii medii — administrativ, tehnic, ingrijire — este acoperit in Danemarca de alte contracte colective (HK, FOA, 3F) care nu apar aici. Orice echivalare a unei functii romanesti cu studii medii ramane fara corespondent in acest document, iar absenta lui nu inseamna ca postul nu exista.",
       "affects": [
         "aggregate",
+        "structure"
+      ],
+      "severity": "material"
+    },
+    {
+      "id": "doua-scari-nu-una",
+      "text": "Danemarca are două scări paralele, nu una. Funcționarii de carieră (tjenestemænd) sunt încadrați pe lønramme 35–42+, fiecare treaptă purtând direct o sumă. Personalul din 'noul sistem de salarizare' e încadrat pe trepte 1–8 și primește peste ele suplimente negociate local, care nu apar în niciun tabel. Comparația cu grila românească acoperă doar partea publicată.",
+      "affects": [
         "structure"
       ],
       "severity": "material"

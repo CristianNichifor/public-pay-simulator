@@ -3,33 +3,45 @@ import { useMemo, useState } from 'react';
 import { payslip } from '../../engine/payslip';
 import type { Crosswalk, CrosswalkLink, Regime } from '../../engine/types';
 
-/** Convert into the currency the reader thinks in, at a rate that is on the record. */
+export interface Benchmarks {
+  avgRo: number;
+  avgDk: number;
+  floorRo: number;
+  floorDk: number;
+  year: string;
+}
 export interface Fx {
   dkkToRon: number;
   eurToRon: number;
   date: string;
 }
 
-type Unit = 'RON' | 'EUR' | 'native';
+const MONTHS = 12;
 
-const MONTHS_PER_YEAR = 12;
-
-function fmt(amountMinor: number, currency: string): string {
-  return (amountMinor / 100).toLocaleString('ro-RO', {
+function money(minor: number, currency: string): string {
+  return (minor / 100).toLocaleString('ro-RO', {
     style: 'currency',
     currency,
     maximumFractionDigits: 0,
   });
 }
+const times = (n: number) => `${n.toLocaleString('ro-RO', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}×`;
 
-/**
- * Everything is shown per month. The Danish tables are annual and the Romanian ones
- * monthly, so one of them has to move; dividing the Danish year by twelve is the smaller
- * and more legible transformation.
- */
-function toMonthlyRon(minor: number, regime: Regime, fx: Fx): number {
-  const monthly = regime.reference.period === 'year' ? minor / MONTHS_PER_YEAR : minor;
-  return regime.currency === 'DKK' ? monthly * fx.dkkToRon : monthly;
+/** Monthly major units in the regime's own currency. */
+function monthly(minor: number, regime: Regime): number {
+  const value = minor / 100;
+  return regime.reference.period === 'year' ? value / MONTHS : value;
+}
+
+interface Pair {
+  link: CrosswalkLink;
+  roName: string;
+  dkName: string | null;
+  roMonthly: number | null;
+  dkMonthly: number | null;
+  roRatio: number | null;
+  dkRatio: number | null;
+  gap: number;
 }
 
 export default function EquivalenceView({
@@ -37,72 +49,77 @@ export default function EquivalenceView({
   dk,
   crosswalk,
   fx,
+  benchmarks,
 }: {
   ro: Regime;
   dk: Regime;
   crosswalk: Crosswalk;
   fx: Fx;
+  benchmarks: Benchmarks;
 }) {
-  const [unit, setUnit] = useState<Unit>('RON');
   const [seniority, setSeniority] = useState(10);
+  const [anchor, setAnchor] = useState<'avg' | 'floor'>('avg');
 
-  const rows = useMemo(
-    () =>
-      crosswalk.links.map((link) => {
-        const roCode = link.from[0]?.positionCode;
-        const dkCode = link.to[0]?.positionCode;
-        const roPos = ro.positions.find((p) => p.code === roCode) ?? null;
-        const dkPos = dkCode ? dk.positions.find((p) => p.code === dkCode) ?? null : null;
-
-        const roSlip = roPos
-          ? payslip({ positionCode: roPos.code, seniorityYears: seniority }, ro)
-          : null;
-        const dkSlip = dkPos
-          ? payslip({ positionCode: dkPos.code, seniorityYears: seniority }, dk)
-          : null;
-
-        return { link, roPos, dkPos, roSlip, dkSlip };
-      }),
-    [crosswalk, ro, dk, seniority],
-  );
-
-  const show = (minor: number, regime: Regime): string => {
-    if (unit === 'native') return fmt(regime.reference.period === 'year' ? minor / MONTHS_PER_YEAR : minor, regime.currency);
-    const ron = toMonthlyRon(minor, regime, fx);
-    return unit === 'RON' ? fmt(ron, 'RON') : fmt(ron / fx.eurToRon, 'EUR');
+  const base = {
+    ro: anchor === 'avg' ? benchmarks.avgRo : benchmarks.floorRo,
+    dk: anchor === 'avg' ? benchmarks.avgDk : benchmarks.floorDk,
   };
+
+  const pairs: Pair[] = useMemo(() => {
+    const rows = crosswalk.links.map((link) => {
+      const roPos = ro.positions.find((p) => p.code === link.from[0]?.positionCode) ?? null;
+      const dkPos = dk.positions.find((p) => p.code === link.to[0]?.positionCode) ?? null;
+
+      const roSlip = roPos ? payslip({ positionCode: roPos.code, seniorityYears: seniority }, ro) : null;
+      const dkSlip = dkPos ? payslip({ positionCode: dkPos.code, seniorityYears: seniority }, dk) : null;
+
+      const roMonthly = roSlip ? monthly(roSlip.base, ro) : null;
+      const dkMonthly = dkSlip ? monthly(dkSlip.base, dk) : null;
+
+      const roRatio = roMonthly !== null ? roMonthly / base.ro : null;
+      const dkRatio = dkMonthly !== null ? dkMonthly / base.dk : null;
+
+      return {
+        link,
+        roName: link.from.map((f) => f.title ?? f.positionCode).join(' · '),
+        dkName: dkPos?.name ?? null,
+        roMonthly,
+        dkMonthly,
+        roRatio,
+        dkRatio,
+        gap: roRatio !== null && dkRatio !== null ? Math.abs(roRatio - dkRatio) : -1,
+      };
+    });
+    // Most divergent first: the rows where the two societies disagree most about what a
+    // job is worth are the ones worth reading, and burying them alphabetically would
+    // hide the entire point of the page.
+    return rows.sort((a, b) => b.gap - a.gap);
+  }, [crosswalk, ro, dk, seniority, base.ro, base.dk]);
+
+  const scaleMax = Math.max(
+    ...pairs.flatMap((p) => [p.roRatio ?? 0, p.dkRatio ?? 0]),
+    1.2,
+  );
 
   return (
     <>
       <header className="masthead">
-        <h1>Cum s-ar numi și cât ar fi plătit, în celălalt sistem</h1>
+        <h1>Cât valorează postul, față de salariul din țara lui</h1>
         <p>
-          Danemarca numește un post după ce face omul și ce pregătire îi cere: inginer, consultant
-          specialist, șef de departament. Proiectul românesc îl numește după instituția care
-          plătește și după statutul juridic: funcție publică de execuție, grad profesional superior,
-          categoria înalților funcționari publici. Tabelul de mai jos pune funcțiile față în față și,
-          unde cele două logici chiar diferă, propune denumirea pe care ar folosi-o piața muncii.
+          Cursul de schimb spune cât de mare e un număr. Nu spune ce crede o societate despre un
+          post. Raportul spune: o funcție plătită cu de trei ori salariul mediu e tratată ca
+          importantă oriunde s-ar afla, iar una plătită cu 1,2 salarii medii nu e — indiferent de
+          monedă și de prețuri.
         </p>
       </header>
 
-      <div className="disclaimer">
-        <strong>Echivalările sunt judecăți editoriale, nu drepturi.</strong> Nicio autoritate nu le
-        recunoaște. Fiecare rând spune pe ce se bazează și cât de sigură este, iar cele nesigure sunt
-        marcate ca atare. Sumele sunt convertite la cursul de referință BCE din {fx.date}: 1 DKK ={' '}
-        {fx.dkkToRon.toLocaleString('ro-RO', { maximumFractionDigits: 4 })} RON. Cursul spune cât de
-        mare este un număr într-o monedă cunoscută, nu cât cumpără — prețurile daneze sunt
-        substanțial mai mari, deci un salariu convertit nu înseamnă același trai.
-      </div>
-
       <section>
-        <h2>Comparația</h2>
-        <div className="card controls equiv-controls">
+        <div className="card controls anchor-controls">
           <label className="field">
-            <span>Afișează sumele în</span>
-            <select value={unit} onChange={(e) => setUnit(e.target.value as Unit)}>
-              <option value="RON">lei (convertit)</option>
-              <option value="EUR">euro (convertit)</option>
-              <option value="native">moneda proprie fiecărui sistem</option>
+            <span>Raportat la</span>
+            <select value={anchor} onChange={(e) => setAnchor(e.target.value as 'avg' | 'floor')}>
+              <option value="avg">salariul mediu din fiecare țară</option>
+              <option value="floor">pragul de jos din fiecare țară</option>
             </select>
           </label>
           <label className="field">
@@ -115,104 +132,114 @@ export default function EquivalenceView({
               onChange={(e) => setSeniority(Number(e.target.value))}
             />
           </label>
+          <div className="field anchors">
+            <span>Reperele folosite</span>
+            <p>
+              <span className="dot ro" /> România: {base.ro.toLocaleString('ro-RO', { maximumFractionDigits: 0 })} RON
+              {anchor === 'avg' ? ' salariu mediu brut' : ' salariu minim brut'}
+            </p>
+            <p>
+              <span className="dot dk" /> Danemarca: {base.dk.toLocaleString('ro-RO', { maximumFractionDigits: 0 })} DKK
+              {anchor === 'avg' ? ' salariu mediu brut' : ' prag din contracte colective'}
+              {anchor === 'floor' && <em> — nu e salariu minim legal, Danemarca nu are</em>}
+            </p>
+          </div>
         </div>
+      </section>
 
-        <div className="equiv-list">
-          {rows.map(({ link, roPos, dkPos, roSlip, dkSlip }) => (
-            <article key={link.id ?? link.from[0]?.positionCode} className="card equiv">
-              <div className="equiv-head">
-                <span className={`rel rel-${link.relation}`}>{relationLabel(link.relation)}</span>
-                {link.confidence === 'assumed' && <span className="rel rel-warn">echivalare slabă</span>}
-                {link.disputed && <span className="rel rel-warn">contestabilă</span>}
-              </div>
-
-              <div className="equiv-grid">
-                <div className="side ro">
-                  <h4>România — proiectul MMFTSS</h4>
-                  <p className="posname">{link.from.map((f) => f.title ?? f.positionCode).join(' · ')}</p>
-                  {roPos && roSlip ? (
-                    <>
-                      <p className="amount">{show(roSlip.base, ro)}<span className="per">/lună</span></p>
-                      <p className="detail">
-                        coeficient {roPos.variants[0].value?.toString().slice(0, 8)} · {roPos.code}
-                        {roSlip.seniority.bakedIn && ' · vechimea e inclusă în coeficient'}
-                      </p>
-                    </>
-                  ) : (
-                    <p className="detail">funcția nu a putut fi calculată</p>
-                  )}
-                </div>
-
-                <div className="side dk">
-                  <h4>Danemarca — sectorul de stat</h4>
-                  {dkPos && dkSlip ? (
-                    <>
-                      <p className="posname">{dkPos.name}</p>
-                      <p className="amount">{show(dkSlip.base, dk)}<span className="per">/lună</span></p>
-                      <p className="detail">
-                        sumă de bază 31.03.2012 × 1,265085 · {dkPos.code}
-                      </p>
-                    </>
-                  ) : (
-                    <>
-                      <p className="posname missing">niciun post corespondent publicat</p>
-                      <p className="detail">
-                        tabelele IDA acoperă ingineri și academici; restul e plătit prin alte
-                        contracte colective, care nu apar în această sursă
-                      </p>
-                    </>
-                  )}
-                </div>
-              </div>
-
-              {link.proposedName && (
-                <p className="renamed">
-                  <span className="renamed-tag">denumire aliniată pieței muncii</span>
-                  {link.proposedName}
-                </p>
-              )}
-
-              {link.evidence && (
-                <ul className="evidence">
-                  {link.evidence.map((e, i) => (
-                    <li key={i}>{e}</li>
-                  ))}
-                </ul>
-              )}
-              {link.note && <p className="equiv-note">{link.note}</p>}
-            </article>
+      <section>
+        <div className="ratio-list">
+          {pairs.map((pair) => (
+            <RatioRow key={pair.link.id} pair={pair} scaleMax={scaleMax} fx={fx} />
           ))}
         </div>
       </section>
 
       <section>
-        <h2>Ce lipsește ca să fie mai mult decât o judecată</h2>
-        <ul className="needs">
-          {(crosswalk.needs ?? []).map((need) => (
-            <li key={need.document}>
-              <strong>{need.document}</strong>
-              <span>{need.why}</span>
-            </li>
-          ))}
-        </ul>
+        <h2>Cum se citește</h2>
+        <div className="card readme-grid">
+          <p>
+            <strong>Barele</strong> sunt multipli ai reperului din <em>propria</em> țară a fiecărui
+            sistem, deci se pot compara direct. Sumele de sub ele sunt în moneda proprie, iar cea
+            daneză e convertită și în lei la cursul BCE din {fx.date} (1 DKK ={' '}
+            {fx.dkkToRon.toLocaleString('ro-RO', { maximumFractionDigits: 4 })} RON) doar ca ordin de
+            mărime — prețurile daneze sunt mult mai mari, deci suma convertită nu înseamnă același trai.
+          </p>
+          <p>
+            <strong>Echivalările</strong> sunt judecăți editoriale, nu drepturi. Cele nesigure sunt
+            marcate. Media e din {benchmarks.year} iar grilele din 2026, deci rapoartele sunt ușor
+            supraestimate în ambele coloane — dar în aceeași direcție, deci comparația ține.
+          </p>
+        </div>
       </section>
     </>
   );
 }
 
-function relationLabel(relation: CrosswalkLink['relation']): string {
-  switch (relation) {
-    case 'identity':
-      return 'același post';
-    case 'merge':
-      return 'mai multe denumiri românești, un singur post danez';
-    case 'split':
-      return 'un post românesc, mai multe daneze';
-    case 'regrade':
-      return 'post apropiat, nu identic';
-    case 'abolished':
-      return 'fără corespondent în sursa daneză';
-    default:
-      return relation;
-  }
+function RatioRow({ pair, scaleMax, fx }: { pair: Pair; scaleMax: number; fx: Fx }) {
+  const { link } = pair;
+  const width = (r: number | null) => (r === null ? 0 : Math.max((r / scaleMax) * 100, 1.5));
+  const weak = link.confidence === 'assumed' || link.disputed;
+
+  return (
+    <article className="card ratio-row">
+      <header className="ratio-head">
+        <h3>{pair.roName}</h3>
+        <div className="badges">
+          {link.proposedName && <span className="badge rename">se poate numi altfel</span>}
+          {weak && <span className="badge weak">echivalare slabă</span>}
+          {!pair.dkName && <span className="badge none">fără corespondent danez</span>}
+        </div>
+      </header>
+
+      <div className="bars">
+        <div className="bar-line">
+          <span className="bar-label">România</span>
+          <div className="track">
+            <div className="fill ro" style={{ width: `${width(pair.roRatio)}%` }} />
+            <span className="marker" style={{ left: `${(1 / scaleMax) * 100}%` }} />
+          </div>
+          <span className="bar-value">{pair.roRatio !== null ? times(pair.roRatio) : '—'}</span>
+          <span className="bar-money">
+            {pair.roMonthly !== null ? money(pair.roMonthly * 100, 'RON') : ''}
+          </span>
+        </div>
+
+        <div className="bar-line">
+          <span className="bar-label">{pair.dkName ? 'Danemarca' : 'Danemarca'}</span>
+          <div className="track">
+            <div className="fill dk" style={{ width: `${width(pair.dkRatio)}%` }} />
+            <span className="marker" style={{ left: `${(1 / scaleMax) * 100}%` }} />
+          </div>
+          <span className="bar-value">{pair.dkRatio !== null ? times(pair.dkRatio) : '—'}</span>
+          <span className="bar-money">
+            {pair.dkMonthly !== null
+              ? `${money(pair.dkMonthly * 100, 'DKK')} ≈ ${money(pair.dkMonthly * fx.dkkToRon * 100, 'RON')}`
+              : 'niciun post publicat'}
+          </span>
+        </div>
+      </div>
+
+      <p className="dk-name">
+        {pair.dkName ?? 'Tabelele IDA acoperă ingineri și academici; munca de îngrijire e plătită prin alt contract colectiv, care nu apare în această sursă.'}
+      </p>
+
+      {link.proposedName && (
+        <p className="renamed">
+          <span className="renamed-tag">denumire aliniată pieței muncii</span>
+          {link.proposedName}
+        </p>
+      )}
+
+      <details className="why">
+        <summary>De ce sunt puse față în față</summary>
+        <ul className="evidence">
+          {(link.evidence ?? []).map((e, i) => (
+            <li key={i}>{e}</li>
+          ))}
+        </ul>
+        {link.note && <p className="equiv-note">{link.note}</p>}
+      </details>
+    </article>
+  );
 }
