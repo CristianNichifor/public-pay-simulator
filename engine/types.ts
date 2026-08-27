@@ -193,7 +193,7 @@ export interface Supplement {
 export interface Cap {
   id: string;
   label?: string;
-  kind: 'shareOfBase' | 'shareOfHeadcount' | 'growth';
+  kind: 'shareOfBase' | 'shareOfHeadcount' | 'growth' | 'shareOfGdp';
   pct?: ValueSeries;
   scope: {
     level: 'person' | 'institution' | 'ordonatorPrincipal' | 'system';
@@ -202,7 +202,15 @@ export interface Cap {
   };
   numerator?: { include?: ReadonlyArray<string>; exclude?: ReadonlyArray<string> };
   denominator?: { include?: ReadonlyArray<string> };
-  boundTo?: string;
+  /** The external fiscal series this cap is measured against. */
+  boundTo?: {
+    dataset: string;
+    seriesId: string;
+    baselinePeriod?: string;
+    targetPeriod?: string;
+    deltaPp?: number;
+    provenance?: Provenance;
+  };
   penalty?: string;
   provenance: Provenance;
 }
@@ -366,44 +374,6 @@ export interface Aggregate {
 
 // ------------------------------------------------------- structural metrics
 
-/** View 2. Nothing in here is denominated in money, by construction. */
-export interface StructureMetrics {
-  regimeId: string;
-  positionCount: number;
-  variantCount: number;
-  distinctValues: number;
-  /** decimalPlaces -> count of distinct values. The required histogram. */
-  precisionHistogram: Readonly<Record<number, number>>;
-  /** Share of distinct values with >= 14 decimal places. */
-  backSolvedShare: number;
-  span: { min: number; max: number; ratio: number };
-  /** What the regime claims its own span is, e.g. 8 from Art. 5. */
-  declaredRatio: number | null;
-  compressionByGrade: ReadonlyArray<{ gradeId: string; min: number; max: number; occupancy: number; dispersion: number }>;
-  /** Base vs supplement share is structural, so it belongs here, as a ratio only. */
-  supplementShare: { atCeiling: number; atFloor: number };
-  seniorityCurve: ReadonlyArray<{ stepId: string; cumulativeFactor: number }>;
-  assimilation: AssimilationMetrics;
-  diagnostics: ReadonlyArray<Diagnostic>;
-}
-
-/**
- * How much occupational detail the regime collapses. A pay grid that merges nine
- * titles onto one coefficient is making a claim about equal work, and the claim
- * is legible only as a distribution.
- */
-export interface AssimilationMetrics {
-  codedPositions: number;
-  mergedPositions: number;
-  /** fanIn -> how many positions carry that many former titles. */
-  fanInHistogram: Readonly<Record<number, number>>;
-  titlesAbsorbed: number;
-  bySeparator: Readonly<Record<Assimilation['parse'], number>>;
-  /** Positions whose title split a human has not yet ruled on. */
-  needsReview: number;
-  /** Merged positions per family - which parts of the state lost the most detail. */
-  byFamily: ReadonlyArray<{ family: string; merged: number; titlesAbsorbed: number }>;
-}
 
 // ------------------------------------------------------------- crosswalks
 
@@ -462,8 +432,6 @@ export declare function resolvePosition(
   to: Regime,
   crosswalk: Crosswalk,
 ): Resolution;
-
-export declare function assimilation(regime: Regime): AssimilationMetrics;
 
 export declare function validateCrosswalk(
   crosswalk: Crosswalk,
@@ -532,8 +500,6 @@ export declare function validateRegime(regime: Regime, opts?: EngineOptions): Re
 export declare function payslip(person: Person, regime: Regime, opts?: EngineOptions): Payslip;
 
 export declare function aggregate(headcount: Headcount, regime: Regime, opts?: EngineOptions): Aggregate;
-
-export declare function structure(regime: Regime, opts?: EngineOptions): StructureMetrics;
 
 export declare function applyPatches(regime: Regime, patches: ReadonlyArray<Patch>): Regime;
 

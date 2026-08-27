@@ -21,13 +21,16 @@ implementation.
 - [x] CI: schema validation gate + engine typecheck; Pages deploy wired
 - [x] `scripts/import_coeficienti.py` — 48 sheets → 1 176 positions, 2 821 variants, 15 tests
 - [ ] `ro-153-2017.json` — blocked on the consolidated 153/2017 annexes
-- [ ] Engine + vitest suite
-- [ ] The three views. UI last, deliberately.
+- [x] `engine/structure.ts` + vitest — view 2's metric, 14 tests
+- [x] **View 2 — system shape, live**
+- [ ] `payslip()` / `aggregate()` + tests
+- [ ] Views 1 (payslip diff) and 3 (envelope)
 
-Deploys to <https://cristiannichifor.github.io/public-pay-simulator/> once `app/` exists.
-Until then the deploy job skips rather than publishing an empty site — the frontend is not
-scaffolded until the coefficient import and the engine are verified, for the same reason the
-map in `administrative-reform-simulator` waited on its adjacency graph.
+Live: <https://cristiannichifor.github.io/public-pay-simulator/>
+
+View 2 shipped first because it needs only the imported grid, not the pay engine — so the
+most legible finding reaches a URL without anything unverified being rendered. Views 1 and 3
+wait on `payslip()` and `aggregate()`.
 
 ## Two constraints that shape everything
 
