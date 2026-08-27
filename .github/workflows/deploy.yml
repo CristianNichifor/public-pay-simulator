@@ -20,6 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     # The UI is built last, on purpose: the engine has to be right before anything renders
     # it. Skip cleanly until app/package.json exists rather than failing every push.
+    outputs:
+      app: ${{ steps.app.outputs.exists }}
     steps:
       - uses: actions/checkout@v4
 
@@ -71,11 +73,12 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    if: needs.build.result == 'success'
+    # Only publish when there is an artifact. Without this guard the job would call
+    # deploy-pages with nothing uploaded and fail every push until the UI lands.
+    if: needs.build.outputs.app == 'true'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
-        continue-on-error: true

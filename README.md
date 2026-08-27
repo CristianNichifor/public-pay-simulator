@@ -18,10 +18,16 @@ implementation.
 - [x] `schema/crosswalk.schema.json` — position assimilation between regimes
 - [x] `engine/types.ts` — engine contract and type signatures
 - [x] Two hand-written regimes, validating, arithmetic checked against published figures
+- [x] CI: schema validation gate + engine typecheck; Pages deploy wired
 - [ ] `scripts/import_coeficienti.py` — 48 sheets → `data/regimes/ro-draft-2026-07-16.json`
 - [ ] `ro-153-2017.json` — blocked on the consolidated 153/2017 annexes
 - [ ] Engine + vitest suite
 - [ ] The three views. UI last, deliberately.
+
+Deploys to <https://cristiannichifor.github.io/public-pay-simulator/> once `app/` exists.
+Until then the deploy job skips rather than publishing an empty site — the frontend is not
+scaffolded until the coefficient import and the engine are verified, for the same reason the
+map in `administrative-reform-simulator` waited on its adjacency graph.
 
 ## Two constraints that shape everything
 
