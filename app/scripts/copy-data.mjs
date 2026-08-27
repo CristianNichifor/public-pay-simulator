@@ -9,9 +9,10 @@ const here = dirname(fileURLToPath(import.meta.url));
 const repo = resolve(here, '../..');
 const target = resolve(here, '../public/data');
 
+// Copy the whole tree rather than an enumerated list. Enumerating it meant every new
+// data directory shipped as a 404 that surfaced as "Unexpected token '<'" — the fetch
+// getting index.html back. It happened three times before this became a rule.
 await rm(target, { recursive: true, force: true });
 await mkdir(target, { recursive: true });
-for (const dir of ['regimes', 'proposals', 'fiscal', 'headcount', 'reports']) {
-  await cp(resolve(repo, 'data', dir), resolve(target, dir), { recursive: true });
-}
+await cp(resolve(repo, 'data'), target, { recursive: true });
 console.log('copied data/ into app/public/data');

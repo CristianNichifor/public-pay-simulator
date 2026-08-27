@@ -415,6 +415,8 @@ export interface CrosswalkLink {
   to: ReadonlyArray<CrosswalkEndpoint>;
   confidence: Provenance['confidence'];
   evidence?: ReadonlyArray<string>;
+  /** The labour-market name, where the two naming logics genuinely differ. */
+  proposedName?: string;
   disputed?: boolean;
   note?: string;
   provenance: Provenance;

@@ -337,6 +337,168 @@
           }
         }
       ]
+    },
+    {
+      "code": "dk-stat-tjenestemand-35",
+      "name": "Civil servant, salary bracket 35",
+      "family": "stat-tjenestemaend",
+      "kind": "management",
+      "ladder": null,
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 12, 'Salary for civil servants', bracket 35 / scale grade 48",
+        "confidence": "verbatim"
+      },
+      "variants": [
+        {
+          "value": 441027,
+          "provenance": {
+            "source": "ida-loentabeller-2026-04-01",
+            "locator": "p. 12, bracket 35, basic amount 31.03.2012",
+            "confidence": "verbatim"
+          }
+        }
+      ],
+      "studyLevel": "MSc"
+    },
+    {
+      "code": "dk-stat-tjenestemand-36",
+      "name": "Civil servant, salary bracket 36",
+      "family": "stat-tjenestemaend",
+      "kind": "management",
+      "ladder": null,
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 12, bracket 36 / scale grade 49",
+        "confidence": "verbatim"
+      },
+      "variants": [
+        {
+          "value": 471781,
+          "provenance": {
+            "source": "ida-loentabeller-2026-04-01",
+            "locator": "p. 12, bracket 36, basic amount 31.03.2012",
+            "confidence": "verbatim"
+          }
+        }
+      ],
+      "studyLevel": "MSc"
+    },
+    {
+      "code": "dk-stat-tjenestemand-37",
+      "name": "Civil servant, salary bracket 37",
+      "family": "stat-tjenestemaend",
+      "kind": "management",
+      "ladder": null,
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 12, bracket 37 / scale grade 50",
+        "confidence": "verbatim"
+      },
+      "variants": [
+        {
+          "value": 521094,
+          "provenance": {
+            "source": "ida-loentabeller-2026-04-01",
+            "locator": "p. 12, bracket 37, basic amount 31.03.2012",
+            "confidence": "verbatim"
+          }
+        }
+      ],
+      "studyLevel": "MSc"
+    },
+    {
+      "code": "dk-stat-professor",
+      "name": "Professor at a university",
+      "family": "stat-akademikere",
+      "kind": "academic",
+      "ladder": null,
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 13, 'Basic salary for professors at universities'",
+        "confidence": "verbatim",
+        "note": "Professors normally sit at salary bracket 37. Universities customarily add a supplement of 51.400 at the 31.03.2012 level, modelled separately as 'professortillaeg'."
+      },
+      "variants": [
+        {
+          "value": 521094.47,
+          "provenance": {
+            "source": "ida-loentabeller-2026-04-01",
+            "locator": "p. 13, bracket 37, basic amount 31.03.2012",
+            "confidence": "verbatim"
+          }
+        }
+      ],
+      "studyLevel": "MSc"
+    },
+    {
+      "code": "dk-stat-institutleder",
+      "name": "Department head",
+      "family": "stat-akademikere",
+      "kind": "management",
+      "ladder": null,
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 13, 'Basic salary for department heads and university deans'",
+        "confidence": "verbatim"
+      },
+      "variants": [
+        {
+          "value": 484944,
+          "provenance": {
+            "source": "ida-loentabeller-2026-04-01",
+            "locator": "p. 13, department head, basic amount 31.03.2012",
+            "confidence": "verbatim"
+          }
+        }
+      ],
+      "studyLevel": "MSc"
+    },
+    {
+      "code": "dk-stat-dekan",
+      "name": "University dean",
+      "family": "stat-akademikere",
+      "kind": "management",
+      "ladder": null,
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 13, dean",
+        "confidence": "verbatim"
+      },
+      "variants": [
+        {
+          "value": 583244,
+          "provenance": {
+            "source": "ida-loentabeller-2026-04-01",
+            "locator": "p. 13, dean, basic amount 31.03.2012",
+            "confidence": "verbatim"
+          }
+        }
+      ],
+      "studyLevel": "MSc"
+    },
+    {
+      "code": "dk-stat-chef-35",
+      "name": "Governmental executive, salary bracket 35",
+      "family": "stat-chefer",
+      "kind": "management",
+      "ladder": null,
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 14, 'Salary for governmental executives under the agreement on executives salaries'",
+        "confidence": "verbatim"
+      },
+      "variants": [
+        {
+          "value": 441027,
+          "provenance": {
+            "source": "ida-loentabeller-2026-04-01",
+            "locator": "p. 14, bracket 35 / scale grade 48, basic amount 31.03.2012",
+            "confidence": "verbatim"
+          }
+        }
+      ],
+      "studyLevel": "MSc"
     }
   ],
   "supplements": [
@@ -402,6 +564,35 @@
         "locator": "p. 6",
         "confidence": "verbatim",
         "note": "Amount shown is the entry rung; the supplement escalates along its own ladder 'raadighedstillaeg', independent of the base salary scale."
+      }
+    },
+    {
+      "id": "professortillaeg",
+      "name": "Customary professor supplement",
+      "mode": "fixed",
+      "amount": 51400,
+      "base": "absolute",
+      "countsToCap": false,
+      "rounding": {
+        "step": 1,
+        "mode": "halfUp",
+        "provenance": {
+          "source": "ida-loentabeller-2026-04-01",
+          "locator": "p. 13",
+          "confidence": "verbatim",
+          "note": "Two decimals, as the supplement tables print them."
+        }
+      },
+      "eligibility": {
+        "positionKinds": [
+          "academic"
+        ]
+      },
+      "provenance": {
+        "source": "ida-loentabeller-2026-04-01",
+        "locator": "p. 13",
+        "confidence": "verbatim",
+        "note": "'it is standard practice at universities and higher education institutions to grant a supplement of DKK 51,400 (as of the 31.03.2012 level)'. Custom, not entitlement — hence a claim the user makes, not an automatic addition."
       }
     }
   ],
@@ -471,6 +662,15 @@
         "aggregate"
       ],
       "severity": "blocking"
+    },
+    {
+      "id": "doar-academici-si-ingineri",
+      "text": "IDA publica tabelele pentru ingineri si academici. Personalul cu studii medii — administrativ, tehnic, ingrijire — este acoperit in Danemarca de alte contracte colective (HK, FOA, 3F) care nu apar aici. Orice echivalare a unei functii romanesti cu studii medii ramane fara corespondent in acest document, iar absenta lui nu inseamna ca postul nu exista.",
+      "affects": [
+        "aggregate",
+        "structure"
+      ],
+      "severity": "material"
     }
   ]
 }

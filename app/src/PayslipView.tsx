@@ -309,9 +309,9 @@ function PayslipCard({
       <div className="card slip">
         <h3>{regime.name.split('(')[0].trim()}</h3>
         <p className="missing">
-          Funcția nu există în acest regim. Ca să fie calculată aici ar trebui un crosswalk care să
-          spună cu ce funcție se asimilează — iar între jurisdicții diferite un asemenea crosswalk
-          este o judecată editorială, nu un drept.
+          Funcția nu are un cod în acest regim — cele două sisteme nu folosesc același nomenclator.
+          Echivalările dintre ele, cu sumele convertite și cu denumirea pe care ar folosi-o piața
+          muncii, sunt în <a href="#/echivalente">Echivalențe RO–DK</a>.
         </p>
       </div>
     );

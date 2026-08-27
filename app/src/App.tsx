@@ -4,13 +4,16 @@ import { applyProposal } from '../../engine/proposal';
 import type { AppliedProposal, Proposal } from '../../engine/proposal';
 import { decodeScenario, encodeScenario } from '../../engine/scenario';
 import type { Scenario } from '../../engine/scenario';
-import type { Regime } from '../../engine/types';
+import type { Crosswalk, Regime } from '../../engine/types';
 import CompareView from './CompareView';
+import EquivalenceView from './EquivalenceView';
 import PayslipView from './PayslipView';
 import StructureView from './StructureView';
 
 const AVAILABLE = ['ro-draft-2026-07-16', 'dk-stat-2026'];
-const PROPOSAL_ID = 'cnw-v1';
+const PROPOSAL_ID = 'propunere-v1';
+const CROSSWALK_ID = 'ro-draft-2026-07-16--dk-stat-2026';
+const FX_ID = 'ecb-fx';
 
 /**
  * The hash is the state. There is no store: every control writes a scenario into
@@ -41,6 +44,8 @@ export default function App() {
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [proposal, setProposal] = useState<Proposal | null>(null);
+  const [crosswalk, setCrosswalk] = useState<Crosswalk | null>(null);
+  const [fx, setFx] = useState<{ dkkToRon: number; eurToRon: number; date: string } | null>(null);
 
   const wanted = scenario.regimeIds;
 
@@ -52,7 +57,27 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const missing = wanted.filter((id) => !regimes[id] && AVAILABLE.includes(id));
+    const base = import.meta.env.BASE_URL;
+    fetch(`${base}data/crosswalks/${CROSSWALK_ID}.json`)
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`crosswalk: ${r.status}`))))
+      .then(setCrosswalk)
+      .catch((e: Error) => setError(e.message));
+
+    // The rate is read from the committed ECB document rather than hard-coded, so a
+    // converted figure can always be traced to the day it was taken.
+    fetch(`${base}data/fiscal/${FX_ID}.json`)
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`fx: ${r.status}`))))
+      .then((doc) => {
+        const rate = (id: string) =>
+          doc.series.find((s: { id: string }) => s.id === id)?.observations.at(-1)?.value;
+        setFx({ dkkToRon: rate('dkk-ron'), eurToRon: rate('eur-ron'), date: doc.retrieved });
+      })
+      .catch((e: Error) => setError(e.message));
+  }, []);
+
+  useEffect(() => {
+    const needed = scenario.view === 'echivalente' ? AVAILABLE : wanted;
+    const missing = needed.filter((id) => !regimes[id] && AVAILABLE.includes(id));
     if (missing.length === 0) return;
     Promise.all(
       missing.map((id) =>
@@ -63,7 +88,7 @@ export default function App() {
     )
       .then((pairs) => setRegimes((prev) => ({ ...prev, ...Object.fromEntries(pairs) })))
       .catch((e: Error) => setError(e.message));
-  }, [wanted, regimes]);
+  }, [wanted, regimes, scenario.view]);
 
   const loaded = wanted.map((id) => regimes[id]).filter(Boolean);
   const ministry = regimes['ro-draft-2026-07-16'] ?? null;
@@ -95,6 +120,12 @@ export default function App() {
             onClick={() => setScenario({ ...scenario, view: 'compare' })}
           >
             Comparație
+          </button>
+          <button
+            className={scenario.view === 'echivalente' ? 'on' : ''}
+            onClick={() => setScenario({ ...scenario, view: 'echivalente' })}
+          >
+            Echivalențe RO–DK
           </button>
           <button
             className={scenario.view === 'structure' ? 'on' : ''}
@@ -141,6 +172,18 @@ export default function App() {
           onOpen={(view) => setScenario({ ...scenario, view })}
         />
       )}
+      {scenario.view === 'echivalente' &&
+        ministry &&
+        regimes['dk-stat-2026'] &&
+        crosswalk &&
+        fx && (
+          <EquivalenceView
+            ro={ministry}
+            dk={regimes['dk-stat-2026']}
+            crosswalk={crosswalk}
+            fx={fx}
+          />
+        )}
       {loaded.length > 0 && scenario.view === 'structure' && (
         <StructureView regime={regimes['ro-draft-2026-07-16'] ?? loaded[0]} />
       )}

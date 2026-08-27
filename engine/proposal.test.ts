@@ -14,7 +14,7 @@ const BASE: Regime = JSON.parse(
   readFileSync(resolve(here, '../data/regimes/ro-draft-2026-07-16.json'), 'utf8'),
 );
 const PROPOSAL: Proposal = JSON.parse(
-  readFileSync(resolve(here, '../data/proposals/cnw-v1.json'), 'utf8'),
+  readFileSync(resolve(here, '../data/proposals/propunere-v1.json'), 'utf8'),
 );
 
 const applied = applyProposal(BASE, PROPOSAL);

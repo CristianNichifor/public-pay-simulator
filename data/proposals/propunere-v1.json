@@ -1,18 +1,17 @@
 {
   "$schema": "../../schema/proposal.schema.json",
-  "id": "cnw-v1",
-  "name": "Propunerea CN Webify v1 — grila reparată",
+  "id": "propunere-v1",
+  "name": "Propunere alternativă v1 — grila reparată",
   "base": "ro-draft-2026-07-16",
   "status": "proposal",
   "summary": "Cinci corecturi la proiectul MMFTSS. Niciuna nu schimbă cine cât ia unul față de altul: fiecare repară un defect pe care instrumentul îl arată deja în datele publicate. Este o versiune corectată a propunerii ministerului, nu o politică salarială alternativă.",
   "notPolicy": "Această propunere nu ridică și nu scade salarii în raport unele cu altele. Compresia grilei, nivelul valorii de referință și repartiția între familii ocupaționale rămân exact cele propuse de minister. Ce se schimbă este dacă regulile scrise în lege pot fi de fapt aplicate.",
   "provenance": {
-    "source": "cnw",
-    "locator": "data/proposals/cnw-v1.json",
+    "source": "propunere-alternativa",
+    "locator": "data/proposals/propunere-v1.json",
     "confidence": "derived",
     "note": "Fiecare patch trimite la constatarea care îl motivează, iar constatarea trimite la celula sau articolul din sursă."
   },
-
   "patches": [
     {
       "id": "rotunjire-2-zecimale",
@@ -44,7 +43,11 @@
     {
       "id": "plafon-fara-portite",
       "op": "setSupplementCounts",
-      "supplementIds": ["administrare-resurse-europene", "izolare-delta", "capacitate-fiscal-bugetara"],
+      "supplementIds": [
+        "administrare-resurse-europene",
+        "izolare-delta",
+        "capacitate-fiscal-bugetara"
+      ],
       "countsToCap": true,
       "title": "Sporurile exceptate intră în plafonul de 20%",
       "fixes": "plafon-20-nu-e-per-persoana",

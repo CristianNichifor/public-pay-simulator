@@ -15,7 +15,7 @@
 
 import type { Person, SupplementClaim } from './payslip';
 
-export type ViewId = 'compare' | 'payslip' | 'structure' | 'envelope';
+export type ViewId = 'compare' | 'echivalente' | 'payslip' | 'structure' | 'envelope';
 
 export interface Scenario {
   view: ViewId;
@@ -83,7 +83,11 @@ export function decodeScenario(hash: string): Scenario {
   const raw = hash.replace(/^#\/?/, '');
   const [path, query = ''] = raw.split('?');
   const view: ViewId =
-    path === 'payslip' || path === 'envelope' || path === 'structure' || path === 'compare'
+    path === 'payslip' ||
+    path === 'envelope' ||
+    path === 'structure' ||
+    path === 'compare' ||
+    path === 'echivalente'
       ? path
       : DEFAULT_SCENARIO.view;
 

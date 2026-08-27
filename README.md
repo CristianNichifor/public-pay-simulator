@@ -27,7 +27,7 @@ implementation.
 - [ ] `data/headcount/` — blocked: no filled-post counts are published per position
 - [x] **View 1 — payslip diff, live.** Scenario lives in the URL hash
 - [x] **Comparison view — three systems side by side, the landing page**
-- [x] `data/proposals/cnw-v1.json` — our proposal, as five auditable patches
+- [x] `data/proposals/propunere-v1.json` — our proposal, as five auditable patches
 - [x] `data/headcount/` — real filled-post counts, June 2026, per ordonator
 - [ ] View 3 — envelope mode
 
@@ -145,17 +145,36 @@ compression, the reference value, and the split between occupational families ar
 exactly as the ministry proposed. What changes is whether the rules written in the law can
 be applied at all.
 
-## The currency rule is enforced, not documented
+## Comparing Romanian and Danish pay
 
-View 1 prices the same person under every regime selected. Where those regimes are
-denominated differently — RON per month against DKK per year — the columns sit side by
-side and **no delta is offered**. What remains is a dimensionless table: base as a share
-of gross, supplements as a share of gross, net over gross, employer cost above gross,
-seniority uplift. Those are comparable; levels are not.
+Two different things, kept apart on purpose.
 
-Selecting a Romanian position with the Danish regime loaded shows the honest outcome
-rather than a number: the position does not exist there, and bridging it would need a
-crosswalk that is an editorial judgement rather than a legal fact.
+**Inside the payslip view**, regimes denominated differently — RON per month against DKK
+per year — sit side by side with **no delta**, and what remains is a dimensionless table:
+base as a share of gross, supplements as a share of gross, net over gross, employer cost
+above gross, seniority uplift.
+
+**In the equivalence view**, amounts *are* converted, because a reader comparing two
+systems needs a unit they think in. The rate is the ECB daily reference rate, committed as
+a dated series in `data/fiscal/ecb-fx.json` rather than written into the app, so any
+converted figure can be traced to the day it was taken. Every screen carrying a converted
+number also carries the caveat that a market rate says how large a number is, not what it
+buys — Danish price levels are substantially higher, so a converted salary is not the same
+standard of living.
+
+## Naming: institution and statute, or occupation and expertise
+
+Denmark names a post by what the person does and what it requires — *engineer*,
+*specialist consultant*, *department head*. The Romanian draft names it by the employer and
+the legal status — *funcție publică de execuție, grad profesional superior, categoria
+înalților funcționari publici*.
+
+`data/crosswalks/ro-draft-2026-07-16--dk-stat-2026.json` puts the two side by side and,
+where the naming logics actually differ, proposes the labour-market name. Every link
+declares its basis, its confidence, and whether it is disputed; weak ones are labelled weak
+on screen. The most important entry is the one with no Danish endpoint at all: IDA's tables
+cover engineers and academics, so the bottom of the Romanian grid — *părinte social,
+îngrijitor la domiciliu* — has nothing published to be compared against.
 
 ## Layout
 
