@@ -4,14 +4,8 @@ import { payslip } from '../../engine/payslip';
 import type { Payslip, Person } from '../../engine/payslip';
 import type { Scenario } from '../../engine/scenario';
 import type { Position, Regime } from '../../engine/types';
-
-function money(minor: number, currency: string): string {
-  return (minor / 100).toLocaleString('ro-RO', {
-    style: 'currency',
-    currency,
-    maximumFractionDigits: 0,
-  });
-}
+import { amountLine } from './money';
+import type { Rates } from './money';
 function pct(n: number, digits = 1): string {
   return `${(n * 100).toLocaleString('ro-RO', { maximumFractionDigits: digits })}%`;
 }
@@ -22,10 +16,12 @@ export default function PayslipView({
   regimes,
   scenario,
   onChange,
+  rates,
 }: {
   regimes: Regime[];
   scenario: Scenario;
   onChange: (next: Scenario) => void;
+  rates: Rates;
 }) {
   const primary = regimes[0];
   const [query, setQuery] = useState('');
@@ -101,17 +97,22 @@ export default function PayslipView({
       <header className="masthead">
         <h1>Același om, sub mai multe regimuri</h1>
         <p>
-          Alege o funcție, o vechime și sporurile revendicate. Fiecare regim calculează separat,
-          din propriile lui reguli. Tot scenariul stă în adresa paginii, deci linkul de mai jos
-          este scenariul — nu există server și nu se salvează nimic.
+          Alege o funcție și o vechime. Fiecare regim calculează din propriile lui reguli, iar tot
+          scenariul stă în adresa paginii — linkul <em>este</em> scenariul.
         </p>
       </header>
 
       <div className="disclaimer">
-        <strong>Cifrele sunt ce spune legea, nu ce încasează cineva.</strong> Diferența salarială
-        tranzitorie de la Art. 33 — care menține venitul din noiembrie 2026 și în primii ani
-        domină factura reală — nu poate fi calculată fără date individuale, pe care România nu le
-        publică. Orice sumă de aici este un prag, nu o prognoză.
+        <strong>Cifrele sunt ce spune legea, nu ce încasează cineva.</strong> Orice sumă de aici e
+        un prag, nu o prognoză.
+        <details>
+          <summary>De ce</summary>
+          <p>
+            Diferența salarială tranzitorie de la Art. 33 menține venitul din noiembrie 2026 și, în
+            primii ani, domină factura reală. Nu poate fi calculată fără date individuale de
+            salarizare, pe care România nu le publică.
+          </p>
+        </details>
       </div>
 
       <section>
@@ -216,7 +217,7 @@ export default function PayslipView({
           )}
           <div className="slips">
             {slips.map(({ regime, position, slip }) => (
-              <PayslipCard key={regime.id} regime={regime} position={position} slip={slip} />
+              <PayslipCard key={regime.id} regime={regime} position={position} slip={slip} rates={rates} />
             ))}
           </div>
         </section>
@@ -296,12 +297,14 @@ function PayslipCard({
   regime,
   position,
   slip,
+  rates,
 }: {
   regime: Regime;
   position: Position | null;
   slip: Payslip;
+  rates: Rates;
 }) {
-  const cur = (m: number) => money(m, slip.currency);
+  const cur = (m: number) => amountLine(m / 100, slip.currency, rates);
   const supplements = slip.supplements.filter((l) => l.amount > 0 || l.suppressedBy);
 
   if (!position) {
@@ -323,6 +326,8 @@ function PayslipCard({
       <p className="slip-meta">
         {position.name} · {slip.currency} {PERIOD_LABEL[slip.period]}
       </p>
+
+      <Composition slip={slip} />
 
       <table className="data">
         <tbody>
@@ -402,6 +407,47 @@ function PayslipCard({
           </ul>
         </details>
       )}
+    </div>
+  );
+}
+
+/**
+ * What the gross is made of, before what it adds up to.
+ *
+ * A number cannot show that one system pays through the base and another through
+ * supplements; a proportion can, at a glance, which is the whole argument about Article
+ * 21 rendered in one bar.
+ */
+function Composition({ slip }: { slip: Payslip }) {
+  const supplements = slip.supplements.reduce((sum, l) => sum + l.amount, 0);
+  const pension = slip.pensionSplit?.total ?? 0;
+  const total = slip.base + supplements + pension;
+  if (total <= 0) return null;
+  const w = (n: number) => `${(n / total) * 100}%`;
+  const share = (n: number) => Math.round((n / total) * 100);
+
+  return (
+    <div className="slip-compose">
+      <div className="compose-track" role="img" aria-label="din ce e compus brutul">
+        <div className="compose-seg seg-base" style={{ width: w(slip.base) }} />
+        {supplements > 0 && <div className="compose-seg seg-sup" style={{ width: w(supplements) }} />}
+        {pension > 0 && <div className="compose-seg seg-pension" style={{ width: w(pension) }} />}
+      </div>
+      <div className="compose-key">
+        <span>
+          <i className="seg-base" /> bază {share(slip.base)}%
+        </span>
+        {supplements > 0 && (
+          <span>
+            <i className="seg-sup" /> sporuri {share(supplements)}%
+          </span>
+        )}
+        {pension > 0 && (
+          <span>
+            <i className="seg-pension" /> pensie {share(pension)}%
+          </span>
+        )}
+      </div>
     </div>
   );
 }

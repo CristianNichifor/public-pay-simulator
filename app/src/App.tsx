@@ -211,11 +211,12 @@ export default function App() {
       {loaded.length > 0 && scenario.view === 'structure' && (
         <StructureView regime={regimes['ro-draft-2026-07-16'] ?? loaded[0]} />
       )}
-      {loaded.length > 0 && scenario.view === 'payslip' && (
+      {loaded.length > 0 && scenario.view === 'payslip' && fx && (
         <PayslipView
           regimes={ours ? [...loaded, ours.regime] : loaded}
           scenario={scenario}
           onChange={setScenario}
+          rates={fx}
         />
       )}
 
