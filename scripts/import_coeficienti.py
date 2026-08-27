@@ -635,6 +635,44 @@ def main() -> None:
             stats["rows_merged_into_existing_code"] += 1
     positions = list(merged.values())
 
+    # Merging by code collapses rows that came from different sheets. Where two variants
+    # end up with identical dims they become indistinguishable, and payslip() would price
+    # the first match — so a director in the smallest local tier would be paid at the
+    # largest tier's coefficient. The four "VIII CII A 3_localN" sheets are exactly this:
+    # one code, four tiers, coefficients from 4,47 down to 2,47. Disambiguate by the sheet
+    # the row came from, which is where the distinction was carried all along.
+    sheet_of = re.compile(r"sheet '([^']+)'")
+    for position in positions:
+        groups: dict[str, list[dict]] = defaultdict(list)
+        for variant in position["variants"]:
+            groups[json.dumps(variant.get("dims") or {}, sort_keys=True)].append(variant)
+        for colliding in groups.values():
+            if len(colliding) < 2:
+                continue
+            for variant in colliding:
+                match = sheet_of.search(variant["provenance"]["locator"])
+                if match:
+                    variant.setdefault("dims", {})["sursa"] = match.group(1)
+                    stats["variants_disambiguated_by_sheet"] += 1
+
+        # Some collisions are inside a single sheet, where the source distinguishes two
+        # rows by nothing but their place on the page. Say so rather than leave two
+        # variants a caller cannot choose between.
+        regroup: dict[str, list[dict]] = defaultdict(list)
+        for variant in position["variants"]:
+            regroup[json.dumps(variant.get("dims") or {}, sort_keys=True)].append(variant)
+        for colliding in regroup.values():
+            if len(colliding) < 2:
+                continue
+            for variant in colliding:
+                cell = re.search(r"!([A-Z]*\d+)", variant["provenance"]["locator"])
+                if cell:
+                    # The full cell, not just the row: Annex VI prints two Min/Max blocks
+                    # side by side on one row, so the column is the only thing telling
+                    # them apart.
+                    variant.setdefault("dims", {})["celula"] = cell.group(1)
+                    stats["variants_disambiguated_by_cell"] += 1
+
     for code, patch in overrides.items():
         target = next((p for p in positions if p["code"] == code), None)
         if target is None:

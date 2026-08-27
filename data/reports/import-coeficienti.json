@@ -61,6 +61,8 @@
     "rows_without_title": 44,
     "sheets_without_coefficients": 1,
     "rows_merged_into_existing_code": 764,
+    "variants_disambiguated_by_sheet": 1064,
+    "variants_disambiguated_by_cell": 772,
     "overrides_applied": 2,
     "graded": 2724,
     "outside_every_band": 92,
