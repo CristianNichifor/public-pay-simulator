@@ -13,9 +13,13 @@ from __future__ import annotations
 
 import collections
 import re
+import sys
 from pathlib import Path
 
 import openpyxl
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from import_coeficienti import classify_columns  # noqa: E402
 
 WORKBOOK = Path("sources/Proiect-COEFICIENTI-1-8-MMFTSS-16.07.2026-1000.xlsx")
 
@@ -67,32 +71,36 @@ def coded_rows(wb) -> list[tuple[str, int, str, tuple]]:
 def probe_precision(wb) -> None:
     """Distinct coefficient values by decimal place.
 
-    Columns whose maximum stays under 1.5 are excluded: the workbook leaves working
-    columns in place — old-versus-new salary ratios that cluster around 1.0 — and
-    counting those as coefficients would inflate the very statistic being measured.
+    Column selection is delegated to the importer's classifier rather than repeated
+    here. An earlier version of this probe carried its own rule — "the column must
+    reach 1.5" — which silently discarded three whole sheets whose coefficients never
+    get that high, and quoted a distinct-value count the importer disagreed with. One
+    definition, one number.
     """
-    per_col: dict[tuple[str, int], list[float]] = collections.defaultdict(list)
+    values: set[float] = set()
     for name in wb.sheetnames:
-        for row in wb[name].iter_rows(values_only=True):
-            for c, v in enumerate(row, 1):
-                if isinstance(v, float) and 0.5 <= v <= 8.5:
-                    per_col[(name, c)].append(v)
-
-    kept = [vs for vs, in ((v,) for v in per_col.values()) if max(vs) >= 1.5 and len(vs) >= 3]
-    values = {v for vs in kept for v in vs}
+        rows = [tuple(r) for r in wb[name].iter_rows(values_only=True)]
+        roles = classify_columns(rows)
+        wanted = {c for c, role in roles.items() if role == "coefficient"}
+        for row in rows:
+            for c in wanted:
+                # int, not just float: the grid floor of 1 is stored as an integer,
+                # and testing only for float quietly drops the bottom of the scale.
+                value = row[c] if c < len(row) else None
+                if isinstance(value, (int, float)) and not isinstance(value, bool) and 0.5 <= value <= 8.5:
+                    values.add(float(value))
     hist = collections.Counter(decimals(v) for v in values)
     total = len(values)
 
-    print(f"\ncoefficient columns kept: {len(kept)} of {len(per_col)}")
     print(f"distinct coefficient values: {total}")
     for k in sorted(hist):
         print(f"  {k:2d} dp -> {hist[k]:4d}  ({hist[k] / total:5.1%})")
     print(f"  <=2 dp: {sum(hist[k] for k in hist if k <= 2)}")
     print(f" >=14 dp: {sum(hist[k] for k in hist if k >= 14)}")
     print(f"  span: {min(values)} .. {max(values)}  ratio 1:{max(values) / min(values):.2f}")
-    print("  NB: that maximum is Annex IX's 2030 column. Annex IX phases dignitary")
-    print("      coefficients 2026/2027 -> 2031, so the span applicable in 2027 is")
-    print("      1,02 .. 6,4702 = 1:6,34, and 8,00 is reached only in 2031.")
+    print("  NB: the maximum is Annex IX's 2030 column. Annex IX phases dignitary")
+    print("      coefficients 2026/2027 -> 2031, so the span in force during 2027 is")
+    print("      1,00 .. 6,4702 = 1:6,47, and 8,00 is reached only in 2031.")
 
 
 def probe_assimilation(wb) -> None:

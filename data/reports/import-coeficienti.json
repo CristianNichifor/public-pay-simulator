@@ -1,0 +1,318 @@
+{
+  "generatedFrom": "Proiect-COEFICIENTI-1-8-MMFTSS-16.07.2026-1000.xlsx",
+  "sheets": 48,
+  "positions": 1176,
+  "variants": 2821,
+  "perSheet": {
+    "I CI 1-3": 22,
+    "I CI 4-5-6": 147,
+    "I CII": 18,
+    "I CIII A": 7,
+    "I CIII A B C D": 7,
+    "II CI 1": 20,
+    "II CI 2": 78,
+    "II CI 3": 58,
+    "III CI ": 102,
+    "III CII": 52,
+    "III CIII": 52,
+    "III CIV": 30,
+    "III CV": 34,
+    "IV CI + CII": 28,
+    "IV CVII": 32,
+    "V CI A+B": 12,
+    "V CII": 13,
+    "V CIII": 2,
+    "V CV": 18,
+    "V CIV": 4,
+    "V CVInef": 10,
+    "V CVII": 11,
+    "VI_Armata": 34,
+    "VII CI ": 38,
+    "VIII_CI_A_1": 69,
+    "VIII_CI_A_2": 37,
+    "VIII CI A 3 (local1)": 33,
+    "VIII CI A 3 (local2)": 41,
+    "VIII CI A 3 (local3)": 41,
+    "VIII CI A 3 (local4)": 41,
+    "VIII CII A 1": 214,
+    "VIII CII A 2": 25,
+    "VIII CII A 3_local1": 66,
+    "VIII CII A 3_local2": 66,
+    "VIII CII A 3_local3": 66,
+    "VIII CII A 3_local4": 66,
+    "VIII CII B": 68,
+    "VIII CII C": 28,
+    "VIII CII D": 30,
+    "VIII CII E": 34,
+    "VIII CII F": 72,
+    "VIII CII G": 12,
+    "VIII CII H": 12,
+    "VIII CII I": 21,
+    "IX A": 9,
+    "IX B": 46,
+    "IX C": 14,
+    "IX D": 0
+  },
+  "counters": {
+    "positions": 1940,
+    "rows_without_code": 486,
+    "continuation_rows": 203,
+    "rows_needing_review": 118,
+    "rows_without_title": 44,
+    "sheets_without_coefficients": 1,
+    "rows_merged_into_existing_code": 764,
+    "overrides_applied": 2,
+    "graded": 2724,
+    "outside_every_band": 92,
+    "grade_skipped_by_override": 1
+  },
+  "assimilationParse": {
+    "single": 916,
+    "slash": 11,
+    "comma": 49,
+    "semicolon": 80,
+    "mixed": 23,
+    "needsReview": 97
+  },
+  "fanInHistogram": {
+    "1": 1013,
+    "2": 74,
+    "3": 48,
+    "4": 23,
+    "5": 7,
+    "6": 1,
+    "7": 4,
+    "9": 1,
+    "10": 3,
+    "11": 1,
+    "12": 1
+  },
+  "titlesAbsorbed": 1528,
+  "skipped": [
+    {
+      "sheet": "III CI ",
+      "row": 12,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "III CI ",
+      "row": 67,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "III CII",
+      "row": 13,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "III CII",
+      "row": 43,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "III CIII",
+      "row": 11,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "III CIII",
+      "row": 41,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "V CVInef",
+      "row": 15,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "V CVInef",
+      "row": 17,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "V CVInef",
+      "row": 18,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "V CVInef",
+      "row": 19,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "V CVInef",
+      "row": 21,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "V CVInef",
+      "row": 22,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "V CVInef",
+      "row": 23,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "V CVInef",
+      "row": 25,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "V CVInef",
+      "row": 26,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "V CVInef",
+      "row": 27,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "V CVInef",
+      "row": 29,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "V CVInef",
+      "row": 30,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "V CVInef",
+      "row": 31,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 25,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 27,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 29,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 31,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 32,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 34,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 35,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 37,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 38,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 40,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 41,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 43,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 44,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 46,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 47,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 49,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 50,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 52,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 53,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 55,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 56,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 58,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 59,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 61,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "VI_Armata",
+      "row": 63,
+      "reason": "no title cell and no position above it to continue"
+    },
+    {
+      "sheet": "IX D",
+      "reason": "no column behaved like a coefficient"
+    }
+  ],
+  "skippedTotal": 45
+}

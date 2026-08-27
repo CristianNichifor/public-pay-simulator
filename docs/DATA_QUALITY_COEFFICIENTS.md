@@ -16,18 +16,18 @@ uv run --with openpyxl python scripts/probe_workbook.py
 
 ## The coefficients are back-solved
 
-1 397 distinct coefficient values. By decimal places:
+1 376 distinct coefficient values. By decimal places:
 
 | decimals | distinct values | share |
 | -------- | --------------- | ----- |
-| ≤ 2      | 218             | 15,6% |
-| 3–13     | 317             | 22,7% |
-| 14       | 49              | 3,5%  |
-| 15       | 217             | 15,5% |
-| 16       | 596             | 42,7% |
+| ≤ 2      | 224             | 16,3% |
+| 3–13     | 300             | 21,8% |
+| 14       | 49              | 3,6%  |
+| 15       | 218             | 15,9% |
+| 16       | 585             | 42,5% |
 
-A designed grid produces numbers like 2,40 and 3,29 — and 218 of these are exactly that.
-The other 1 179 are what you get when you divide one salary by another. `5,189610389610378`
+A designed grid produces numbers like 2,40 and 3,29 — and 224 of these are exactly that.
+The other 1 152 are what you get when you divide one salary by another. `5,189610389610378`
 is not a policy choice; it is the residue of a division.
 
 The workbook says so itself. Row 136 of `I CI 4-5-6`, in the columns to the right of the
@@ -46,26 +46,64 @@ integer minor units.
 
 ### Excluded columns
 
-The precision figures above cover columns whose maximum reaches 1,5. Nine columns fall below
-that and are excluded: they are the leftover ratio columns, clustering around 1,0. Counting
-them would inflate the high-decimal share — the statistic being measured. The single value
-below 1,00 anywhere in the workbook, `0,9893…`, is one of these, not a coefficient. **The
-grid does not breach its own 1,00 floor.**
+Telling a coefficient column from a leftover working column is the single decision the whole
+dataset rests on, and the obvious rule is wrong.
+
+A first attempt required a column to reach 1,5 somewhere, on the reasoning that ratio columns
+cluster around 1,0. That silently discarded three entire sheets — `V CIII`, `VIII CII C`,
+`IX D` — whose coefficients never get that high because they cover the bottom of the grid:
+*agent procedural*, *șofer*, *muncitor necalificat*. It also disagreed with the importer,
+so the repo quoted two different distinct-value counts.
+
+The rule that survives is positional: **the real coefficients are printed to the left of the
+function code; the author's arithmetic is to the right.** Three refinements were each forced
+by a specific misread:
+
+- The grid is one adjacent block. `VIII_CI_A_1` keeps its old/new ratios in column K, four
+  columns clear of the coefficients in F and G, and column K is still left of the code — so
+  columns detached from the leftmost block are dropped.
+- The `Nr. crt.` index is an ascending integer run. In Annex V it prints only on the first row
+  of each group — four values, all inside 1..8 — so a length test alone misses it, and
+  mistaking it for pay also knocked the real coefficient column out of the adjacency block.
+- Title banners must be excluded before profiling a column, or a numeric column reads as text.
+  That is what hid Annex IX lit. D.
+
+`scripts/probe_workbook.py` imports the classifier from the importer rather than repeating it.
+One definition, one number.
+
+The single value below 1,00 anywhere in the workbook, `0,9893…`, is a ratio cell, not a
+coefficient. **The grid does not breach its own 1,00 floor.**
 
 ## The 1:8 ratio
 
-Article 5 sets the ratio between the lowest and highest base salary at 1 to 8. In the grid:
+Article 5 sets the ratio between the lowest and highest base salary at 1 to 8. The grid
+reaches it exactly — but not when the law commences.
 
-- lowest coefficient: **1,02** — `Părinte social, îngrijitor la domiciliu, asistent personal`
-- highest applicable in 2027: **6,4702** — President of Romania
-- highest anywhere in the workbook: **7,6176** — the same position, 2030 column
+- lowest coefficient: **1,00** — *garderobier*, *manipulant decor*, *muncitor necalificat*
+- highest in 2026/2027: **6,4702** — President of Romania
+- then **6,8527** (2028), **7,2351** (2029), **7,6176** (2030), **8,0000** (2031)
 
-Annex IX phases dignitary coefficients across five columns (2026/2027, 2028, 2029, 2030,
-2031), and the President's reaches exactly 8,00 only in 2031. The span actually in force
-during 2027 is **1:6,34**.
+Annex IX phases the dignitary coefficients across five calendar columns, and the top of the
+grid lands on 8,00 precisely in 2031. The span in force during 2027 is **1:6,47**.
 
-Article 5's ratio is a destination, not a description. The model stores dignitary
-coefficients as a dated series so the app can show the span moving year by year.
+So Article 5 describes the destination of a five-year escalator, not the structure that takes
+effect. The model stores these as a dated series so the app can show the span moving year by
+year rather than quoting one number.
+
+## The grade bands have gaps, and coefficients fall into them
+
+Article 9(2) defines the twelve bands to two decimals: grade 1 runs to 1,19, grade 2 starts at
+1,20. The annexes deliver sixteen decimals. A coefficient of `1,1907527039036847` is above
+grade 1's ceiling and below grade 2's floor, so it belongs to no salary grade at all.
+
+**92 of 2 821 variants (3,3%) land in one of these 0,01-wide gaps.**
+
+The importer leaves them without a `gradeId` instead of rounding to the nearer band. Rounding
+would hide a defect in the law, and grade placement is not cosmetic — it drives evaluation,
+promotion, and every compression measure computed over grades.
+
+This follows directly from the back-solving above: bands were written for designed
+coefficients and the annexes supply divided ones.
 
 ## The top of the grid is outside the grade structure
 

@@ -5,6 +5,9 @@ description = "Importers and probes that turn the Romanian pay-law sources into 
 requires-python = ">=3.11"
 dependencies = ["openpyxl>=3.1", "python-docx>=1.1", "pypdf>=5.0", "jsonschema>=4.23"]
 
+[dependency-groups]
+dev = ["pytest>=8.0"]
+
 [tool.ruff]
 line-length = 100
 

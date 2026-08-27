@@ -19,7 +19,7 @@ implementation.
 - [x] `engine/types.ts` — engine contract and type signatures
 - [x] Two hand-written regimes, validating, arithmetic checked against published figures
 - [x] CI: schema validation gate + engine typecheck; Pages deploy wired
-- [ ] `scripts/import_coeficienti.py` — 48 sheets → `data/regimes/ro-draft-2026-07-16.json`
+- [x] `scripts/import_coeficienti.py` — 48 sheets → 1 176 positions, 2 821 variants, 15 tests
 - [ ] `ro-153-2017.json` — blocked on the consolidated 153/2017 annexes
 - [ ] Engine + vitest suite
 - [ ] The three views. UI last, deliberately.
@@ -70,13 +70,16 @@ Full reasoning: [`docs/METHODOLOGY.md`](docs/METHODOLOGY.md).
 
 ## What reading the sources actually turned up
 
-- **The coefficients are back-solved, not designed.** 1 397 distinct values; 862 of them
-  (61,7%) carry 14 or more decimal places and 596 sit at 16. Only 218 are rounded to two.
+- **The coefficients are back-solved, not designed.** 1 376 distinct values; 852 of them
+  (61,9%) carry 14 or more decimal places and 585 sit at 16. Only 224 are rounded to two.
   The workbook still has the working columns visible — old-lei and new-lei amounts side by
   side, ratio columns, live `#DIV/0!` cells.
-- **The 1:8 ratio is a destination, not a description.** The lowest coefficient in the grid is
-  1,02; the highest applicable in 2027 is 6,4702. That is 1:6,34. The value 8,00 appears only
-  in Annex IX's 2031 column.
+- **The 1:8 ratio is a five-year destination.** The grid does reach it — exactly — but only in
+  2031. The floor is 1,00; the Annex IX ceiling climbs 6,4702 → 6,85 → 7,24 → 7,62 → 8,00.
+  The ratio in force when the law commences is 1:6,47.
+- **The grade structure has gaps that real coefficients fall into.** Art. 9(2) defines bands to
+  two decimals (grade 1 ends at 1,19, grade 2 starts at 1,20) while the annexes deliver
+  sixteen. 92 of 2 821 variants (3,3%) belong to no salary grade at all.
 - **The law merges jobs with punctuation.** Roughly a quarter of coded positions collapse two
   or more former titles into one code and one coefficient — `Director; șef compartiment;
   inspector șef; comisar șef divizie; …` is nine. No assimilation table is published.

@@ -23,8 +23,21 @@ jobs:
       - name: Set up Python
         run: uv python install 3.11
 
-      - name: Validate every regime and crosswalk
+      - name: Validate every regime, crosswalk and fiscal series
         run: uv run --with jsonschema python scripts/validate_data.py
+
+      - name: Importer tests
+        # The importer's failure mode is a plausible number in the wrong place, not a
+        # crash. These fixtures were read out of the workbook by hand before any code
+        # existed, and each one pins a misread that actually happened.
+        run: uv run --with openpyxl --with pytest --with jsonschema pytest tests/ -q
+
+      - name: Import is reproducible
+        # Regenerating must not change the committed data. A drifting importer would
+        # make every provenance locator in data/ a guess.
+        run: |
+          uv run --with openpyxl python scripts/import_coeficienti.py
+          git diff --exit-code data/regimes/ro-draft-2026-07-16.json
 
   engine:
     name: engine (typecheck + tests)
