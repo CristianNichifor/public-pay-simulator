@@ -440,6 +440,425 @@
       }
     },
     {
+      "id": "d1-total-mnac-ro",
+      "label": "Cheltuiala de personal, Total, milioane monedă națională (RO)",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "sector": "S13",
+        "naItem": "D1",
+        "cofog": "TOTAL",
+        "measure": "cash"
+      },
+      "observations": [
+        {
+          "period": "2015",
+          "value": 55716.9
+        },
+        {
+          "period": "2016",
+          "value": 68837.8
+        },
+        {
+          "period": "2017",
+          "value": 84510.7
+        },
+        {
+          "period": "2018",
+          "value": 104347.3
+        },
+        {
+          "period": "2019",
+          "value": 120831.6
+        },
+        {
+          "period": "2020",
+          "value": 129889.3
+        },
+        {
+          "period": "2021",
+          "value": 132658.4
+        },
+        {
+          "period": "2022",
+          "value": 140901.9
+        },
+        {
+          "period": "2023",
+          "value": 161682.7
+        },
+        {
+          "period": "2024",
+          "value": 197134.3
+        }
+      ],
+      "provenance": {
+        "source": "eurostat",
+        "locator": "Eurostat gov_10a_exp, S13/D1/TOTAL/MIO_NAC, geo=RO",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "d1-gf01-mnac-ro",
+      "label": "Cheltuiala de personal, General public services, milioane monedă națională (RO)",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "sector": "S13",
+        "naItem": "D1",
+        "cofog": "GF01",
+        "measure": "cash",
+        "family": "VIII-administratie"
+      },
+      "observations": [
+        {
+          "period": "2015",
+          "value": 6647.3
+        },
+        {
+          "period": "2016",
+          "value": 8061.8
+        },
+        {
+          "period": "2017",
+          "value": 9567.7
+        },
+        {
+          "period": "2018",
+          "value": 12282.5
+        },
+        {
+          "period": "2019",
+          "value": 12880.5
+        },
+        {
+          "period": "2020",
+          "value": 14903.1
+        },
+        {
+          "period": "2021",
+          "value": 14385.5
+        },
+        {
+          "period": "2022",
+          "value": 15418.4
+        },
+        {
+          "period": "2023",
+          "value": 17629.5
+        },
+        {
+          "period": "2024",
+          "value": 21969.1
+        }
+      ],
+      "provenance": {
+        "source": "eurostat",
+        "locator": "Eurostat gov_10a_exp, S13/D1/GF01/MIO_NAC, geo=RO",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "d1-gf02-mnac-ro",
+      "label": "Cheltuiala de personal, Defence, milioane monedă națională (RO)",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "sector": "S13",
+        "naItem": "D1",
+        "cofog": "GF02",
+        "measure": "cash",
+        "family": "VI-aparare-ordine-securitate"
+      },
+      "observations": [
+        {
+          "period": "2015",
+          "value": 3453.2
+        },
+        {
+          "period": "2016",
+          "value": 6350.7
+        },
+        {
+          "period": "2017",
+          "value": 7418.2
+        },
+        {
+          "period": "2018",
+          "value": 8436.2
+        },
+        {
+          "period": "2019",
+          "value": 9235.8
+        },
+        {
+          "period": "2020",
+          "value": 10099.1
+        },
+        {
+          "period": "2021",
+          "value": 10008.1
+        },
+        {
+          "period": "2022",
+          "value": 10394.9
+        },
+        {
+          "period": "2023",
+          "value": 12188.5
+        },
+        {
+          "period": "2024",
+          "value": 15457.8
+        }
+      ],
+      "provenance": {
+        "source": "eurostat",
+        "locator": "Eurostat gov_10a_exp, S13/D1/GF02/MIO_NAC, geo=RO",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "d1-gf03-mnac-ro",
+      "label": "Cheltuiala de personal, Public order and safety, milioane monedă națională (RO)",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "sector": "S13",
+        "naItem": "D1",
+        "cofog": "GF03",
+        "measure": "cash",
+        "family": "VI-aparare-ordine-securitate"
+      },
+      "observations": [
+        {
+          "period": "2015",
+          "value": 12706.7
+        },
+        {
+          "period": "2016",
+          "value": 15718.6
+        },
+        {
+          "period": "2017",
+          "value": 18955.7
+        },
+        {
+          "period": "2018",
+          "value": 22238.5
+        },
+        {
+          "period": "2019",
+          "value": 25106.7
+        },
+        {
+          "period": "2020",
+          "value": 27667.5
+        },
+        {
+          "period": "2021",
+          "value": 28649.0
+        },
+        {
+          "period": "2022",
+          "value": 30540.1
+        },
+        {
+          "period": "2023",
+          "value": 34065.9
+        },
+        {
+          "period": "2024",
+          "value": 41753.7
+        }
+      ],
+      "provenance": {
+        "source": "eurostat",
+        "locator": "Eurostat gov_10a_exp, S13/D1/GF03/MIO_NAC, geo=RO",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "d1-gf07-mnac-ro",
+      "label": "Cheltuiala de personal, Health, milioane monedă națională (RO)",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "sector": "S13",
+        "naItem": "D1",
+        "cofog": "GF07",
+        "measure": "cash",
+        "family": "II-sanatate-asistenta-sociala"
+      },
+      "observations": [
+        {
+          "period": "2015",
+          "value": 8382.8
+        },
+        {
+          "period": "2016",
+          "value": 10650.4
+        },
+        {
+          "period": "2017",
+          "value": 15071.5
+        },
+        {
+          "period": "2018",
+          "value": 20506.4
+        },
+        {
+          "period": "2019",
+          "value": 23315.3
+        },
+        {
+          "period": "2020",
+          "value": 25622.9
+        },
+        {
+          "period": "2021",
+          "value": 27691.8
+        },
+        {
+          "period": "2022",
+          "value": 28309.9
+        },
+        {
+          "period": "2023",
+          "value": 29588.1
+        },
+        {
+          "period": "2024",
+          "value": 34584.9
+        }
+      ],
+      "provenance": {
+        "source": "eurostat",
+        "locator": "Eurostat gov_10a_exp, S13/D1/GF07/MIO_NAC, geo=RO",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "d1-gf09-mnac-ro",
+      "label": "Cheltuiala de personal, Education, milioane monedă națională (RO)",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "sector": "S13",
+        "naItem": "D1",
+        "cofog": "GF09",
+        "measure": "cash",
+        "family": "I-invatamant"
+      },
+      "observations": [
+        {
+          "period": "2015",
+          "value": 12484.8
+        },
+        {
+          "period": "2016",
+          "value": 14719.0
+        },
+        {
+          "period": "2017",
+          "value": 16931.2
+        },
+        {
+          "period": "2018",
+          "value": 20966.2
+        },
+        {
+          "period": "2019",
+          "value": 26044.3
+        },
+        {
+          "period": "2020",
+          "value": 25094.3
+        },
+        {
+          "period": "2021",
+          "value": 24906.9
+        },
+        {
+          "period": "2022",
+          "value": 27336.6
+        },
+        {
+          "period": "2023",
+          "value": 35071.5
+        },
+        {
+          "period": "2024",
+          "value": 45181.3
+        }
+      ],
+      "provenance": {
+        "source": "eurostat",
+        "locator": "Eurostat gov_10a_exp, S13/D1/GF09/MIO_NAC, geo=RO",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "d1-gf10-mnac-ro",
+      "label": "Cheltuiala de personal, Social protection, milioane monedă națională (RO)",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "sector": "S13",
+        "naItem": "D1",
+        "cofog": "GF10",
+        "measure": "cash",
+        "family": "II-sanatate-asistenta-sociala"
+      },
+      "observations": [
+        {
+          "period": "2015",
+          "value": 3215.8
+        },
+        {
+          "period": "2016",
+          "value": 4094.9
+        },
+        {
+          "period": "2017",
+          "value": 5399.8
+        },
+        {
+          "period": "2018",
+          "value": 6683.5
+        },
+        {
+          "period": "2019",
+          "value": 7460.6
+        },
+        {
+          "period": "2020",
+          "value": 8635.3
+        },
+        {
+          "period": "2021",
+          "value": 8589.1
+        },
+        {
+          "period": "2022",
+          "value": 9049.0
+        },
+        {
+          "period": "2023",
+          "value": 10656.6
+        },
+        {
+          "period": "2024",
+          "value": 12382.5
+        }
+      ],
+      "provenance": {
+        "source": "eurostat",
+        "locator": "Eurostat gov_10a_exp, S13/D1/GF10/MIO_NAC, geo=RO",
+        "confidence": "verbatim"
+      }
+    },
+    {
       "id": "gdp-nominal-ro",
       "label": "Gross domestic product at current prices, national currency (RO)",
       "geo": "RO",
@@ -904,6 +1323,425 @@
       "provenance": {
         "source": "eurostat",
         "locator": "Eurostat gov_10a_exp, S13/D1/GF10/PC_GDP, geo=DK",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "d1-total-mnac-dk",
+      "label": "Cheltuiala de personal, Total, milioane monedă națională (DK)",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "sector": "S13",
+        "naItem": "D1",
+        "cofog": "TOTAL",
+        "measure": "cash"
+      },
+      "observations": [
+        {
+          "period": "2015",
+          "value": 325579.0
+        },
+        {
+          "period": "2016",
+          "value": 327342.5
+        },
+        {
+          "period": "2017",
+          "value": 332678.6
+        },
+        {
+          "period": "2018",
+          "value": 340518.9
+        },
+        {
+          "period": "2019",
+          "value": 348599.1
+        },
+        {
+          "period": "2020",
+          "value": 356477.3
+        },
+        {
+          "period": "2021",
+          "value": 373688.3
+        },
+        {
+          "period": "2022",
+          "value": 385992.5
+        },
+        {
+          "period": "2023",
+          "value": 397062.2
+        },
+        {
+          "period": "2024",
+          "value": 418405.6
+        }
+      ],
+      "provenance": {
+        "source": "eurostat",
+        "locator": "Eurostat gov_10a_exp, S13/D1/TOTAL/MIO_NAC, geo=DK",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "d1-gf01-mnac-dk",
+      "label": "Cheltuiala de personal, General public services, milioane monedă națională (DK)",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "sector": "S13",
+        "naItem": "D1",
+        "cofog": "GF01",
+        "measure": "cash",
+        "family": "VIII-administratie"
+      },
+      "observations": [
+        {
+          "period": "2015",
+          "value": 26582.3
+        },
+        {
+          "period": "2016",
+          "value": 27369.1
+        },
+        {
+          "period": "2017",
+          "value": 27674.8
+        },
+        {
+          "period": "2018",
+          "value": 28813.3
+        },
+        {
+          "period": "2019",
+          "value": 29490.8
+        },
+        {
+          "period": "2020",
+          "value": 31472.9
+        },
+        {
+          "period": "2021",
+          "value": 32872.4
+        },
+        {
+          "period": "2022",
+          "value": 34554.3
+        },
+        {
+          "period": "2023",
+          "value": 36339.8
+        },
+        {
+          "period": "2024",
+          "value": 38785.7
+        }
+      ],
+      "provenance": {
+        "source": "eurostat",
+        "locator": "Eurostat gov_10a_exp, S13/D1/GF01/MIO_NAC, geo=DK",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "d1-gf02-mnac-dk",
+      "label": "Cheltuiala de personal, Defence, milioane monedă națională (DK)",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "sector": "S13",
+        "naItem": "D1",
+        "cofog": "GF02",
+        "measure": "cash",
+        "family": "VI-aparare-ordine-securitate"
+      },
+      "observations": [
+        {
+          "period": "2015",
+          "value": 9720.4
+        },
+        {
+          "period": "2016",
+          "value": 9662.5
+        },
+        {
+          "period": "2017",
+          "value": 9840.2
+        },
+        {
+          "period": "2018",
+          "value": 10088.9
+        },
+        {
+          "period": "2019",
+          "value": 10106.5
+        },
+        {
+          "period": "2020",
+          "value": 10387.2
+        },
+        {
+          "period": "2021",
+          "value": 11599.3
+        },
+        {
+          "period": "2022",
+          "value": 11479.7
+        },
+        {
+          "period": "2023",
+          "value": 12107.0
+        },
+        {
+          "period": "2024",
+          "value": 13357.6
+        }
+      ],
+      "provenance": {
+        "source": "eurostat",
+        "locator": "Eurostat gov_10a_exp, S13/D1/GF02/MIO_NAC, geo=DK",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "d1-gf03-mnac-dk",
+      "label": "Cheltuiala de personal, Public order and safety, milioane monedă națională (DK)",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "sector": "S13",
+        "naItem": "D1",
+        "cofog": "GF03",
+        "measure": "cash",
+        "family": "VI-aparare-ordine-securitate"
+      },
+      "observations": [
+        {
+          "period": "2015",
+          "value": 11729.0
+        },
+        {
+          "period": "2016",
+          "value": 10928.5
+        },
+        {
+          "period": "2017",
+          "value": 11295.4
+        },
+        {
+          "period": "2018",
+          "value": 11858.0
+        },
+        {
+          "period": "2019",
+          "value": 12748.0
+        },
+        {
+          "period": "2020",
+          "value": 12856.8
+        },
+        {
+          "period": "2021",
+          "value": 13513.8
+        },
+        {
+          "period": "2022",
+          "value": 14081.1
+        },
+        {
+          "period": "2023",
+          "value": 14922.1
+        },
+        {
+          "period": "2024",
+          "value": 15620.9
+        }
+      ],
+      "provenance": {
+        "source": "eurostat",
+        "locator": "Eurostat gov_10a_exp, S13/D1/GF03/MIO_NAC, geo=DK",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "d1-gf07-mnac-dk",
+      "label": "Cheltuiala de personal, Health, milioane monedă națională (DK)",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "sector": "S13",
+        "naItem": "D1",
+        "cofog": "GF07",
+        "measure": "cash",
+        "family": "II-sanatate-asistenta-sociala"
+      },
+      "observations": [
+        {
+          "period": "2015",
+          "value": 90230.5
+        },
+        {
+          "period": "2016",
+          "value": 91643.6
+        },
+        {
+          "period": "2017",
+          "value": 94274.0
+        },
+        {
+          "period": "2018",
+          "value": 96545.7
+        },
+        {
+          "period": "2019",
+          "value": 99405.6
+        },
+        {
+          "period": "2020",
+          "value": 103242.0
+        },
+        {
+          "period": "2021",
+          "value": 109870.1
+        },
+        {
+          "period": "2022",
+          "value": 113976.6
+        },
+        {
+          "period": "2023",
+          "value": 115426.5
+        },
+        {
+          "period": "2024",
+          "value": 121803.1
+        }
+      ],
+      "provenance": {
+        "source": "eurostat",
+        "locator": "Eurostat gov_10a_exp, S13/D1/GF07/MIO_NAC, geo=DK",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "d1-gf09-mnac-dk",
+      "label": "Cheltuiala de personal, Education, milioane monedă națională (DK)",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "sector": "S13",
+        "naItem": "D1",
+        "cofog": "GF09",
+        "measure": "cash",
+        "family": "I-invatamant"
+      },
+      "observations": [
+        {
+          "period": "2015",
+          "value": 72380.0
+        },
+        {
+          "period": "2016",
+          "value": 71636.4
+        },
+        {
+          "period": "2017",
+          "value": 72178.2
+        },
+        {
+          "period": "2018",
+          "value": 73367.3
+        },
+        {
+          "period": "2019",
+          "value": 74773.5
+        },
+        {
+          "period": "2020",
+          "value": 74319.6
+        },
+        {
+          "period": "2021",
+          "value": 78179.1
+        },
+        {
+          "period": "2022",
+          "value": 79635.8
+        },
+        {
+          "period": "2023",
+          "value": 81656.5
+        },
+        {
+          "period": "2024",
+          "value": 85393.9
+        }
+      ],
+      "provenance": {
+        "source": "eurostat",
+        "locator": "Eurostat gov_10a_exp, S13/D1/GF09/MIO_NAC, geo=DK",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "d1-gf10-mnac-dk",
+      "label": "Cheltuiala de personal, Social protection, milioane monedă națională (DK)",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "sector": "S13",
+        "naItem": "D1",
+        "cofog": "GF10",
+        "measure": "cash",
+        "family": "II-sanatate-asistenta-sociala"
+      },
+      "observations": [
+        {
+          "period": "2015",
+          "value": 86626.7
+        },
+        {
+          "period": "2016",
+          "value": 87329.3
+        },
+        {
+          "period": "2017",
+          "value": 88885.1
+        },
+        {
+          "period": "2018",
+          "value": 89660.6
+        },
+        {
+          "period": "2019",
+          "value": 91452.5
+        },
+        {
+          "period": "2020",
+          "value": 92798.7
+        },
+        {
+          "period": "2021",
+          "value": 95012.5
+        },
+        {
+          "period": "2022",
+          "value": 98772.3
+        },
+        {
+          "period": "2023",
+          "value": 101854.2
+        },
+        {
+          "period": "2024",
+          "value": 106850.9
+        }
+      ],
+      "provenance": {
+        "source": "eurostat",
+        "locator": "Eurostat gov_10a_exp, S13/D1/GF10/MIO_NAC, geo=DK",
         "confidence": "verbatim"
       }
     },

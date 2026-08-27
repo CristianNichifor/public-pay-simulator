@@ -116,6 +116,14 @@ def main() -> None:
         )
     )
 
+    print("fetching gov_10a_exp in national currency (the envelope baseline) ...")
+    # Percentages of GDP make the structural point; envelope mode needs the money itself,
+    # and needs it split the same way, so the two views cannot drift apart.
+    cash = unflatten(
+        fetch("gov_10a_exp", geo=GEOS, na_item="D1", sector="S13", unit="MIO_NAC",
+              cofog99=list(COFOG), time=YEARS)
+    )
+
     print("fetching nama_10_gdp (nominal GDP, national currency) ...")
     gdp = unflatten(
         fetch("nama_10_gdp", geo=GEOS, na_item="B1GQ", unit="CP_MNAC", time=YEARS)
@@ -136,6 +144,20 @@ def main() -> None:
                 "PC_GDP",
                 dims,
                 f"Eurostat gov_10a_exp, S13/D1/{code}/PC_GDP, geo={geo}",
+            )
+            if entry["observations"]:
+                series.append(entry)
+
+        for code, (name, family) in COFOG.items():
+            dims = {"sector": "S13", "naItem": "D1", "cofog": code, "measure": "cash"}
+            if family:
+                dims["family"] = family
+            entry = series_from(
+                cash, geo, lambda r, c=code: r["cofog99"] == c,
+                f"d1-{code.lower()}-mnac-{geo.lower()}",
+                f"Cheltuiala de personal, {name}, milioane monedă națională ({geo})",
+                "CP_MNAC", dims,
+                f"Eurostat gov_10a_exp, S13/D1/{code}/MIO_NAC, geo={geo}",
             )
             if entry["observations"]:
                 series.append(entry)

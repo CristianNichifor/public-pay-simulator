@@ -29,7 +29,7 @@ implementation.
 - [x] **Comparison view — three systems side by side, the landing page**
 - [x] `data/proposals/propunere-v1.json` — our proposal, as five auditable patches
 - [x] `data/headcount/` — real filled-post counts, June 2026, per ordonator
-- [ ] View 3 — envelope mode
+- [x] **View 3 — envelope mode.** Fix total spend; every increase names the reduction paying for it
 
 `aggregate()` is implemented and tested, but no headcount document is committed, because
 none is published. Romania releases no per-position filled-post counts, and inventing them
