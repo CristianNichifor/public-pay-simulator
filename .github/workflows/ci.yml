@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  data:
+    name: data (schema validation)
+    runs-on: ubuntu-latest
+    # The whole architecture rests on the claim that one schema describes every regime.
+    # If a regime file stops validating, that claim is false and everything downstream
+    # is built on sand — so this gate runs before anything else.
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install 3.11
+
+      - name: Validate every regime and crosswalk
+        run: uv run --with jsonschema python scripts/validate_data.py
+
+  engine:
+    name: engine (typecheck + tests)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # The engine is a contract until it is implemented. Typecheck what exists rather
+      # than failing on an absent test suite.
+      - name: Typecheck
+        run: |
+          npm install --no-save typescript@5
+          npx tsc --noEmit --strict engine/types.ts
+
+      - name: Tests
+        run: |
+          if [ -f package.json ] && grep -q '"test"' package.json; then
+            npm ci && npm test
+          else
+            echo "No test suite yet — engine is still a contract."
+          fi

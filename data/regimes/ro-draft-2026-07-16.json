@@ -1,0 +1,554 @@
+{
+  "$schema": "../../schema/regime.schema.json",
+  "id": "ro-draft-2026-07-16",
+  "name": "Proiect de lege privind salarizarea personalului platit din fonduri publice (16.07.2026)",
+  "jurisdiction": "RO",
+  "status": "draft",
+  "effectiveFrom": "2026-12-01",
+  "currency": "RON",
+  "minorUnits": 2,
+  "provenance": {
+    "source": "proiect-lege-2026-07-16",
+    "locator": "Proiect-lege-MMFTSS-16.07-1.docx, intreg documentul",
+    "confidence": "verbatim",
+    "note": "Hand-written excerpt: 4 of ~1382 positions, enough to test the abstraction."
+  },
+
+  "reference": {
+    "amount": [
+      { "from": "2026-12-01", "value": 4100, "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 36 alin. (2)", "confidence": "verbatim", "note": "4100 lei pentru decembrie 2026 si pentru anul 2027." } }
+    ],
+    "factor": 1,
+    "baseDate": "2026-12-01",
+    "unit": "coefficient",
+    "rounding": {
+      "step": 100,
+      "mode": "ceil",
+      "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 10 alin. (4)", "confidence": "verbatim", "note": "rotunjindu-se din leu in leu in favoarea salariatului" }
+    },
+    "growthCapId": "cap-referinta-pib",
+    "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 7 lit. dd), Art. 9 alin. (3)", "confidence": "verbatim" }
+  },
+
+  "grades": [
+    { "id": "g1",  "label": "Gradul 1",  "min": 1.00, "max": 1.19, "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 9 alin. (2), tabel", "confidence": "verbatim" } },
+    { "id": "g2",  "label": "Gradul 2",  "min": 1.20, "max": 1.34, "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 9 alin. (2), tabel", "confidence": "verbatim" } },
+    { "id": "g3",  "label": "Gradul 3",  "min": 1.35, "max": 1.49, "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 9 alin. (2), tabel", "confidence": "verbatim" } },
+    { "id": "g4",  "label": "Gradul 4",  "min": 1.50, "max": 1.64, "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 9 alin. (2), tabel", "confidence": "verbatim" } },
+    { "id": "g5",  "label": "Gradul 5",  "min": 1.65, "max": 1.83, "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 9 alin. (2), tabel", "confidence": "verbatim" } },
+    { "id": "g6",  "label": "Gradul 6",  "min": 1.84, "max": 2.09, "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 9 alin. (2), tabel", "confidence": "verbatim" } },
+    { "id": "g7",  "label": "Gradul 7",  "min": 2.10, "max": 2.39, "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 9 alin. (2), tabel", "confidence": "verbatim" } },
+    { "id": "g8",  "label": "Gradul 8",  "min": 2.40, "max": 3.29, "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 9 alin. (2), tabel", "confidence": "verbatim" } },
+    { "id": "g9",  "label": "Gradul 9",  "min": 3.30, "max": 4.19, "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 9 alin. (2), tabel", "confidence": "verbatim" } },
+    { "id": "g10", "label": "Gradul 10", "min": 4.20, "max": 5.59, "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 9 alin. (2), tabel", "confidence": "verbatim" } },
+    { "id": "g11", "label": "Gradul 11", "min": 5.60, "max": 6.49, "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 9 alin. (2), tabel", "confidence": "verbatim" } },
+    { "id": "g12", "label": "Gradul 12", "min": 6.50, "max": 8.00, "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 9 alin. (2), tabel", "confidence": "verbatim" } }
+  ],
+
+  "ladders": {
+    "gradatii": {
+      "id": "gradatii",
+      "label": "Gradatii corespunzatoare transelor de vechime in munca",
+      "kind": "compoundingUplift",
+      "bakedInto": ["management", "dignitary"],
+      "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 13", "confidence": "verbatim", "note": "Art. 13 alin. (1) excepteaza demnitatile publice, functiile de conducere, inaltii functionari publici, personalul militar, politistii si functionarii publici cu statut special din penitenciare. Art. 10 alin. (6): pentru conducere gradatia maxima e deja inclusa in coeficient." },
+      "steps": [
+        { "id": "gr0", "label": "Gradatia 0", "fromYears": 0,  "toYears": 3,    "pct": 0,     "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 13 alin. (3) lit. a); Art. 13 alin. (2)", "confidence": "verbatim", "note": "Coeficientii din anexe sunt stabiliti la gradatia 0." } },
+        { "id": "gr1", "label": "Gradatia 1", "fromYears": 3,  "toYears": 5,    "pct": 0.075, "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 13 alin. (3) lit. b)", "confidence": "verbatim" } },
+        { "id": "gr2", "label": "Gradatia 2", "fromYears": 5,  "toYears": 10,   "pct": 0.05,  "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 13 alin. (3) lit. c)", "confidence": "verbatim" } },
+        { "id": "gr3", "label": "Gradatia 3", "fromYears": 10, "toYears": 15,   "pct": 0.05,  "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 13 alin. (3) lit. d)", "confidence": "verbatim" } },
+        { "id": "gr4", "label": "Gradatia 4", "fromYears": 15, "toYears": 20,   "pct": 0.025, "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 13 alin. (3) lit. e)", "confidence": "verbatim" } },
+        { "id": "gr5", "label": "Gradatia 5", "fromYears": 20, "toYears": null, "pct": 0.025, "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 13 alin. (3) lit. f)", "confidence": "verbatim" } }
+      ]
+    }
+  },
+
+  "positions": [
+    {
+      "code": "81.10101002.02",
+      "name": "Secretar general adjunct",
+      "titles": [
+        { "name": "Secretar general adjunct", "canonical": true },
+        { "name": "comisar general" }
+      ],
+      "assimilation": {
+        "rawTitleCell": "Secretar general adjunct/comisar general",
+        "parse": "slash",
+        "fanIn": 2,
+        "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'VIII_CI_A_1'!C10", "confidence": "derived", "note": "A third separator. 29 coded rows merge with '/' and no other punctuation - but '/' also appears inside single titles ('secretar institutie/unitate de invatamant'), so this class cannot be split mechanically either." }
+      },
+      "family": "VIII-administratie",
+      "chapter": "Anexa VIII, Cap. I lit. A pct. 1 lit. a) - inalti functionari publici",
+      "kind": "management",
+      "studyLevel": "S",
+      "dims": ["institutionLevel"],
+      "ladder": "gradatii",
+      "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'VIII_CI_A_1'!B10:F10", "confidence": "verbatim" },
+      "variants": [
+        {
+          "dims": { "institutionLevel": "I" },
+          "value": 5.189610389610378,
+          "gradeId": "g10",
+          "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'VIII_CI_A_1'!E10, cod 81.10101002.02.2", "confidence": "verbatim", "note": "16 zecimale, valoare retro-calculata dintr-un salariu existent. Pastrata exact asa cum e in sursa - vezi limitation 'coeficienti-retrocalculati'. Maparea coloana Nivel I/II -> sufix cod .2/.1 e o presupunere a importatorului." }
+        },
+        {
+          "dims": { "institutionLevel": "II" },
+          "value": 5.766233766233753,
+          "gradeId": "g11",
+          "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'VIII_CI_A_1'!F10, cod 81.10101002.02.1", "confidence": "verbatim" }
+        }
+      ]
+    },
+
+    {
+      "code": "81.10103003.09",
+      "name": "Director",
+      "titles": [
+        { "name": "Director", "canonical": true },
+        { "name": "sef compartiment" },
+        { "name": "inspector sef" },
+        { "name": "comisar sef divizie" },
+        { "name": "sef sector la Consiliul Legislativ" },
+        { "name": "comisar sef sectie" },
+        { "name": "director executiv" },
+        { "name": "trezorier sef" },
+        { "name": "sef administratie financiara" }
+      ],
+      "assimilation": {
+        "rawTitleCell": "Director;  șef compartiment;  inspector şef; comisar şef divizie; șef sector la Consiliul Legislativ; comisar şef secţie; director executiv;  trezorier şef; şef administraţie financiară; ",
+        "parse": "semicolon",
+        "fanIn": 9,
+        "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'VIII_CI_A_1'!C17", "confidence": "verbatim", "note": "Nine formerly distinct titles now share one code, one coefficient and one grade. Every fragment begins with an occupational head noun, so the split on ';' is unambiguous here." }
+      },
+      "family": "VIII-administratie",
+      "chapter": "Anexa VIII, Cap. I lit. A pct. 1 lit. b) - functii publice de conducere",
+      "kind": "management",
+      "studyLevel": "S",
+      "dims": ["gradManagerial"],
+      "ladder": "gradatii",
+      "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'VIII_CI_A_1'!B17:G17", "confidence": "verbatim" },
+      "variants": [
+        {
+          "dims": { "gradManagerial": "I" },
+          "value": 4.455,
+          "gradeId": "g10",
+          "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'VIII_CI_A_1'!F17, cod 81.10103003.09.2", "confidence": "verbatim" }
+        },
+        {
+          "dims": { "gradManagerial": "II" },
+          "value": 4.95,
+          "gradeId": "g10",
+          "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'VIII_CI_A_1'!G17, cod 81.10103003.09.1", "confidence": "verbatim", "note": "Art. 10 alin. (7): pentru gradele manageriale I si II salariul se stabileste de conducatorul institutiei publice - grila da intervalul, nu punctul." }
+        }
+      ]
+    },
+
+    {
+      "code": "11.00201004.02",
+      "name": "Inspector scolar de specialitate",
+      "titles": [
+        { "name": "Inspector scolar de specialitate", "canonical": true },
+        { "name": "inspector scolar" }
+      ],
+      "assimilation": {
+        "rawTitleCell": "Inspector şcolar de specialitate, inspector şcolar",
+        "parse": "comma",
+        "fanIn": 2,
+        "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'I CI 1-3'!C18", "confidence": "verbatim", "note": "No semicolon anywhere in this cell: the merge is signalled by a comma. Any importer that splits only on ';' silently misses this class - 113 further coded rows look the same." }
+      },
+      "family": "I-invatamant",
+      "chapter": "Anexa I, Cap. I lit. A pct. 2 - conducere, indrumare si control in invatamantul preuniversitar",
+      "kind": "management",
+      "studyLevel": "S",
+      "dims": ["grad"],
+      "ladder": "gradatii",
+      "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'I CI 1-3'!B18:F18", "confidence": "verbatim" },
+      "variants": [
+        { "dims": { "grad": "I" },  "value": 3.42012860625,      "gradeId": "g9", "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'I CI 1-3'!E18", "confidence": "verbatim" } },
+        { "dims": { "grad": "II" }, "value": 3.6001353750000002, "gradeId": "g9", "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'I CI 1-3'!F18", "confidence": "verbatim" } }
+      ]
+    },
+
+    {
+      "code": "11.00501009.02",
+      "name": "Institutor",
+      "titles": [
+        { "name": "Institutor", "canonical": true, "qualifier": "studii superioare lunga durata, grad didactic I" },
+        { "name": "maistru instructor", "qualifier": "studii superioare lunga durata, grad didactic I" }
+      ],
+      "assimilation": {
+        "rawTitleCell": "Institutor; maistru instructor, studii superioare lungă durată grad didactic I",
+        "parse": "mixed",
+        "fanIn": 2,
+        "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'I CI 4-5-6'!C70", "confidence": "derived", "note": "Both separators in one cell and they mean different things: ';' divides two titles, ',' introduces a qualifier that applies to both. Classified 'mixed' rather than 'needsReview' because the qualifier is a recognised study/grade phrase. 87 rows in the workbook are genuinely undecidable this way and are marked needsReview instead." }
+      },
+      "family": "I-invatamant",
+      "chapter": "Anexa I, Cap. I lit. A pct. 5 - personal didactic de predare",
+      "kind": "execution",
+      "studyLevel": "S",
+      "dims": ["vechimeInInvatamant"],
+      "ladder": null,
+      "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'I CI 4-5-6'!B70:I71", "confidence": "verbatim", "note": "ladder is null on purpose. Anexa I does not use the Art. 13 gradatii at all: it publishes a separate coefficient row per seniority band, each with its own function code. See limitation 'doua-mecanisme-de-vechime'." },
+      "variants": [
+        {
+          "dims": { "vechimeInInvatamant": "peste 25 de ani" },
+          "value": 2.15985,
+          "gradeId": "g7",
+          "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'I CI 4-5-6'!F70, cod 11.00501009.02.1", "confidence": "verbatim" }
+        },
+        {
+          "dims": { "vechimeInInvatamant": "20-25 ani" },
+          "value": 2.1111,
+          "gradeId": "g7",
+          "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'I CI 4-5-6'!F71, cod 11.00501009.02.2", "confidence": "verbatim" }
+        }
+      ]
+    },
+
+    {
+      "code": "81.10104001.01",
+      "name": "Auditor",
+      "titles": [{ "name": "Auditor", "canonical": true }],
+      "assimilation": {
+        "rawTitleCell": "Auditor",
+        "parse": "single",
+        "fanIn": 1,
+        "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'VIII_CI_A_1'!C22", "confidence": "verbatim" }
+      },
+      "family": "VIII-administratie",
+      "chapter": "Anexa VIII, Cap. I lit. A pct. 1 lit. c) - functii publice generale de executie",
+      "kind": "execution",
+      "studyLevel": "S",
+      "dims": ["gradProfesional", "institutionLevel"],
+      "ladder": "gradatii",
+      "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'VIII_CI_A_1'!B22:F22", "confidence": "verbatim" },
+      "variants": [
+        {
+          "dims": { "gradProfesional": "superior", "institutionLevel": "I" },
+          "value": 2.499,
+          "gradeId": "g8",
+          "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'VIII_CI_A_1'!E22, cod 81.10104001.01.1", "confidence": "verbatim", "note": "Antetul spune 'Gradatia 0' - coeficientul e la treapta 0 a scarii de vechime." }
+        },
+        {
+          "dims": { "gradProfesional": "superior", "institutionLevel": "II" },
+          "value": 2.936325,
+          "gradeId": "g8",
+          "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'VIII_CI_A_1'!F22", "confidence": "verbatim" }
+        }
+      ]
+    },
+
+    {
+      "code": "IX.A.1",
+      "name": "Presedintele Romaniei",
+      "titles": [{ "name": "Presedintele Romaniei", "canonical": true }],
+      "assimilation": {
+        "rawTitleCell": "Preşedintele României",
+        "parse": "single",
+        "fanIn": 1,
+        "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'IX A'!B10", "confidence": "verbatim" }
+      },
+      "family": "IX-demnitati-publice",
+      "chapter": "Anexa IX lit. A - functii de demnitate publica alese",
+      "kind": "dignitary",
+      "ladder": null,
+      "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'IX A'!B10", "confidence": "verbatim", "note": "Codul e atribuit de importator: foaia IX A nu poarta coduri de functie." },
+      "variants": [
+        {
+          "value": [
+            { "from": "2026-12-01", "value": 6.470243902439025, "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'IX A'!C10 (coloana 2026/2027)", "confidence": "verbatim" } },
+            { "from": "2028-01-01", "value": 6.852682926829269, "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'IX A'!D10 (coloana 2028)", "confidence": "verbatim" } },
+            { "from": "2029-01-01", "value": 7.235121951219513, "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'IX A'!E10 (coloana 2029)", "confidence": "verbatim" } },
+            { "from": "2030-01-01", "value": 7.6175609756097575, "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'IX A'!F10 (coloana 2030)", "confidence": "verbatim" } },
+            { "from": "2031-01-01", "value": 8, "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'IX A'!G10 (coloana 2031)", "confidence": "verbatim", "note": "Varful grilei atinge 8.00 abia in 2031." } }
+          ],
+          "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'IX A'!C10:G10", "confidence": "verbatim", "note": "Fara gradeId, deliberat. Anexa IX nu are coloana de grad salarial, iar Art. 11 alin. (3) excepteaza demnitatile publice de la Art. 8 alin. (1)-(4). In plus, coeficientul 2026/2027 de 6,4702 se afla sub pragul gradului 12 (6,50) si abia din 2029 intra in el - o incadrare fixa ar fi fost o presupunere, nu o preluare din sursa." }
+        }
+      ]
+    },
+
+    {
+      "code": "II.CI.3.49",
+      "name": "Parinte social",
+      "titles": [
+        { "name": "Parinte social", "canonical": true },
+        { "name": "ingrijitor la domiciliu" },
+        { "name": "asistent personal" }
+      ],
+      "assimilation": {
+        "rawTitleCell": "Părinte social, îngrijitor la domiciliu, asistent personal",
+        "parse": "comma",
+        "fanIn": 3,
+        "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'II CI 3'!C59", "confidence": "verbatim", "note": "Three distinct social-care occupations on the single lowest coefficient in the grid. The bottom of the 1:8 ratio is itself a merge." }
+      },
+      "family": "II-sanatate-asistenta-sociala",
+      "chapter": "Anexa II, Cap. I pct. 3 - asistenta sociala",
+      "kind": "execution",
+      "studyLevel": "M,G",
+      "ladder": "gradatii",
+      "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'II CI 3'!B59", "confidence": "verbatim", "note": "Cod atribuit de importator. Cel mai mic coeficient din intreaga grila." },
+      "variants": [
+        {
+          "value": 1.02,
+          "gradeId": "g1",
+          "modifier": {
+            "pct": -0.15,
+            "reason": "Anexa II Cap. II Art. 10 alin. (2): coeficientii se diminueaza cu 15% pentru unitatile de asistenta medico-sociala si unitatile/subunitatile ambulatorii, respectiv se majoreaza cu 15% pentru medicina legala."
+          },
+          "provenance": { "source": "coeficienti-2026-07-16", "locator": "sheet 'II CI 3'!E59", "confidence": "verbatim" }
+        }
+      ]
+    }
+  ],
+
+  "supplements": [
+    {
+      "id": "cfp",
+      "name": "Spor pentru control financiar preventiv",
+      "mode": "fixed",
+      "rate": 0.10,
+      "base": "baseSalary",
+      "countsToCap": true,
+      "capId": "cap-sporuri-20",
+      "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 14", "confidence": "verbatim" }
+    },
+    {
+      "id": "fonduri-externe",
+      "name": "Spor pentru activitatea prestata in proiecte finantate din fonduri externe",
+      "mode": "upTo",
+      "rate": 0.40,
+      "base": "baseSalary",
+      "countsToCap": "partial",
+      "capId": "cap-sporuri-20",
+      "capSplit": {
+        "countsWhen": "externallyFundedShare",
+        "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 15 alin. (18) si (19)", "confidence": "verbatim", "note": "alin. (18): exceptat de la plafon in masura in care se deconteaza din fonduri externe nerambursabile. alin. (19): partea de cofinantare platita din titlul I intra in plafon. Asadar o proportie, nu un boolean." }
+      },
+      "excludes": ["administrare-resurse-europene"],
+      "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 15 alin. (1)", "confidence": "verbatim", "note": "Art. 15 alin. (8): nu se aplica personalului care beneficiaza de art. 16 alin. (1)-(2)." }
+    },
+    {
+      "id": "administrare-resurse-europene",
+      "name": "Spor pentru administrarea resurselor europene si consolidarea finantelor publice",
+      "mode": "upTo",
+      "rate": 0.40,
+      "base": "baseSalary",
+      "countsToCap": false,
+      "capId": "cap-sporuri-20",
+      "excludes": ["fonduri-externe"],
+      "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 16 alin. (1), (2) si (5); exceptare la alin. (7)", "confidence": "verbatim", "note": "Art. 16 alin. (6): sporul de la alin. (5) nu se cumuleaza cu cel de la alin. (1)." }
+    },
+    {
+      "id": "noapte",
+      "name": "Spor pentru munca de noapte",
+      "mode": "fixed",
+      "rate": 0.25,
+      "base": "baseSalary",
+      "countsToCap": false,
+      "capId": "cap-sporuri-20",
+      "excludes": ["ture-sanitare"],
+      "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 17 alin. (1); exceptare la alin. (2)", "confidence": "verbatim" }
+    },
+    {
+      "id": "ture-sanitare",
+      "name": "Spor pentru munca in trei ture / doua ture in sistem 12 cu 24",
+      "mode": "fixed",
+      "rate": 0.15,
+      "base": "baseSalary",
+      "countsToCap": false,
+      "capId": "cap-sporuri-20",
+      "excludes": ["noapte"],
+      "eligibility": { "families": ["II-sanatate-asistenta-sociala"] },
+      "provenance": { "source": "anexa-II-cap-II", "locator": "Anexa II Cap. II Art. 1 alin. (1); exceptare la alin. (2)", "confidence": "verbatim", "note": "Se acorda in locul sporului de noapte de la Art. 17." }
+    },
+    {
+      "id": "handicap",
+      "name": "Spor pentru persoanele cu handicap grav sau accentuat",
+      "mode": "fixed",
+      "rate": 0.15,
+      "base": "referenceValue",
+      "countsToCap": false,
+      "capId": "cap-sporuri-20",
+      "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 19 alin. (1); exceptare la alin. (2)", "confidence": "verbatim", "note": "Singurul spor calculat la valoarea de referinta, nu la salariul de baza - aceeasi suma pentru toata lumea." }
+    },
+    {
+      "id": "conditii-periculoase-i",
+      "name": "Spor pentru conditii deosebit de periculoase nivelul I",
+      "mode": "upTo",
+      "rate": 0.50,
+      "base": "baseSalary",
+      "countsToCap": true,
+      "capId": "cap-sporuri-20",
+      "eligibility": {
+        "families": ["II-sanatate-asistenta-sociala"],
+        "maxStaffShare": 0.10
+      },
+      "provenance": { "source": "anexa-II-cap-II", "locator": "Anexa II Cap. II Art. 7 alin. (1) lit. a); plafon de personal la alin. (5)", "confidence": "verbatim" }
+    },
+    {
+      "id": "izolare-delta",
+      "name": "Spor de izolare - Rezervatia Biosferei Delta Dunarii",
+      "mode": "upTo",
+      "rate": 0.15,
+      "base": "baseSalary",
+      "countsToCap": false,
+      "capId": "cap-sporuri-20",
+      "eligibility": { "families": ["VIII-administratie"], "condition": "Loc de munca in localitatile din anexa la HG 395/1996." },
+      "provenance": { "source": "anexa-VIII-cap-I-B", "locator": "Anexa VIII Cap. I lit. B Art. 7 alin. (1)-(3)", "confidence": "verbatim" }
+    },
+    {
+      "id": "capacitate-fiscal-bugetara",
+      "name": "Spor pentru dezvoltarea capacitatii fiscal-bugetare la nivelul administratiei publice locale",
+      "mode": "upTo",
+      "rate": 0.15,
+      "base": "baseSalary",
+      "countsToCap": true,
+      "capId": "cap-sporuri-20",
+      "eligibility": {
+        "condition": "Comune/orase/municipii/sectoare: cheltuielile de personal de la capitolul 'Autoritati publice si actiuni externe' din anul anterior sub 50% din impozitele locale incasate. Judete si Bucuresti: sub 20% din cota directa din impozitul pe venit. Nu se poate evalua fara date bugetare locale."
+      },
+      "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 23 alin. (1)-(4)", "confidence": "verbatim" }
+    },
+    {
+      "id": "premiu-performanta",
+      "name": "Premiul de performanta",
+      "mode": "range",
+      "rateMin": 0.10,
+      "rate": 0.20,
+      "base": "baseSalary",
+      "countsToCap": false,
+      "capId": "cap-premii-4",
+      "eligibility": {
+        "families": ["I-invatamant"],
+        "condition": "Art. 22 alin. (11): pana in 2028 numai personal didactic si didactic auxiliar din Anexa I; pentru restul, doar daca tinta de deficit din anul anterior a fost respectata."
+      },
+      "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 22 alin. (9); exceptare de la plafonul de 20% la alin. (10)", "confidence": "verbatim" }
+    }
+  ],
+
+  "caps": [
+    {
+      "id": "cap-sporuri-20",
+      "label": "Plafonul de 20% pentru sporuri, indemnizatii, prime si premii",
+      "kind": "shareOfBase",
+      "pct": 0.20,
+      "scope": { "level": "ordonatorPrincipal", "partitionBy": ["fundingSource"], "period": "month" },
+      "numerator": { "include": ["supplements", "indemnities", "premia", "bonuses"], "exclude": ["administrare-resurse-europene", "noapte", "ture-sanitare", "handicap", "izolare-delta", "premiu-performanta", "munca-suplimentara"] },
+      "denominator": { "include": ["baseSalary", "seniority", "gradePay", "commandPay", "indemnityOfEmployment", "monthlyIndemnity"] },
+      "penalty": "Art. 35 alin. (2): amenda intre 30.000 si 50.000 lei si recuperarea prejudiciului; constatare de Curtea de Conturi.",
+      "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 21 alin. (2)", "confidence": "verbatim", "note": "Art. 21 alin. (3): nu se aplica personalului trimis in misiune in strainatate." }
+    },
+    {
+      "id": "cap-premii-4",
+      "label": "Plafonul anual de 4% pentru premiile de performanta",
+      "kind": "shareOfBase",
+      "pct": 0.04,
+      "scope": { "level": "ordonatorPrincipal", "period": "year" },
+      "numerator": { "include": ["premia"] },
+      "denominator": { "include": ["baseSalary", "seniority", "gradePay", "commandPay", "indemnityOfEmployment", "monthlyIndemnity"] },
+      "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 22 alin. (6)", "confidence": "verbatim" }
+    },
+    {
+      "id": "cap-premii-posturi-30",
+      "label": "Cel mult 30% din posturile ocupate pot primi premiu de performanta",
+      "kind": "shareOfHeadcount",
+      "pct": 0.30,
+      "scope": { "level": "institution", "partitionBy": ["positionKind"], "period": "year" },
+      "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 22 alin. (7) lit. a) si b), alin. (8)", "confidence": "verbatim", "note": "30% separat pentru executie si pentru conducere, aplicat la posturile ocupate la finele anului anterior." }
+    },
+    {
+      "id": "cap-referinta-pib",
+      "label": "Cresterea valorii de referinta nu poate depasi cresterea nominala a PIB",
+      "kind": "growth",
+      "scope": { "level": "system", "period": "year" },
+      "boundTo": "nominalGdpGrowth",
+      "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 9 alin. (4)", "confidence": "verbatim", "note": "Daca prognoza PIB se inrautateste pe parcursul anului, valoarea de referinta nu se modifica - asimetric. Art. 36 alin. (3): din 2028 procentul e determinat de tinta de reducere a masei salariale cu cel putin 1,5 pp din PIB intre 2024 si 2031." }
+    }
+  ],
+
+  "levies": [
+    {
+      "id": "cas", "label": "Contributia de asigurari sociale", "kind": "socialInsurance",
+      "payer": "employee", "rate": 0.25, "base": "gross", "order": 1,
+      "provenance": { "source": "cod-fiscal", "locator": "Legea 227/2015, art. 138 lit. a)", "confidence": "assumed", "note": "NU provine din niciunul dintre documentele din ./sources. De verificat inainte de publicare." }
+    },
+    {
+      "id": "cass", "label": "Contributia de asigurari sociale de sanatate", "kind": "health",
+      "payer": "employee", "rate": 0.10, "base": "gross", "order": 2,
+      "provenance": { "source": "cod-fiscal", "locator": "Legea 227/2015, art. 156", "confidence": "assumed", "note": "Idem - de verificat." }
+    },
+    {
+      "id": "impozit", "label": "Impozitul pe venit", "kind": "incomeTax",
+      "payer": "employee", "rate": 0.10, "base": "grossLessDeductions", "deducts": ["cas", "cass"], "order": 3,
+      "provenance": { "source": "cod-fiscal", "locator": "Legea 227/2015, art. 64 si art. 78", "confidence": "assumed", "note": "Deducerea personala nu e modelata - vezi limitation 'deducere-personala'." }
+    },
+    {
+      "id": "cam", "label": "Contributia asiguratorie pentru munca", "kind": "employerContribution",
+      "payer": "employer", "rate": 0.0225, "base": "gross", "order": 4,
+      "provenance": { "source": "cod-fiscal", "locator": "Legea 227/2015, art. 220^3", "confidence": "assumed", "note": "Idem - de verificat." }
+    }
+  ],
+
+  "limitations": [
+    {
+      "id": "plafon-20-nu-e-per-persoana",
+      "text": "Plafonul de 20% de la Art. 21 alin. (2) se masoara pe ordonator principal de credite si pe sursa de finantare, nu pe persoana. Utilizarea plafonului aratata pe un fluturas este notionala: arata ce s-ar intampla daca toata lumea din institutie ar avea exact acest profil de sporuri. Cifra reala apare numai in modul agregat.",
+      "affects": ["capUtilisation"],
+      "severity": "material"
+    },
+    {
+      "id": "coeficienti-retrocalculati",
+      "text": "1397 de coeficienti distincti; 862 dintre ei (61,7%) au 14 sau mai multe zecimale, iar 596 au 16. Nu sunt coeficienti proiectati, ci retro-calculati din salariile existente. Foile de calcul mai contin coloane de lucru vizibile - sume in lei vechi si noi, rapoarte, celule #DIV/0! - care confirma procedeul.",
+      "affects": ["structure"],
+      "severity": "material"
+    },
+    {
+      "id": "raportul-1-8-nu-e-atins",
+      "text": "Art. 5 stabileste un raport de 1 la 8. In grila efectiva coeficientul minim e 1,02 (parinte social) si maximul aplicabil in 2027 e 6,4702 (Presedintele Romaniei), adica un raport de circa 1:6,34. Coeficientul de 8,00 apare abia in coloana 2031 a Anexei IX. Raportul din Art. 5 este o destinatie, nu o descriere.",
+      "affects": ["structure"],
+      "severity": "material"
+    },
+    {
+      "id": "demnitarii-in-afara-structurii-de-grade",
+      "text": "Varful grilei nu sta in structura de grade. Anexa IX nu are coloana de grad salarial, iar Art. 11 alin. (3) excepteaza functiile de demnitate publica de la evaluarea de la Art. 8. Efectul practic: coeficientul Presedintelui pentru 2026/2027, 6,4702, e sub pragul gradului 12 (6,50) si intra in el abia din 2029. Cele 12 grade salariale descriu, deci, tot sistemul bugetar cu exceptia varfului lui - iar orice masura de compresie calculata pe grade exclude tacit exact functiile cele mai bine platite.",
+      "affects": ["structure"],
+      "severity": "material"
+    },
+    {
+      "id": "doua-mecanisme-de-vechime",
+      "text": "Legea contine doua mecanisme de vechime care coexista fara sa se refere unul la celalalt. Art. 13 alin. (2) spune ca toti coeficientii pentru functii de executie din anexele I-VIII sunt stabiliti la gradatia 0, urmand sa fie majorati cu 7,5/5/5/2,5/2,5%. Dar Anexa I publica randuri separate de coeficienti pe transe de vechime in invatamant - 'peste 25 de ani', '20-25 ani', 'pana la 1 an' - fiecare cu propriul cod de functie. La fel Anexa V pentru justitie. Pentru aceste familii vechimea e deja in coeficient, deci aplicarea gradatiilor peste el ar plati vechimea de doua ori. Modelul trateaza aceste pozitii cu ladder null si vechimea ca dimensiune; care dintre cele doua mecanisme e cel intentionat nu reiese din text.",
+      "affects": ["seniority", "base", "aggregate"],
+      "severity": "blocking"
+    },
+    {
+      "id": "asimilare-prin-punctuatie",
+      "text": "Legea comaseaza functii, dar nu publica nicio tabela de asimilare: comasarea e vizibila doar ca punctuatie in celula cu denumirea. Din 1474 de randuri cu cod de functie, 219 contin ';', 113 folosesc virgula iar 29 folosesc '/' - circa 24% din grila. Niciunul dintre separatori nu e folosit consecvent: ';' apare si in interiorul unei singure denumiri, virgula introduce si calificative, '/' apare si in denumiri unice. 87 de randuri sunt marcate needsReview pentru ca fragmentele nu pot fi decise automat. Art. 32 alin. (2) lasa reincadrarea in seama fiecarui ordonator, deci aceeasi denumire veche poate ajunge pe functii diferite in institutii diferite.",
+      "affects": ["structure", "aggregate"],
+      "severity": "material"
+    },
+    {
+      "id": "sporuri-nedeterminate",
+      "text": "Marimea concreta a sporurilor pentru conditii de munca (Art. 20) se stabileste prin regulamente-cadru aprobate ulterior prin HG. Pana atunci orice cuantum folosit aici este o alegere de scenariu, nu un drept legal.",
+      "affects": ["supplements", "gross", "aggregate"],
+      "severity": "material"
+    },
+    {
+      "id": "diferenta-salariala-tranzitorie",
+      "text": "Art. 33 mentine venitul din noiembrie 2026 printr-o diferenta salariala tranzitorie care intra in baza de calcul a celorlalte drepturi. Fara datele individuale din noiembrie 2026 - pe care Romania nu le publica - aceasta componenta nu poate fi calculata si lipseste din orice cifra de aici. In primii ani ea domina factura reala.",
+      "affects": ["gross", "aggregate", "net"],
+      "severity": "blocking"
+    },
+    {
+      "id": "deducere-personala",
+      "text": "Deducerea personala la impozitul pe venit nu e modelata; netul este supraestimat pentru salariile mici.",
+      "affects": ["net"],
+      "severity": "note"
+    },
+    {
+      "id": "plata-cu-ora",
+      "text": "Drepturile calculate la tariful orar - garzile din Anexa II, munca suplimentara de la Art. 18, plata cu ora - nu intra intr-un fluturas lunar si nu sunt modelate.",
+      "affects": ["gross"],
+      "severity": "note"
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "../../schema/crosswalk.schema.json",
+  "id": "ro-153-2017--ro-draft-2026-07-16",
+  "kind": "assimilation",
+  "from": "ro-153-2017",
+  "to": "ro-draft-2026-07-16",
+  "legalBasis": "Art. 32 alin. (1)-(2) din proiect",
+  "authority": "reconstructed",
+  "provenance": {
+    "source": "proiect-lege-2026-07-16",
+    "locator": "Art. 32; Art. 37 pct. 1",
+    "confidence": "derived",
+    "note": "Art. 37 pct. 1 abroga integral Legea-cadru nr. 153/2017. Art. 32 alin. (1) impune reincadrarea intregului personal pe noile functii, iar alin. (2) spune ca daca functia detinuta nu se regaseste in lege, reincadrarea se face pe una dintre functiile din anexe 'conform atributiilor si conditiilor de ocupare a postului'. Legea cere deci exercitiul de asimilare, dar nu publica rezultatul lui - decizia ramane la fiecare ordonator de credite. De aceea authority este 'reconstructed', niciodata 'published', si de aceea orice link de aici trebuie afisat ca reconstructie, nu ca drept."
+  },
+
+  "needs": [
+    {
+      "document": "Legea-cadru nr. 153/2017, anexele I-IX (forma consolidata la 30.11.2026)",
+      "url": "https://legislatie.just.ro/Public/DetaliiDocument/190446",
+      "why": "Fara lista completa a functiilor vechi nu exista capat 'from'. Este singurul document care lipseste pentru a popula acest crosswalk; totul altceva e deja in sources/.",
+      "status": "missing"
+    },
+    {
+      "document": "Posturi ocupate pe functii, la 31.12.2026",
+      "why": "Necesar pentru campul weight. O comasare 9-la-1 nu produce o diferenta corecta de masa salariala fara numarul de posturi ocupate pe fiecare denumire veche. Fara el, aggregate() refuza sa agrege pe linkurile de tip merge, in loc sa presupuna o impartire egala.",
+      "status": "missing"
+    }
+  ],
+
+  "links": []
+}
