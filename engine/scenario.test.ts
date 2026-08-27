@@ -32,14 +32,14 @@ describe('scenario codec', () => {
 
   it('falls back to a valid scenario rather than throwing on rubbish', () => {
     const result = decodeScenario('#/nonsense?r=&y=abc');
-    expect(result.view).toBe('structure');
+    expect(result.view).toBe('compare');
     expect(result.regimeIds).toEqual(['ro-draft-2026-07-16']);
     expect(result.seniorityYears).toBeUndefined();
   });
 
   it('handles an empty hash', () => {
     expect(decodeScenario('')).toEqual({
-      view: 'structure',
+      view: 'compare',
       regimeIds: ['ro-draft-2026-07-16'],
       positionCode: undefined,
       seniorityYears: undefined,

@@ -26,6 +26,9 @@ implementation.
 - [x] `payslip()` / `aggregate()` + tests — Danish figures reproduce to the krone
 - [ ] `data/headcount/` — blocked: no filled-post counts are published per position
 - [x] **View 1 — payslip diff, live.** Scenario lives in the URL hash
+- [x] **Comparison view — three systems side by side, the landing page**
+- [x] `data/proposals/cnw-v1.json` — our proposal, as five auditable patches
+- [x] `data/headcount/` — real filled-post counts, June 2026, per ordonator
 - [ ] View 3 — envelope mode
 
 `aggregate()` is implemented and tested, but no headcount document is committed, because
@@ -118,6 +121,29 @@ The model splits this in two, on purpose:
 Crosswalks are typed by cardinality — `merge`, `split`, `abolished`, `new` — because a
 nine-to-one merge and a rename are different claims. `abolished` is the one worth watching:
 a former title with no destination.
+
+## Three systems, one screen
+
+The landing page asks the same six questions of the ministry's draft, our proposal, and
+Denmark. The strongest single result:
+
+| | MMFTSS | Propunerea noastră |
+| --- | --- | --- |
+| Distinct coefficients | 1 361 | **368** |
+| Back-solved (≥14 decimals) | 61,9% | **0%** |
+| Coefficients in no salary grade | 92 | **0** |
+| Years until the declared grid applies | 5 | **0** |
+
+Rounding to two decimals reveals that the grid only ever needed 368 distinct values. The
+other 993 were the residue of dividing one salary by another.
+
+**Our proposal is a patch list, not a second grid.** Five named edits against the
+ministry's document, each naming the defect it fixes — and a test asserts every patch
+points at a limitation the base regime actually declares, so a policy preference cannot
+enter dressed as a repair. None of the five moves any salary relative to any other:
+compression, the reference value, and the split between occupational families are left
+exactly as the ministry proposed. What changes is whether the rules written in the law can
+be applied at all.
 
 ## The currency rule is enforced, not documented
 

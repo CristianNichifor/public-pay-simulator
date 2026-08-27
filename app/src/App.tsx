@@ -1,12 +1,16 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
+import { applyProposal } from '../../engine/proposal';
+import type { AppliedProposal, Proposal } from '../../engine/proposal';
 import { decodeScenario, encodeScenario } from '../../engine/scenario';
 import type { Scenario } from '../../engine/scenario';
 import type { Regime } from '../../engine/types';
+import CompareView from './CompareView';
 import PayslipView from './PayslipView';
 import StructureView from './StructureView';
 
 const AVAILABLE = ['ro-draft-2026-07-16', 'dk-stat-2026'];
+const PROPOSAL_ID = 'cnw-v1';
 
 /**
  * The hash is the state. There is no store: every control writes a scenario into
@@ -36,8 +40,16 @@ export default function App() {
   const [regimes, setRegimes] = useState<Record<string, Regime>>({});
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [proposal, setProposal] = useState<Proposal | null>(null);
 
   const wanted = scenario.regimeIds;
+
+  useEffect(() => {
+    fetch(`${import.meta.env.BASE_URL}data/proposals/${PROPOSAL_ID}.json`)
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`proposal: ${r.status}`))))
+      .then(setProposal)
+      .catch((e: Error) => setError(e.message));
+  }, []);
 
   useEffect(() => {
     const missing = wanted.filter((id) => !regimes[id] && AVAILABLE.includes(id));
@@ -54,6 +66,14 @@ export default function App() {
   }, [wanted, regimes]);
 
   const loaded = wanted.map((id) => regimes[id]).filter(Boolean);
+  const ministry = regimes['ro-draft-2026-07-16'] ?? null;
+
+  // The proposal is derived, never stored: applying five patches to the ministry's grid
+  // is cheap, and keeping it derived means it cannot drift from the data it edits.
+  const ours: AppliedProposal | null = useMemo(
+    () => (ministry && proposal ? applyProposal(ministry, proposal) : null),
+    [ministry, proposal],
+  );
 
   const share = async () => {
     await navigator.clipboard?.writeText(location.href);
@@ -70,6 +90,12 @@ export default function App() {
     <div className="wrap">
       <nav className="tabs">
         <div className="tabgroup">
+          <button
+            className={scenario.view === 'compare' ? 'on' : ''}
+            onClick={() => setScenario({ ...scenario, view: 'compare' })}
+          >
+            Comparație
+          </button>
           <button
             className={scenario.view === 'structure' ? 'on' : ''}
             onClick={() => setScenario({ ...scenario, view: 'structure' })}
@@ -105,11 +131,25 @@ export default function App() {
       {error && <p className="loading">Nu s-au putut încărca datele: {error}</p>}
       {!error && loaded.length === 0 && <p className="loading">Se încarcă grila…</p>}
 
+      {scenario.view === 'compare' && ministry && ours && proposal && (
+        <CompareView
+          ministry={ministry}
+          ours={ours.regime}
+          denmark={regimes['dk-stat-2026'] ?? null}
+          proposal={proposal}
+          effects={ours.effects}
+          onOpen={(view) => setScenario({ ...scenario, view })}
+        />
+      )}
       {loaded.length > 0 && scenario.view === 'structure' && (
         <StructureView regime={regimes['ro-draft-2026-07-16'] ?? loaded[0]} />
       )}
       {loaded.length > 0 && scenario.view === 'payslip' && (
-        <PayslipView regimes={loaded} scenario={scenario} onChange={setScenario} />
+        <PayslipView
+          regimes={ours ? [...loaded, ours.regime] : loaded}
+          scenario={scenario}
+          onChange={setScenario}
+        />
       )}
 
       <footer>

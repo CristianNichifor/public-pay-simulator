@@ -11,7 +11,7 @@ const target = resolve(here, '../public/data');
 
 await rm(target, { recursive: true, force: true });
 await mkdir(target, { recursive: true });
-for (const dir of ['regimes', 'fiscal', 'reports']) {
+for (const dir of ['regimes', 'proposals', 'fiscal', 'headcount', 'reports']) {
   await cp(resolve(repo, 'data', dir), resolve(target, dir), { recursive: true });
 }
 console.log('copied data/ into app/public/data');

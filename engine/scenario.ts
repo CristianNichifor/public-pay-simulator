@@ -15,7 +15,7 @@
 
 import type { Person, SupplementClaim } from './payslip';
 
-export type ViewId = 'payslip' | 'structure' | 'envelope';
+export type ViewId = 'compare' | 'payslip' | 'structure' | 'envelope';
 
 export interface Scenario {
   view: ViewId;
@@ -32,7 +32,7 @@ export interface Scenario {
 const KNOWN = new Set(['r', 'p', 'y', 'd', 's', 'a']);
 
 export const DEFAULT_SCENARIO: Scenario = {
-  view: 'structure',
+  view: 'compare',
   regimeIds: ['ro-draft-2026-07-16'],
 };
 
@@ -83,7 +83,9 @@ export function decodeScenario(hash: string): Scenario {
   const raw = hash.replace(/^#\/?/, '');
   const [path, query = ''] = raw.split('?');
   const view: ViewId =
-    path === 'payslip' || path === 'envelope' || path === 'structure' ? path : DEFAULT_SCENARIO.view;
+    path === 'payslip' || path === 'envelope' || path === 'structure' || path === 'compare'
+      ? path
+      : DEFAULT_SCENARIO.view;
 
   const params = new URLSearchParams(query);
   const regimeIds = (params.get('r') ?? '')
