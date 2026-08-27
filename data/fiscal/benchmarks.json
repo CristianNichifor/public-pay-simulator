@@ -37,7 +37,7 @@
         "source": "eurostat",
         "locator": "Eurostat nama_10_a10 D11 ÷ nama_10_a10_e SAL_DC ÷ 12, geo=RO, 2024",
         "confidence": "derived",
-        "note": "D11 sunt salariile brute, fără contribuțiile angajatorului. D1 ar fi inclus contribuțiile angajatorului, care sunt mici în România și mari în Danemarca, deci ar fi umflat media daneză din construcție."
+        "note": "D11 sunt salariile brute, fără contribuțiile angajatorului — același concept ca 'basic earnings' din statistica daneză."
       }
     },
     {
@@ -51,14 +51,55 @@
       "observations": [
         {
           "period": "2024",
-          "value": 38263.9
+          "value": 42199.73
         }
       ],
       "provenance": {
         "source": "eurostat",
-        "locator": "Eurostat nama_10_a10 D11 ÷ nama_10_a10_e SAL_DC ÷ 12, geo=DK, 2024",
+        "locator": "Danmarks Statistik LONS50, BASISST × 160.33 ore/lună, toate sectoarele, 2024",
         "confidence": "derived",
-        "note": "D11 sunt salariile brute, fără contribuțiile angajatorului. D1 ar fi inclus contribuțiile angajatorului, care sunt mici în România și mari în Danemarca, deci ar fi umflat media daneză din construcție."
+        "note": "Câștig de bază pe oră standard, fără pensie. Măsura de titlu a DST (STANDARDIZED HOURLY EARNINGS) include pensia, concediul și plățile neregulate, deci ar fi umflat reperul danez cu circa o cincime."
+      }
+    },
+    {
+      "id": "avg-gross-monthly-gov-dk",
+      "label": "Salariul mediu brut lunar, sectorul public (DK)",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "benchmark"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 38276.38
+        }
+      ],
+      "provenance": {
+        "source": "eurostat",
+        "locator": "Danmarks Statistik LONS50, BASISST, General government, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "avg-gross-monthly-gov-ro",
+      "label": "Salariul mediu brut lunar, sectorul public (RO)",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "benchmark"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 12635.88
+        }
+      ],
+      "provenance": {
+        "source": "eurostat",
+        "locator": "Eurostat gov_10a_exp D1 ÷ posturi ocupate (MF) ÷ 12 ÷ 1,0225, 2024",
+        "confidence": "derived",
+        "note": "D1 include contribuția asiguratorie pentru muncă de 2,25%, scoasă aici ca să rămână salariul brut. Numărul de posturi e din raportarea MF pentru iunie 2026, nu din 2024, deci raportul e aproximativ."
       }
     },
     {

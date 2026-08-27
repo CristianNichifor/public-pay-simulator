@@ -72,7 +72,10 @@ export default function CompareView({
       cells: [
         { value: ro(m.variantsInGaps) },
         { value: ro(o.variantsInGaps), good: true },
-        { value: '0', note: 'fiecare treaptă e o sumă, deci nu există goluri între ele' },
+        {
+          value: '0',
+          note: 'fiecare treaptă poartă o sumă, deci nimic nu poate cădea între ele — deși scara sare peste treapta 3',
+        },
       ],
     },
     {
@@ -91,7 +94,13 @@ export default function CompareView({
           good: Math.abs(o.span.ratio - (m.spanByPeriod[0]?.ratio ?? 0)) > 0.005,
           note: 'același, dar fix — nu se mai schimbă din 2028',
         },
-        dkNA('nu există un raport declarat prin lege'),
+        {
+          // Not declared in law, but the published tables have a top and a bottom, so it
+          // is computable. Dashing it out hid the sharpest contrast on the page.
+          value: '1:3,55',
+          good: true,
+          note: 'nu e declarat în lege, dar rezultă din tabele: 261.000 → 925.652 DKK',
+        },
       ],
     },
     {
@@ -100,16 +109,20 @@ export default function CompareView({
       cells: [
         { value: ro(m.spanByPeriod.length) },
         { value: '0', good: true },
-        dkNA('se renegociază periodic, prin contract colectiv'),
+        { value: '0', note: 'treptele se renegociază periodic, nu se eșalonează în lege' },
       ],
     },
     {
-      label: 'Funcții care comasează denumiri',
-      hint: 'câte funcții adună două sau mai multe denumiri anterioare sub un singur cod',
+      label: 'Posturi numite în grilă',
+      hint: 'câte denumiri distincte de post apar în documentul oficial',
       cells: [
-        { value: ro(m.assimilation.mergedPositions) },
-        { value: ro(o.assimilation.mergedPositions), note: 'propunerea nu desface comasările' },
-        dkNA('nu se pune problema: nu există nomenclator de funcții'),
+        { value: ro(m.positions), note: `dintre care ${ro(m.assimilation.mergedPositions)} comasează mai multe denumiri` },
+        { value: ro(o.positions), note: 'propunerea nu desface comasările' },
+        {
+          value: '≈20',
+          good: true,
+          note: 'atâtea posturi numite apar în tabelele IDA, față de 1.176 în proiect',
+        },
       ],
     },
   ];

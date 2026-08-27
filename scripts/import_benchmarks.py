@@ -29,12 +29,15 @@ than dressed up as a statutory figure.
 
 from __future__ import annotations
 
+import csv
+import io
 import json
 import urllib.parse
 import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+DST = "https://api.statbank.dk/v1/data"
 OUT = ROOT / "data/fiscal/benchmarks.json"
 API = "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data"
 
@@ -81,6 +84,37 @@ def series(sid: str, label: str, geo: str, unit: str, period: str, value: float,
     }
 
 
+def dst_basic_earnings() -> dict[str, float]:
+    """Danish basic earnings per standard hour, excluding pension, by sector.
+
+    Denmark's own statistical office is the better source than a Eurostat derivation, and
+    the component matters: STANDARDIZED HOURLY EARNINGS would include pension, holiday
+    pay and irregular payments, which the Romanian figure does not. BASISST is the
+    like-for-like concept, and picking the headline number instead would have inflated
+    the Danish anchor by about a fifth and quietly flattered every Romanian ratio.
+    """
+    body = json.dumps({
+        "table": "LONS50", "format": "CSV", "lang": "en", "delimiter": "Semicolon",
+        "variables": [
+            {"code": "ALDER1", "values": ["TOT"]},
+            {"code": "SEKTOR", "values": ["1000", "1032"]},
+            {"code": "AFLOEN", "values": ["TIFA"]},
+            {"code": "LONGRP", "values": ["LTOT"]},
+            {"code": "LØNMÅL", "values": ["BASISST"]},
+            {"code": "KØN", "values": ["MOK"]},
+            {"code": "Tid", "values": [YEAR]},
+        ],
+    }).encode()
+    request = urllib.request.Request(DST, data=body, headers={"Content-Type": "application/json"})
+    with urllib.request.urlopen(request, timeout=90) as response:  # noqa: S310
+        text = response.read().decode("utf-8-sig")
+    out: dict[str, float] = {}
+    for row in csv.DictReader(io.StringIO(text), delimiter=";"):
+        key = "all" if row["SEKTOR"].startswith("All") else "gov"
+        out[key] = float(row["INDHOLD"]) * DK_HOURS_PER_MONTH
+    return out
+
+
 def main() -> None:
     print("fetching wages and salaries (D11) and employee counts ...")
     wages = by_geo(fetch("nama_10_a10", geo=["RO", "DK"], na_item="D11",
@@ -89,19 +123,49 @@ def main() -> None:
                              nace_r2="TOTAL", unit="THS_PER", time=YEAR))
 
     entries = []
-    for geo in ("RO", "DK"):
-        monthly = wages[geo] * 1e6 / (employees[geo] * 1e3) / 12
-        entries.append(series(
-            f"avg-gross-monthly-{geo.lower()}",
-            f"Salariul mediu brut lunar, toată economia ({geo})",
-            geo, "CP_MNAC", YEAR, monthly,
-            f"Eurostat nama_10_a10 D11 ÷ nama_10_a10_e SAL_DC ÷ 12, geo={geo}, {YEAR}",
-            "derived",
-            "D11 sunt salariile brute, fără contribuțiile angajatorului. D1 ar fi inclus "
-            "contribuțiile angajatorului, care sunt mici în România și mari în Danemarca, "
-            "deci ar fi umflat media daneză din construcție.",
-        ))
-        print(f"  {geo}: {monthly:,.0f} per month".replace(",", " "))
+    ro_monthly = wages["RO"] * 1e6 / (employees["RO"] * 1e3) / 12
+    entries.append(series(
+        "avg-gross-monthly-ro", "Salariul mediu brut lunar, toată economia (RO)",
+        "RO", "CP_MNAC", YEAR, ro_monthly,
+        f"Eurostat nama_10_a10 D11 ÷ nama_10_a10_e SAL_DC ÷ 12, geo=RO, {YEAR}", "derived",
+        "D11 sunt salariile brute, fără contribuțiile angajatorului — același concept ca "
+        "'basic earnings' din statistica daneză.",
+    ))
+    print(f"  RO all sectors: {ro_monthly:,.0f} RON".replace(",", " "))
+
+    print("fetching Danish basic earnings from Danmarks Statistik (LONS50) ...")
+    dk = dst_basic_earnings()
+    entries.append(series(
+        "avg-gross-monthly-dk", "Salariul mediu brut lunar, toată economia (DK)",
+        "DK", "CP_MNAC", YEAR, dk["all"],
+        f"Danmarks Statistik LONS50, BASISST × {DK_HOURS_PER_MONTH:.2f} ore/lună, toate sectoarele, {YEAR}",
+        "derived",
+        "Câștig de bază pe oră standard, fără pensie. Măsura de titlu a DST "
+        "(STANDARDIZED HOURLY EARNINGS) include pensia, concediul și plățile neregulate, "
+        "deci ar fi umflat reperul danez cu circa o cincime.",
+    ))
+    entries.append(series(
+        "avg-gross-monthly-gov-dk", "Salariul mediu brut lunar, sectorul public (DK)",
+        "DK", "CP_MNAC", YEAR, dk["gov"],
+        f"Danmarks Statistik LONS50, BASISST, General government, {YEAR}", "derived",
+    ))
+    print(f"  DK all sectors: {dk['all']:,.0f} DKK".replace(",", " "))
+    print(f"  DK general government: {dk['gov']:,.0f} DKK".replace(",", " "))
+
+    print("fetching Romanian general-government compensation ...")
+    gov = by_geo(fetch("gov_10a_exp", geo="RO", na_item="D1", sector="S13",
+                       unit="MIO_NAC", cofog99="TOTAL", time=YEAR))
+    posts = json.loads((ROOT / "data/headcount/posturi-ocupate-2026-06.json").read_text(encoding="utf-8"))
+    ro_gov = gov["RO"] * 1e6 / posts["totalPosts"] / 12 / 1.0225
+    entries.append(series(
+        "avg-gross-monthly-gov-ro", "Salariul mediu brut lunar, sectorul public (RO)",
+        "RO", "CP_MNAC", YEAR, ro_gov,
+        f"Eurostat gov_10a_exp D1 ÷ posturi ocupate (MF) ÷ 12 ÷ 1,0225, {YEAR}", "derived",
+        "D1 include contribuția asiguratorie pentru muncă de 2,25%, scoasă aici ca să rămână "
+        "salariul brut. Numărul de posturi e din raportarea MF pentru iunie 2026, nu din 2024, "
+        "deci raportul e aproximativ.",
+    ))
+    print(f"  RO general government: {ro_gov:,.0f} RON".replace(",", " "))
 
     print("fetching the Romanian statutory minimum wage ...")
     minimum = fetch("earn_mw_cur", geo=["RO", "DK"], currency="NAC", lastTimePeriod=1)

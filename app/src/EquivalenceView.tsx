@@ -1,11 +1,14 @@
 import { useMemo, useState } from 'react';
 
 import { payslip } from '../../engine/payslip';
+import { amountLine } from './money';
 import type { Crosswalk, CrosswalkLink, Regime } from '../../engine/types';
 
 export interface Benchmarks {
   avgRo: number;
   avgDk: number;
+  govRo: number;
+  govDk: number;
   floorRo: number;
   floorDk: number;
   year: string;
@@ -18,13 +21,6 @@ export interface Fx {
 
 const MONTHS = 12;
 
-function money(minor: number, currency: string): string {
-  return (minor / 100).toLocaleString('ro-RO', {
-    style: 'currency',
-    currency,
-    maximumFractionDigits: 0,
-  });
-}
 const times = (n: number) => `${n.toLocaleString('ro-RO', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}×`;
 
 /** Monthly major units in the regime's own currency. */
@@ -58,12 +54,21 @@ export default function EquivalenceView({
   benchmarks: Benchmarks;
 }) {
   const [seniority, setSeniority] = useState(10);
-  const [anchor, setAnchor] = useState<'avg' | 'floor'>('avg');
+  const [anchor, setAnchor] = useState<'avg' | 'gov' | 'floor'>('avg');
 
-  const base = {
-    ro: anchor === 'avg' ? benchmarks.avgRo : benchmarks.floorRo,
-    dk: anchor === 'avg' ? benchmarks.avgDk : benchmarks.floorDk,
-  };
+  const base =
+    anchor === 'avg'
+      ? { ro: benchmarks.avgRo, dk: benchmarks.avgDk }
+      : anchor === 'gov'
+        ? { ro: benchmarks.govRo, dk: benchmarks.govDk }
+        : { ro: benchmarks.floorRo, dk: benchmarks.floorDk };
+
+  const anchorLabel =
+    anchor === 'avg'
+      ? 'salariul mediu brut din toată economia'
+      : anchor === 'gov'
+        ? 'salariul mediu brut din sectorul public'
+        : 'pragul de jos';
 
   const pairs: Pair[] = useMemo(() => {
     const rows = crosswalk.links.map((link) => {
@@ -117,9 +122,10 @@ export default function EquivalenceView({
         <div className="card controls anchor-controls">
           <label className="field">
             <span>Raportat la</span>
-            <select value={anchor} onChange={(e) => setAnchor(e.target.value as 'avg' | 'floor')}>
-              <option value="avg">salariul mediu din fiecare țară</option>
-              <option value="floor">pragul de jos din fiecare țară</option>
+            <select value={anchor} onChange={(e) => setAnchor(e.target.value as 'avg' | 'gov' | 'floor')}>
+              <option value="avg">salariul mediu din toată economia</option>
+              <option value="gov">salariul mediu din sectorul public</option>
+              <option value="floor">pragul de jos</option>
             </select>
           </label>
           <label className="field">
@@ -135,13 +141,11 @@ export default function EquivalenceView({
           <div className="field anchors">
             <span>Reperele folosite</span>
             <p>
-              <span className="dot ro" /> România: {base.ro.toLocaleString('ro-RO', { maximumFractionDigits: 0 })} RON
-              {anchor === 'avg' ? ' salariu mediu brut' : ' salariu minim brut'}
+              <span className="dot ro" /> România: {amountLine(base.ro, 'RON', fx)} — {anchorLabel}
             </p>
             <p>
-              <span className="dot dk" /> Danemarca: {base.dk.toLocaleString('ro-RO', { maximumFractionDigits: 0 })} DKK
-              {anchor === 'avg' ? ' salariu mediu brut' : ' prag din contracte colective'}
-              {anchor === 'floor' && <em> — nu e salariu minim legal, Danemarca nu are</em>}
+              <span className="dot dk" /> Danemarca: {amountLine(base.dk, 'DKK', fx)} — {anchorLabel}
+              {anchor === 'floor' && <em> · nu e salariu minim legal, Danemarca nu are</em>}
             </p>
           </div>
         </div>
@@ -201,7 +205,7 @@ function RatioRow({ pair, scaleMax, fx }: { pair: Pair; scaleMax: number; fx: Fx
           </div>
           <span className="bar-value">{pair.roRatio !== null ? times(pair.roRatio) : '—'}</span>
           <span className="bar-money">
-            {pair.roMonthly !== null ? money(pair.roMonthly * 100, 'RON') : ''}
+            {pair.roMonthly !== null ? amountLine(pair.roMonthly, 'RON', fx) : ''}
           </span>
         </div>
 
@@ -213,9 +217,7 @@ function RatioRow({ pair, scaleMax, fx }: { pair: Pair; scaleMax: number; fx: Fx
           </div>
           <span className="bar-value">{pair.dkRatio !== null ? times(pair.dkRatio) : '—'}</span>
           <span className="bar-money">
-            {pair.dkMonthly !== null
-              ? `${money(pair.dkMonthly * 100, 'DKK')} ≈ ${money(pair.dkMonthly * fx.dkkToRon * 100, 'RON')}`
-              : 'niciun post publicat'}
+            {pair.dkMonthly !== null ? amountLine(pair.dkMonthly, 'DKK', fx) : 'niciun post publicat'}
           </span>
         </div>
       </div>

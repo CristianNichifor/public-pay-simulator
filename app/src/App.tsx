@@ -48,7 +48,8 @@ export default function App() {
   const [crosswalk, setCrosswalk] = useState<Crosswalk | null>(null);
   const [fx, setFx] = useState<{ dkkToRon: number; eurToRon: number; date: string } | null>(null);
   const [benchmarks, setBenchmarks] = useState<{
-    avgRo: number; avgDk: number; floorRo: number; floorDk: number; year: string;
+    avgRo: number; avgDk: number; govRo: number; govDk: number;
+    floorRo: number; floorDk: number; year: string;
   } | null>(null);
 
   const wanted = scenario.regimeIds;
@@ -86,6 +87,8 @@ export default function App() {
         setBenchmarks({
           avgRo: val('avg-gross-monthly-ro'),
           avgDk: val('avg-gross-monthly-dk'),
+          govRo: val('avg-gross-monthly-gov-ro'),
+          govDk: val('avg-gross-monthly-gov-dk'),
           floorRo: val('floor-monthly-ro'),
           floorDk: val('floor-monthly-dk'),
           year: doc.retrieved,
