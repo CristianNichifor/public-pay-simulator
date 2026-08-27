@@ -122,3 +122,57 @@ footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--border
 footer a { color: var(--text-secondary); }
 
 .loading { padding: 60px 0; color: var(--text-secondary); }
+
+/* --- shell: tabs and scenario controls --- */
+.tabs { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.tabgroup { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.tabs button {
+  font: inherit; font-size: 14px; padding: 7px 14px; cursor: pointer;
+  background: var(--surface-1); color: var(--text-secondary);
+  border: 1px solid var(--border); border-radius: 6px;
+}
+.tabs button.on { background: var(--series-1); border-color: var(--series-1); color: #fff; }
+.tabs button.share { font-size: 13px; }
+.regime-toggle { display: inline-flex; gap: 6px; align-items: center; font-size: 12.5px; color: var(--text-secondary); }
+.regime-toggle span { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+
+/* --- person controls --- */
+.controls { display: grid; gap: 18px; }
+.field { display: grid; gap: 6px; }
+.field > span, .field > legend { font-size: 13px; color: var(--text-secondary); }
+.field input[type='search'], .field select {
+  font: inherit; font-size: 14px; padding: 7px 9px;
+  background: var(--surface-0); color: var(--text-primary);
+  border: 1px solid var(--border); border-radius: 6px; width: 100%;
+}
+.field input[type='range'] { width: 100%; accent-color: var(--series-1); }
+fieldset.field { border: 0; padding: 0; margin: 0; }
+.claims { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 7px; }
+.claim { display: flex; gap: 8px; align-items: baseline; font-size: 13.5px; }
+.claim em { color: var(--text-muted); font-style: normal; font-size: 12px; }
+
+/* --- payslip cards --- */
+.slips { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; }
+.slip h3 { margin: 0 0 2px; font-size: 16px; }
+.slip-meta { margin: 0 0 10px; font-size: 12.5px; color: var(--text-muted); }
+.slip table.data { margin-top: 0; }
+.slip tr.sub td { color: var(--text-muted); font-size: 12.5px; padding-left: 14px; }
+.slip tr.total td { font-weight: 600; border-top: 1px solid var(--border); }
+.slip tr.struck td { color: var(--text-muted); text-decoration: line-through; }
+.slip tr.struck td em { text-decoration: none; }
+.missing, .missing-inline { color: var(--text-muted); font-size: 13px; }
+.missing-inline { font-style: italic; }
+
+.cap { margin-top: 14px; }
+.cap-head { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-secondary); }
+.meter { height: 8px; background: var(--surface-2); border-radius: 4px; overflow: hidden; margin-top: 5px; }
+.meter-fill { height: 100%; background: var(--series-1); border-radius: 4px; }
+.cap-note { margin: 6px 0 0; font-size: 12px; color: var(--text-muted); }
+
+.diags { margin-top: 14px; }
+.diags summary { cursor: pointer; font-size: 13px; color: var(--text-secondary); }
+.diags ul { margin: 8px 0 0; padding-left: 0; list-style: none; display: grid; gap: 7px; }
+.diags li { font-size: 12.5px; color: var(--text-secondary); border-left: 2px solid var(--mark-quiet); padding-left: 9px; }
+.diags li.blocking { border-left-color: var(--accent); }
+.diags li.material { border-left-color: var(--series-1); }
+.diags .sev { text-transform: uppercase; font-size: 10px; letter-spacing: 0.06em; color: var(--text-muted); margin-right: 5px; }

@@ -25,7 +25,8 @@ implementation.
 - [x] **View 2 — system shape, live**
 - [x] `payslip()` / `aggregate()` + tests — Danish figures reproduce to the krone
 - [ ] `data/headcount/` — blocked: no filled-post counts are published per position
-- [ ] Views 1 (payslip diff) and 3 (envelope)
+- [x] **View 1 — payslip diff, live.** Scenario lives in the URL hash
+- [ ] View 3 — envelope mode
 
 `aggregate()` is implemented and tested, but no headcount document is committed, because
 none is published. Romania releases no per-position filled-post counts, and inventing them
@@ -117,6 +118,18 @@ The model splits this in two, on purpose:
 Crosswalks are typed by cardinality — `merge`, `split`, `abolished`, `new` — because a
 nine-to-one merge and a rename are different claims. `abolished` is the one worth watching:
 a former title with no destination.
+
+## The currency rule is enforced, not documented
+
+View 1 prices the same person under every regime selected. Where those regimes are
+denominated differently — RON per month against DKK per year — the columns sit side by
+side and **no delta is offered**. What remains is a dimensionless table: base as a share
+of gross, supplements as a share of gross, net over gross, employer cost above gross,
+seniority uplift. Those are comparable; levels are not.
+
+Selecting a Romanian position with the Danish regime loaded shows the honest outcome
+rather than a number: the position does not exist there, and bridging it would need a
+crosswalk that is an editorial judgement rather than a legal fact.
 
 ## Layout
 
