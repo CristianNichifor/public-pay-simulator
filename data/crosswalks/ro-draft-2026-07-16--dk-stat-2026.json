@@ -131,7 +131,7 @@
     {
       "id": "studii-medii-fara-corespondent",
       "relation": "abolished",
-      "from": [{ "positionCode": "II.CI.3.49", "title": "Părinte social, îngrijitor la domiciliu, asistent personal" }],
+      "from": [{ "positionCode": "21.00303045.04", "title": "Părinte social, îngrijitor la domiciliu, asistent personal" }],
       "to": [],
       "confidence": "verbatim",
       "evidence": [
