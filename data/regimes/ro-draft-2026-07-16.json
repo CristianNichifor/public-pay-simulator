@@ -461,8 +461,27 @@
       "label": "Cresterea valorii de referinta nu poate depasi cresterea nominala a PIB",
       "kind": "growth",
       "scope": { "level": "system", "period": "year" },
-      "boundTo": "nominalGdpGrowth",
-      "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 9 alin. (4)", "confidence": "verbatim", "note": "Daca prognoza PIB se inrautateste pe parcursul anului, valoarea de referinta nu se modifica - asimetric. Art. 36 alin. (3): din 2028 procentul e determinat de tinta de reducere a masei salariale cu cel putin 1,5 pp din PIB intre 2024 si 2031." }
+      "boundTo": {
+        "dataset": "eurostat-compensation-2026-08",
+        "seriesId": "gdp-nominal-ro",
+        "provenance": { "source": "eurostat", "locator": "nama_10_gdp, B1GQ/CP_MNAC, geo=RO", "confidence": "derived", "note": "Legea se refera la 'cresterea nominala a PIB prevazuta in cadrul macroeconomic din strategia fiscal-bugetara' - o prognoza a Comisiei Nationale de Strategie si Prognoza, nu o serie realizata. Aici e legata seria realizata Eurostat, care e verificabila si comparabila; prognoza oficiala e o alta serie, de adaugat cand devine disponibila intr-un format deschis. Diferenta conteaza: plafonul se aplica pe prognoza, evaluarea ex-post pe realizat." }
+      },
+      "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 9 alin. (4)", "confidence": "verbatim", "note": "Asimetric: daca prognoza PIB se inrautateste pe parcursul anului, valoarea de referinta nu se modifica. Cresterea e plafonata, scaderea nu e obligatorie." }
+    },
+    {
+      "id": "cap-masa-salariala-pib",
+      "label": "Reducerea masei salariale publice cu cel putin 1,5 puncte procentuale din PIB intre 2024 si 2031",
+      "kind": "shareOfGdp",
+      "scope": { "level": "system", "period": "year" },
+      "boundTo": {
+        "dataset": "eurostat-compensation-2026-08",
+        "seriesId": "d1-total-pc-gdp-ro",
+        "baselinePeriod": "2024",
+        "targetPeriod": "2031",
+        "deltaPp": -1.5,
+        "provenance": { "source": "eurostat", "locator": "gov_10a_exp, S13/D1/TOTAL/PC_GDP, geo=RO", "confidence": "derived", "note": "Baza 2024 este 11,2% din PIB, deci tinta implicita e cel mult 9,7% in 2031. De retinut ca 2024 e un varf local: seria a fost 10,2% in 2022 si 2023 si a urcat la 11,2% in 2024. Alegerea lui 2024 ca an de referinta face tinta mai usoara cu un punct intreg decat daca ar fi fost aleasa media 2022-2023." }
+      },
+      "provenance": { "source": "proiect-lege-2026-07-16", "locator": "Art. 36 alin. (3)", "confidence": "verbatim", "note": "Singura regula din lege care fixeaza o tinta pe o statistica externa, nu pe ceva ce statul de plata controleaza direct. Numitorul - PIB nominal - poate misca tinta fara ca vreun salariu sa se schimbe." }
     }
   ],
 

@@ -36,7 +36,7 @@ def resolve_series(series, when: str | None = None) -> float:
     return float((applicable or steps)[0]["value"])
 
 
-def check_regime(doc: dict, path: Path) -> list[str]:
+def check_regime(doc: dict, path: Path, fiscal: dict[str, dict]) -> list[str]:
     errors: list[str] = []
     grades = {g["id"]: g for g in doc.get("grades", [])}
     ladders = doc.get("ladders", {})
@@ -88,6 +88,41 @@ def check_regime(doc: dict, path: Path) -> list[str]:
     ref_cap = doc.get("reference", {}).get("growthCapId")
     if ref_cap and ref_cap not in caps:
         errors.append(f"{path.name}: reference.growthCapId {ref_cap!r} is not a declared cap")
+
+    # A cap bound to an external statistic is only meaningful if the statistic is here.
+    # Art. 9(4) and Art. 36(3) are rules the model would otherwise appear to enforce
+    # while silently evaluating nothing.
+    for cap in doc.get("caps", []):
+        bound = cap.get("boundTo")
+        if cap["kind"] in ("growth", "shareOfGdp") and not bound:
+            errors.append(f"{path.name}:{cap['id']}: kind {cap['kind']!r} requires boundTo")
+            continue
+        if not bound:
+            continue
+        dataset = fiscal.get(bound["dataset"])
+        if dataset is None:
+            errors.append(f"{path.name}:{cap['id']}: unknown fiscal dataset {bound['dataset']!r}")
+            continue
+        series = {s["id"]: s for s in dataset["series"]}
+        entry = series.get(bound["seriesId"])
+        if entry is None:
+            errors.append(
+                f"{path.name}:{cap['id']}: series {bound['seriesId']!r} "
+                f"not in fiscal dataset {bound['dataset']!r}"
+            )
+            continue
+        periods = {o["period"] for o in entry["observations"]}
+        baseline = bound.get("baselinePeriod")
+        if baseline and baseline not in periods:
+            errors.append(
+                f"{path.name}:{cap['id']}: baselinePeriod {baseline!r} has no observation "
+                f"in {bound['seriesId']!r}"
+            )
+        if cap["kind"] == "shareOfGdp" and entry["unit"] != "PC_GDP":
+            errors.append(
+                f"{path.name}:{cap['id']}: kind 'shareOfGdp' bound to a series in "
+                f"{entry['unit']!r}, expected PC_GDP"
+            )
 
     if doc.get("status") == "in-force":
         assumed = [
@@ -151,9 +186,23 @@ def check_crosswalk(doc: dict, path: Path, regimes: dict[str, dict]) -> list[str
 def main() -> int:
     regime_schema = Draft202012Validator(load(ROOT / "schema/regime.schema.json"))
     crosswalk_schema = Draft202012Validator(load(ROOT / "schema/crosswalk.schema.json"))
+    fiscal_schema = Draft202012Validator(load(ROOT / "schema/fiscal.schema.json"))
 
     errors: list[str] = []
     regimes: dict[str, dict] = {}
+    fiscal: dict[str, dict] = {}
+
+    # Fiscal first: regimes reference it, so a broken series must surface as the
+    # cause rather than as a dangling cap downstream.
+    for path in sorted((ROOT / "data/fiscal").glob("*.json")):
+        doc = load(path)
+        doc.pop("$schema", None)
+        schema_errors = sorted(fiscal_schema.iter_errors(doc), key=lambda e: list(e.path))
+        for err in schema_errors:
+            errors.append(f"{path.name}: {'/'.join(map(str, err.path))}: {err.message}")
+        if not schema_errors:
+            fiscal[doc["id"]] = doc
+            print(f"  schema ok: {path.name} ({len(doc['series'])} series)")
 
     for path in sorted((ROOT / "data/regimes").glob("*.json")):
         doc = load(path)
@@ -166,7 +215,7 @@ def main() -> int:
             print(f"  schema ok: {path.name} ({len(doc['positions'])} positions)")
 
     for doc in regimes.values():
-        errors.extend(check_regime(doc, ROOT / "data/regimes" / f"{doc['id']}.json"))
+        errors.extend(check_regime(doc, ROOT / "data/regimes" / f"{doc['id']}.json", fiscal))
 
     for path in sorted((ROOT / "data/crosswalks").glob("*.json")):
         doc = load(path)

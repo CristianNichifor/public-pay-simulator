@@ -361,8 +361,8 @@
         "id":    { "type": "string" },
         "label": { "type": "string" },
         "kind": {
-          "enum": ["shareOfBase", "shareOfHeadcount", "growth"],
-          "description": "shareOfBase: Art. 21(2), 20% of the base wage bill; Art. 22(6), 4% for performance premia. shareOfHeadcount: Art. 22(7), at most 30% of posts. growth: Art. 9(4), the reference value may not rise faster than nominal GDP."
+          "enum": ["shareOfBase", "shareOfHeadcount", "growth", "shareOfGdp"],
+          "description": "shareOfBase: Art. 21(2), 20% of the base wage bill; Art. 22(6), 4% for performance premia. shareOfHeadcount: Art. 22(7), at most 30% of posts. growth: Art. 9(4), the reference value may not rise faster than nominal GDP. shareOfGdp: Art. 36(3), the whole wage bill must fall by at least 1.5 points of GDP between 2024 and 2031 - a target on an external statistic rather than on anything the payroll controls."
         },
         "pct": { "$ref": "#/$defs/valueSeries" },
         "scope": {
@@ -381,7 +381,20 @@
             "exclude": { "type": "array", "items": { "type": "string" } } } },
         "denominator": { "type": "object", "additionalProperties": false, "properties": {
             "include": { "type": "array", "items": { "enum": ["baseSalary", "seniority", "gradePay", "commandPay", "indemnityOfEmployment", "monthlyIndemnity"] } } } },
-        "boundTo":   { "type": "string", "description": "growth caps only: the external series the growth is bounded by, e.g. 'nominalGdpGrowth'." },
+        "boundTo": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["dataset", "seriesId"],
+          "description": "The external series this cap is measured against. Required for kind 'growth' and 'shareOfGdp'. A dangling reference is a validation error: a rule the statute states but the model cannot evaluate must say so through a limitation, not through a string nobody resolves.",
+          "properties": {
+            "dataset":  { "type": "string", "description": "id of a document in data/fiscal/" },
+            "seriesId": { "type": "string" },
+            "baselinePeriod": { "type": "string", "description": "shareOfGdp: the period the target is measured from. Art. 36(3) names 2024." },
+            "targetPeriod":   { "type": "string", "description": "shareOfGdp: the period the target must be met by. Art. 36(3) names 2031." },
+            "deltaPp":        { "type": "number", "description": "shareOfGdp: required change in percentage points. Negative for a reduction. Art. 36(3): at least -1.5." },
+            "provenance": { "$ref": "#/$defs/provenance" }
+          }
+        },
         "penalty":   { "type": "string", "description": "What the source attaches to breach. Art. 35(2): 30 000-50 000 lei plus recovery." },
         "provenance":{ "$ref": "#/$defs/provenance" }
       }
