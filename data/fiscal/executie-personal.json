@@ -12,7 +12,8 @@
     "accountCategory": "ch",
     "economicPrefixes": [
       "10.01",
-      "10.02"
+      "10.02",
+      "10.03"
     ],
     "years": [
       "2021",
@@ -2393,6 +2394,80 @@
       }
     },
     {
+      "id": "ro-exec-national-contributii",
+      "label": "Tot sectorul bugetar — contribuțiile angajatorului",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "contributions",
+        "scope": "national"
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 2557994800.98
+        },
+        {
+          "period": "2022",
+          "value": 2641235662.72
+        },
+        {
+          "period": "2023",
+          "value": 2901348351.23
+        },
+        {
+          "period": "2024",
+          "value": 3497673017.53
+        },
+        {
+          "period": "2025",
+          "value": 3567417174.85
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, clasificația 10.03, Tot sectorul bugetar",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-national-titlul-i",
+      "label": "Tot sectorul bugetar — titlul I, cu tot cu contribuții",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "titleTotal",
+        "scope": "national"
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 108246959248.43
+        },
+        {
+          "period": "2022",
+          "value": 113825259895.87
+        },
+        {
+          "period": "2023",
+          "value": 128280208603.48
+        },
+        {
+          "period": "2024",
+          "value": 158887290093.86
+        },
+        {
+          "period": "2025",
+          "value": 161447210097.14
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, titlul 10 în întregime, Tot sectorul bugetar",
+        "confidence": "derived"
+      }
+    },
+    {
       "id": "ro-exec-invatamant-10.01.01-share",
       "label": "Salarii de baza — Învățământ, pondere",
       "geo": "RO",
@@ -4447,6 +4522,80 @@
       "provenance": {
         "source": "transparenta-eu-executie",
         "locator": "Suma clasificațiilor 10.01.04 ÷ total cheltuieli salariale, Învățământ",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-invatamant-contributii",
+      "label": "Învățământ — contribuțiile angajatorului",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "contributions",
+        "scope": "invatamant"
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 568188996.83
+        },
+        {
+          "period": "2022",
+          "value": 610527963.75
+        },
+        {
+          "period": "2023",
+          "value": 732931852.65
+        },
+        {
+          "period": "2024",
+          "value": 962192218.76
+        },
+        {
+          "period": "2025",
+          "value": 996067590.31
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, clasificația 10.03, Învățământ",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-invatamant-titlul-i",
+      "label": "Învățământ — titlul I, cu tot cu contribuții",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "titleTotal",
+        "scope": "invatamant"
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 25729707930.34
+        },
+        {
+          "period": "2022",
+          "value": 28092763877.61
+        },
+        {
+          "period": "2023",
+          "value": 33212251148.78
+        },
+        {
+          "period": "2024",
+          "value": 43865307010.92
+        },
+        {
+          "period": "2025",
+          "value": 44569637046.3
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, titlul 10 în întregime, Învățământ",
         "confidence": "derived"
       }
     },
@@ -6553,6 +6702,1622 @@
       }
     },
     {
+      "id": "ro-exec-sanatate-contributii",
+      "label": "Sănătate — contribuțiile angajatorului",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "contributions",
+        "scope": "sanatate"
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 675074661.35
+        },
+        {
+          "period": "2022",
+          "value": 687409299.08
+        },
+        {
+          "period": "2023",
+          "value": 710175065.28
+        },
+        {
+          "period": "2024",
+          "value": 827264671.99
+        },
+        {
+          "period": "2025",
+          "value": 876150854.43
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, clasificația 10.03, Sănătate",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-sanatate-titlul-i",
+      "label": "Sănătate — titlul I, cu tot cu contribuții",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "titleTotal",
+        "scope": "sanatate"
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 27247343022.59
+        },
+        {
+          "period": "2022",
+          "value": 27671398638.79
+        },
+        {
+          "period": "2023",
+          "value": 28720829915.88
+        },
+        {
+          "period": "2024",
+          "value": 33663403021.37
+        },
+        {
+          "period": "2025",
+          "value": 35632109509.27
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, titlul 10 în întregime, Sănătate",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.01.01-share",
+      "label": "Salarii de baza — Apărare, pondere",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.01.01",
+        "component": "basic",
+        "mappingReason": "Salariul de bază — exact ce măsoară BASIS în statistica daneză."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 0.67403
+        },
+        {
+          "period": "2022",
+          "value": 0.67369
+        },
+        {
+          "period": "2023",
+          "value": 0.65097
+        },
+        {
+          "period": "2024",
+          "value": 0.70479
+        },
+        {
+          "period": "2025",
+          "value": 0.75712
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.01.01 (Salarii de baza), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.01.01-amount",
+      "label": "Salarii de baza — Apărare, sumă",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.01.01",
+        "component": "basic",
+        "mappingReason": "Salariul de bază — exact ce măsoară BASIS în statistica daneză."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 3938686391.01
+        },
+        {
+          "period": "2022",
+          "value": 3927866708.84
+        },
+        {
+          "period": "2023",
+          "value": 4506336917.22
+        },
+        {
+          "period": "2024",
+          "value": 6546128350.48
+        },
+        {
+          "period": "2025",
+          "value": 8047585736.28
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.01.01 (Salarii de baza), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.01.05-share",
+      "label": "Sporuri pentru conditii de munca — Apărare, pondere",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.01.05",
+        "component": "conditions",
+        "mappingReason": "Sporuri pentru condiții de muncă — echivalentul lui GENE, compensația daneză pentru condiții."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 0.06601
+        },
+        {
+          "period": "2022",
+          "value": 0.06382
+        },
+        {
+          "period": "2023",
+          "value": 0.05478
+        },
+        {
+          "period": "2024",
+          "value": 0.04399
+        },
+        {
+          "period": "2025",
+          "value": 0.04069
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.01.05 (Sporuri pentru conditii de munca), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.01.05-amount",
+      "label": "Sporuri pentru conditii de munca — Apărare, sumă",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.01.05",
+        "component": "conditions",
+        "mappingReason": "Sporuri pentru condiții de muncă — echivalentul lui GENE, compensația daneză pentru condiții."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 385730601.0
+        },
+        {
+          "period": "2022",
+          "value": 372071690.17
+        },
+        {
+          "period": "2023",
+          "value": 379221492.36
+        },
+        {
+          "period": "2024",
+          "value": 408558162.16
+        },
+        {
+          "period": "2025",
+          "value": 432492879.93
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.01.05 (Sporuri pentru conditii de munca), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.01.06-share",
+      "label": "Alte sporuri — Apărare, pondere",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.01.06",
+        "component": "conditions",
+        "mappingReason": "Alte sporuri: tot compensație pentru cum se prestează munca."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 2e-05
+        },
+        {
+          "period": "2022",
+          "value": 2e-05
+        },
+        {
+          "period": "2023",
+          "value": 2e-05
+        },
+        {
+          "period": "2024",
+          "value": 1e-05
+        },
+        {
+          "period": "2025",
+          "value": 2e-05
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.01.06 (Alte sporuri), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.01.06-amount",
+      "label": "Alte sporuri — Apărare, sumă",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.01.06",
+        "component": "conditions",
+        "mappingReason": "Alte sporuri: tot compensație pentru cum se prestează munca."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 92948.0
+        },
+        {
+          "period": "2022",
+          "value": 97419.0
+        },
+        {
+          "period": "2023",
+          "value": 114610.0
+        },
+        {
+          "period": "2024",
+          "value": 124861.87
+        },
+        {
+          "period": "2025",
+          "value": 235935.57
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.01.06 (Alte sporuri), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.01.07-share",
+      "label": "Ore suplimentare — Apărare, pondere",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.01.07",
+        "component": "overtime",
+        "mappingReason": "Ore suplimentare — OVERB."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 0.0
+        },
+        {
+          "period": "2022",
+          "value": 0.0
+        },
+        {
+          "period": "2023",
+          "value": 0.0
+        },
+        {
+          "period": "2024",
+          "value": 1e-05
+        },
+        {
+          "period": "2025",
+          "value": 3e-05
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.01.07 (Ore suplimentare), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.01.07-amount",
+      "label": "Ore suplimentare — Apărare, sumă",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.01.07",
+        "component": "overtime",
+        "mappingReason": "Ore suplimentare — OVERB."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 9651.0
+        },
+        {
+          "period": "2022",
+          "value": 1840.0
+        },
+        {
+          "period": "2023",
+          "value": 17502.0
+        },
+        {
+          "period": "2024",
+          "value": 135324.0
+        },
+        {
+          "period": "2025",
+          "value": 277512.0
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.01.07 (Ore suplimentare), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.01.10-share",
+      "label": "Fond pentru posturi ocupate prin cumul — Apărare, pondere",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.01.10",
+        "component": "overtime",
+        "mappingReason": "Fond pentru posturi ocupate prin cumul: muncă peste normă, plătită ca atare."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 2e-05
+        },
+        {
+          "period": "2022",
+          "value": 3e-05
+        },
+        {
+          "period": "2023",
+          "value": 2e-05
+        },
+        {
+          "period": "2024",
+          "value": 2e-05
+        },
+        {
+          "period": "2025",
+          "value": 3e-05
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.01.10 (Fond pentru posturi ocupate prin cumul), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.01.10-amount",
+      "label": "Fond pentru posturi ocupate prin cumul — Apărare, sumă",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.01.10",
+        "component": "overtime",
+        "mappingReason": "Fond pentru posturi ocupate prin cumul: muncă peste normă, plătită ca atare."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 93528.43
+        },
+        {
+          "period": "2022",
+          "value": 151813.55
+        },
+        {
+          "period": "2023",
+          "value": 132045.65
+        },
+        {
+          "period": "2024",
+          "value": 175301.96
+        },
+        {
+          "period": "2025",
+          "value": 304401.79
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.01.10 (Fond pentru posturi ocupate prin cumul), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.01.12-share",
+      "label": "Indemnizatii platite unor persoane din afara unitatii — Apărare, pondere",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.01.12",
+        "component": "other",
+        "mappingReason": "Indemnizații pentru persoane din afara unității — nu sunt salariați, deci nu au corespondent danez."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 0.0
+        },
+        {
+          "period": "2022",
+          "value": 0.0
+        },
+        {
+          "period": "2024",
+          "value": 0.0
+        },
+        {
+          "period": "2025",
+          "value": 0.0
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.01.12 (Indemnizatii platite unor persoane din afara unitatii), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.01.12-amount",
+      "label": "Indemnizatii platite unor persoane din afara unitatii — Apărare, sumă",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.01.12",
+        "component": "other",
+        "mappingReason": "Indemnizații pentru persoane din afara unității — nu sunt salariați, deci nu au corespondent danez."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 2600.0
+        },
+        {
+          "period": "2022",
+          "value": 3068.0
+        },
+        {
+          "period": "2024",
+          "value": 17959.0
+        },
+        {
+          "period": "2025",
+          "value": 20225.0
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.01.12 (Indemnizatii platite unor persoane din afara unitatii), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.01.13-share",
+      "label": "Drepturi de delegare — Apărare, pondere",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.01.13",
+        "component": "other",
+        "mappingReason": "Drepturi de delegare: decontare de cheltuieli, nu remunerație."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 0.03079
+        },
+        {
+          "period": "2022",
+          "value": 0.0261
+        },
+        {
+          "period": "2023",
+          "value": 0.03304
+        },
+        {
+          "period": "2024",
+          "value": 0.03207
+        },
+        {
+          "period": "2025",
+          "value": 0.03667
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.01.13 (Drepturi de delegare), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.01.13-amount",
+      "label": "Drepturi de delegare — Apărare, sumă",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.01.13",
+        "component": "other",
+        "mappingReason": "Drepturi de delegare: decontare de cheltuieli, nu remunerație."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 179928077.28
+        },
+        {
+          "period": "2022",
+          "value": 152175692.69
+        },
+        {
+          "period": "2023",
+          "value": 228729092.09
+        },
+        {
+          "period": "2024",
+          "value": 297825409.52
+        },
+        {
+          "period": "2025",
+          "value": 389767103.89
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.01.13 (Drepturi de delegare), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.01.14-share",
+      "label": "Indemnizatii de  detasare — Apărare, pondere",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.01.14",
+        "component": "other",
+        "mappingReason": "Indemnizații de detașare: tot decontare."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 0.0003
+        },
+        {
+          "period": "2022",
+          "value": 0.00024
+        },
+        {
+          "period": "2023",
+          "value": 9e-05
+        },
+        {
+          "period": "2024",
+          "value": 4e-05
+        },
+        {
+          "period": "2025",
+          "value": 3e-05
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.01.14 (Indemnizatii de  detasare), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.01.14-amount",
+      "label": "Indemnizatii de  detasare — Apărare, sumă",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.01.14",
+        "component": "other",
+        "mappingReason": "Indemnizații de detașare: tot decontare."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 1751536.0
+        },
+        {
+          "period": "2022",
+          "value": 1388943.0
+        },
+        {
+          "period": "2023",
+          "value": 617755.0
+        },
+        {
+          "period": "2024",
+          "value": 340477.0
+        },
+        {
+          "period": "2025",
+          "value": 328376.0
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.01.14 (Indemnizatii de  detasare), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.01.29-share",
+      "label": "Stimulentul de risc — Apărare, pondere",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.01.29",
+        "component": "irregular",
+        "mappingReason": "Stimulentul de risc: plată excepțională, pandemică."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 1e-05
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.01.29 (Stimulentul de risc), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.01.29-amount",
+      "label": "Stimulentul de risc — Apărare, sumă",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.01.29",
+        "component": "irregular",
+        "mappingReason": "Stimulentul de risc: plată excepțională, pandemică."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 66319.0
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.01.29 (Stimulentul de risc), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.01.30-share",
+      "label": "Alte drepturi salariale in bani — Apărare, pondere",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.01.30",
+        "component": "irregular",
+        "mappingReason": "Alte drepturi salariale în bani — reziduul, plăți neregulate."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 0.04282
+        },
+        {
+          "period": "2022",
+          "value": 0.04266
+        },
+        {
+          "period": "2023",
+          "value": 0.07698
+        },
+        {
+          "period": "2024",
+          "value": 0.07928
+        },
+        {
+          "period": "2025",
+          "value": 0.04952
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.01.30 (Alte drepturi salariale in bani), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.01.30-amount",
+      "label": "Alte drepturi salariale in bani — Apărare, sumă",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.01.30",
+        "component": "irregular",
+        "mappingReason": "Alte drepturi salariale în bani — reziduul, plăți neregulate."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 250194345.03
+        },
+        {
+          "period": "2022",
+          "value": 248742890.94
+        },
+        {
+          "period": "2023",
+          "value": 532878895.91
+        },
+        {
+          "period": "2024",
+          "value": 736354591.04
+        },
+        {
+          "period": "2025",
+          "value": 526394041.31
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.01.30 (Alte drepturi salariale in bani), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.02.02-share",
+      "label": "Norme de hrana — Apărare, pondere",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.02.02",
+        "component": "fringe",
+        "mappingReason": "Norme de hrană — beneficiu în natură, greu de comparat: în Danemarca hrana nu e o categorie de plată."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 0.14211
+        },
+        {
+          "period": "2022",
+          "value": 0.13816
+        },
+        {
+          "period": "2023",
+          "value": 0.1104
+        },
+        {
+          "period": "2024",
+          "value": 0.0859
+        },
+        {
+          "period": "2025",
+          "value": 0.07875
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.02.02 (Norme de hrana), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.02.02-amount",
+      "label": "Norme de hrana — Apărare, sumă",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.02.02",
+        "component": "fringe",
+        "mappingReason": "Norme de hrană — beneficiu în natură, greu de comparat: în Danemarca hrana nu e o categorie de plată."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 830437270.99
+        },
+        {
+          "period": "2022",
+          "value": 805534306.42
+        },
+        {
+          "period": "2023",
+          "value": 764210901.37
+        },
+        {
+          "period": "2024",
+          "value": 797876755.51
+        },
+        {
+          "period": "2025",
+          "value": 837060617.89
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.02.02 (Norme de hrana), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.02.03-share",
+      "label": "Uniforme si echipament obligatoriu — Apărare, pondere",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.02.03",
+        "component": "fringe",
+        "mappingReason": "Uniforme și echipament obligatoriu — beneficiu în natură."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 0.01276
+        },
+        {
+          "period": "2022",
+          "value": 0.01361
+        },
+        {
+          "period": "2023",
+          "value": 0.01104
+        },
+        {
+          "period": "2024",
+          "value": 0.0087
+        },
+        {
+          "period": "2025",
+          "value": 0.00942
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.02.03 (Uniforme si echipament obligatoriu), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.02.03-amount",
+      "label": "Uniforme si echipament obligatoriu — Apărare, sumă",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.02.03",
+        "component": "fringe",
+        "mappingReason": "Uniforme și echipament obligatoriu — beneficiu în natură."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 74587959.17
+        },
+        {
+          "period": "2022",
+          "value": 79349667.71
+        },
+        {
+          "period": "2023",
+          "value": 76446381.99
+        },
+        {
+          "period": "2024",
+          "value": 80812114.25
+        },
+        {
+          "period": "2025",
+          "value": 100092296.79
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.02.03 (Uniforme si echipament obligatoriu), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.02.04-share",
+      "label": "Locuinta de serviciu folosita de salariat si familia sa — Apărare, pondere",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.02.04",
+        "component": "fringe",
+        "mappingReason": "Locuință de serviciu — beneficiu în natură."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 1e-05
+        },
+        {
+          "period": "2022",
+          "value": 0.0
+        },
+        {
+          "period": "2023",
+          "value": 1e-05
+        },
+        {
+          "period": "2024",
+          "value": 1e-05
+        },
+        {
+          "period": "2025",
+          "value": 1e-05
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.02.04 (Locuinta de serviciu folosita de salariat si familia sa), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.02.04-amount",
+      "label": "Locuinta de serviciu folosita de salariat si familia sa — Apărare, sumă",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.02.04",
+        "component": "fringe",
+        "mappingReason": "Locuință de serviciu — beneficiu în natură."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 39888.85
+        },
+        {
+          "period": "2022",
+          "value": 15913.96
+        },
+        {
+          "period": "2023",
+          "value": 84953.91
+        },
+        {
+          "period": "2024",
+          "value": 107666.8
+        },
+        {
+          "period": "2025",
+          "value": 77858.1
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.02.04 (Locuinta de serviciu folosita de salariat si familia sa), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.02.05-share",
+      "label": "Transportul la si de la locul de munca — Apărare, pondere",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.02.05",
+        "component": "fringe",
+        "mappingReason": "Transport la și de la locul de muncă — beneficiu în natură."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 0.00107
+        },
+        {
+          "period": "2022",
+          "value": 0.00107
+        },
+        {
+          "period": "2023",
+          "value": 0.02374
+        },
+        {
+          "period": "2024",
+          "value": 0.0174
+        },
+        {
+          "period": "2025",
+          "value": 0.01171
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.02.05 (Transportul la si de la locul de munca), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.02.05-amount",
+      "label": "Transportul la si de la locul de munca — Apărare, sumă",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.02.05",
+        "component": "fringe",
+        "mappingReason": "Transport la și de la locul de muncă — beneficiu în natură."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 6243567.34
+        },
+        {
+          "period": "2022",
+          "value": 6242825.31
+        },
+        {
+          "period": "2023",
+          "value": 164336853.66
+        },
+        {
+          "period": "2024",
+          "value": 161577455.3
+        },
+        {
+          "period": "2025",
+          "value": 124452823.38
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.02.05 (Transportul la si de la locul de munca), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.02.06-share",
+      "label": "Vouchere de vacanta — Apărare, pondere",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.02.06",
+        "component": "fringe",
+        "mappingReason": "Vouchere de vacanță — beneficiu în natură."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 0.00265
+        },
+        {
+          "period": "2022",
+          "value": 0.01148
+        },
+        {
+          "period": "2023",
+          "value": 0.01044
+        },
+        {
+          "period": "2024",
+          "value": 0.00843
+        },
+        {
+          "period": "2025",
+          "value": 0.00251
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.02.06 (Vouchere de vacanta), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.02.06-amount",
+      "label": "Vouchere de vacanta — Apărare, sumă",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.02.06",
+        "component": "fringe",
+        "mappingReason": "Vouchere de vacanță — beneficiu în natură."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 15460012.59
+        },
+        {
+          "period": "2022",
+          "value": 66941791.69
+        },
+        {
+          "period": "2023",
+          "value": 72291714.32
+        },
+        {
+          "period": "2024",
+          "value": 78263430.05
+        },
+        {
+          "period": "2025",
+          "value": 26703133.13
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.02.06 (Vouchere de vacanta), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.02.30-share",
+      "label": "Alte drepturi salariale in natura — Apărare, pondere",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.02.30",
+        "component": "fringe",
+        "mappingReason": "Alte drepturi salariale în natură."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 0.02742
+        },
+        {
+          "period": "2022",
+          "value": 0.02912
+        },
+        {
+          "period": "2023",
+          "value": 0.02847
+        },
+        {
+          "period": "2024",
+          "value": 0.01935
+        },
+        {
+          "period": "2025",
+          "value": 0.01349
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.02.30 (Alte drepturi salariale in natura), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-10.02.30-amount",
+      "label": "Alte drepturi salariale in natura — Apărare, sumă",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "paragraph",
+        "scope": "aparare",
+        "economicCode": "10.02.30",
+        "component": "fringe",
+        "mappingReason": "Alte drepturi salariale în natură."
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 160204197.43
+        },
+        {
+          "period": "2022",
+          "value": 169766281.1
+        },
+        {
+          "period": "2023",
+          "value": 197052164.22
+        },
+        {
+          "period": "2024",
+          "value": 179716849.8
+        },
+        {
+          "period": "2025",
+          "value": 143393850.99
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, cheltuieli, clasificația economică 10.02.30 (Alte drepturi salariale in natura), Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-comp-aparare-basic",
+      "label": "Apărare — basic",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "scope": "aparare",
+        "component": "basic"
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 0.67403
+        },
+        {
+          "period": "2022",
+          "value": 0.67369
+        },
+        {
+          "period": "2023",
+          "value": 0.65097
+        },
+        {
+          "period": "2024",
+          "value": 0.70479
+        },
+        {
+          "period": "2025",
+          "value": 0.75712
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Suma clasificațiilor 10.01.01 ÷ total cheltuieli salariale, Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-comp-aparare-conditions",
+      "label": "Apărare — conditions",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "scope": "aparare",
+        "component": "conditions"
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 0.06603
+        },
+        {
+          "period": "2022",
+          "value": 0.06383
+        },
+        {
+          "period": "2023",
+          "value": 0.0548
+        },
+        {
+          "period": "2024",
+          "value": 0.044
+        },
+        {
+          "period": "2025",
+          "value": 0.04071
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Suma clasificațiilor 10.01.05, 10.01.06 ÷ total cheltuieli salariale, Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-comp-aparare-fringe",
+      "label": "Apărare — fringe",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "scope": "aparare",
+        "component": "fringe"
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 0.18601
+        },
+        {
+          "period": "2022",
+          "value": 0.19344
+        },
+        {
+          "period": "2023",
+          "value": 0.1841
+        },
+        {
+          "period": "2024",
+          "value": 0.13979
+        },
+        {
+          "period": "2025",
+          "value": 0.11589
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Suma clasificațiilor 10.02.02, 10.02.03, 10.02.04, 10.02.05, 10.02.06, 10.02.30 ÷ total cheltuieli salariale, Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-comp-aparare-irregular",
+      "label": "Apărare — irregular",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "scope": "aparare",
+        "component": "irregular"
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 0.04283
+        },
+        {
+          "period": "2022",
+          "value": 0.04266
+        },
+        {
+          "period": "2023",
+          "value": 0.07698
+        },
+        {
+          "period": "2024",
+          "value": 0.07928
+        },
+        {
+          "period": "2025",
+          "value": 0.04952
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Suma clasificațiilor 10.01.29, 10.01.30 ÷ total cheltuieli salariale, Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-comp-aparare-other",
+      "label": "Apărare — other",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "scope": "aparare",
+        "component": "other"
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 0.03109
+        },
+        {
+          "period": "2022",
+          "value": 0.02634
+        },
+        {
+          "period": "2023",
+          "value": 0.03313
+        },
+        {
+          "period": "2024",
+          "value": 0.0321
+        },
+        {
+          "period": "2025",
+          "value": 0.0367
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Suma clasificațiilor 10.01.12, 10.01.13, 10.01.14 ÷ total cheltuieli salariale, Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-comp-aparare-overtime",
+      "label": "Apărare — overtime",
+      "geo": "RO",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "scope": "aparare",
+        "component": "overtime"
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 2e-05
+        },
+        {
+          "period": "2022",
+          "value": 3e-05
+        },
+        {
+          "period": "2023",
+          "value": 2e-05
+        },
+        {
+          "period": "2024",
+          "value": 3e-05
+        },
+        {
+          "period": "2025",
+          "value": 5e-05
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Suma clasificațiilor 10.01.07, 10.01.10 ÷ total cheltuieli salariale, Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-contributii",
+      "label": "Apărare — contribuțiile angajatorului",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "contributions",
+        "scope": "aparare"
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 115155526.21
+        },
+        {
+          "period": "2022",
+          "value": 113396503.24
+        },
+        {
+          "period": "2023",
+          "value": 145656705.33
+        },
+        {
+          "period": "2024",
+          "value": 197096272.1
+        },
+        {
+          "period": "2025",
+          "value": 228803594.92
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, clasificația 10.03, Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-aparare-titlul-i",
+      "label": "Apărare — titlul I, cu tot cu contribuții",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "titleTotal",
+        "scope": "aparare"
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 5958684419.33
+        },
+        {
+          "period": "2022",
+          "value": 5943747355.62
+        },
+        {
+          "period": "2023",
+          "value": 7068127985.03
+        },
+        {
+          "period": "2024",
+          "value": 9485110980.84
+        },
+        {
+          "period": "2025",
+          "value": 10857990386.97
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, titlul 10 în întregime, Apărare",
+        "confidence": "derived"
+      }
+    },
+    {
       "id": "ro-exec-ordine-publica-10.01.01-share",
       "label": "Salarii de baza — Ordine publică și siguranță națională, pondere",
       "geo": "RO",
@@ -8555,6 +10320,80 @@
       "provenance": {
         "source": "transparenta-eu-executie",
         "locator": "Suma clasificațiilor 10.01.07, 10.01.10, 10.01.11 ÷ total cheltuieli salariale, Ordine publică și siguranță națională",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-ordine-publica-contributii",
+      "label": "Ordine publică și siguranță națională — contribuțiile angajatorului",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "contributions",
+        "scope": "ordine-publica"
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 509814114.67
+        },
+        {
+          "period": "2022",
+          "value": 514449427.35
+        },
+        {
+          "period": "2023",
+          "value": 512491978.68
+        },
+        {
+          "period": "2024",
+          "value": 600034810.84
+        },
+        {
+          "period": "2025",
+          "value": 561512430.92
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, clasificația 10.03, Ordine publică și siguranță națională",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-ordine-publica-titlul-i",
+      "label": "Ordine publică și siguranță națională — titlul I, cu tot cu contribuții",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "titleTotal",
+        "scope": "ordine-publica"
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 19486432865.85
+        },
+        {
+          "period": "2022",
+          "value": 20456475782.3
+        },
+        {
+          "period": "2023",
+          "value": 23407353744.47
+        },
+        {
+          "period": "2024",
+          "value": 29260770750.84
+        },
+        {
+          "period": "2025",
+          "value": 28597827841.07
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, titlul 10 în întregime, Ordine publică și siguranță națională",
         "confidence": "derived"
       }
     },
@@ -10803,6 +12642,80 @@
       }
     },
     {
+      "id": "ro-exec-administratie-contributii",
+      "label": "Autorități publice și acțiuni externe — contribuțiile angajatorului",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "contributions",
+        "scope": "administratie"
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 291849690.41
+        },
+        {
+          "period": "2022",
+          "value": 305029467.0
+        },
+        {
+          "period": "2023",
+          "value": 337722342.31
+        },
+        {
+          "period": "2024",
+          "value": 393224621.53
+        },
+        {
+          "period": "2025",
+          "value": 382243226.83
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, clasificația 10.03, Autorități publice și acțiuni externe",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-administratie-titlul-i",
+      "label": "Autorități publice și acțiuni externe — titlul I, cu tot cu contribuții",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "titleTotal",
+        "scope": "administratie"
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 13331664798.12
+        },
+        {
+          "period": "2022",
+          "value": 14117248414.02
+        },
+        {
+          "period": "2023",
+          "value": 15968257300.61
+        },
+        {
+          "period": "2024",
+          "value": 19941583043.57
+        },
+        {
+          "period": "2025",
+          "value": 18615995056.26
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, titlul 10 în întregime, Autorități publice și acțiuni externe",
+        "confidence": "derived"
+      }
+    },
+    {
       "id": "ro-exec-asistenta-sociala-10.01.01-share",
       "label": "Salarii de baza — Asigurări și asistență socială, pondere",
       "geo": "RO",
@@ -12819,6 +14732,80 @@
       "provenance": {
         "source": "transparenta-eu-executie",
         "locator": "Suma clasificațiilor 10.01.04 ÷ total cheltuieli salariale, Asigurări și asistență socială",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-asistenta-sociala-contributii",
+      "label": "Asigurări și asistență socială — contribuțiile angajatorului",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "contributions",
+        "scope": "asistenta-sociala"
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 183719602.75
+        },
+        {
+          "period": "2022",
+          "value": 189888148.86
+        },
+        {
+          "period": "2023",
+          "value": 209396650.79
+        },
+        {
+          "period": "2024",
+          "value": 250576941.58
+        },
+        {
+          "period": "2025",
+          "value": 262301040.07
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, clasificația 10.03, Asigurări și asistență socială",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "ro-exec-asistenta-sociala-titlul-i",
+      "label": "Asigurări și asistență socială — titlul I, cu tot cu contribuții",
+      "geo": "RO",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "titleTotal",
+        "scope": "asistenta-sociala"
+      },
+      "observations": [
+        {
+          "period": "2021",
+          "value": 8177840140.86
+        },
+        {
+          "period": "2022",
+          "value": 8584008267.69
+        },
+        {
+          "period": "2023",
+          "value": 9729185840.61
+        },
+        {
+          "period": "2024",
+          "value": 11653216830.44
+        },
+        {
+          "period": "2025",
+          "value": 12288339537.12
+        }
+      ],
+      "provenance": {
+        "source": "transparenta-eu-executie",
+        "locator": "Execuție bugetară, ordonatori principali, titlul 10 în întregime, Asigurări și asistență socială",
         "confidence": "derived"
       }
     }

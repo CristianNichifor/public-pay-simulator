@@ -126,16 +126,33 @@ footer a { color: var(--text-secondary); }
 
 .loading { padding: 60px 0; color: var(--text-secondary); }
 
-/* --- shell: tabs and scenario controls --- */
-.tabs { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; margin-bottom: 18px; }
-.tabgroup { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+/* --- shell: tabs and scenario controls ---
+   Views are grouped under the question they answer, and each carries the line that
+   says what it shows. The group heading is the navigation; the buttons are its
+   answers. */
+.tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 10px 22px; align-items: start; margin-bottom: 26px;
+        padding-bottom: 20px; border-bottom: 1px solid var(--border); }
+.tabgroup { display: grid; gap: 6px; align-content: start; }
+.tabgroup-title { font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase;
+                  color: var(--text-muted); font-weight: 600; }
+.tabgroup-ask { font-size: 15px; font-weight: 600; color: var(--text-primary);
+                margin: -4px 0 4px; }
 .tabs button {
-  font: inherit; font-size: 14px; padding: 7px 14px; cursor: pointer;
+  font: inherit; padding: 8px 12px; cursor: pointer; text-align: left;
+  display: grid; gap: 2px;
   background: var(--surface-1); color: var(--text-secondary);
-  border: 1px solid var(--border); border-radius: 6px;
+  border: 1px solid var(--border); border-radius: 7px;
 }
-.tabs button.on { background: var(--series-1); border-color: var(--series-1); color: #fff; }
-.tabs button.share { font-size: 13px; }
+.tabs button strong { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+.tabs button small { font-size: 12px; color: var(--text-muted); line-height: 1.3; }
+.tabs button:hover { border-color: var(--series-1); }
+.tabs button.on { background: var(--series-1); border-color: var(--series-1); }
+.tabs button.on strong, .tabs button.on small { color: #fff; }
+.tabs button.on small { opacity: 0.85; }
+.tabs button.share { font-size: 13px; display: inline-block; }
+.tabs .regimes { grid-column: 1 / -1; display: flex; gap: 10px; align-items: center;
+                 flex-wrap: wrap; }
 .regime-toggle { display: inline-flex; gap: 6px; align-items: center; font-size: 12.5px; color: var(--text-secondary); }
 .regime-toggle span { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
 
@@ -549,3 +566,15 @@ i.k-ro-cap { background: repeating-linear-gradient(135deg, var(--series-1) 0 3px
 .cap-num.over b { color: var(--accent); }
 .cap-ruleline { display: flex; justify-content: flex-end; font-size: 0.75rem;
                 color: var(--accent); margin-bottom: 2px; }
+
+/* The four facts that frame the reform ------------------------------------- */
+.brief { display: grid; grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
+         gap: 12px; }
+.brief-card { background: var(--surface-1); border: 1px solid var(--border);
+              border-radius: 10px; padding: 16px 16px 14px; display: grid;
+              align-content: start; gap: 4px; }
+.brief-num { font-size: 1.32rem; font-weight: 650; letter-spacing: -0.01em;
+             color: var(--series-1); line-height: 1.15; }
+.brief-card strong { font-size: 0.9rem; color: var(--text-primary); }
+.brief-card p { margin: 2px 0 0; font-size: 0.83rem; line-height: 1.45;
+                color: var(--text-secondary); }

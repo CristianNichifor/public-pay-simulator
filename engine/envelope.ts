@@ -103,7 +103,7 @@ export function envelope(
     note(
       'familie-nu-functie',
       'material',
-      'Mutările lucrează pe familii ocupaționale, nu pe funcții. Este cel mai fin nivel pe care îl susțin datele publicate: Eurostat dă cheltuiala de personal pe funcții COFOG, Ministerul Finanțelor dă posturile pe ordonator, dar nimic publicat nu leagă vreuna dintre ele de cele 1176 de funcții din grilă.',
+      'Mutările lucrează pe familii ocupaționale, nu pe funcții. Este cel mai fin nivel pe care îl susțin datele publicate: execuția bugetară dă cheltuiala de personal pe capitole bugetare și pe ordonator principal, dar nimic publicat nu leagă vreun capitol de cele 1176 de funcții din grilă. Corespondența capitol → familie este de asemenea aproximativă: apărarea și ordinea publică sunt două capitole și o singură familie în anexe.',
     ),
   ];
 

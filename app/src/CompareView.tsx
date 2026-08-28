@@ -1,9 +1,13 @@
 import { useMemo } from 'react';
 
+import { readCap } from '../../engine/cap';
+import type { CapSeries } from '../../engine/cap';
 import type { PatchEffect, Proposal } from '../../engine/proposal';
-import { structure } from '../../engine/structure';
+import { resolveSeries, structure } from '../../engine/structure';
 import type { StructureMetrics } from '../../engine/structure';
 import type { Regime } from '../../engine/types';
+import { amountLine } from './money';
+import type { Rates } from './money';
 
 function ro(n: number): string {
   return n.toLocaleString('ro-RO');
@@ -31,11 +35,26 @@ interface Row {
   cells: Record<Col, Cell>;
 }
 
-const COLUMNS: Array<{ key: Col; title: string; sub: string }> = [
-  { key: 'ministry', title: 'Proiectul MMFTSS', sub: '16.07.2026' },
-  { key: 'ours', title: 'Propunerea alternativă', sub: 'cinci reparații + o schimbare' },
-  { key: 'dk', title: 'Danemarca', sub: 'sectorul de stat' },
-];
+/**
+ * The proposal's subtitle counts its own patches. Written by hand it said "cinci
+ * reparații + o schimbare" while the file held six repairs and one change, and the
+ * masthead promised six questions against a table of seven rows. Counts that describe
+ * data belong to the data.
+ */
+function columnsFor(proposal: Proposal): Array<{ key: Col; title: string; sub: string }> {
+  const changes = proposal.patches.filter((p) => p.policyChange).length;
+  const repairs = proposal.patches.length - changes;
+  const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
+  return [
+    { key: 'ministry', title: 'Proiectul MMFTSS', sub: '16.07.2026' },
+    {
+      key: 'ours',
+      title: 'Propunerea alternativă',
+      sub: `${plural(repairs, 'reparație', 'reparații')} + ${plural(changes, 'schimbare', 'schimbări')}`,
+    },
+    { key: 'dk', title: 'Danemarca', sub: 'sectorul de stat' },
+  ];
+}
 
 /** Positions whose variants differ only by where the post sits, not by what the job is. */
 function fusedCount(regime: Regime): number {
@@ -61,6 +80,8 @@ export default function CompareView({
   proposal,
   effects,
   onOpen,
+  rates,
+  capSeries,
 }: {
   ministry: Regime;
   ours: Regime;
@@ -68,13 +89,29 @@ export default function CompareView({
   proposal: Proposal;
   effects: PatchEffect[];
   onOpen: (view: 'structure' | 'payslip' | 'echivalente') => void;
+  rates: Rates;
+  capSeries: CapSeries[] | null;
 }) {
+  const COLUMNS = useMemo(() => columnsFor(proposal), [proposal]);
   const m = useMemo(() => structure(ministry), [ministry]);
   const o = useMemo(() => structure(ours), [ours]);
   const d: StructureMetrics | null = useMemo(
     () => (denmark ? structure(denmark) : null),
     [denmark],
   );
+
+  // The reference value is a dated series, not a constant: read it at the date the draft
+  // itself sets rather than assuming the first entry is the one in force.
+  const referenceAmount = useMemo(
+    () => resolveSeries(ministry.reference.amount, ministry.reference.baseDate),
+    [ministry],
+  );
+
+  /** How much of the base wage bill already sits above the 20% ceiling, if measured. */
+  const overCapWeight = useMemo(() => {
+    const reading = capSeries && readCap(capSeries, 'pereche', 'wide');
+    return reading ? reading.overCapWeight : null;
+  }, [capSeries]);
 
   // Denmark's figures are computed from its own imported tables, not typed in by hand,
   // so they move if the import changes and cannot quietly go stale.
@@ -175,10 +212,59 @@ export default function CompareView({
       <header className="masthead">
         <h1>Trei feluri de a plăti statul</h1>
         <p>
-          Ce propune ministerul, ce s-ar schimba cu șase corecturi, și cum arată sistemul danez.
-          Aceleași șase întrebări puse tuturor.
+          Ce propune ministerul, ce s-ar schimba cu {ro(proposal.patches.length)} corecturi, și cum
+          arată sistemul danez. Aceleași {ro(rows.length)} întrebări puse tuturor.
         </p>
       </header>
+
+      {/* Before any structural metric, the four facts a reader needs to hold the rest in
+          their head: what a salary is made of, how many there are, how far apart, and how
+          much can be added on top. Everything below is a detail of one of these. */}
+      <section>
+        <h2>Proiectul, pe scurt</h2>
+        <div className="brief">
+          <div className="brief-card">
+            <span className="brief-num">{amountLine(referenceAmount, 'RON', rates)}</span>
+            <strong>Valoarea de referință</strong>
+            <p>
+              Orice salariu de bază din sectorul public e această sumă înmulțită cu un coeficient.
+              Un coeficient de 2,50 înseamnă {amountLine(referenceAmount * 2.5, 'RON', rates)} brut
+              pe lună.
+            </p>
+          </div>
+          <div className="brief-card">
+            <span className="brief-num">{ro(m.positions)}</span>
+            <strong>Funcții în grilă</strong>
+            <p>
+              Atâtea denumiri de post, cu {ro(m.distinctValues)} coeficienți distincți între ele.
+              Din tabelul ăsta iese salariul fiecărui angajat la stat.
+            </p>
+          </div>
+          <div className="brief-card">
+            <span className="brief-num">{ratio(m.spanByPeriod[0]?.ratio ?? m.span.ratio)}</span>
+            <strong>Între cel mai mic și cel mai mare</strong>
+            <p>
+              Art. 5 promite 1 la 8. La intrarea în vigoare raportul e mai mic și urcă la{' '}
+              {ratio(m.span.ratio)} abia în 2031 — grila declarată se aplică peste cinci ani.
+            </p>
+          </div>
+          <div className="brief-card">
+            <span className="brief-num">20%</span>
+            <strong>Plafonul sporurilor</strong>
+            <p>
+              Atât pot adăuga sporurile peste salariile de bază — pe instituție și pe sursă de
+              finanțare, nu pe om.
+              {overCapWeight !== null && (
+                <>
+                  {' '}
+                  Din execuția pe 2025, <strong>{pct(overCapWeight)}</strong> din masa salarială de
+                  bază stă deja în instituții care trec de el.
+                </>
+              )}
+            </p>
+          </div>
+        </div>
+      </section>
 
       <section className="hero">
         <div className="hero-figure">
@@ -294,17 +380,17 @@ export default function CompareView({
       <section>
         <h2>Mai departe</h2>
         <div className="next-grid">
-          <button className="next" onClick={() => onOpen('echivalente')}>
-            <strong>Echivalențe RO–DK</strong>
-            <span>Cât valorează fiecare post față de salariul mediu din țara lui</span>
-          </button>
           <button className="next" onClick={() => onOpen('structure')}>
-            <strong>Forma sistemului</strong>
-            <span>Distribuția zecimalelor, golurile dintre grade, comasarea funcțiilor</span>
+            <strong>Cum e construită grila</strong>
+            <span>Zecimalele, golurile dintre grade, funcțiile comasate</span>
           </button>
           <button className="next" onClick={() => onOpen('payslip')}>
-            <strong>Fluturaș comparat</strong>
-            <span>Un om anume, calculat sub fiecare regim, cu linkul scenariului</span>
+            <strong>Un salariu, calculat</strong>
+            <span>Un om anume, sub fiecare regim, cu linkul scenariului</span>
+          </button>
+          <button className="next" onClick={() => onOpen('echivalente')}>
+            <strong>Echivalențe de post</strong>
+            <span>Ce denumire daneză corespunde fiecărei funcții din grilă</span>
           </button>
         </div>
       </section>

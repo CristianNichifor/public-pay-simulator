@@ -1,7 +1,9 @@
 import { useMemo, useState } from 'react';
 
+import type { CapSeries } from '../../engine/cap';
 import { envelope } from '../../engine/envelope';
 import type { EnvelopeBaseline, Move } from '../../engine/envelope';
+import CapSection from './CapSection';
 import { amountLine } from './money';
 import type { Rates } from './money';
 
@@ -35,9 +37,12 @@ function pctText(n: number): string {
 export default function EnvelopeView({
   baseline,
   rates,
+  capSeries,
 }: {
   baseline: EnvelopeBaseline | null;
   rates: Rates;
+  /** The ceiling, measured per ordonator and per funding source. */
+  capSeries: CapSeries[] | null;
 }) {
   const [targetPct, setTargetPct] = useState(0);
   const [moves, setMoves] = useState<Record<string, { pct: number; why: string }>>({});
@@ -218,6 +223,8 @@ export default function EnvelopeView({
         </section>
       )}
 
+      {capSeries && <CapSection series={capSeries} />}
+
       <section>
         <h2>Ce presupune calculul</h2>
         <div className="limits">
@@ -230,9 +237,14 @@ export default function EnvelopeView({
           <div className="limit note">
             <div className="sev">bază de pornire</div>
             <p>
-              Cheltuiala de personal a administrației publice, Eurostat 2024, împărțită pe funcții
-              COFOG; {baseline.posts.toLocaleString('ro-RO')} posturi ocupate din raportarea
-              Ministerului Finanțelor, iunie 2026. Media pe post iese{' '}
+              Execuția bugetară pe 2025, titlul I „cheltuieli de personal” în întregime — plata în
+              bani și în natură plus contribuțiile angajatorului — raportată de ordonatorii
+              principali de credite și împărțită pe capitole bugetare. E aceeași contabilitate în
+              care e scrisă legea, nu o clasificare statistică suprapusă peste ea, și e și baza pe
+              care Art. 36 își măsoară ținta. PIB-ul nominal rămâne de la Eurostat, fiindcă execuția
+              nu-l conține.{' '}
+              {baseline.posts.toLocaleString('ro-RO')} posturi ocupate din raportarea Ministerului
+              Finanțelor, iunie 2026. Media pe post iese{' '}
               {amountLine(result.perPost.before / 100 / 12, baseline.currency, rates)} pe lună.
             </p>
           </div>

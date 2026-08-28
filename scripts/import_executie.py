@@ -54,7 +54,14 @@ YEARS = ["2021", "2022", "2023", "2024", "2025"]
 # employer's social contributions. Danish "earnings per hour worked" excludes pension, so
 # 10.03 must stay out or the Romanian bar would silently include a component Denmark's
 # does not. 10.02 comes along because Denmark does count fringe benefits.
-PREFIXES = ["10.01", "10.02"]
+PREFIXES = ["10.01", "10.02", "10.03"]
+
+# 10.03 is the employer's own social contributions. It is deliberately kept out of the
+# composition — Danish earnings exclude pension, so counting it would compare pay against
+# the cost of employment — but the envelope needs it, because Art. 36 alin. (3) sets its
+# target against personnel expenditure as the budget defines it, contributions included.
+# So it is imported and reported separately rather than folded into either.
+CONTRIBUTIONS_PREFIX = "10.03"
 
 QUERY = """
 query Aggregated($filter: AnalyticsFilterInput!, $limit: Int, $offset: Int) {
@@ -71,6 +78,7 @@ SCOPES = {
     "national": (None, "Tot sectorul bugetar"),
     "invatamant": ("65", "Învățământ"),
     "sanatate": ("66", "Sănătate"),
+    "aparare": ("60", "Apărare"),
     "ordine-publica": ("61", "Ordine publică și siguranță națională"),
     "administratie": ("51", "Autorități publice și acțiuni externe"),
     "asistenta-sociala": ("68", "Asigurări și asistență socială"),
@@ -157,6 +165,7 @@ def main() -> None:
 
     # scope -> economic code -> year -> amount
     totals: dict[str, dict[str, dict[str, float]]] = {}
+    contributions: dict[str, dict[str, dict[str, float]]] = {}
     names: dict[str, str] = {}
     unmapped: set[str] = set()
 
@@ -165,15 +174,21 @@ def main() -> None:
         for row in rows:
             code = row["ec_c"]
             names.setdefault(code, row["ec_n"])
-            if code not in COMPONENTS:
+            is_contribution = code.startswith(CONTRIBUTIONS_PREFIX)
+            if not is_contribution and code not in COMPONENTS:
                 unmapped.add(f"{code} {row['ec_n']}")
             chapter = chapter_of(row["fn_c"])
+            target = contributions if is_contribution else totals
             for scope, (want, _) in SCOPES.items():
                 if want is None or want == chapter:
-                    totals.setdefault(scope, {}).setdefault(code, {}).setdefault(year, 0.0)
-                    totals[scope][code][year] += row["amount"]
+                    target.setdefault(scope, {}).setdefault(code, {}).setdefault(year, 0.0)
+                    target[scope][code][year] += row["amount"]
         paid = sum(v[year] for v in totals["national"].values() if year in v)
-        print(f"  {year}  {len(rows):5,} pairs   {paid / 1e9:7,.1f} mld RON cheltuieli salariale")
+        owed = sum(v.get(year, 0.0) for v in contributions.get("national", {}).values())
+        print(
+            f"  {year}  {len(rows):5,} pairs   {paid / 1e9:7,.1f} mld plată"
+            f"  + {owed / 1e9:5,.1f} mld contribuții  = {(paid + owed) / 1e9:7,.1f} mld titlul I"
+        )
 
     if unmapped:
         # A new paragraph appearing in the classification must not be silently dropped
@@ -260,6 +275,43 @@ def main() -> None:
                     "locator": (
                         f"Suma clasificațiilor {', '.join(members)} ÷ total cheltuieli "
                         f"salariale, {scope_label}"
+                    ),
+                    "confidence": "derived",
+                },
+            })
+
+        # Employer contributions and the full Title I, for the envelope. Kept as their own
+        # series kinds so nothing that reads the composition can pick them up by accident.
+        contrib_by_year = {
+            year: sum(v.get(year, 0.0) for v in contributions.get(scope, {}).values())
+            for year in YEARS
+        }
+        for kind, id_suffix, label, by_year in (
+            ("contributions", "contributii", "contribuțiile angajatorului", contrib_by_year),
+            (
+                "titleTotal", "titlul-i", "titlul I, cu tot cu contribuții",
+                {year: year_totals[year] + contrib_by_year[year] for year in YEARS},
+            ),
+        ):
+            observations = [
+                {"period": year, "value": round(by_year[year], 2)}
+                for year in YEARS
+                if by_year.get(year)
+            ]
+            if not observations:
+                continue
+            series.append({
+                "id": f"ro-exec-{scope}-{id_suffix}",
+                "label": f"{scope_label} — {label}",
+                "geo": "RO", "unit": "CP_MNAC",
+                "dims": {"kind": kind, "scope": scope},
+                "observations": observations,
+                "provenance": {
+                    "source": "transparenta-eu-executie",
+                    "locator": (
+                        f"Execuție bugetară, ordonatori principali, "
+                        f"{'clasificația 10.03' if kind == 'contributions' else 'titlul 10 în întregime'}, "
+                        f"{scope_label}"
                     ),
                     "confidence": "derived",
                 },

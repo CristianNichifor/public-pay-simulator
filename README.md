@@ -27,7 +27,7 @@ implementation.
 - [ ] `data/headcount/` — blocked: no filled-post counts are published per position
 - [x] **View 1 — payslip diff, live.** Scenario lives in the URL hash
 - [x] **Comparison view — three systems side by side, the landing page**
-- [x] `data/proposals/propunere-v1.json` — our proposal, as five auditable patches
+- [x] `data/proposals/propunere-v1.json` — our proposal, as seven auditable patches
 - [x] `data/headcount/` — real filled-post counts, June 2026, per ordonator
 - [x] **View 3 — envelope mode.** Fix total spend; every increase names the reduction paying for it
 
@@ -124,18 +124,18 @@ a former title with no destination.
 
 ## Three systems, one screen
 
-The landing page asks the same six questions of the ministry's draft, our proposal, and
+The landing page asks the same seven questions of the ministry's draft, our proposal, and
 Denmark. The strongest single result:
 
 | | MMFTSS | Propunerea noastră |
 | --- | --- | --- |
-| Distinct coefficients | 1 361 | **368** |
+| Distinct coefficients | 1 361 | **351** |
 | Back-solved (≥14 decimals) | 61,9% | **0%** |
 | Coefficients in no salary grade | 92 | **0** |
 | Years until the declared grid applies | 5 | **0** |
 
-Rounding to two decimals reveals that the grid only ever needed 368 distinct values. The
-other 993 were the residue of dividing one salary by another.
+Rounding to two decimals reveals that the grid only ever needed 351 distinct values. The
+other 1 010 were the residue of dividing one salary by another.
 
 **Our proposal is a patch list, not a second grid.** Five named edits against the
 ministry's document, each naming the defect it fixes — and a test asserts every patch
@@ -273,6 +273,29 @@ The same two caveats apply as everywhere else here: the economic classification 
 Art. 21 set (the statute lifts overtime, night work, disability, three-shift health work,
 Delta isolation, EU-fund administration and the performance premium out of the ceiling),
 and the execution describes the current regime rather than the draft.
+
+## The envelope, on the budget's own accounting
+
+Envelope mode used to start from Eurostat's COFOG breakdown of compensation of employees.
+It now starts from the execution reports: **title I in full — pay in cash, pay in kind,
+and the employer's contributions — 161,4 mld lei for 2025, 9,2% of GDP.**
+
+Three reasons the swap is not cosmetic:
+
+- It is the accounting the law is written in. Art. 36 alin. (3) sets its target against
+  personnel expenditure as the budget defines it, so the baseline and the target now share
+  a denominator. Under Eurostat's D1 the same page read 11,2% and the target arithmetic was
+  comparing two different definitions.
+- It runs to the current year rather than lagging one.
+- It splits by budget chapter, which is closer to the annexes than a COFOG function is.
+
+Contributions are *included* here and *excluded* from the composition comparison on the
+same page — deliberately, and for opposite reasons. The composition sits beside Danish
+earnings, which exclude pension; the envelope answers what the state spends. Same source,
+two questions, and each says which it is answering.
+
+The chapter → occupational-family mapping stays approximate and still says so: defence and
+public order are two budget chapters and one family in the annexes.
 
 ## Naming: institution and statute, or occupation and expertise
 

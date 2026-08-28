@@ -4,7 +4,7 @@ import { payslip } from '../../engine/payslip';
 import { applyProposal } from '../../engine/proposal';
 import type { AppliedProposal, Proposal } from '../../engine/proposal';
 import { decodeScenario, encodeScenario } from '../../engine/scenario';
-import type { Scenario } from '../../engine/scenario';
+import type { Scenario, ViewId } from '../../engine/scenario';
 import type { EnvelopeBaseline } from '../../engine/envelope';
 import type { CapSeries } from '../../engine/cap';
 import type { Shares } from '../../engine/composition';
@@ -28,6 +28,31 @@ const GROUPS_ID = 'ro-dk-occupations';
 const DK_OCC_ID = 'dk-occupations';
 const EXEC_ID = 'executie-personal';
 const CAP_ID = 'plafon-sporuri';
+
+/**
+ * Six views used to sit in one undifferentiated row, named after their mechanics —
+ * "Comparație", "Forma sistemului", "Plicul". A reader could not tell which of them
+ * answered the question they arrived with, and two of the names ("Meserii RO–DK",
+ * "Echivalențe RO–DK") read as the same page twice.
+ *
+ * They are grouped by the question they answer instead, and each carries the sentence
+ * that says what it will show. The grouping is the navigation: a citizen wants to know
+ * what changes, what people are paid, and whether it is affordable — in that order.
+ */
+const VIEW_META: Record<ViewId, { label: string; blurb: string }> = {
+  compare: { label: 'Ce se schimbă', blurb: 'proiectul, propunerea și Danemarca, față în față' },
+  structure: { label: 'Cum e construită grila', blurb: 'zecimalele, golurile, funcțiile comasate' },
+  meserii: { label: 'Meserii, RO vs DK', blurb: 'cât ia aceeași meserie în fiecare țară' },
+  payslip: { label: 'Un salariu, calculat', blurb: 'un om anume, sub fiecare regim' },
+  echivalente: { label: 'Echivalențe de post', blurb: 'ce denumire daneză corespunde fiecărei funcții' },
+  envelope: { label: 'Cât costă tot', blurb: 'plicul, plafonul de 20% și cine trece de el' },
+};
+
+const NAV_GROUPS: Array<{ title: string; ask: string; views: ViewId[] }> = [
+  { title: 'Reforma', ask: 'Ce se schimbă?', views: ['compare', 'structure'] },
+  { title: 'Oamenii', ask: 'Cine cât ia?', views: ['meserii', 'payslip', 'echivalente'] },
+  { title: 'Banii', ask: 'Ne permitem?', views: ['envelope'] },
+];
 
 /**
  * The hash is the state. There is no store: every control writes a scenario into
@@ -161,32 +186,58 @@ export default function App() {
       })
       .catch((e: Error) => setError(e.message));
 
-    // The envelope baseline is assembled from two published documents rather than stored:
-    // the wage bill by COFOG function, and the count of filled posts behind it.
+    // The envelope baseline used to come from Eurostat's COFOG breakdown, which is one
+    // year stale and classifies spending by purpose rather than by the budget chapters
+    // the law is written against. The execution reports do both better: they are the
+    // accounting the ordonatori actually file, and they run to the current year. Eurostat
+    // is still read, but only for nominal GDP — the one number the execution does not have.
     Promise.all([
       fetch(`${base}data/fiscal/${FISCAL_ID}.json`).then((r) => r.json()),
       fetch(`${base}data/headcount/${HEADCOUNT_ID}.json`).then((r) => r.json()),
+      fetch(`${base}data/fiscal/${EXEC_ID}.json`).then((r) => r.json()),
     ])
-      .then(([fiscal, headcount]) => {
+      .then(([fiscal, headcount, execDoc]) => {
         const cash = (id: string) =>
           fiscal.series.find((s: { id: string }) => s.id === id)?.observations.at(-1)?.value ?? 0;
         // Millions of lei in the source; minor units in the engine.
         const toMinor = (millionsOfLei: number) => Math.round(millionsOfLei * 1e6 * 100);
 
-        const families = fiscal.series.filter(
-          (s: { dims?: Record<string, string>; geo: string }) =>
-            s.geo === 'RO' && s.dims?.measure === 'cash' && s.dims?.family,
-        );
-        const byFamily = new Map<string, number>();
-        for (const s of families) {
+        // Budget chapters onto the draft's occupational families. Defence and public
+        // order are one family in the annexes and two chapters in the budget, so they
+        // add; nothing else is split.
+        const SCOPE_FAMILY: Record<string, string> = {
+          invatamant: 'I-invatamant',
+          sanatate: 'II-sanatate-asistenta-sociala',
+          'asistenta-sociala': 'II-sanatate-asistenta-sociala',
+          aparare: 'VI-aparare-ordine-securitate',
+          'ordine-publica': 'VI-aparare-ordine-securitate',
+          administratie: 'VIII-administratie',
+        };
+
+        // The whole of title I, contributions included. The composition view excludes
+        // employer contributions so it can be compared with Danish earnings; the envelope
+        // must not, because Art. 36 alin. (3) sets its target against personnel
+        // expenditure as the budget defines it. Same source, two different questions.
+        const byFamilyLei = new Map<string, number>();
+        let nationalLei = 0;
+        for (const s of execDoc.series) {
+          if (s.dims?.kind !== 'titleTotal') continue;
           const value = s.observations.at(-1)?.value ?? 0;
-          byFamily.set(s.dims.family, (byFamily.get(s.dims.family) ?? 0) + value);
+          if (s.dims.scope === 'national') {
+            nationalLei = value;
+            continue;
+          }
+          const family = SCOPE_FAMILY[s.dims.scope];
+          if (family) byFamilyLei.set(family, (byFamilyLei.get(family) ?? 0) + value);
         }
+        const byFamily = new Map(
+          [...byFamilyLei].map(([family, lei]) => [family, lei / 1e6]),
+        );
 
         setEnvelopeBaseline({
           currency: 'RON',
           period: 'year',
-          total: toMinor(cash('d1-total-mnac-ro')),
+          total: toMinor(nationalLei / 1e6),
           byFamily: [...byFamily.entries()].map(([family, value]) => ({
             family,
             label: family,
@@ -200,7 +251,11 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const needed = scenario.view === 'echivalente' ? AVAILABLE : wanted;
+    // Both these views put the two systems side by side regardless of which regimes the
+    // scenario selected. Leaving it to `wanted` meant the landing page — headed "three
+    // ways to pay the state" — rendered its entire Danish column as explained dashes.
+    const SIDE_BY_SIDE: ViewId[] = ['compare', 'echivalente'];
+    const needed = SIDE_BY_SIDE.includes(scenario.view) ? AVAILABLE : wanted;
     const missing = needed.filter((id) => !regimes[id] && AVAILABLE.includes(id));
     if (missing.length === 0) return;
     Promise.all(
@@ -255,44 +310,22 @@ export default function App() {
   return (
     <div className="wrap">
       <nav className="tabs">
-        <div className="tabgroup">
-          <button
-            className={scenario.view === 'compare' ? 'on' : ''}
-            onClick={() => setScenario({ ...scenario, view: 'compare' })}
-          >
-            Comparație
-          </button>
-          <button
-            className={scenario.view === 'meserii' ? 'on' : ''}
-            onClick={() => setScenario({ ...scenario, view: 'meserii' })}
-          >
-            Meserii RO–DK
-          </button>
-          <button
-            className={scenario.view === 'echivalente' ? 'on' : ''}
-            onClick={() => setScenario({ ...scenario, view: 'echivalente' })}
-          >
-            Echivalențe RO–DK
-          </button>
-          <button
-            className={scenario.view === 'structure' ? 'on' : ''}
-            onClick={() => setScenario({ ...scenario, view: 'structure' })}
-          >
-            Forma sistemului
-          </button>
-          <button
-            className={scenario.view === 'envelope' ? 'on' : ''}
-            onClick={() => setScenario({ ...scenario, view: 'envelope' })}
-          >
-            Plicul
-          </button>
-          <button
-            className={scenario.view === 'payslip' ? 'on' : ''}
-            onClick={() => setScenario({ ...scenario, view: 'payslip' })}
-          >
-            Fluturaș comparat
-          </button>
-        </div>
+        {NAV_GROUPS.map((group) => (
+          <div className="tabgroup" key={group.title}>
+            <span className="tabgroup-title">{group.title}</span>
+            <span className="tabgroup-ask">{group.ask}</span>
+            {group.views.map((id) => (
+              <button
+                key={id}
+                className={scenario.view === id ? 'on' : ''}
+                onClick={() => setScenario({ ...scenario, view: id })}
+              >
+                <strong>{VIEW_META[id].label}</strong>
+                <small>{VIEW_META[id].blurb}</small>
+              </button>
+            ))}
+          </div>
+        ))}
         {scenario.view === 'payslip' && (
           <div className="tabgroup regimes">
             {AVAILABLE.map((id) => (
@@ -315,13 +348,15 @@ export default function App() {
       {error && <p className="loading">Nu s-au putut încărca datele: {error}</p>}
       {!error && loaded.length === 0 && <p className="loading">Se încarcă grila…</p>}
 
-      {scenario.view === 'compare' && ministry && ours && proposal && (
+      {scenario.view === 'compare' && ministry && ours && proposal && fx && (
         <CompareView
           ministry={ministry}
           ours={ours.regime}
           denmark={regimes['dk-stat-2026'] ?? null}
           proposal={proposal}
           effects={ours.effects}
+          rates={fx}
+          capSeries={capSeries}
           onOpen={(view) => setScenario({ ...scenario, view })}
         />
       )}
@@ -333,7 +368,6 @@ export default function App() {
           benchmarks={{ roMedianBase: medianBase ?? 0, dkMedian: occBench.dkMedian }}
           rates={fx}
           roComposition={roComposition}
-          capSeries={capSeries}
         />
       )}
       {scenario.view === 'echivalente' &&
@@ -354,7 +388,7 @@ export default function App() {
         <StructureView regime={regimes['ro-draft-2026-07-16'] ?? loaded[0]} />
       )}
       {scenario.view === 'envelope' && fx && (
-        <EnvelopeView baseline={envelopeBaseline} rates={fx} />
+        <EnvelopeView baseline={envelopeBaseline} rates={fx} capSeries={capSeries} />
       )}
       {loaded.length > 0 && scenario.view === 'payslip' && fx && (
         <PayslipView
