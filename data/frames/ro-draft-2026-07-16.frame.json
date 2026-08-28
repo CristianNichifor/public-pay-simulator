@@ -779,6 +779,24 @@
         "structure"
       ],
       "severity": "material"
+    },
+    {
+      "id": "banda-pe-categorii-de-unitati",
+      "text": "Pentru personalul din unități sanitare, coeficientul din anexă nu este salariul, ci mijlocul unui interval de ±15% (Anexa II Cap. II Art. 10). Nivelul efectiv depinde de categoria unității, iar categoriile se stabilesc prin hotărâre de Guvern care nu există încă. Prin urmare, pentru 98 de funcții din sănătate salariul nu se poate calcula din lege: se poate calcula doar intervalul în care va cădea.",
+      "affects": [
+        "base",
+        "gross",
+        "structure"
+      ],
+      "severity": "blocking"
+    },
+    {
+      "id": "banda-trebuie-sa-fie-neutra",
+      "text": "Art. 10 alin. (5) cere ca banda de ±15% să fie neutră bugetar la nivelul ansamblului unităților sanitare: majorările trebuie compensate de diminuări. Este singurul loc din proiect unde o diferențiere este obligată explicit să se finanțeze din ea însăși — exact regula pe care modul „Plicul” o aplică întregii cheltuieli de personal.",
+      "affects": [
+        "aggregate"
+      ],
+      "severity": "note"
     }
   ],
   "positionOverrides": {

@@ -91,6 +91,8 @@ export interface ResolvedGroup {
    * Romanian base against Danish total pay understates Romania by whatever supplements add.
    */
   roCapped: { q1: Money; q3: Money } | null;
+  /** Positions in the group whose published coefficient is a midpoint, not a figure. */
+  bandedPositions: number;
   /** Supplements the statute places outside that ceiling, so the reader can see what it omits. */
   exemptSupplements: Array<{ id: string; name: string; rate: number | null; basis: string }>;
   dk: { q1: number; median: number; q3: number } | null;
@@ -148,18 +150,25 @@ export function resolveGroups(
     // would understate the top by up to a quarter, since the gradatii sit on top of it.
     const lows: Money[] = [];
     const highs: Money[] = [];
+    let banded = 0;
     for (const position of matched) {
+      // Annex II Art. 10 makes the printed coefficient the middle of a ±15% band set per
+      // category of health unit. For those positions the published figure is not a salary
+      // but a midpoint, so the legal range has to carry the band or it understates both
+      // ends for every doctor and nurse in the grid.
+      const factor = position.institutionFactor;
+      if (factor) banded += 1;
       const atStart = payslip({ positionCode: position.code, seniorityYears: 0 }, regime);
       const atEnd = payslip({ positionCode: position.code, seniorityYears: 40 }, regime);
       for (let i = 0; i < position.variants.length; i += 1) {
         const dims = position.variants[i].dims;
         const start = payslip({ positionCode: position.code, seniorityYears: 0, dims }, regime);
         const end = payslip({ positionCode: position.code, seniorityYears: 40, dims }, regime);
-        if (start.base > 0) lows.push(start.base);
-        if (end.base > 0) highs.push(end.base);
+        if (start.base > 0) lows.push(Math.round(start.base * (factor?.min ?? 1)));
+        if (end.base > 0) highs.push(Math.round(end.base * (factor?.max ?? 1)));
       }
-      if (atStart.base > 0) lows.push(atStart.base);
-      if (atEnd.base > 0) highs.push(atEnd.base);
+      if (atStart.base > 0) lows.push(Math.round(atStart.base * (factor?.min ?? 1)));
+      if (atEnd.base > 0) highs.push(Math.round(atEnd.base * (factor?.max ?? 1)));
     }
 
     const roMin = lows.length ? Math.min(...lows) : null;
@@ -208,6 +217,7 @@ export function resolveGroups(
       roMedian,
       roQ3,
       roCapped,
+      bandedPositions: banded,
       exemptSupplements,
       dk,
       dkComposition: parts.find((p) => p.composition)?.composition ?? null,

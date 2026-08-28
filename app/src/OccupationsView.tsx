@@ -245,6 +245,9 @@ function OccupationRow({
         </div>
         <div className="badges">
           <span className="badge">{row.matched.length} funcții</span>
+          {row.bandedPositions > 0 && (
+            <span className="badge">±15% pe categoria unității</span>
+          )}
           {weak && <span className="badge weak">echivalare slabă</span>}
         </div>
       </header>
@@ -306,6 +309,16 @@ function OccupationRow({
       <details className="why">
         <summary>Ce intră în grupă și de ce</summary>
         <p className="equiv-note">{row.group.basis}</p>
+        {row.bandedPositions > 0 && (
+          <p className="equiv-note">
+            <strong>Coeficientul publicat e un mijloc, nu o sumă.</strong> Pentru{' '}
+            {row.bandedPositions} dintre funcțiile din grupă, Anexa II Cap. II Art. 10 stabilește
+            nivelul între −15% și +15% față de cifra din anexă, în funcție de categoria unității —
+            diminuat la unitățile medico-sociale și ambulatorii, majorat la medicina legală.
+            Categoriile se stabilesc prin hotărâre de Guvern, care încă nu există, deci salariul nu
+            se poate calcula din lege: doar intervalul. Barele de mai sus includ banda.
+          </p>
+        )}
         <p className="equiv-note">
           <strong>În afara plafonului de 20%:</strong>{' '}
           {row.exemptSupplements

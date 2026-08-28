@@ -186,6 +186,35 @@ def test_grade_band_gaps_are_left_unassigned(positions):
     assert all(1.0 <= v <= 8.0 for v in ungraded), "gaps only, nothing outside the grid"
 
 
+def test_the_health_unit_band_lands_on_the_right_sheets(positions):
+    """Annex II Art. 10 sets a ±15% band around the printed coefficient.
+
+    Scope is easy to get wrong because the sheet tabs do not carry the annex's own
+    numbering: "II CI 1" holds points 1 and 2, "II CI 2" is point 3, and "II CI 3" is
+    point 4 — social assistance, which the article never mentions. Banding point 4 would
+    invent a range for care staff that the law does not give them.
+    """
+    banded = [p for p in positions.values() if p.get("institutionFactor")]
+    assert len(banded) > 50
+
+    for position in banded:
+        factor = position["institutionFactor"]
+        assert factor["min"] == 0.85
+        assert factor["max"] == 1.15
+        assert "II CI 3" not in position["provenance"]["locator"]
+
+    # Point 3, the medical specialists, must be inside it.
+    medics = [p for p in banded if p["name"].lower().startswith("medic")]
+    assert medics, "medical staff should carry the band"
+
+    # Point 4, social care, must be outside it.
+    social = [
+        p for p in positions.values()
+        if "II CI 3" in p["provenance"]["locator"] and p.get("institutionFactor")
+    ]
+    assert social == []
+
+
 def test_no_coefficient_escapes_the_declared_range(positions):
     values = [v["value"] for p in positions.values() for v in p["variants"]]
     assert min(values) >= 1.0

@@ -88,6 +88,16 @@ FAMILY_BY_CODE_PREFIX = {
 # "categoriei înalţilor funcţionari publici" — against which a literal "inalti
 # functionari" never matches. That miss put every înalt funcţionar public on the
 # gradatii ladder, which Art. 13(1) explicitly excludes them from.
+# Annex II Art. 10: the coefficients printed for health staff are a midpoint, not a
+# figure. The real level is set per category of health unit between -15% and +15% of what
+# the sheet shows — minus for medico-social and outpatient units, plus for forensic
+# medicine. The sheet tabs do not carry the annex's own numbering: "II CI 1" holds points
+# 1 and 2 (point 2 starts partway down it), "II CI 2" is point 3, and "II CI 3" is point
+# 4, which Art. 10 does not cover. Getting that wrong would apply the band to social-care
+# staff the article never mentions.
+UNIT_CATEGORY_SHEETS = {"II CI 1", "II CI 2"}
+UNIT_CATEGORY_BAND = 0.15
+
 MANAGEMENT_MARKERS = ("de conducere", "de conducer")
 MANAGEMENT_STEMS = (("inalt", "functionar"),)
 EXECUTION_MARKERS = ("de execut", "de execuţ", "de execuție")
@@ -575,6 +585,25 @@ def extract_sheet(name: str, rows: list[tuple], stats: Counter, skipped: list) -
         }
         if study:
             position["studyLevel"] = study
+
+        if name in UNIT_CATEGORY_SHEETS:
+            position["institutionFactor"] = {
+                "min": round(1 - UNIT_CATEGORY_BAND, 4),
+                "max": round(1 + UNIT_CATEGORY_BAND, 4),
+                "reason": (
+                    "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval "
+                    "de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% "
+                    "la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu "
+                    "15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de "
+                    "Guvern, deci nivelul efectiv nu se poate calcula din lege."
+                ),
+                "provenance": {
+                    "source": "anexa-II-cap-II",
+                    "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+                    "confidence": "verbatim",
+                },
+            }
+            stats["positions_with_unit_category_band"] += 1
         if codes and annex:
             prefix = codes[0][1][:2]
             if FAMILY_BY_CODE_PREFIX.get(prefix) not in (None, annex):

@@ -779,6 +779,24 @@
         "structure"
       ],
       "severity": "material"
+    },
+    {
+      "id": "banda-pe-categorii-de-unitati",
+      "text": "Pentru personalul din unități sanitare, coeficientul din anexă nu este salariul, ci mijlocul unui interval de ±15% (Anexa II Cap. II Art. 10). Nivelul efectiv depinde de categoria unității, iar categoriile se stabilesc prin hotărâre de Guvern care nu există încă. Prin urmare, pentru 98 de funcții din sănătate salariul nu se poate calcula din lege: se poate calcula doar intervalul în care va cădea.",
+      "affects": [
+        "base",
+        "gross",
+        "structure"
+      ],
+      "severity": "blocking"
+    },
+    {
+      "id": "banda-trebuie-sa-fie-neutra",
+      "text": "Art. 10 alin. (5) cere ca banda de ±15% să fie neutră bugetar la nivelul ansamblului unităților sanitare: majorările trebuie compensate de diminuări. Este singurul loc din proiect unde o diferențiere este obligată explicit să se finanțeze din ea însăși — exact regula pe care modul „Plicul” o aplică întregii cheltuieli de personal.",
+      "affects": [
+        "aggregate"
+      ],
+      "severity": "note"
     }
   ],
   "positions": [
@@ -9236,7 +9254,17 @@
         "locator": "sheet 'II CI 1'!r12",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00102003.01",
@@ -9292,7 +9320,17 @@
         "locator": "sheet 'II CI 1'!r13",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00102004.02",
@@ -9348,7 +9386,17 @@
         "locator": "sheet 'II CI 1'!r14",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00102005.01",
@@ -9404,7 +9452,17 @@
         "locator": "sheet 'II CI 1'!r15",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00103002.01",
@@ -9460,7 +9518,17 @@
         "locator": "sheet 'II CI 1'!r23",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00103003.01",
@@ -9516,7 +9584,17 @@
         "locator": "sheet 'II CI 1'!r24",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00103004.02",
@@ -9572,7 +9650,17 @@
         "locator": "sheet 'II CI 1'!r25",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00103006.01",
@@ -9628,7 +9716,17 @@
         "locator": "sheet 'II CI 1'!r26",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00104001.01",
@@ -9684,7 +9782,17 @@
         "locator": "sheet 'II CI 1'!r18",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00104002.02",
@@ -9740,7 +9848,17 @@
         "locator": "sheet 'II CI 1'!r19",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201001.01",
@@ -9784,7 +9902,17 @@
         "locator": "sheet 'II CI 2'!r8",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201002.01",
@@ -9828,7 +9956,17 @@
         "locator": "sheet 'II CI 2'!r9",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201003.01",
@@ -9872,7 +10010,17 @@
         "locator": "sheet 'II CI 2'!r10",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201004.01",
@@ -9916,7 +10064,17 @@
         "locator": "sheet 'II CI 2'!r11",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201005.01",
@@ -9960,7 +10118,17 @@
         "locator": "sheet 'II CI 2'!r12",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201006.01",
@@ -10004,7 +10172,17 @@
         "locator": "sheet 'II CI 2'!r13",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201007.01",
@@ -10048,7 +10226,17 @@
         "locator": "sheet 'II CI 2'!r14",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201008.01",
@@ -10092,7 +10280,17 @@
         "locator": "sheet 'II CI 2'!r15",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201009.01",
@@ -10136,7 +10334,17 @@
         "locator": "sheet 'II CI 2'!r16",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201010.01",
@@ -10180,7 +10388,17 @@
         "locator": "sheet 'II CI 2'!r17",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201011.01",
@@ -10224,7 +10442,17 @@
         "locator": "sheet 'II CI 2'!r18",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201012.01",
@@ -10268,7 +10496,17 @@
         "locator": "sheet 'II CI 2'!r19",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201013.01",
@@ -10312,7 +10550,17 @@
         "locator": "sheet 'II CI 2'!r20",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201014.01",
@@ -10356,7 +10604,17 @@
         "locator": "sheet 'II CI 2'!r21",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201015.01",
@@ -10400,7 +10658,17 @@
         "locator": "sheet 'II CI 2'!r22",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201016.01",
@@ -10444,7 +10712,17 @@
         "locator": "sheet 'II CI 2'!r23",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201017.01",
@@ -10488,7 +10766,17 @@
         "locator": "sheet 'II CI 2'!r24",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201018.01",
@@ -10532,7 +10820,17 @@
         "locator": "sheet 'II CI 2'!r25",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201019.01",
@@ -10576,7 +10874,17 @@
         "locator": "sheet 'II CI 2'!r26",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201020.01",
@@ -10620,7 +10928,17 @@
         "locator": "sheet 'II CI 2'!r27",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201021.01",
@@ -10664,7 +10982,17 @@
         "locator": "sheet 'II CI 2'!r28",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201022.02",
@@ -10708,7 +11036,17 @@
         "locator": "sheet 'II CI 2'!r29",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201023.02",
@@ -10752,7 +11090,17 @@
         "locator": "sheet 'II CI 2'!r30",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201024.02",
@@ -10796,7 +11144,17 @@
         "locator": "sheet 'II CI 2'!r31",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201025.02",
@@ -10840,7 +11198,17 @@
         "locator": "sheet 'II CI 2'!r32",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201026.11",
@@ -10884,7 +11252,17 @@
         "locator": "sheet 'II CI 2'!r33",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201027.11",
@@ -10958,7 +11336,17 @@
         "locator": "sheet 'II CI 2'!r34",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201028.11",
@@ -11002,7 +11390,17 @@
         "locator": "sheet 'II CI 2'!r35",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201032.27",
@@ -11046,7 +11444,17 @@
         "locator": "sheet 'II CI 2'!r36",
         "confidence": "verbatim"
       },
-      "studyLevel": "SSD"
+      "studyLevel": "SSD",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201033.27",
@@ -11098,7 +11506,17 @@
         "locator": "sheet 'II CI 2'!r37",
         "confidence": "verbatim"
       },
-      "studyLevel": "SSD"
+      "studyLevel": "SSD",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201034.27",
@@ -11142,7 +11560,17 @@
         "locator": "sheet 'II CI 2'!r38",
         "confidence": "verbatim"
       },
-      "studyLevel": "SSD"
+      "studyLevel": "SSD",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201035.01",
@@ -11189,7 +11617,17 @@
         "locator": "sheet 'II CI 2'!r39",
         "confidence": "verbatim"
       },
-      "studyLevel": "PL"
+      "studyLevel": "PL",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201036.01",
@@ -11237,7 +11675,17 @@
         "locator": "sheet 'II CI 2'!r40",
         "confidence": "verbatim"
       },
-      "studyLevel": "PL"
+      "studyLevel": "PL",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201037.01",
@@ -11284,7 +11732,17 @@
         "locator": "sheet 'II CI 2'!r41",
         "confidence": "verbatim"
       },
-      "studyLevel": "PL"
+      "studyLevel": "PL",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201038.01",
@@ -11328,7 +11786,17 @@
         "locator": "sheet 'II CI 2'!r42",
         "confidence": "verbatim"
       },
-      "studyLevel": "M"
+      "studyLevel": "M",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201039.01",
@@ -11372,7 +11840,17 @@
         "locator": "sheet 'II CI 2'!r43",
         "confidence": "verbatim"
       },
-      "studyLevel": "M"
+      "studyLevel": "M",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201040.01",
@@ -11416,7 +11894,17 @@
         "locator": "sheet 'II CI 2'!r44",
         "confidence": "verbatim"
       },
-      "studyLevel": "M"
+      "studyLevel": "M",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201041.01",
@@ -11460,7 +11948,17 @@
         "locator": "sheet 'II CI 2'!r45",
         "confidence": "verbatim"
       },
-      "studyLevel": "M"
+      "studyLevel": "M",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201042.01",
@@ -11504,7 +12002,17 @@
         "locator": "sheet 'II CI 2'!r46",
         "confidence": "verbatim"
       },
-      "studyLevel": "M"
+      "studyLevel": "M",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201043.01",
@@ -11548,7 +12056,17 @@
         "locator": "sheet 'II CI 2'!r47",
         "confidence": "verbatim"
       },
-      "studyLevel": "M"
+      "studyLevel": "M",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201044.01",
@@ -11592,7 +12110,17 @@
         "locator": "sheet 'II CI 2'!r48",
         "confidence": "verbatim"
       },
-      "studyLevel": "M"
+      "studyLevel": "M",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201045.01",
@@ -11636,7 +12164,17 @@
         "locator": "sheet 'II CI 2'!r49",
         "confidence": "verbatim"
       },
-      "studyLevel": "M"
+      "studyLevel": "M",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201046.01",
@@ -11680,7 +12218,17 @@
         "locator": "sheet 'II CI 2'!r50",
         "confidence": "verbatim"
       },
-      "studyLevel": "M"
+      "studyLevel": "M",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201047.01",
@@ -11724,7 +12272,17 @@
         "locator": "sheet 'II CI 2'!r51",
         "confidence": "verbatim"
       },
-      "studyLevel": "M"
+      "studyLevel": "M",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201048.01",
@@ -11768,7 +12326,17 @@
         "locator": "sheet 'II CI 2'!r52",
         "confidence": "verbatim"
       },
-      "studyLevel": "M"
+      "studyLevel": "M",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201049.01",
@@ -11812,7 +12380,17 @@
         "locator": "sheet 'II CI 2'!r53",
         "confidence": "verbatim"
       },
-      "studyLevel": "M"
+      "studyLevel": "M",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201050.02",
@@ -11865,7 +12443,17 @@
         "locator": "sheet 'II CI 2'!r54",
         "confidence": "verbatim"
       },
-      "studyLevel": "M"
+      "studyLevel": "M",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201051.02",
@@ -11915,7 +12503,17 @@
         "locator": "sheet 'II CI 2'!r55",
         "confidence": "verbatim"
       },
-      "studyLevel": "M"
+      "studyLevel": "M",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00201052.02",
@@ -11968,7 +12566,17 @@
         "locator": "sheet 'II CI 2'!r56",
         "confidence": "verbatim"
       },
-      "studyLevel": "M"
+      "studyLevel": "M",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00205001.05",
@@ -12012,7 +12620,17 @@
         "locator": "sheet 'II CI 2'!r57",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00205002.05",
@@ -12056,7 +12674,17 @@
         "locator": "sheet 'II CI 2'!r58",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00205003.04",
@@ -12100,7 +12728,17 @@
         "locator": "sheet 'II CI 2'!r59",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00205004.05",
@@ -12143,7 +12781,17 @@
         "locator": "sheet 'II CI 2'!r60",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00205005.05",
@@ -12203,7 +12851,17 @@
         "locator": "sheet 'II CI 2'!r61",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00205006.05",
@@ -12263,7 +12921,17 @@
         "locator": "sheet 'II CI 2'!r62",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00205007.05",
@@ -12323,7 +12991,17 @@
         "locator": "sheet 'II CI 2'!r63",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00205008.04",
@@ -12376,7 +13054,17 @@
         "locator": "sheet 'II CI 2'!r64",
         "confidence": "verbatim"
       },
-      "studyLevel": "SSD"
+      "studyLevel": "SSD",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00205009.04",
@@ -12426,7 +13114,17 @@
         "locator": "sheet 'II CI 2'!r65",
         "confidence": "verbatim"
       },
-      "studyLevel": "SSD"
+      "studyLevel": "SSD",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00205010.04",
@@ -12470,7 +13168,17 @@
         "locator": "sheet 'II CI 2'!r66",
         "confidence": "verbatim"
       },
-      "studyLevel": "SSD"
+      "studyLevel": "SSD",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00205011.01",
@@ -12514,7 +13222,17 @@
         "locator": "sheet 'II CI 2'!r67",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00205012.01",
@@ -12558,7 +13276,17 @@
         "locator": "sheet 'II CI 2'!r68",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00205013.01",
@@ -12602,7 +13330,17 @@
         "locator": "sheet 'II CI 2'!r69",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00205014.01",
@@ -12645,7 +13383,17 @@
         "locator": "sheet 'II CI 2'!r70",
         "confidence": "verbatim"
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00209001.02",
@@ -12692,7 +13440,17 @@
         "locator": "sheet 'II CI 2'!r80",
         "confidence": "verbatim"
       },
-      "studyLevel": "M;G"
+      "studyLevel": "M;G",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00209002.02",
@@ -12735,7 +13493,17 @@
         "locator": "sheet 'II CI 2'!r81",
         "confidence": "verbatim"
       },
-      "studyLevel": "M;G"
+      "studyLevel": "M;G",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00209003.05",
@@ -12778,6 +13546,16 @@
         "source": "coeficienti-2026-07-16",
         "locator": "sheet 'II CI 2'!r82",
         "confidence": "verbatim"
+      },
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
       }
     },
     {
@@ -12822,7 +13600,17 @@
         "locator": "sheet 'II CI 2'!r85",
         "confidence": "verbatim"
       },
-      "studyLevel": "M"
+      "studyLevel": "M",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00209005.01",
@@ -12866,7 +13654,17 @@
         "locator": "sheet 'II CI 2'!r86",
         "confidence": "verbatim"
       },
-      "studyLevel": "M"
+      "studyLevel": "M",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00211004.01",
@@ -12910,7 +13708,17 @@
         "locator": "sheet 'II CI 2'!r83",
         "confidence": "verbatim"
       },
-      "studyLevel": "M"
+      "studyLevel": "M",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00211005.01",
@@ -12954,7 +13762,17 @@
         "locator": "sheet 'II CI 2'!r84",
         "confidence": "verbatim"
       },
-      "studyLevel": "M"
+      "studyLevel": "M",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "21.00301001.01",
@@ -15570,7 +16388,17 @@
         "confidence": "verbatim",
         "note": "Randul nu poarta cod de functie; cod atribuit de importator."
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "II.CI.1.13",
@@ -15627,7 +16455,17 @@
         "confidence": "verbatim",
         "note": "Randul nu poarta cod de functie; cod atribuit de importator."
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "II.CI.1.14",
@@ -15690,7 +16528,17 @@
         "confidence": "verbatim",
         "note": "Randul nu poarta cod de functie; cod atribuit de importator."
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "II.CI.1.15",
@@ -15747,7 +16595,17 @@
         "confidence": "verbatim",
         "note": "Randul nu poarta cod de functie; cod atribuit de importator."
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "II.CI.1.16",
@@ -15804,7 +16662,17 @@
         "confidence": "verbatim",
         "note": "Randul nu poarta cod de functie; cod atribuit de importator."
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "II.CI.1.17",
@@ -15861,7 +16729,17 @@
         "confidence": "verbatim",
         "note": "Randul nu poarta cod de functie; cod atribuit de importator."
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "II.CI.1.18",
@@ -15920,7 +16798,17 @@
         "confidence": "verbatim",
         "note": "Randul nu poarta cod de functie; cod atribuit de importator."
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "II.CI.1.19",
@@ -15977,7 +16865,17 @@
         "confidence": "verbatim",
         "note": "Randul nu poarta cod de functie; cod atribuit de importator."
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "II.CI.1.20",
@@ -16034,7 +16932,17 @@
         "confidence": "verbatim",
         "note": "Randul nu poarta cod de functie; cod atribuit de importator."
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "II.CI.1.7",
@@ -16094,7 +17002,17 @@
         "confidence": "verbatim",
         "note": "Randul nu poarta cod de functie; cod atribuit de importator."
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "II.CI.2.67",
@@ -16138,7 +17056,17 @@
         "confidence": "verbatim",
         "note": "Randul nu poarta cod de functie; cod atribuit de importator."
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "II.CI.2.68",
@@ -16186,7 +17114,17 @@
         "confidence": "verbatim",
         "note": "Randul nu poarta cod de functie; cod atribuit de importator."
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "II.CI.2.69",
@@ -16232,7 +17170,17 @@
         "confidence": "verbatim",
         "note": "Randul nu poarta cod de functie; cod atribuit de importator."
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "II.CI.2.70",
@@ -16277,7 +17225,17 @@
         "confidence": "verbatim",
         "note": "Randul nu poarta cod de functie; cod atribuit de importator."
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "II.CI.2.71",
@@ -16322,7 +17280,17 @@
         "confidence": "verbatim",
         "note": "Randul nu poarta cod de functie; cod atribuit de importator."
       },
-      "studyLevel": "S"
+      "studyLevel": "S",
+      "institutionFactor": {
+        "min": 0.85,
+        "max": 1.15,
+        "reason": "Anexa II Cap. II Art. 10: coeficientul publicat este mijlocul unui interval de ±15%, stabilit pe categorii de unități sanitare. Se aplică diminuat cu 15% la unitățile de asistență medico-socială și la cele ambulatorii, majorat cu 15% la medicina legală. Categoriile concrete se stabilesc prin hotărâre de Guvern, deci nivelul efectiv nu se poate calcula din lege.",
+        "provenance": {
+          "source": "anexa-II-cap-II",
+          "locator": "Anexa II Cap. II Art. 10 alin. (1)-(3)",
+          "confidence": "verbatim"
+        }
+      }
     },
     {
       "code": "II.CI.3.52",

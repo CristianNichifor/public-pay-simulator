@@ -58,6 +58,7 @@
     "rows_without_code": 486,
     "continuation_rows": 203,
     "rows_needing_review": 118,
+    "positions_with_unit_category_band": 98,
     "rows_without_title": 44,
     "sheets_without_coefficients": 1,
     "rows_merged_into_existing_code": 764,
