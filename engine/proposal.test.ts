@@ -121,10 +121,21 @@ describe('each patch fixes its stated defect', () => {
 });
 
 describe('the proposal does not quietly change pay policy', () => {
-  it('keeps the same positions and the same reference value', () => {
-    expect(applied.regime.positions.length).toBe(BASE.positions.length);
+  it('keeps the reference value, the grades, and every position reachable', () => {
     expect(applied.regime.reference.amount).toEqual(BASE.reference.amount);
     expect(applied.regime.grades.length).toBe(BASE.grades.length);
+
+    // The proposal now merges names deliberately, so an equal position count is no
+    // longer the right guard — it would forbid the very thing the merge is for. What
+    // must still hold is that nothing vanished: every code in the base is either still
+    // a position or recorded as absorbed into one.
+    const reachable = new Set<string>();
+    for (const p of applied.regime.positions) {
+      reachable.add(p.code);
+      for (const code of p.mergedFrom ?? []) reachable.add(code);
+    }
+    const lost = BASE.positions.filter((p) => !reachable.has(p.code));
+    expect(lost.map((p) => p.code)).toEqual([]);
   });
 
   it('every variant is uniquely addressable', () => {
@@ -165,5 +176,76 @@ describe('the proposal does not quietly change pay policy', () => {
 
   it('keeps the floor of the grid exactly where it was', () => {
     expect(after.span.min).toBe(before.span.min);
+  });
+});
+
+describe('one job gets one name', () => {
+  const merged = applied.regime.positions.filter((p) => p.mergedFrom?.length);
+  const byName = (name: string) =>
+    merged.find((p) => p.name.trim().toLowerCase() === name.toLowerCase());
+
+  it('collapses the same job named once per employer', () => {
+    // The grid carries "Director" under 25 codes across six annexes. That counts
+    // employers, not occupations, and it is the headline number on the landing page.
+    expect(applied.regime.positions.length).toBeLessThan(BASE.positions.length - 200);
+    expect(merged.length).toBeGreaterThan(50);
+    // "Director" absorbs five sibling codes; it would absorb eleven if the rank-label
+    // guard were not holding the indented continuation rows back.
+    expect(byName('Director')?.mergedFrom!.length).toBeGreaterThan(3);
+  });
+
+  it('never merges across occupational families', () => {
+    // A director in education and a director in administration are different posts. The
+    // family is what keeps the merge from fusing them on the strength of a shared word.
+    const familyOf = new Map(BASE.positions.map((p) => [p.code, p.family]));
+    for (const position of merged) {
+      for (const code of position.mergedFrom!) {
+        expect(familyOf.get(code)).toBe(position.family);
+      }
+    }
+  });
+
+  it('refuses rows whose name is a rank rather than a job', () => {
+    // 'debutant' appears 46 times and 'clasa a II-a' 30: continuation rows that lost
+    // their parent occupation on import. Merging them would invent a job called
+    // "debutant" — a wrong answer that would look like a big, satisfying reduction.
+    const names = merged.map((p) => p.name.trim().toLowerCase());
+    for (const label of ['debutant', 'principal', 'gradul i', 'clasa a ii-a', 'treapta ii']) {
+      expect(names).not.toContain(label);
+    }
+    // And they survive, rather than being quietly dropped.
+    const survivors = applied.regime.positions.filter(
+      (p) => p.name.trim().toLowerCase() === 'debutant',
+    );
+    expect(survivors.length).toBeGreaterThan(10);
+  });
+
+  it('loses no name and keeps every code traceable', () => {
+    for (const position of merged.slice(0, 40)) {
+      expect(position.titles!.length).toBeGreaterThan(0);
+      // Every absorbed code is recorded, and never the kept position's own code.
+      expect(position.mergedFrom).not.toContain(position.code);
+      for (const code of position.mergedFrom!) {
+        expect(BASE.positions.some((p) => p.code === code)).toBe(true);
+      }
+    }
+  });
+
+  it('turns the spread between employers into an explicit multiplier', () => {
+    // The merge must not hide that two employers paid differently for the same job — it
+    // moves that difference out of the name and into a number that can be argued with.
+    const director = byName('Director general adjunct');
+    expect(director?.institutionFactor?.max).toBeGreaterThan(1);
+  });
+
+  it('changes no salary', () => {
+    // Naming is not pay. The lowest coefficient in the grid must be exactly what it was.
+    const lowest = (regime: Regime) =>
+      Math.min(
+        ...regime.positions.flatMap((p) =>
+          p.variants.map((v) => (typeof v.value === 'number' ? v.value : Infinity)),
+        ),
+      );
+    expect(lowest(applied.regime)).toBeCloseTo(lowest(BASE), 10);
   });
 });

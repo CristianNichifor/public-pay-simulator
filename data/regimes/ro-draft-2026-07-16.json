@@ -737,6 +737,14 @@
       "severity": "material"
     },
     {
+      "id": "o-meserie-mai-multe-nume",
+      "text": "Grila numește aceeași meserie o dată pentru fiecare angajator, nu o dată. „Director” apare sub 25 de coduri distincte în șase anexe, „Șef serviciu” sub alte 25, „Director general adjunct” sub 22, „Debutant” sub 46. Diferența dintre ele nu e munca, ci instituția — deci numărul de funcții din grilă măsoară câți angajatori există, nu câte meserii. Este reversul asimilării prin punctuație: acolo mai multe denumiri intră într-un cod, aici o denumire iese în mai multe coduri.",
+      "affects": [
+        "structure"
+      ],
+      "severity": "material"
+    },
+    {
       "id": "sporuri-nedeterminate",
       "text": "Marimea concreta a sporurilor pentru conditii de munca (Art. 20) se stabileste prin regulamente-cadru aprobate ulterior prin HG. Pana atunci orice cuantum folosit aici este o alegere de scenariu, nu un drept legal.",
       "affects": [

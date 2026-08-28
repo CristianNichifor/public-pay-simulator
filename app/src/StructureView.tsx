@@ -93,7 +93,7 @@ export default function StructureView({ regime }: { regime: Regime }) {
         <h2>Ce arată grila</h2>
         <div className="kpis">
           <div className="kpi">
-            <div className="v hero">{pct(metrics.backSolvedShare)}</div>
+            <div className="v accent">{pct(metrics.backSolvedShare)}</div>
             <div className="k">
               din coeficienții distincți au 14 zecimale sau mai multe — retro-calculați, nu
               proiectați

@@ -39,6 +39,14 @@
       "expectedEffect": "215 variante dispar din nomenclator fără ca vreun salariu să se schimbe. Diferența pe instituție rămâne, dar se vede."
     },
     {
+      "id": "o-functie-un-nume",
+      "title": "Aceeași meserie are un singur nume",
+      "op": "mergeDuplicateTitles",
+      "fixes": "o-meserie-mai-multe-nume",
+      "rationale": "Grila numește meseria o dată pentru fiecare angajator. „Director” apare sub 25 de coduri în șase anexe, „Șef serviciu” sub alte 25, „Director general adjunct” sub 22 — nu fiindcă munca diferă, ci fiindcă instituția diferă. Este exact defectul pe care îl repară separarea multiplicatorului de instituție, doar cu un nivel mai sus: acolo erau mai mulți coeficienți sub un nume, aici sunt mai multe nume pentru o meserie. Două funcții sunt aceeași meserie doar dacă denumirea, familia ocupațională, tipul postului și nivelul de studii coincid — un director din învățământ și unul din administrație rămân posturi diferite. Rândurile al căror nume întreg e doar un grad profesional („debutant”, „principal”) nu se comasează: acolo denumirea meseriei s-a pierdut la import, iar unirea lor ar inventa o funcție numită „debutant”.",
+      "expectedEffect": "Numărul de funcții numite scade substanțial fără ca vreun salariu să se schimbe. Denumirile absorbite rămân în titlurile funcției păstrate, iar diferența dintre angajatori devine un multiplicator explicit."
+    },
+    {
       "id": "raport-1-8-de-la-inceput",
       "op": "collapseSchedule",
       "dimension": "an",

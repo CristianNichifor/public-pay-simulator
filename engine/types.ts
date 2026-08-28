@@ -176,6 +176,11 @@ export interface Position {
    * one multiplier on one position, instead of several positions sharing a title.
    */
   institutionFactor?: { min: number; max: number; reason: string };
+  /**
+   * Codes this position absorbed when a proposal merged names that described the same
+   * job. Kept so a merged row can still be traced back to every cell it came from.
+   */
+  mergedFrom?: ReadonlyArray<string>;
   provenance: Provenance;
 }
 

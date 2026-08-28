@@ -146,14 +146,20 @@ export default function CompareView({
     {
       label: 'Posturi numite în grilă',
       hint: 'câte denumiri distincte de post apar în documentul oficial',
-      better: 'none',
+      // Fewer is better here: the draft names a job once per employer, so a high count
+      // measures how many institutions there are rather than how many occupations.
+      better: 'lower',
       cells: {
         ministry: {
           n: m.positions,
           text: ro(m.positions),
           note: `${ro(m.assimilation.mergedPositions)} comasează mai multe denumiri`,
         },
-        ours: { n: o.positions, text: ro(o.positions) },
+        ours: {
+          n: o.positions,
+          text: ro(o.positions),
+          note: `cu ${ro(m.positions - o.positions)} mai puține — aceeași meserie, un singur nume`,
+        },
         dk: dkCell(d?.positions ?? null, ro(d?.positions ?? 0), 'documentul IDA numește circa 20'),
       },
     },

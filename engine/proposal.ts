@@ -29,6 +29,7 @@ export interface Patch {
     | 'setSupplementCounts'
     | 'setSupplementRate'
     | 'separateInstitutionFactor'
+    | 'mergeDuplicateTitles'
     | 'unifySeniority';
   decimals?: number;
   dimension?: string;
@@ -272,6 +273,112 @@ export function applyProposal(base: Regime, proposal: Proposal): AppliedProposal
             },
           };
         });
+        regime = { ...regime, positions };
+        break;
+      }
+
+      case 'mergeDuplicateTitles': {
+        // The grid names a job once per employer. "Director" is 25 separate codes across
+        // six annex sheets, "Șef serviciu" 25 more — not because the work differs but
+        // because the institution does. That is the same defect separateInstitutionFactor
+        // fixes inside one position, one level up: there it is several coefficients under
+        // one name, here it is several names for one job.
+        //
+        // Two positions are the same job only when the title, the occupational family,
+        // the kind of post and the study level all agree. Title alone is not enough — a
+        // director in education and a director in administration are genuinely different
+        // posts, and the family keeps them apart.
+        // Rows that name a rank rather than a job. The workbook writes them under the
+        // occupation they belong to and marks them by indenting the cell — 'gradul I',
+        // '    clasa a II-a', 'debutant' — and the importer keeps the indentation but not
+        // the parent title, so 46 positions are called "debutant" and 30 "clasa a …".
+        // They are not 46 jobs, and merging them would invent one. Both signals are used
+        // because neither catches everything: only 59 rows are indented, while 8 of those
+        // are also bare grade words and many bare labels are not indented at all.
+        const QUALIFIER_WORDS = new Set([
+          'debutant', 'principal', 'asistent', 'superior', 'specialist', 'practicant',
+          'stagiar', 'definitiv', 'expert',
+        ]);
+        const QUALIFIER_PREFIX = /^(gradul|clasa|treapta|nivel|grad)\b/;
+        const isRankLabel = (p: Position, title: string) => {
+          const raw = p.assimilation?.rawTitleCell ?? '';
+          return (
+            QUALIFIER_WORDS.has(title) ||
+            QUALIFIER_PREFIX.test(title) ||
+            (raw.length > 0 && raw !== raw.replace(/^\s+/, ''))
+          );
+        };
+        const norm = (t: string) =>
+          t
+            .normalize('NFKD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .replace(/[^a-z0-9 ]+/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+        const canonical = (p: Position) =>
+          p.titles?.find((t) => t.canonical)?.name ?? p.name;
+        /** The entry-level coefficient, which is what compares one employer to another. */
+        const entry = (p: Position): number | null => {
+          const values = p.variants
+            .map((v) => (v.value === undefined ? null : firstOf(v.value)))
+            .filter((n): n is number => n !== null);
+          return values.length ? Math.min(...values) : null;
+        };
+
+        const groups = new Map<string, Position[]>();
+        for (const position of regime.positions) {
+          const title = norm(canonical(position));
+          // Rank labels keep their own code and are left exactly as they are.
+          const key =
+            !title || isRankLabel(position, title)
+              ? `sine:${position.code}`
+              : [title, position.family ?? '', position.kind ?? '', position.studyLevel ?? ''].join('|');
+          const list = groups.get(key) ?? [];
+          list.push(position);
+          groups.set(key, list);
+        }
+
+        const positions: Position[] = [];
+        for (const group of groups.values()) {
+          const entries = group.map(entry);
+          if (group.length < 2 || entries.some((e) => e === null || e <= 0)) {
+            positions.push(...group);
+            continue;
+          }
+          const values = entries as number[];
+          const lo = Math.min(...values);
+          const hi = Math.max(...values);
+          const keep = group[values.indexOf(lo)];
+
+          // Every name the merged rows carried, kept once, so nothing disappears.
+          const seen = new Set<string>();
+          const titles = group
+            .flatMap((p) => p.titles ?? [{ name: p.name, canonical: true }])
+            .filter((t) => (seen.has(norm(t.name)) ? false : (seen.add(norm(t.name)), true)));
+
+          // The spread between employers becomes an explicit multiplier, the same shape
+          // separateInstitutionFactor produces — and never smaller than one already there.
+          const spread = Number((hi / lo).toFixed(4));
+          const existing = keep.institutionFactor;
+          effect.positionsTouched += group.length - 1;
+          effect.touchedCodes.push(...group.map((p) => p.code));
+          positions.push({
+            ...keep,
+            titles,
+            mergedFrom: group.filter((p) => p.code !== keep.code).map((p) => p.code),
+            institutionFactor:
+              spread > 1 || existing
+                ? {
+                    min: existing?.min ?? 1,
+                    max: Math.max(spread, existing?.max ?? 1),
+                    reason:
+                      existing?.reason ??
+                      'Aceeași meserie apărea sub coduri diferite după instituție. Funcția e numită o dată, iar diferența dintre angajatori devine un multiplicator explicit.',
+                  }
+                : undefined,
+          });
+        }
         regime = { ...regime, positions };
         break;
       }

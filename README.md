@@ -27,7 +27,7 @@ implementation.
 - [ ] `data/headcount/` — blocked: no filled-post counts are published per position
 - [x] **View 1 — payslip diff, live.** Scenario lives in the URL hash
 - [x] **Comparison view — three systems side by side, the landing page**
-- [x] `data/proposals/propunere-v1.json` — our proposal, as seven auditable patches
+- [x] `data/proposals/propunere-v1.json` — our proposal, as eight auditable patches
 - [x] `data/headcount/` — real filled-post counts, June 2026, per ordonator
 - [x] **View 3 — envelope mode.** Fix total spend; every increase names the reduction paying for it
 
@@ -129,6 +129,7 @@ Denmark. The strongest single result:
 
 | | MMFTSS | Propunerea noastră |
 | --- | --- | --- |
+| Named positions | 1 176 | **915** |
 | Distinct coefficients | 1 361 | **351** |
 | Back-solved (≥14 decimals) | 61,9% | **0%** |
 | Coefficients in no salary grade | 92 | **0** |
@@ -136,6 +137,20 @@ Denmark. The strongest single result:
 
 Rounding to two decimals reveals that the grid only ever needed 351 distinct values. The
 other 1 010 were the residue of dividing one salary by another.
+
+The position count falls for a different reason. The draft names a job once *per
+employer*: "Director" appears under 25 codes across six annexes, "Șef serviciu" under 25
+more, "Director general adjunct" under 22. So 1 176 measures how many institutions exist,
+not how many occupations. Merging rows that agree on title, occupational family, kind of
+post and study level — and only those — collapses 261 of them, and turns the pay
+difference between employers into an explicit multiplier instead of a second job title.
+
+The merge deliberately refuses one large, tempting group. 46 positions are called
+"debutant", 30 "clasa a II-a", 10 "treapta II": continuation rows that the workbook marks
+by indenting the cell and that the importer records without inheriting the parent
+occupation. Merging them would have produced a much bigger reduction and a single invented
+job called "debutant". They are held apart by their own code, and the underlying import
+defect is recorded rather than exploited.
 
 **Our proposal is a patch list, not a second grid.** Five named edits against the
 ministry's document, each naming the defect it fixes — and a test asserts every patch
