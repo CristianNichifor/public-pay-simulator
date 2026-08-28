@@ -480,3 +480,72 @@ i.k-ro-cap { background: repeating-linear-gradient(135deg, var(--series-1) 0 3px
 .comp-hero p { margin: 0; max-width: 46ch; color: var(--text-secondary); }
 .comp-excl { margin-top: 12px; font-size: 0.8rem; color: var(--text-muted); }
 .comp-excl li { margin: 3px 0; }
+
+/* The 20% ceiling ----------------------------------------------------------
+   Bands are ordered magnitude, so they take a sequential ramp (one hue,
+   light to dark) rather than categorical hues. The breach is not left to
+   colour alone: a labelled rule marks the ceiling and the bands past it
+   carry a 45° texture, which survives greyscale, print and forced colours. */
+:root {
+  --band-0: #e3edfb;
+  --band-1: #bcd6f4;
+  --band-2: #8fb8ea;
+  --band-3: #5f94dc;
+  --band-4: #3a76c8;
+  --band-5: #1f4f8f;
+  --cap-rule: var(--accent);
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme='light'])) {
+    --band-0: #16334f;
+    --band-1: #1d4a75;
+    --band-2: #2a6aa8;
+    --band-3: #3e8ad0;
+    --band-4: #6aa9e4;
+    --band-5: #9cc8f2;
+  }
+}
+:root[data-theme='dark'] {
+  --band-0: #16334f;
+  --band-1: #1d4a75;
+  --band-2: #2a6aa8;
+  --band-3: #3e8ad0;
+  --band-4: #6aa9e4;
+  --band-5: #9cc8f2;
+}
+
+.cap-dist { display: flex; height: 26px; border-radius: 4px; overflow: hidden;
+            background: var(--surface-2); gap: 2px; }
+.cap-dist div { height: 100%; }
+.cap-dist .over { position: relative; }
+.cap-dist .over::after { content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, rgba(0,0,0,0.22) 0 3px, transparent 3px 6px); }
+.cap-key { display: flex; flex-wrap: wrap; gap: 6px 16px; margin-top: 10px;
+           font-size: 0.78rem; color: var(--text-secondary); }
+.cap-key span { display: inline-flex; align-items: center; gap: 6px; }
+.cap-key i { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+
+.cap-split { display: flex; height: 30px; border-radius: 4px; overflow: hidden;
+             background: var(--surface-2); gap: 2px; margin-top: 6px; }
+.cap-split .under { background: var(--mark-quiet); }
+.cap-split .breach { background: var(--accent); position: relative; }
+.cap-split .breach::after { content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, rgba(255,255,255,0.28) 0 3px, transparent 3px 6px); }
+
+.cap-list { margin-top: 6px; }
+.cap-item { display: grid; grid-template-columns: 230px 1fr 96px; gap: 12px;
+            align-items: center; padding: 5px 0; }
+.cap-item .who { font-size: 0.84rem; line-height: 1.25; }
+.cap-item .who small { display: block; color: var(--text-muted); font-size: 0.75rem; }
+/* The plot area carries the ceiling as a rule, so every bar is read against it. */
+.cap-plot { position: relative; height: 16px; background: var(--surface-2);
+            border-radius: 4px; overflow: hidden; }
+.cap-bar { height: 100%; border-radius: 4px; background: var(--series-1); }
+.cap-bar.over { background: var(--accent); }
+.cap-rule { position: absolute; top: -3px; bottom: -3px; width: 2px;
+            background: var(--cap-rule); opacity: 0.85; }
+.cap-num { text-align: right; font-variant-numeric: tabular-nums; font-size: 0.84rem; }
+.cap-num b { color: var(--text-primary); }
+.cap-num.over b { color: var(--accent); }
+.cap-ruleline { display: flex; justify-content: flex-end; font-size: 0.75rem;
+                color: var(--accent); margin-bottom: 2px; }

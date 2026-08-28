@@ -4,7 +4,7 @@
   "title": "Public-sector compensation of employees and nominal GDP, Romania and Denmark",
   "publisher": "Eurostat",
   "methodology": "ESA 2010",
-  "retrieved": "2026-08-27",
+  "retrieved": "2026-08-28",
   "query": {
     "endpoint": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data",
     "datasets": [
@@ -1813,12 +1813,12 @@
     },
     {
       "id": "granularitate-lipsa-pe-ordonator",
-      "text": "Plafonul de 20% de la Art. 21 alin. (2) se masoara pe ordonator principal de credite si pe sursa de finantare. Eurostat nu coboara sub nivelul functiei COFOG, iar niciun set de date deschise nu publica cheltuiala de personal pe ordonator. Fara acea granularitate, plafonul ramane necalculabil la nivel de sistem si poate fi doar ilustrat.",
+      "text": "Eurostat nu coboara sub nivelul functiei COFOG, deci acest document nu poate spune nimic despre plafonul de 20%, care se masoara pe ordonator principal de credite si pe sursa de finantare. Granularitatea aceea exista insa in alta parte: executiile bugetare pe entitate raportoare, in data/fiscal/plafon-sporuri.json. Limitarea priveste acest set de date, nu intrebarea.",
       "affects": [
         "capUtilisation",
         "aggregate"
       ],
-      "severity": "blocking"
+      "severity": "note"
     },
     {
       "id": "comparabilitate-institutionala",

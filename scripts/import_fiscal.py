@@ -204,9 +204,9 @@ def main() -> None:
             },
             {
                 "id": "granularitate-lipsa-pe-ordonator",
-                "text": "Plafonul de 20% de la Art. 21 alin. (2) se masoara pe ordonator principal de credite si pe sursa de finantare. Eurostat nu coboara sub nivelul functiei COFOG, iar niciun set de date deschise nu publica cheltuiala de personal pe ordonator. Fara acea granularitate, plafonul ramane necalculabil la nivel de sistem si poate fi doar ilustrat.",
+                "text": "Eurostat nu coboara sub nivelul functiei COFOG, deci acest document nu poate spune nimic despre plafonul de 20%, care se masoara pe ordonator principal de credite si pe sursa de finantare. Granularitatea aceea exista insa in alta parte: executiile bugetare pe entitate raportoare, in data/fiscal/plafon-sporuri.json. Limitarea priveste acest set de date, nu intrebarea.",
                 "affects": ["capUtilisation", "aggregate"],
-                "severity": "blocking",
+                "severity": "note",
             },
             {
                 "id": "comparabilitate-institutionala",
@@ -223,7 +223,13 @@ def main() -> None:
         fh.write("\n")
 
     print(f"\nwrote {OUT.relative_to(ROOT)}: {len(series)} series")
-    total = {s["geo"]: s for s in series if s["dims"].get("cofog") == "TOTAL"}
+    # Two TOTAL series exist per country - a share of GDP and the cash bill - and keying
+    # only on geo kept whichever came last, printing millions of lei labelled "% of GDP".
+    total = {
+        s["geo"]: s
+        for s in series
+        if s["dims"].get("cofog") == "TOTAL" and s["unit"] == "PC_GDP"
+    }
     for geo, entry in sorted(total.items()):
         last = entry["observations"][-1]
         print(f"  {geo} compensation of employees {last['period']}: {last['value']}% of GDP")

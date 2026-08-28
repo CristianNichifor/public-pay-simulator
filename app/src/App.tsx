@@ -6,6 +6,7 @@ import type { AppliedProposal, Proposal } from '../../engine/proposal';
 import { decodeScenario, encodeScenario } from '../../engine/scenario';
 import type { Scenario } from '../../engine/scenario';
 import type { EnvelopeBaseline } from '../../engine/envelope';
+import type { CapSeries } from '../../engine/cap';
 import type { Shares } from '../../engine/composition';
 import type { DkOccupation, GroupsDocument } from '../../engine/occupations';
 import type { Crosswalk, Regime } from '../../engine/types';
@@ -26,6 +27,7 @@ const HEADCOUNT_ID = 'posturi-ocupate-2026-06';
 const GROUPS_ID = 'ro-dk-occupations';
 const DK_OCC_ID = 'dk-occupations';
 const EXEC_ID = 'executie-personal';
+const CAP_ID = 'plafon-sporuri';
 
 /**
  * The hash is the state. There is no store: every control writes a scenario into
@@ -68,6 +70,8 @@ export default function App() {
   const [occBench, setOccBench] = useState<{ roMedianBase: number; dkMedian: number } | null>(null);
   /** What Romania actually paid, by budget chapter, keyed by the scope the importer used. */
   const [roComposition, setRoComposition] = useState<Record<string, Shares> | null>(null);
+  /** The 20% ceiling measured per ordonator principal and per funding source. */
+  const [capSeries, setCapSeries] = useState<CapSeries[] | null>(null);
 
   const wanted = scenario.regimeIds;
 
@@ -117,8 +121,10 @@ export default function App() {
       fetch(`${base}data/groups/${GROUPS_ID}.json`).then((r) => r.json()),
       fetch(`${base}data/fiscal/${DK_OCC_ID}.json`).then((r) => r.json()),
       fetch(`${base}data/fiscal/${EXEC_ID}.json`).then((r) => r.json()),
+      fetch(`${base}data/fiscal/${CAP_ID}.json`).then((r) => r.json()),
     ])
-      .then(([groupsDoc, occDoc, execDoc]) => {
+      .then(([groupsDoc, occDoc, execDoc, capDoc]) => {
+        setCapSeries(capDoc.series);
         setOccGroups(groupsDoc);
 
         // The Romanian side of the composition: the rollup series, latest year, per
@@ -327,6 +333,7 @@ export default function App() {
           benchmarks={{ roMedianBase: medianBase ?? 0, dkMedian: occBench.dkMedian }}
           rates={fx}
           roComposition={roComposition}
+          capSeries={capSeries}
         />
       )}
       {scenario.view === 'echivalente' &&

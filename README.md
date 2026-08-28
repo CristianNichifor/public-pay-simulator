@@ -237,6 +237,43 @@ Two things this does not claim. The economic classification is an accounting voc
 not the law's: what lands in `10.01.05` is not the set Art. 21 caps. And the execution
 describes the *current* regime — the draft's ceiling has never applied to a single year.
 
+## Who the 20% ceiling actually binds
+
+Art. 21(2) caps supplements at 20% of the base wage bill **per ordonator principal de
+credite and per funding source**. The fiscal importer used to record, as a *blocking*
+limitation, that no open dataset published spending at that level — so the ceiling could
+be illustrated and never evaluated.
+
+`entityAnalytics` publishes exactly that level: spending per reporting entity, with
+`report_type: PRINCIPAL_AGGREGATED` folding each subordinate into its principal, and
+`funding_source_ids` splitting the second dimension. Two filters, and the ceiling becomes a
+measurement. `scripts/import_plafon.py` reads it; `engine/cap.ts` shapes it.
+
+| measured on | breach | share of the base wage bill behind them |
+| --- | --- | --- |
+| ordonator × sursă, as the law says — accounting "sporuri" | 159 of 4 407 | **20,3%** |
+| ordonator × sursă — everything paid above base | 316 of 4 407 | **40,4%** |
+| ordonator, sources merged — accounting "sporuri" | 56 of 3 287 | 19,4% |
+
+Both controls stay on the page, because both change the answer:
+
+- **Scope.** Merging funding sources hides breaches: 56 institutions look non-compliant
+  that way, 159 pairs do when each source is measured on its own. The law measures the
+  pairs.
+- **Measure.** `10.01.05 + 10.01.06` is what the budget labels supplements; the wide
+  reading takes everything above base pay that is not a reimbursed expense. Education sits
+  at 4,0% narrow and 15,2% wide — the difference is `plata cu ora`, booked elsewhere. An
+  institution can look compliant purely by choosing a paragraph, so the wide reading is the
+  one that cannot be arranged away.
+
+Named, on the wide reading: Sănătate 39,7%, ÎCCJ 31,6%, Municipiul București 30,2%,
+Județul Iași 29,9%, PÎCCJ 24,5%, MAI 20,7%.
+
+The same two caveats apply as everywhere else here: the economic classification is not the
+Art. 21 set (the statute lifts overtime, night work, disability, three-shift health work,
+Delta isolation, EU-fund administration and the performance premium out of the ceiling),
+and the execution describes the current regime rather than the draft.
+
 ## Naming: institution and statute, or occupation and expertise
 
 Denmark names a post by what the person does and what it requires — *engineer*,
