@@ -29,7 +29,8 @@ export default function OccupationsView({
   benchmarks: OccupationBenchmarks;
   rates: Rates;
 }) {
-  const [showLegal, setShowLegal] = useState(true);
+  const [showLegal, setShowLegal] = useState(false);
+  const [withCap, setWithCap] = useState(true);
 
   const resolved = useMemo(
     () =>
@@ -55,10 +56,12 @@ export default function OccupationsView({
   const axisMax = useMemo(() => {
     const all = resolved.flatMap((r) => [
       showLegal && r.roMax !== null ? r.roMax / 100 / benchmarks.roMedianBase : 0,
+      withCap && r.roCapped ? r.roCapped.q3 / 100 / benchmarks.roMedianBase : 0,
+      r.roQ3 !== null ? r.roQ3 / 100 / benchmarks.roMedianBase : 0,
       r.dkRatio?.q3 ?? 0,
     ]);
     return Math.max(...all, 2.5) * 1.04;
-  }, [resolved, benchmarks.roMedianBase, showLegal]);
+  }, [resolved, benchmarks.roMedianBase, showLegal, withCap]);
 
   return (
     <>
@@ -72,22 +75,50 @@ export default function OccupationsView({
       </header>
 
       <div className="disclaimer">
-        <strong>România arată ce permite legea, Danemarca ce câștigă oamenii.</strong> Pentru medici,
-        asistenți sau profesori Danemarca nu are grilă — salariul se negociază peste un minim din
-        contractul colectiv, iar cifrele publicate sunt câștiguri efective, cu sporuri. Partea
-        românească e salariul de bază, înainte de sporuri. Asimetria nu e o eroare de date: e chiar
-        deosebirea dintre cele două sisteme.
+        <strong>Cifra daneză include sporurile. Cea românească, doar dacă bifezi.</strong> Pentru
+        medici, asistenți sau profesori Danemarca nu are grilă — salariul se negociază peste un
+        minim din contractul colectiv, iar ce se publică sunt câștiguri efective. Ca să fie o
+        comparație corectă, partea românească trebuie să primească și ea sporurile.
+        <details>
+          <summary>Ce spune de fapt plafonul de 20%</summary>
+          <p>
+            Art. 21 alin. (2) plafonează suma sporurilor la 20% din suma salariilor de bază —{' '}
+            <strong>pe ordonator principal de credite și pe sursă de finanțare, nu pe persoană</strong>.
+            Este o medie a instituției: un om poate trece binișor peste 20%, dacă altul stă sub.
+          </p>
+          <p>
+            În plus, legea scoate din plafon o listă lungă: munca de noapte (25%), orele
+            suplimentare (75–100%), sporul pentru handicap (15% din valoarea de referință), turele
+            din sănătate (15%), izolarea în Delta Dunării (15%), administrarea fondurilor europene
+            (până la 40%) și premiul de performanță (10–20%, cu plafonul lui separat de 4%). Sporul
+            pentru proiecte europene intră doar cu partea cofinanțată din buget. Practic, în plafon
+            rămân trei: controlul financiar preventiv, condițiile periculoase și capacitatea
+            fiscal-bugetară locală.
+          </p>
+          <p>
+            Bara „cu sporuri în plafon” de mai jos adaugă exact 20% peste bază. Este o ilustrare a
+            ce implică plafonul, nu un drept al nimănui — iar sporurile exceptate pot urca peste ea.
+          </p>
+        </details>
       </div>
 
       <section>
         <div className="card controls occ-controls">
           <label className="claim">
+            <input type="checkbox" checked={withCap} onChange={() => setWithCap((v) => !v)} />
+            <span>
+              Adaugă sporurile în plafon la partea românească (+20%) — altfel se compară baza
+              românească cu câștigul danez cu tot cu sporuri
+            </span>
+          </label>
+          <label className="claim">
             <input type="checkbox" checked={showLegal} onChange={() => setShowLegal((v) => !v)} />
-            <span>Arată și intervalul legal complet al României (bara palidă)</span>
+            <span>Arată și intervalul legal complet al bazei (bara palidă)</span>
           </label>
           <div className="occ-key">
-            <span><i className="k-ro-solid" /> România, jumătatea din mijloc a funcțiilor</span>
-            {showLegal && <span><i className="k-ro-faint" /> tot ce permite legea</span>}
+            <span><i className="k-ro-solid" /> România, salariul de bază</span>
+            {withCap && <span><i className="k-ro-cap" /> + sporuri în plafon (20%)</span>}
+            {showLegal && <span><i className="k-ro-faint" /> tot ce permite legea, la bază</span>}
             <span><i className="k-dk" /> Danemarca, cuartilele angajaților</span>
             <span><i className="k-mid" /> mijlocul fiecărui sistem</span>
           </div>
@@ -100,7 +131,7 @@ export default function OccupationsView({
           <div className="occ-list">
             {rows.map((r) => (
               <OccupationRow key={r.group.id} row={r} axisMax={axisMax} showLegal={showLegal}
-                             benchmarks={benchmarks} rates={rates} />
+                             withCap={withCap} benchmarks={benchmarks} rates={rates} />
             ))}
           </div>
         </section>
@@ -131,12 +162,14 @@ function OccupationRow({
   row,
   axisMax,
   showLegal,
+  withCap,
   benchmarks,
   rates,
 }: {
   row: ResolvedGroup;
   axisMax: number;
   showLegal: boolean;
+  withCap: boolean;
   benchmarks: OccupationBenchmarks;
   rates: Rates;
 }) {
@@ -146,6 +179,8 @@ function OccupationRow({
   const roQ1 = row.roQ1 !== null ? row.roQ1 / 100 / benchmarks.roMedianBase : null;
   const roQ3 = row.roQ3 !== null ? row.roQ3 / 100 / benchmarks.roMedianBase : null;
   const roMed = row.roMedian !== null ? row.roMedian / 100 / benchmarks.roMedianBase : null;
+  const roCapQ1 = row.roCapped ? row.roCapped.q1 / 100 / benchmarks.roMedianBase : null;
+  const roCapQ3 = row.roCapped ? row.roCapped.q3 / 100 / benchmarks.roMedianBase : null;
   const roLo = row.roMin !== null ? row.roMin / 100 / benchmarks.roMedianBase : null;
   const roHi = row.roMax !== null ? row.roMax / 100 / benchmarks.roMedianBase : null;
 
@@ -172,11 +207,18 @@ function OccupationRow({
             {showLegal && roLo !== null && roHi !== null && (
               <div className="occ-faint" style={span(roLo, roHi)} />
             )}
+            {withCap && roCapQ1 !== null && roCapQ3 !== null && (
+              <div className="occ-cap" style={span(roCapQ1, roCapQ3)} />
+            )}
             {roQ1 !== null && roQ3 !== null && <div className="occ-solid ro" style={span(roQ1, roQ3)} />}
             {roMed !== null && <span className="occ-tick" style={{ left: pos(roMed) }} />}
           </div>
           <span className="occ-value">
-            {roQ1 !== null && roQ3 !== null ? `${times(roQ1)}–${times(roQ3)}` : '—'}
+            {withCap && roCapQ1 !== null && roCapQ3 !== null
+              ? `${times(roCapQ1)}–${times(roCapQ3)}`
+              : roQ1 !== null && roQ3 !== null
+                ? `${times(roQ1)}–${times(roQ3)}`
+                : '—'}
           </span>
         </div>
 
@@ -197,8 +239,14 @@ function OccupationRow({
         <span>
           <b>RO</b>{' '}
           {row.roQ1 !== null && row.roQ3 !== null
-            ? amountRange(row.roQ1 / 100, row.roQ3 / 100, 'RON', rates)
+            ? amountRange(
+                (withCap && row.roCapped ? row.roCapped.q1 : row.roQ1) / 100,
+                (withCap && row.roCapped ? row.roCapped.q3 : row.roQ3) / 100,
+                'RON',
+                rates,
+              )
             : '—'}
+          {withCap && <em className="occ-caphint"> cu sporuri în plafon</em>}
         </span>
         <span>
           <b>DK</b> {row.dk ? amountRange(row.dk.q1, row.dk.q3, 'DKK', rates) : '—'}
@@ -208,6 +256,13 @@ function OccupationRow({
       <details className="why">
         <summary>Ce intră în grupă și de ce</summary>
         <p className="equiv-note">{row.group.basis}</p>
+        <p className="equiv-note">
+          <strong>În afara plafonului de 20%:</strong>{' '}
+          {row.exemptSupplements
+            .map((e) => `${e.name}${e.rate !== null ? ` (${Math.round(e.rate * 100)}%)` : ''}`)
+            .join('; ')}
+          . Acestea se adaugă peste bara de mai sus, dacă persoana le îndeplinește condițiile.
+        </p>
         <ul className="matched">
           {row.matched.slice(0, 14).map((m) => (
             <li key={m.code}>

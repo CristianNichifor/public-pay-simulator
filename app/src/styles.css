@@ -408,3 +408,8 @@ ul.matched code { font-size: 11px; color: var(--text-muted); }
 ul.matched li.more { list-style: none; margin-left: -16px; color: var(--text-muted); }
 .occ-money { display: grid; gap: 2px; }
 .occ-money b { color: var(--text-secondary); font-weight: 600; margin-right: 4px; }
+.occ-cap { position: absolute; top: 0; bottom: 0; border-radius: 3px;
+           background: repeating-linear-gradient(135deg, var(--series-1) 0 4px, transparent 4px 8px);
+           opacity: 0.55; }
+i.k-ro-cap { background: repeating-linear-gradient(135deg, var(--series-1) 0 3px, transparent 3px 6px); opacity: 0.7; }
+.occ-caphint { color: var(--text-muted); font-style: normal; }

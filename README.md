@@ -181,10 +181,17 @@ cancel and the ratios compare. As multiples of that middle:
 | Personal administrativ, studii medii | 0,74–0,94× | 0,84–1,06× |
 | Conducere | 1,29–2,23× | 1,84–2,26× |
 
-The asymmetry is deliberate and labelled: Romania's figure is what the law sets, before
-supplements; Denmark's is what people are actually paid, because for these occupations
-there is no grid at all — pay is negotiated over a collective-agreement floor. Reporting
-one as the other would be the easiest lie available here.
+Denmark's figure includes supplements, so the Romanian one has to as well or the
+comparison is rigged. The Art. 21(2) ceiling — 20% of the base wage bill — is added as a
+second, hatched segment, and it moves the reading: nurses go from below their Danish
+counterparts to slightly above, care staff from 0,89–1,14× to 1,07–1,37× against Denmark's
+0,87–1,10×.
+
+That ceiling is not what it first appears, and the page says so. It is measured **per
+ordonator principal de credite, per funding source — not per person**, so it caps an
+institutional average rather than anyone's payslip. And the statute lifts a long list out
+of it: night work, overtime, disability, three-shift health work, Delta isolation,
+EU-fund administration, and the performance premium. Three supplements remain inside.
 
 ## Naming: institution and statute, or occupation and expertise
 

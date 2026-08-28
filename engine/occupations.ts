@@ -72,6 +72,18 @@ export interface ResolvedGroup {
   roQ1: Money | null;
   roMedian: Money | null;
   roQ3: Money | null;
+  /**
+   * The same range with the Art. 21(2) ceiling added on top.
+   *
+   * The ceiling is 20% of the base wage bill per ordonator principal, per funding source —
+   * an institutional average, not a personal entitlement — so applying it to one position
+   * is an illustration of what the cap implies, not a figure anyone is owed. It is worth
+   * showing because the Danish side already includes supplements, and comparing a
+   * Romanian base against Danish total pay understates Romania by whatever supplements add.
+   */
+  roCapped: { q1: Money; q3: Money } | null;
+  /** Supplements the statute places outside that ceiling, so the reader can see what it omits. */
+  exemptSupplements: Array<{ id: string; name: string; rate: number | null; basis: string }>;
   dk: { q1: number; median: number; q3: number } | null;
   /** Each side against its own country's public-sector benchmark. */
   roRatio: { min: number; max: number } | null;
@@ -143,6 +155,25 @@ export function resolveGroups(
     const roMedian = at(0.5);
     const roQ3 = at(0.75);
 
+    const capPct = (() => {
+      const cap = regime.caps.find((c) => c.id === 'cap-sporuri-20' || c.kind === 'shareOfBase');
+      if (!cap?.pct) return 0;
+      return typeof cap.pct === 'number' ? cap.pct : cap.pct[0].value;
+    })();
+    const roCapped =
+      roQ1 !== null && roQ3 !== null
+        ? { q1: Math.round(roQ1 * (1 + capPct)), q3: Math.round(roQ3 * (1 + capPct)) }
+        : null;
+
+    const exemptSupplements = regime.supplements
+      .filter((s) => s.countsToCap === false || s.countsToCap === 'partial')
+      .map((s) => ({
+        id: s.id,
+        name: s.name,
+        rate: s.rate === undefined ? null : typeof s.rate === 'number' ? s.rate : s.rate[0].value,
+        basis: s.base,
+      }));
+
     const parts = group.dkOccupations.map((name) => dkByName.get(name)).filter(Boolean) as DkOccupation[];
     const dk = parts.length
       ? {
@@ -160,6 +191,8 @@ export function resolveGroups(
       roQ1,
       roMedian,
       roQ3,
+      roCapped,
+      exemptSupplements,
       dk,
       roRatio:
         roMin !== null && roMax !== null && benchmarks.roPublicAverage > 0
