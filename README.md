@@ -324,6 +324,45 @@ Two things this does not claim. The economic classification is an accounting voc
 not the law's: what lands in `10.01.05` is not the set Art. 21 caps. And the execution
 describes the *current* regime — the draft's ceiling has never applied to a single year.
 
+## Who moves up and who moves down
+
+The payslip answers this one post at a time, which is the right shape for an argument
+about a job and the wrong shape for an argument about a reform: a reader can always be
+shown the post that makes their case. `engine/distribution.ts` asks it of the whole
+matched grid, and the answer is not the one the median suggests.
+
+| | share |
+| --- | --- |
+| scade peste 20% | 3% |
+| scade 10–20% | 19% |
+| scade 2–10% | 18% |
+| **aproape neschimbat** | **13%** |
+| urcă 2–10% | 15% |
+| urcă 10–20% | 22% |
+| urcă peste 20% | 11% |
+
+The middle post keeps its place almost exactly — **+1,4%** — and only **13%** of posts
+actually stay put. 39% fall, 48% rise. A reform that left the hierarchy alone would show
+one bar in the middle; this one is U-shaped. Reporting only the median would miss the
+churn entirely, and reporting only the tails would invent a story the middle contradicts.
+
+By family, on the posts that could be matched: diplomacy falls (median −2,6%, 85% of its
+posts losing), while defence and public order rise (+18%, none losing). The biggest single
+falls are school support roles — *Pedagog școlar* at −35%, *Supraveghetor noapte* at −28%
+— and the biggest rises are financial management — *Director financiar-contabil* at +73%,
+*Director economic* at +56%.
+
+Three things the page refuses to let the numbers imply, stated on it rather than here:
+
+- **This is standing, not pay.** The reference moves from 2 500 to 4 100 lei, so a post
+  that falls 10% in coefficient may still receive more lei. The ratio says who rose
+  relative to everyone else.
+- **It is 117 posts of 1 524** — the one-to-one links. Another 104 links join several
+  posts on a side and have no single before-and-after, so they are counted and set aside
+  rather than averaged into a move nobody made.
+- **A family with one post is not a trend.** Anything under five matched posts is drawn as
+  a dashed outline and labelled as too thin to support a conclusion.
+
 ## The grid is a five-year walk, and you can step through it
 
 Art. 5 promises 1 to 8. Annex IX publishes a column per year and walks the dignitary

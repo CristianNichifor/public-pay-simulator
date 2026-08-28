@@ -12,6 +12,7 @@ import type { Shares } from '../../engine/composition';
 import type { DkOccupation, GroupsDocument } from '../../engine/occupations';
 import type { Crosswalk, Regime } from '../../engine/types';
 import CompareView from './CompareView';
+import DistributionView from './DistributionView';
 import EnvelopeView from './EnvelopeView';
 import OccupationsView from './OccupationsView';
 import EquivalenceView from './EquivalenceView';
@@ -44,6 +45,10 @@ const CAP_ID = 'plafon-sporuri';
 const VIEW_META: Record<ViewId, { label: string; blurb: string }> = {
   compare: { label: 'Ce se schimbă', blurb: 'proiectul, propunerea și Danemarca, față în față' },
   structure: { label: 'Cum e construită grila', blurb: 'zecimalele, golurile, funcțiile comasate' },
+  distributie: {
+    label: 'Cine urcă, cine coboară',
+    blurb: 'cum se mișcă fiecare post față de legea de azi',
+  },
   meserii: { label: 'Meserii, RO vs DK', blurb: 'cât ia aceeași meserie în fiecare țară' },
   payslip: { label: 'Un salariu, calculat', blurb: 'un om anume, sub fiecare regim' },
   echivalente: { label: 'Echivalențe de post', blurb: 'ce denumire daneză corespunde fiecărei funcții' },
@@ -54,7 +59,7 @@ const VIEW_META: Record<ViewId, { label: string; blurb: string }> = {
 const PHASED_VIEWS: ViewId[] = ['compare', 'structure', 'payslip'];
 
 const NAV_GROUPS: Array<{ title: string; ask: string; views: ViewId[] }> = [
-  { title: 'Reforma', ask: 'Ce se schimbă?', views: ['compare', 'structure'] },
+  { title: 'Reforma', ask: 'Ce se schimbă?', views: ['compare', 'distributie', 'structure'] },
   { title: 'Oamenii', ask: 'Cine cât ia?', views: ['meserii', 'payslip', 'echivalente'] },
   { title: 'Banii', ask: 'Ne permitem?', views: ['envelope'] },
 ];
@@ -280,7 +285,7 @@ export default function App() {
     // be called, and without it that block renders with the titles and no coefficients.
     // Leaving it to `wanted` once left the landing page — headed "ways to pay the state" —
     // with its entire Danish column as explained dashes.
-    const NEEDS_ALL: ViewId[] = ['compare', 'echivalente', 'payslip'];
+    const NEEDS_ALL: ViewId[] = ['compare', 'echivalente', 'payslip', 'distributie'];
     const needed = NEEDS_ALL.includes(scenario.view) ? AVAILABLE : wanted;
     const missing = needed.filter((id) => !regimes[id] && AVAILABLE.includes(id));
     if (missing.length === 0) return;
@@ -413,6 +418,13 @@ export default function App() {
           capSeries={capSeries}
           period={period}
           onOpen={(view) => setScenario({ ...scenario, view })}
+        />
+      )}
+      {scenario.view === 'distributie' && ministry && assimilation && (
+        <DistributionView
+          inForce={regimes['ro-153-2017'] ?? null}
+          draft={ministry}
+          crosswalk={assimilation}
         />
       )}
       {scenario.view === 'meserii' && ministry && occGroups && dkOcc && occBench && fx && (
