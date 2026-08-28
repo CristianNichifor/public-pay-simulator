@@ -7,6 +7,7 @@ import { decodeScenario, encodeScenario } from '../../engine/scenario';
 import type { Scenario, ViewId } from '../../engine/scenario';
 import type { EnvelopeBaseline } from '../../engine/envelope';
 import type { CapSeries } from '../../engine/cap';
+import { asOfForYear, periodForYear, phaseYears, yearOfAsOf } from '../../engine/phase';
 import type { Shares } from '../../engine/composition';
 import type { DkOccupation, GroupsDocument } from '../../engine/occupations';
 import type { Crosswalk, Regime } from '../../engine/types';
@@ -47,6 +48,9 @@ const VIEW_META: Record<ViewId, { label: string; blurb: string }> = {
   echivalente: { label: 'Echivalențe de post', blurb: 'ce denumire daneză corespunde fiecărei funcții' },
   envelope: { label: 'Cât costă tot', blurb: 'plicul, plafonul de 20% și cine trece de el' },
 };
+
+/** Views whose numbers move as the draft phases itself in. */
+const PHASED_VIEWS: ViewId[] = ['compare', 'structure', 'payslip'];
 
 const NAV_GROUPS: Array<{ title: string; ask: string; views: ViewId[] }> = [
   { title: 'Reforma', ask: 'Ce se schimbă?', views: ['compare', 'structure'] },
@@ -99,6 +103,14 @@ export default function App() {
   const [capSeries, setCapSeries] = useState<CapSeries[] | null>(null);
 
   const wanted = scenario.regimeIds;
+
+  // The draft walks its own grid from 2026/2027 to 2031, so "the ratio is 1:8" and "the
+  // ratio is 1:7,39" are both true and differ only by the year meant. The years come out
+  // of the regime rather than out of a constant here.
+  const ministryRegime = regimes['ro-draft-2026-07-16'] ?? null;
+  const years = useMemo(() => (ministryRegime ? phaseYears(ministryRegime) : []), [ministryRegime]);
+  const year = yearOfAsOf(scenario.asOf, years[0] ?? 2026);
+  const period = ministryRegime ? periodForYear(ministryRegime, year) : null;
 
   useEffect(() => {
     fetch(`${import.meta.env.BASE_URL}data/proposals/${PROPOSAL_ID}.json`)
@@ -345,6 +357,33 @@ export default function App() {
         )}
       </nav>
 
+      {PHASED_VIEWS.includes(scenario.view) && years.length > 1 && (
+        <div className="phase">
+          <label htmlFor="phase-year">
+            <strong>Grila din anul</strong>
+            <span>
+              proiectul se aplică eșalonat: coeficienții de vârf urcă an de an până în{' '}
+              {years[years.length - 1]}
+            </span>
+          </label>
+          <input
+            id="phase-year"
+            type="range"
+            min={years[0]}
+            max={years[years.length - 1]}
+            step={1}
+            value={year}
+            onChange={(e) =>
+              setScenario({ ...scenario, asOf: asOfForYear(Number(e.target.value)) })
+            }
+          />
+          <output htmlFor="phase-year">
+            <b>{year}</b>
+            {period && <span>coloana „{period}"</span>}
+          </output>
+        </div>
+      )}
+
       {error && <p className="loading">Nu s-au putut încărca datele: {error}</p>}
       {!error && loaded.length === 0 && <p className="loading">Se încarcă grila…</p>}
 
@@ -357,6 +396,7 @@ export default function App() {
           effects={ours.effects}
           rates={fx}
           capSeries={capSeries}
+          period={period}
           onOpen={(view) => setScenario({ ...scenario, view })}
         />
       )}
@@ -385,10 +425,16 @@ export default function App() {
           />
         )}
       {loaded.length > 0 && scenario.view === 'structure' && (
-        <StructureView regime={regimes['ro-draft-2026-07-16'] ?? loaded[0]} />
+        <StructureView regime={regimes['ro-draft-2026-07-16'] ?? loaded[0]} period={period} />
       )}
       {scenario.view === 'envelope' && fx && (
-        <EnvelopeView baseline={envelopeBaseline} rates={fx} capSeries={capSeries} />
+        <EnvelopeView
+          baseline={envelopeBaseline}
+          rates={fx}
+          capSeries={capSeries}
+          scenario={scenario}
+          onScenario={setScenario}
+        />
       )}
       {loaded.length > 0 && scenario.view === 'payslip' && fx && (
         <PayslipView

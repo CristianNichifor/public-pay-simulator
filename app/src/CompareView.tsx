@@ -82,6 +82,7 @@ export default function CompareView({
   onOpen,
   rates,
   capSeries,
+  period,
 }: {
   ministry: Regime;
   ours: Regime;
@@ -91,10 +92,22 @@ export default function CompareView({
   onOpen: (view: 'structure' | 'payslip' | 'echivalente') => void;
   rates: Rates;
   capSeries: CapSeries[] | null;
+  period: string | null;
 }) {
   const COLUMNS = useMemo(() => columnsFor(proposal), [proposal]);
-  const m = useMemo(() => structure(ministry), [ministry]);
-  const o = useMemo(() => structure(ours), [ours]);
+  const opts = period ? { period } : undefined;
+  const m = useMemo(() => structure(ministry, opts), [ministry, period]);
+  const o = useMemo(() => structure(ours, opts), [ours, period]);
+  // The whole schedule, unfiltered: "how many annual columns are there" is a fact about
+  // the law, not about the year being viewed, and filtering would always answer one.
+  const schedule = useMemo(() => structure(ministry).spanByPeriod, [ministry]);
+  // The first column where the ratio actually moves. It is not the second: the phased
+  // dignitary coefficients stay below a post that is not phased at all, so the eșalonare
+  // is invisible for its first years — which is only visible if you can step through them.
+  const firstMove = useMemo(
+    () => schedule.find((p) => p.ratio > (schedule[0]?.ratio ?? 0)) ?? null,
+    [schedule],
+  );
   const d: StructureMetrics | null = useMemo(
     () => (denmark ? structure(denmark) : null),
     [denmark],
@@ -193,9 +206,11 @@ export default function CompareView({
       better: 'none',
       cells: {
         ministry: {
-          n: m.spanByPeriod[0]?.ratio ?? m.span.ratio,
-          text: ratio(m.spanByPeriod[0]?.ratio ?? m.span.ratio),
-          note: `urcă la ${ratio(m.span.ratio)} în 2031`,
+          n: m.span.ratio,
+          text: ratio(m.span.ratio),
+          note: period
+            ? `în ${period}; ajunge la ${ratio(schedule[schedule.length - 1]?.ratio ?? m.span.ratio)} în ${schedule[schedule.length - 1]?.period ?? ''}`
+            : undefined,
         },
         ours: { n: o.span.ratio, text: ratio(o.span.ratio), note: 'fix, nu se mai schimbă' },
         dk: dkCell(d?.span.ratio ?? null, ratio(d?.span.ratio ?? 0), 'nu e declarat în lege, rezultă din tabele'),
@@ -206,7 +221,7 @@ export default function CompareView({
       hint: 'câte coloane anuale trebuie parcurse',
       better: 'lower',
       cells: {
-        ministry: { n: m.spanByPeriod.length, text: ro(m.spanByPeriod.length) },
+        ministry: { n: schedule.length, text: ro(schedule.length) },
         ours: { n: 0, text: '0' },
         dk: dkCell(0, '0', 'treptele se renegociază, nu se eșalonează în lege'),
       },
@@ -247,11 +262,15 @@ export default function CompareView({
             </p>
           </div>
           <div className="brief-card">
-            <span className="brief-num">{ratio(m.spanByPeriod[0]?.ratio ?? m.span.ratio)}</span>
+            <span className="brief-num">{ratio(m.span.ratio)}</span>
             <strong>Între cel mai mic și cel mai mare</strong>
             <p>
-              Art. 5 promite 1 la 8. La intrarea în vigoare raportul e mai mic și urcă la{' '}
-              {ratio(m.span.ratio)} abia în 2031 — grila declarată se aplică peste cinci ani.
+              Art. 5 promite 1 la 8, dar grila urcă an de an: raportul de mai sus e cel din{' '}
+              {period ?? 'grila întreagă'}, iar 1:8 se atinge abia în{' '}
+              {schedule[schedule.length - 1]?.period ?? '2031'}. Mișcă anul de sus ca să vezi
+              drumul — și observă că nu se schimbă nimic până în{' '}
+              {firstMove?.period ?? 'ultimii ani'}: coeficienții eșalonați rămân sub o funcție
+              care nu e eșalonată deloc.
             </p>
           </div>
           <div className="brief-card">

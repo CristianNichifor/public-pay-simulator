@@ -7,7 +7,7 @@ import { describe, expect, it } from 'vitest';
 import { applyProposal } from './proposal';
 import type { Proposal } from './proposal';
 import { structure } from './structure';
-import type { Regime } from './types';
+import type { Position, Regime } from './types';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const BASE: Regime = JSON.parse(
@@ -206,18 +206,37 @@ describe('one job gets one name', () => {
   });
 
   it('refuses rows whose name is a rank rather than a job', () => {
-    // 'debutant' appears 46 times and 'clasa a II-a' 30: continuation rows that lost
-    // their parent occupation on import. Merging them would invent a job called
-    // "debutant" — a wrong answer that would look like a big, satisfying reduction.
-    const names = merged.map((p) => p.name.trim().toLowerCase());
+    // The importer now folds ranks into the position above as a `grad` dimension, so the
+    // base regime no longer contains a job called "debutant" for the merge to swallow.
+    // The guard stays because the two fixes are independent: a future sheet layout could
+    // reintroduce the rows, and merging them would produce a large, satisfying, wrong
+    // reduction. Assert both the corrected input and the guard that does not rely on it.
     for (const label of ['debutant', 'principal', 'gradul i', 'clasa a ii-a', 'treapta ii']) {
-      expect(names).not.toContain(label);
+      expect(BASE.positions.map((p) => p.name.trim().toLowerCase())).not.toContain(label);
+      expect(merged.map((p) => p.name.trim().toLowerCase())).not.toContain(label);
     }
-    // And they survive, rather than being quietly dropped.
-    const survivors = applied.regime.positions.filter(
-      (p) => p.name.trim().toLowerCase() === 'debutant',
-    );
-    expect(survivors.length).toBeGreaterThan(10);
+
+    // The guard itself, on a regime built to contain exactly the defect.
+    const rank = (code: string, name: string): Position => ({
+      code,
+      name,
+      family: 'X-test',
+      kind: 'execution',
+      studyLevel: 'S',
+      variants: [{ value: 2, provenance: BASE.positions[0].variants[0].provenance }],
+      provenance: BASE.positions[0].provenance,
+    });
+    const trap: Regime = {
+      ...BASE,
+      positions: [rank('t.1', 'debutant'), rank('t.2', 'debutant'), rank('t.3', 'Auditor'), rank('t.4', 'Auditor')],
+    };
+    const out = applyProposal(trap, {
+      ...PROPOSAL,
+      patches: PROPOSAL.patches.filter((p) => p.op === 'mergeDuplicateTitles'),
+    });
+    const names = out.regime.positions.map((p) => p.name);
+    expect(names.filter((n) => n === 'debutant')).toHaveLength(2);
+    expect(names.filter((n) => n === 'Auditor')).toHaveLength(1);
   });
 
   it('loses no name and keeps every code traceable', () => {

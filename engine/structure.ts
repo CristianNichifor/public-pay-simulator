@@ -111,9 +111,23 @@ export interface StructureMetrics {
 
 // ------------------------------------------------------------------ the metric
 
-export function structure(regime: Regime, opts?: { asOf?: IsoDate }): StructureMetrics {
+export function structure(
+  regime: Regime,
+  opts?: { asOf?: IsoDate; period?: string },
+): StructureMetrics {
   const asOf = opts?.asOf;
-  const positions = regime.positions;
+  // Restricting to one phase makes every metric below describe the grid actually in
+  // force that year, not the union of all six annual columns. Without it `span` reports
+  // the 2031 ceiling against the day-one floor and calls the result the law's ratio.
+  // Variants without a year of their own belong to every year.
+  const positions = opts?.period
+    ? regime.positions
+        .map((p) => ({
+          ...p,
+          variants: p.variants.filter((v) => v.dims?.an === undefined || v.dims.an === opts.period),
+        }))
+        .filter((p) => p.variants.length > 0)
+    : regime.positions;
 
   const values: number[] = [];
   for (const position of positions) {

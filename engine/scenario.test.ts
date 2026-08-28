@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { decodeScenario, encodeScenario, personFrom } from './scenario';
+import { DEFAULT_SCENARIO, decodeScenario, encodeScenario, personFrom } from './scenario';
 import type { Scenario } from './scenario';
 
 describe('scenario codec', () => {
@@ -69,5 +69,39 @@ describe('scenario codec', () => {
       seniorityYears: 12,
     });
     expect(personFrom({ view: 'payslip', regimeIds: [] })).toBeNull();
+  });
+});
+
+describe('envelope scenarios survive a link', () => {
+  it('carries the target and every move, reason included', () => {
+    // Envelope mode refuses to price a move with no rationale. If the link dropped the
+    // reason, a shared scenario would arrive as an unargued cut — the exact thing the
+    // view exists to prevent.
+    const scenario = {
+      ...DEFAULT_SCENARIO,
+      view: 'envelope' as const,
+      envelopeTarget: -0.05,
+      envelopeMoves: [
+        { family: 'I-invatamant', pct: 0.08, why: 'Profesorii sunt sub media pieței' },
+        { family: 'VIII-administratie', pct: -0.04, why: 'Comasare de funcții: 261 denumiri' },
+      ],
+    };
+    const round = decodeScenario(encodeScenario(scenario));
+    expect(round.envelopeTarget).toBeCloseTo(-0.05, 10);
+    expect(round.envelopeMoves).toEqual(scenario.envelopeMoves);
+  });
+
+  it('keeps separators inside a reason from splitting it', () => {
+    const scenario = {
+      ...DEFAULT_SCENARIO,
+      view: 'envelope' as const,
+      envelopeMoves: [{ family: 'f', pct: 1, why: 'a, b: c' }],
+    };
+    expect(decodeScenario(encodeScenario(scenario)).envelopeMoves![0].why).toBe('a, b: c');
+  });
+
+  it('drops a malformed move rather than inventing a zero', () => {
+    // A move read as 0% would look deliberate and would silently change the ledger.
+    expect(decodeScenario('#/envelope?m=nu-e-un-numar').envelopeMoves).toBeUndefined();
   });
 });

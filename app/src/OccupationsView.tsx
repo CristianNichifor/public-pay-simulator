@@ -430,6 +430,34 @@ function CompositionSection({
         );
       })}
 
+      {national && (
+        <details className="table-view">
+          <summary>Vezi compoziția ca tabel</summary>
+          <table className="data">
+            <thead>
+              <tr>
+                <th>Componentă</th>
+                <th className="num">România</th>
+                <th className="num">Danemarca</th>
+              </tr>
+            </thead>
+            <tbody>
+              {COMPONENTS.map((c: Component) => (
+                <tr key={c}>
+                  <td>{COMPONENT_LABELS[c]}</td>
+                  <td className="num">
+                    {pctOf(national.ro.slices.find((s) => s.component === c)?.share ?? 0)}
+                  </td>
+                  <td className="num">
+                    {pctOf(national.dk.slices.find((s) => s.component === c)?.share ?? 0)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </details>
+      )}
+
       <div className="comp-key">
         {COMPONENTS.map((c: Component) => (
           <span key={c}>

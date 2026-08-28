@@ -25,11 +25,50 @@ export interface Scenario {
   dims?: Record<string, string>;
   claims?: SupplementClaim[];
   asOf?: string;
+  /** Envelope mode: the ceiling on total spend, as a proportion of today's bill. */
+  envelopeTarget?: number;
+  /** Envelope mode: a proportional change per occupational family, and its reason. */
+  envelopeMoves?: EnvelopeMove[];
   /** Anything this version does not understand, preserved verbatim. */
   extra?: Record<string, string>;
 }
 
-const KNOWN = new Set(['r', 'p', 'y', 'd', 's', 'a']);
+const KNOWN = new Set(['r', 'p', 'y', 'd', 's', 'a', 't', 'm']);
+
+export interface EnvelopeMove {
+  family: string;
+  /** Proportional change to that family's bill. +0.05 is five percent more. */
+  pct: number;
+  /**
+   * Why. Envelope mode refuses to price an unnamed move, so the reason has to survive
+   * the round trip or a shared link would arrive as an unusable scenario.
+   */
+  why: string;
+}
+
+/**
+ * `familie:0.05:motivul%20scris%20aici`.
+ *
+ * The reason is free text and will contain the separators, so it is percent-encoded —
+ * the one place this codec gives up readability, because the alternative is a link that
+ * silently loses the justification and arrives looking like an unargued cut.
+ */
+function encodeMove(move: EnvelopeMove): string {
+  return `${move.family}:${move.pct}:${encodeURIComponent(move.why)}`;
+}
+
+function decodeMove(text: string): EnvelopeMove | null {
+  const [family, pct, ...rest] = text.split(':');
+  const parsed = Number(pct);
+  if (!family || !Number.isFinite(parsed)) return null;
+  let why = '';
+  try {
+    why = decodeURIComponent(rest.join(':'));
+  } catch {
+    why = rest.join(':');
+  }
+  return { family, pct: parsed, why };
+}
 
 export const DEFAULT_SCENARIO: Scenario = {
   view: 'compare',
@@ -73,6 +112,10 @@ export function encodeScenario(scenario: Scenario): string {
   }
   if (scenario.claims?.length) params.set('s', scenario.claims.map(encodeClaim).join(','));
   if (scenario.asOf) params.set('a', scenario.asOf);
+  if (scenario.envelopeTarget !== undefined) params.set('t', String(scenario.envelopeTarget));
+  if (scenario.envelopeMoves?.length) {
+    params.set('m', scenario.envelopeMoves.map(encodeMove).join(','));
+  }
   for (const [key, value] of Object.entries(scenario.extra ?? {})) params.set(key, value);
 
   const query = params.toString();
@@ -115,6 +158,14 @@ export function decodeScenario(hash: string): Scenario {
   for (const [key, value] of params) if (!KNOWN.has(key)) extra[key] = value;
 
   const years = Number(params.get('y'));
+  const target = Number(params.get('t'));
+
+  const moves = (params.get('m') ?? '')
+    .split(',')
+    .map((t) => t.trim())
+    .filter(Boolean)
+    .map(decodeMove)
+    .filter((m): m is EnvelopeMove => m !== null);
 
   return {
     view,
@@ -124,6 +175,9 @@ export function decodeScenario(hash: string): Scenario {
     dims: Object.keys(dims).length ? dims : undefined,
     claims: claims.length ? claims : undefined,
     asOf: params.get('a') ?? undefined,
+    envelopeTarget:
+      Number.isFinite(target) && params.get('t') !== null ? target : undefined,
+    envelopeMoves: moves.length ? moves : undefined,
     extra: Object.keys(extra).length ? extra : undefined,
   };
 }

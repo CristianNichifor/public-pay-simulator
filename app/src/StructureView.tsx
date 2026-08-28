@@ -15,8 +15,18 @@ function pct(n: number): string {
   return `${(n * 100).toLocaleString('ro-RO', { maximumFractionDigits: 1 })}%`;
 }
 
-export default function StructureView({ regime }: { regime: Regime }) {
-  const metrics = useMemo(() => structure(regime), [regime]);
+export default function StructureView({
+  regime,
+  period,
+}: {
+  regime: Regime;
+  /** The annual column in force, or null when the regime phases nothing. */
+  period: string | null;
+}) {
+  const metrics = useMemo(
+    () => structure(regime, period ? { period } : undefined),
+    [regime, period],
+  );
 
   const precisionBars: Bar[] = Object.entries(metrics.precisionHistogram)
     .map(([dp, count]) => ({ dp: Number(dp), count }))

@@ -147,6 +147,32 @@ export default function CapSection({ series }: { series: CapSeries[] }) {
         </div>
       </div>
 
+      <details className="table-view">
+        <summary>Vezi cifrele ca tabel</summary>
+        <table className="data">
+          <thead>
+            <tr>
+              <th>Ordonator</th>
+              <th className="num">Masa salarială de bază</th>
+              <th className="num">Sporuri / bază</th>
+              <th className="num">Peste plafon</th>
+            </tr>
+          </thead>
+          <tbody>
+            {top.map((e) => (
+              <tr key={e.cui}>
+                <td>{e.name}</td>
+                <td className="num">
+                  {(e.base / 1e9).toLocaleString('ro-RO', { maximumFractionDigits: 2 })} mld lei
+                </td>
+                <td className="num">{pctOf(e[measure])}</td>
+                <td className="num">{e[measure] > CAP ? 'da' : 'nu'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </details>
+
       <div className="comp-excl">
         <p>
           Două lucruri pe care cifra asta nu le spune. Paragrafele 10.01.05 și 10.01.06 sunt ce

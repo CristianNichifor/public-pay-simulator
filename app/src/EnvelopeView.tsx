@@ -1,6 +1,7 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 
 import type { CapSeries } from '../../engine/cap';
+import type { Scenario } from '../../engine/scenario';
 import { envelope } from '../../engine/envelope';
 import type { EnvelopeBaseline, Move } from '../../engine/envelope';
 import CapSection from './CapSection';
@@ -38,14 +39,36 @@ export default function EnvelopeView({
   baseline,
   rates,
   capSeries,
+  scenario,
+  onScenario,
 }: {
   baseline: EnvelopeBaseline | null;
   rates: Rates;
   /** The ceiling, measured per ordonator and per funding source. */
   capSeries: CapSeries[] | null;
+  scenario: Scenario;
+  onScenario: (next: Scenario) => void;
 }) {
-  const [targetPct, setTargetPct] = useState(0);
-  const [moves, setMoves] = useState<Record<string, { pct: number; why: string }>>({});
+  // Envelope state lives in the hash like every other view's. It was the one page whose
+  // argument could not be sent to anyone: you could build a case for moving money
+  // between families, and then had no way to link to it.
+  const targetPct = scenario.envelopeTarget ?? 0;
+  const moves: Record<string, { pct: number; why: string }> = useMemo(() => {
+    const out: Record<string, { pct: number; why: string }> = {};
+    for (const m of scenario.envelopeMoves ?? []) out[m.family] = { pct: m.pct, why: m.why };
+    return out;
+  }, [scenario.envelopeMoves]);
+
+  const setTargetPct = (pct: number) => onScenario({ ...scenario, envelopeTarget: pct || undefined });
+  const setMoves = (
+    update: (prev: Record<string, { pct: number; why: string }>) => Record<string, { pct: number; why: string }>,
+  ) => {
+    const next = update(moves);
+    const list = Object.entries(next)
+      .filter(([, m]) => m.pct !== 0 || m.why)
+      .map(([family, m]) => ({ family, pct: m.pct, why: m.why }));
+    onScenario({ ...scenario, envelopeMoves: list.length ? list : undefined });
+  };
 
   const moveList: Move[] = useMemo(
     () =>

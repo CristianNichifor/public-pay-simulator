@@ -19,7 +19,7 @@ implementation.
 - [x] `engine/types.ts` — engine contract and type signatures
 - [x] Two hand-written regimes, validating, arithmetic checked against published figures
 - [x] CI: schema validation gate + engine typecheck; Pages deploy wired
-- [x] `scripts/import_coeficienti.py` — 48 sheets → 1 176 positions, 2 821 variants, 15 tests
+- [x] `scripts/import_coeficienti.py` — 48 sheets → 1 049 positions, 2 929 variants, 16 tests
 - [ ] `ro-153-2017.json` — blocked on the consolidated 153/2017 annexes
 - [x] `engine/structure.ts` + vitest — view 2's metric, 14 tests
 - [x] **View 2 — system shape, live**
@@ -129,28 +129,40 @@ Denmark. The strongest single result:
 
 | | MMFTSS | Propunerea noastră |
 | --- | --- | --- |
-| Named positions | 1 176 | **915** |
-| Distinct coefficients | 1 361 | **351** |
+| Named positions | 1 049 | **767** |
+| Distinct coefficients | 1 264 | **324** |
 | Back-solved (≥14 decimals) | 61,9% | **0%** |
 | Coefficients in no salary grade | 92 | **0** |
 | Years until the declared grid applies | 5 | **0** |
 
-Rounding to two decimals reveals that the grid only ever needed 351 distinct values. The
-other 1 010 were the residue of dividing one salary by another.
+Rounding to two decimals reveals that the grid only ever needed 324 distinct values. The
+other 940 were the residue of dividing one salary by another.
 
 The position count falls for a different reason. The draft names a job once *per
 employer*: "Director" appears under 25 codes across six annexes, "Șef serviciu" under 25
 more, "Director general adjunct" under 22. So 1 176 measures how many institutions exist,
 not how many occupations. Merging rows that agree on title, occupational family, kind of
-post and study level — and only those — collapses 261 of them, and turns the pay
+post and study level — and only those — collapses 282 of them, and turns the pay
 difference between employers into an explicit multiplier instead of a second job title.
 
-The merge deliberately refuses one large, tempting group. 46 positions are called
-"debutant", 30 "clasa a II-a", 10 "treapta II": continuation rows that the workbook marks
-by indenting the cell and that the importer records without inheriting the parent
-occupation. Merging them would have produced a much bigger reduction and a single invented
-job called "debutant". They are held apart by their own code, and the underlying import
-defect is recorded rather than exploited.
+That import defect is now fixed at the source. The workbook writes a rank under the
+occupation it belongs to and indents the cell — `"         gradul  I"`, `"    clasa a
+II-a"` — and the importer had two ways of losing the parent. In Annex I the occupation
+sits on its own line with no coefficient beside it, so the row was skipped and its name
+thrown away. In Annex VIII the occupation is in one column and the class in the next, and
+a "longest text cell in the row" fallback promoted `"    clasa a II-a"` to a job title
+whenever the occupation cell was blank — defeating the importer's own continuation logic.
+
+Both are repaired: ranks now become a `grad` dimension on the position above. `Pilot
+instructor` is one position with three class variants instead of three positions, 524
+positions carry a grad dimension across 958 variants, and the grid went from 1 176
+positions to 1 049 without losing a single coefficient. Positions named after a bare rank
+fell from 116 to 12, and those twelve are real occupations — *asistent medical*,
+*asistent social*.
+
+The merge keeps its own guard anyway, because the two fixes are independent and a future
+sheet layout could reintroduce the rows. A test builds a regime containing exactly the
+defect and asserts the merge refuses it.
 
 **Our proposal is a patch list, not a second grid.** Five named edits against the
 ministry's document, each naming the defect it fixes — and a test asserts every patch
@@ -251,6 +263,28 @@ place because getting them wrong changes the answer:
 Two things this does not claim. The economic classification is an accounting vocabulary,
 not the law's: what lands in `10.01.05` is not the set Art. 21 caps. And the execution
 describes the *current* regime — the draft's ceiling has never applied to a single year.
+
+## The grid is a five-year walk, and you can step through it
+
+Art. 5 promises 1 to 8. Annex IX publishes a column per year and walks the dignitary
+coefficients from 2026/2027 to 2031, so "the ratio is 1:8" and "the ratio is 1:7,39" are
+both true and differ only by the year meant. `spanByPeriod` had computed this from the
+start, but a reader could only ever see the two endpoints.
+
+A year control now sits above the pages whose numbers move, and it is generated from the
+data: `engine/phase.ts` reads the periods out of the regime, so an annex that phases
+something differently changes the slider without an edit in code. The year goes into the
+hash (`a=2031-12-01`), so a particular year is a link like everything else.
+
+Stepping through it turns up something the endpoints hide:
+
+| | 2026/2027 | 2028 | 2029 | 2030 | 2031 |
+| --- | --- | --- | --- | --- | --- |
+| Span | 1:7,39 | 1:7,39 | 1:7,39 | 1:7,62 | 1:8,00 |
+
+Nothing moves for four years. The phased dignitary coefficients spend them below a post
+that is not phased at all — *Manager TIC*, at 7,392 — so the eșalonare is invisible until
+2030. That is only visible if you can walk the years one at a time.
 
 ## Who the 20% ceiling actually binds
 

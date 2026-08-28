@@ -285,6 +285,28 @@ def dim_for(label: str | None, index: int) -> tuple[str, str, str]:
 # ------------------------------------------------------------------- titles
 
 
+# A row whose title cell names a rank rather than an occupation continues the row above.
+# The workbook writes them indented under their parent - "         gradul  I",
+# "    clasa a II-a", "         debutant" - and they are never jobs in their own right.
+# Read as positions they produce 46 posts called "debutant" and 30 called "clasa a II-a",
+# which is both wrong and the kind of wrong that looks like data.
+RANK_PREFIX = re.compile(
+    r"^(gradul|grad|clasa|treapta|nivel|definitiv|debutant|principal|asistent"
+    r"|superior|specialist|practicant|stagiar)\b",
+    re.IGNORECASE,
+)
+
+
+def rank_label(cell: str) -> str | None:
+    """The rank a continuation row carries, or None when the cell names a job."""
+    text = (cell or "").strip()
+    if not text or not RANK_PREFIX.match(text):
+        return None
+    # "Asistent medical" is an occupation; "asistent" alone is a professional grade.
+    # Anything long enough to carry a noun after the rank word is a title, not a rank.
+    return text if len(text.split()) <= 3 else None
+
+
 def parse_titles(cell: str) -> tuple[list[dict], str, int]:
     """Split a title cell into former job titles.
 
@@ -440,6 +462,7 @@ def extract_sheet(name: str, rows: list[tuple], stats: Counter, skipped: list) -
 
     positions: list[dict] = []
     last: dict | None = None
+    pending_title = ""
     for r, row in enumerate(rows):
         codes = [
             (c, row[c].strip())
@@ -454,7 +477,17 @@ def extract_sheet(name: str, rows: list[tuple], stats: Counter, skipped: list) -
             and not isinstance(row[c], bool)
             and COEFFICIENT_RANGE[0] <= row[c] <= COEFFICIENT_RANGE[1]
         ]
+        row_title = ""
+        if title_col is not None and title_col < len(row) and isinstance(row[title_col], str):
+            if WORD.search(row[title_col]):
+                row_title = row[title_col]
+
         if not coefficients:
+            # Annex I prints the occupation on its own line - "Preot" - and the pay on the
+            # indented rank lines beneath it. Skipping this row outright, as the importer
+            # used to, threw the only copy of the job's name away.
+            if row_title and rank_label(row_title) is None:
+                pending_title = row_title
             continue
 
         title_cell = ""
@@ -464,17 +497,26 @@ def extract_sheet(name: str, rows: list[tuple], stats: Counter, skipped: list) -
         if not title_cell:
             for c in text_cols:
                 if c < len(row) and isinstance(row[c], str) and WORD.search(row[c]):
-                    if len(row[c]) > len(title_cell):
+                    # Never fall back onto a rank: in Annex VIII the occupation sits in
+                    # one column and the class in the next, so a blank occupation cell
+                    # would otherwise promote "    clasa a II-a" to a job title.
+                    if rank_label(row[c]) is None and len(row[c]) > len(title_cell):
                         title_cell = row[c]
 
         base_code = codes[0][1].rsplit(".", 1)[0] if codes else None
         extra_dims = row_dims(row, roles, title_cell)
 
+        rank = rank_label(title_cell)
+        if rank is not None:
+            extra_dims = {**extra_dims, "grad": rank}
+            title_cell = ""
+            stats["rank_rows"] += 1
+
         # A row with a code but no title continues the position above it: Annexes I and V
         # print one row per seniority band and leave the title cell blank after the first.
         # Dropping these would silently discard most of the judiciary and teaching grids.
         if not title_cell:
-            if last is not None and base_code is not None and base_code == last["code"]:
+            if last is not None and (base_code is None or base_code == last["code"]):
                 for i, (col, value) in enumerate(coefficients):
                     dim, dim_value, confidence = dim_for(labels.get(col), i)
                     variant = {
@@ -494,9 +536,12 @@ def extract_sheet(name: str, rows: list[tuple], stats: Counter, skipped: list) -
                     last["variants"].append(variant)
                 stats["continuation_rows"] += 1
                 continue
-            stats["rows_without_title"] += 1
-            skipped.append({"sheet": name, "row": r + 1, "reason": "no title cell and no position above it to continue"})
-            continue
+            if pending_title:
+                title_cell = pending_title
+            else:
+                stats["rows_without_title"] += 1
+                skipped.append({"sheet": name, "row": r + 1, "reason": "no title cell and no position above it to continue"})
+                continue
 
         titles, parse, fan_in = parse_titles(title_cell)
         if parse == "needsReview":
