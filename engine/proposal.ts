@@ -28,6 +28,7 @@ export interface Patch {
     | 'collapseSchedule'
     | 'setSupplementCounts'
     | 'setSupplementRate'
+    | 'separateInstitutionFactor'
     | 'unifySeniority';
   decimals?: number;
   dimension?: string;
@@ -223,6 +224,55 @@ export function applyProposal(base: Regime, proposal: Proposal): AppliedProposal
           return { ...s, rate: patch.rate };
         });
         regime = { ...regime, supplements };
+        break;
+      }
+
+      case 'separateInstitutionFactor': {
+        // A job is what someone does; the institution is where they do it. The draft
+        // fuses the two, so one title carries several coefficients and the reader cannot
+        // tell a promotion from a transfer. Keep the job once, and make the institutional
+        // effect an explicit multiplier that can be argued about on its own.
+        const contextDims = new Set(['institutionLevel', 'sursa', 'celula']);
+        const positions = regime.positions.map((p) => {
+          if (p.variants.length < 2) return p;
+          const jobKeys = (v: PositionVariant) =>
+            JSON.stringify(
+              Object.entries(v.dims ?? {})
+                .filter(([k]) => !contextDims.has(k))
+                .sort(),
+            );
+          const distinctJobs = new Set(p.variants.map(jobKeys));
+          const usesContext = p.variants.some((v) =>
+            Object.keys(v.dims ?? {}).some((k) => contextDims.has(k)),
+          );
+          if (distinctJobs.size !== 1 || !usesContext) return p;
+
+          const values = p.variants
+            .map((v) => (v.value === undefined ? null : firstOf(v.value)))
+            .filter((n): n is number => n !== null);
+          if (values.length < 2) return p;
+          const lo = Math.min(...values);
+          const hi = Math.max(...values);
+          if (lo <= 0) return p;
+
+          const keep = p.variants.find((v) => v.value !== undefined && firstOf(v.value) === lo)!;
+          const { institutionLevel: _l, sursa: _s, celula: _c, ...rest } = keep.dims ?? {};
+
+          effect.positionsTouched += 1;
+          effect.variantsTouched += p.variants.length - 1;
+          effect.touchedCodes.push(p.code);
+          return {
+            ...p,
+            variants: [Object.keys(rest).length ? { ...keep, dims: rest } : { ...keep, dims: undefined }],
+            institutionFactor: {
+              min: 1,
+              max: Number((hi / lo).toFixed(4)),
+              reason:
+                'Diferența dintre categoriile de instituții, scoasă din denumirea funcției și făcută explicită.',
+            },
+          };
+        });
+        regime = { ...regime, positions };
         break;
       }
 

@@ -31,6 +31,14 @@
       "expectedEffect": "Cele 92 de variante primesc un grad. Niciun coeficient nu se schimbă."
     },
     {
+      "id": "institutia-nu-e-denumire",
+      "op": "separateInstitutionFactor",
+      "title": "Tipul instituției iese din denumirea funcției",
+      "fixes": "asimilare-prin-punctuatie",
+      "rationale": "Meseria e ce faci; instituția e unde o faci. Proiectul le amestecă: 95 de funcții au variante care diferă numai după categoria instituției — nivel central I sau II, cele patru trepte de administrație locală, categoria unității sanitare — iar una și aceeași denumire ajunge plătită cu până la 50% mai mult după unde e postul. Consecința practică e că nu se mai poate deosebi o promovare de un transfer, iar comparația cu piața muncii devine imposibilă, pentru că piața cunoaște o singură meserie. Corectura păstrează funcția o singură dată, la coeficientul cel mai mic, și transformă diferența într-un multiplicator explicit al instituției, care poate fi discutat separat de grila de funcții. Nimeni nu pierde și nimeni nu câștigă: aceleași sume, altfel scrise.",
+      "expectedEffect": "215 variante dispar din nomenclator fără ca vreun salariu să se schimbe. Diferența pe instituție rămâne, dar se vede."
+    },
+    {
       "id": "raport-1-8-de-la-inceput",
       "op": "collapseSchedule",
       "dimension": "an",

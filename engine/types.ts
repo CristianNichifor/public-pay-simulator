@@ -171,6 +171,11 @@ export interface Position {
   /** Ordered step ids, repeats allowed. Omit to walk the ladder's own order. */
   ladderPath?: ReadonlyArray<string>;
   variants: ReadonlyArray<PositionVariant>;
+  /**
+   * Pay that varies with the kind of institution rather than with the job. Expressed as
+   * one multiplier on one position, instead of several positions sharing a title.
+   */
+  institutionFactor?: { min: number; max: number; reason: string };
   provenance: Provenance;
 }
 

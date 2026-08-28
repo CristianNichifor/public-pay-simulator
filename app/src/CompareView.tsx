@@ -37,6 +37,23 @@ const COLUMNS: Array<{ key: Col; title: string; sub: string }> = [
   { key: 'dk', title: 'Danemarca', sub: 'sectorul de stat' },
 ];
 
+/** Positions whose variants differ only by where the post sits, not by what the job is. */
+function fusedCount(regime: Regime): number {
+  const context = new Set(['institutionLevel', 'sursa', 'celula']);
+  return regime.positions.filter((p) => {
+    if (p.variants.length < 2) return false;
+    const jobs = new Set(
+      p.variants.map((v) =>
+        JSON.stringify(Object.entries(v.dims ?? {}).filter(([k]) => !context.has(k)).sort()),
+      ),
+    );
+    return (
+      jobs.size === 1 &&
+      p.variants.some((v) => Object.keys(v.dims ?? {}).some((k) => context.has(k)))
+    );
+  }).length;
+}
+
 export default function CompareView({
   ministry,
   ours,
@@ -101,6 +118,20 @@ export default function CompareView({
         },
         ours: { n: o.positions, text: ro(o.positions) },
         dk: dkCell(d?.positions ?? null, ro(d?.positions ?? 0), 'documentul IDA numește circa 20'),
+      },
+    },
+    {
+      label: 'Funcții al căror nume ascunde instituția',
+      hint: 'aceeași denumire, coeficienți diferiți după categoria instituției — nu după meserie',
+      better: 'lower',
+      cells: {
+        ministry: {
+          n: fusedCount(ministry),
+          text: ro(fusedCount(ministry)),
+          note: 'până la ×1,5 sub același nume',
+        },
+        ours: { n: fusedCount(ours), text: ro(fusedCount(ours)), note: 'diferența devine un multiplicator explicit' },
+        dk: dkCell(0, '0', 'instituția se negociază local, nu intră în denumire'),
       },
     },
     {

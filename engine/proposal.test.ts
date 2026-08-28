@@ -89,6 +89,29 @@ describe('each patch fixes its stated defect', () => {
     expect(exempt.has('noapte')).toBe(true);
   });
 
+  it('takes the institution out of the job title without moving any pay', () => {
+    // 95 positions carried variants that differed only by institutional tier — one title
+    // paid up to 1,5x more depending where the post sat. After the patch the job appears
+    // once and the institutional difference is an explicit multiplier.
+    const context = new Set(['institutionLevel', 'sursa', 'celula']);
+    const stillFused = applied.regime.positions.filter((p) => {
+      if (p.variants.length < 2) return false;
+      const jobs = new Set(
+        p.variants.map((v) =>
+          JSON.stringify(Object.entries(v.dims ?? {}).filter(([k]) => !context.has(k)).sort()),
+        ),
+      );
+      return jobs.size === 1 && p.variants.some((v) =>
+        Object.keys(v.dims ?? {}).some((k) => context.has(k)));
+    });
+    expect(stillFused).toHaveLength(0);
+
+    const withFactor = applied.regime.positions.filter((p) => p.institutionFactor);
+    expect(withFactor.length).toBeGreaterThan(50);
+    // The spread is preserved, not discarded: the widest is the 1,5x TIC case.
+    expect(Math.max(...withFactor.map((p) => p.institutionFactor!.max))).toBeGreaterThan(1.4);
+  });
+
   it('unifying seniority puts every execution position on one ladder', () => {
     const banded = (r: Regime) =>
       r.positions.filter((p) => p.variants.some((v) => v.dims?.vechime !== undefined)).length;
