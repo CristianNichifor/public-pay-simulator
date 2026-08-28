@@ -1,13 +1,16 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
+import { payslip } from '../../engine/payslip';
 import { applyProposal } from '../../engine/proposal';
 import type { AppliedProposal, Proposal } from '../../engine/proposal';
 import { decodeScenario, encodeScenario } from '../../engine/scenario';
 import type { Scenario } from '../../engine/scenario';
 import type { EnvelopeBaseline } from '../../engine/envelope';
+import type { DkOccupation, GroupsDocument } from '../../engine/occupations';
 import type { Crosswalk, Regime } from '../../engine/types';
 import CompareView from './CompareView';
 import EnvelopeView from './EnvelopeView';
+import OccupationsView from './OccupationsView';
 import EquivalenceView from './EquivalenceView';
 import PayslipView from './PayslipView';
 import StructureView from './StructureView';
@@ -19,6 +22,8 @@ const FX_ID = 'ecb-fx';
 const BENCHMARKS_ID = 'benchmarks';
 const FISCAL_ID = 'eurostat-compensation-2026-08';
 const HEADCOUNT_ID = 'posturi-ocupate-2026-06';
+const GROUPS_ID = 'ro-dk-occupations';
+const DK_OCC_ID = 'dk-occupations';
 
 /**
  * The hash is the state. There is no store: every control writes a scenario into
@@ -56,6 +61,9 @@ export default function App() {
     floorRo: number; floorDk: number; year: string;
   } | null>(null);
   const [envelopeBaseline, setEnvelopeBaseline] = useState<EnvelopeBaseline | null>(null);
+  const [occGroups, setOccGroups] = useState<GroupsDocument | null>(null);
+  const [dkOcc, setDkOcc] = useState<DkOccupation[] | null>(null);
+  const [occBench, setOccBench] = useState<{ roMedianBase: number; dkMedian: number } | null>(null);
 
   const wanted = scenario.regimeIds;
 
@@ -98,6 +106,28 @@ export default function App() {
           floorDk: val('floor-monthly-dk'),
           year: doc.retrieved,
         });
+      })
+      .catch((e: Error) => setError(e.message));
+
+    Promise.all([
+      fetch(`${base}data/groups/${GROUPS_ID}.json`).then((r) => r.json()),
+      fetch(`${base}data/fiscal/${DK_OCC_ID}.json`).then((r) => r.json()),
+    ])
+      .then(([groupsDoc, occDoc]) => {
+        setOccGroups(groupsDoc);
+        // The quartiles arrive as three separate series per occupation; fold them back.
+        const byOcc = new Map<string, DkOccupation>();
+        for (const s of occDoc.series) {
+          const name = s.dims.occupation as string;
+          const entry = byOcc.get(name) ?? { occupation: name, q1: 0, median: 0, q3: 0 };
+          (entry as unknown as Record<string, number>)[s.dims.quartile] =
+            s.observations.at(-1)?.value ?? 0;
+          byOcc.set(name, entry);
+        }
+        const all = [...byOcc.values()];
+        setDkOcc(all);
+        const total = all.find((o) => o.occupation.startsWith('Public employees'));
+        setOccBench({ roMedianBase: 0, dkMedian: total?.median ?? 0 });
       })
       .catch((e: Error) => setError(e.message));
 
@@ -164,6 +194,23 @@ export default function App() {
     [ministry, proposal],
   );
 
+  const medianBase = useMemo(() => {
+    if (!ministry) return null;
+    const bases: number[] = [];
+    for (const position of ministry.positions) {
+      for (const variant of position.variants) {
+        const slip = payslip(
+          { positionCode: position.code, seniorityYears: 0, dims: variant.dims },
+          ministry,
+        );
+        if (slip.base > 0) bases.push(slip.base / 100);
+      }
+    }
+    if (!bases.length) return null;
+    bases.sort((a, b) => a - b);
+    return bases[Math.floor(bases.length / 2)];
+  }, [ministry]);
+
   const share = async () => {
     await navigator.clipboard?.writeText(location.href);
     setCopied(true);
@@ -184,6 +231,12 @@ export default function App() {
             onClick={() => setScenario({ ...scenario, view: 'compare' })}
           >
             Comparație
+          </button>
+          <button
+            className={scenario.view === 'meserii' ? 'on' : ''}
+            onClick={() => setScenario({ ...scenario, view: 'meserii' })}
+          >
+            Meserii RO–DK
           </button>
           <button
             className={scenario.view === 'echivalente' ? 'on' : ''}
@@ -240,6 +293,15 @@ export default function App() {
           proposal={proposal}
           effects={ours.effects}
           onOpen={(view) => setScenario({ ...scenario, view })}
+        />
+      )}
+      {scenario.view === 'meserii' && ministry && occGroups && dkOcc && occBench && fx && (
+        <OccupationsView
+          regime={ministry}
+          groups={occGroups}
+          danish={dkOcc}
+          benchmarks={{ roMedianBase: medianBase ?? 0, dkMedian: occBench.dkMedian }}
+          rates={fx}
         />
       )}
       {scenario.view === 'echivalente' &&

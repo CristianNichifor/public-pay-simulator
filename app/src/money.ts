@@ -68,3 +68,27 @@ export function amountLine(
 ): string {
   return amounts(value, currency, rates, emphasis).join(` ${NBSP}·${NBSP} `);
 }
+
+/**
+ * A range, written once rather than as two full triples.
+ *
+ * `amountLine` on each endpoint produces six numbers for one bar, which is noise. A range
+ * keeps the currency rule — no foreign figure without its conversion — while showing the
+ * unit only where it changes.
+ */
+export function amountRange(
+  from: number,
+  to: number,
+  currency: string,
+  rates: Rates,
+): string {
+  const n = (v: number) => Math.round(v).toLocaleString('ro-RO');
+  if (currency === 'RON') {
+    return `${n(from)}–${n(to)} RON (${n(from / rates.eurToRon)}–${n(to / rates.eurToRon)} EUR)`;
+  }
+  const ronFrom = toRon(from, currency, rates);
+  const ronTo = toRon(to, currency, rates);
+  return `${n(from)}–${n(to)} ${currency} ≈ ${n(ronFrom)}–${n(ronTo)} RON (${n(
+    ronFrom / rates.eurToRon,
+  )}–${n(ronTo / rates.eurToRon)} EUR)`;
+}

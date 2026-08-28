@@ -1,0 +1,1039 @@
+{
+  "$schema": "../../schema/fiscal.schema.json",
+  "id": "dk-occupations",
+  "title": "Câștiguri în sectorul public danez, pe grupe ocupaționale",
+  "publisher": "Danmarks Statistik",
+  "methodology": "LONSOFF, câștiguri pe oră lucrată, administrație publică",
+  "retrieved": "2024",
+  "query": {
+    "endpoint": "https://api.statbank.dk/v1/data",
+    "table": "LONSOFF",
+    "sector": "1032",
+    "year": "2024",
+    "hoursPerMonth": 160.33
+  },
+  "provenance": {
+    "source": "dst-lonsoff",
+    "locator": "Danmarks Statistik, tabelul LONSOFF",
+    "confidence": "verbatim"
+  },
+  "series": [
+    {
+      "id": "dk-occ-senior-consultants-medical-q1",
+      "label": "Senior consultants (medical) — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Senior consultants (medical)",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 112775.26
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Senior consultants (medical), general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-senior-consultants-medical-median",
+      "label": "Senior consultants (medical) — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Senior consultants (medical)",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 121794.01
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Senior consultants (medical), general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-senior-consultants-medical-q3",
+      "label": "Senior consultants (medical) — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Senior consultants (medical)",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 134696.03
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Senior consultants (medical), general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-public-sector-managers-q1",
+      "label": "Public sector managers — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Public sector managers",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 102956.45
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Public sector managers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-public-sector-managers-median",
+      "label": "Public sector managers — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Public sector managers",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 112324.72
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Public sector managers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-public-sector-managers-q3",
+      "label": "Public sector managers — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Public sector managers",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 126129.42
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Public sector managers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-dentists-q1",
+      "label": "Dentists — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Dentists",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 68133.65
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Dentists, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-dentists-median",
+      "label": "Dentists — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Dentists",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 78019.8
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Dentists, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-dentists-q3",
+      "label": "Dentists — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Dentists",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 98404.58
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Dentists, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-doctors-junior-doctors-q1",
+      "label": "Doctors (junior doctors) — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Doctors (junior doctors)",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 65103.35
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Doctors (junior doctors), general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-doctors-junior-doctors-median",
+      "label": "Doctors (junior doctors) — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Doctors (junior doctors)",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 77501.93
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Doctors (junior doctors), general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-doctors-junior-doctors-q3",
+      "label": "Doctors (junior doctors) — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Doctors (junior doctors)",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 98162.48
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Doctors (junior doctors), general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-upper-secondary-school-teachers-q1",
+      "label": "Upper secondary school teachers — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Upper secondary school teachers",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 65786.37
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Upper secondary school teachers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-upper-secondary-school-teachers-median",
+      "label": "Upper secondary school teachers — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Upper secondary school teachers",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 69482.05
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Upper secondary school teachers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-upper-secondary-school-teachers-q3",
+      "label": "Upper secondary school teachers — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Upper secondary school teachers",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 73532.07
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Upper secondary school teachers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-graduates-with-a-masters-degree-q1",
+      "label": "Graduates with a Masters degree — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Graduates with a Masters degree",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 59717.75
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Graduates with a Masters degree, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-graduates-with-a-masters-degree-median",
+      "label": "Graduates with a Masters degree — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Graduates with a Masters degree",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 66823.73
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Graduates with a Masters degree, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-graduates-with-a-masters-degree-q3",
+      "label": "Graduates with a Masters degree — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Graduates with a Masters degree",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 73225.84
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Graduates with a Masters degree, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-primary-and-lower-secondary-school-teachers-q1",
+      "label": "Primary and lower secondary school teachers — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Primary and lower secondary school teachers",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 59456.41
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Primary and lower secondary school teachers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-primary-and-lower-secondary-school-teachers-median",
+      "label": "Primary and lower secondary school teachers — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Primary and lower secondary school teachers",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 63068.72
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Primary and lower secondary school teachers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-primary-and-lower-secondary-school-teachers-q3",
+      "label": "Primary and lower secondary school teachers — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Primary and lower secondary school teachers",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 68024.62
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Primary and lower secondary school teachers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-nurses-q1",
+      "label": "Nurses — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Nurses",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 52419.38
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Nurses, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-nurses-median",
+      "label": "Nurses — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Nurses",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 58170.54
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Nurses, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-nurses-q3",
+      "label": "Nurses — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Nurses",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 66060.54
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Nurses, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-police-officers-q1",
+      "label": "Police officers — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Police officers",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 52767.3
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Police officers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-police-officers-median",
+      "label": "Police officers — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Police officers",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 57578.91
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Police officers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-police-officers-q3",
+      "label": "Police officers — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Police officers",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 64478.05
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Police officers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-midwives-q1",
+      "label": "Midwives — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Midwives",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 50161.89
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Midwives, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-midwives-median",
+      "label": "Midwives — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Midwives",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 57137.99
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Midwives, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-midwives-q3",
+      "label": "Midwives — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Midwives",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 65061.66
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Midwives, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-public-employees-total-exclusiv-young-people-and-q1",
+      "label": "Public employees, total (exclusiv young people and trainees) — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Public employees, total (exclusiv young people and trainees)",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 47663.89
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Public employees, total (exclusiv young people and trainees), general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-public-employees-total-exclusiv-young-people-and-median",
+      "label": "Public employees, total (exclusiv young people and trainees) — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Public employees, total (exclusiv young people and trainees)",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 55855.32
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Public employees, total (exclusiv young people and trainees), general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-public-employees-total-exclusiv-young-people-and-q3",
+      "label": "Public employees, total (exclusiv young people and trainees) — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Public employees, total (exclusiv young people and trainees)",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 66270.58
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Public employees, total (exclusiv young people and trainees), general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-physiotherapists-q1",
+      "label": "Physiotherapists — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Physiotherapists",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 50838.49
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Physiotherapists, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-physiotherapists-median",
+      "label": "Physiotherapists — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Physiotherapists",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 54455.61
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Physiotherapists, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-physiotherapists-q3",
+      "label": "Physiotherapists — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Physiotherapists",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 58949.76
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Physiotherapists, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-social-and-health-care-assistants-q1",
+      "label": "Social and health care assistants — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Social and health care assistants",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 48617.88
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Social and health care assistants, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-social-and-health-care-assistants-median",
+      "label": "Social and health care assistants — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Social and health care assistants",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 53822.3
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Social and health care assistants, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-social-and-health-care-assistants-q3",
+      "label": "Social and health care assistants — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Social and health care assistants",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 61255.35
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Social and health care assistants, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-pedagogues--educators-q1",
+      "label": "Pedagogues / Educators — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Pedagogues / Educators",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 49652.03
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Pedagogues / Educators, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-pedagogues--educators-median",
+      "label": "Pedagogues / Educators — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Pedagogues / Educators",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 53625.09
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Pedagogues / Educators, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-pedagogues--educators-q3",
+      "label": "Pedagogues / Educators — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Pedagogues / Educators",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 58765.37
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Pedagogues / Educators, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-office-staff-q1",
+      "label": "Office staff — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Office staff",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 47105.93
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Office staff, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-office-staff-median",
+      "label": "Office staff — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Office staff",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 52505.96
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Office staff, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-office-staff-q3",
+      "label": "Office staff — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Office staff",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 59280.04
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Office staff, general government, 2024",
+        "confidence": "verbatim"
+      }
+    }
+  ],
+  "limitations": [
+    {
+      "id": "castig-nu-grila",
+      "text": "Danemarca nu publică o grilă pentru aceste ocupații fiindcă nu există una: salariul se negociază local peste un minim din contractul colectiv. Cifrele de aici sunt ce câștigă oamenii, nu ce permite un tabel. Intervalul românesc pus alături este exact invers — ce stabilește legea, înainte de sporuri. Diferența nu e o eroare de date, e chiar deosebirea dintre cele două sisteme.",
+      "affects": [
+        "gross",
+        "structure"
+      ],
+      "severity": "material"
+    },
+    {
+      "id": "cuartile-nu-extreme",
+      "text": "Intervalul danez merge de la cuartila inferioară la cea superioară: jumătatea din mijloc a oamenilor din acea ocupație. Un sfert câștigă mai puțin decât capătul de jos și un sfert mai mult decât cel de sus. Nu e minimul și maximul posibil.",
+      "affects": [
+        "gross"
+      ],
+      "severity": "note"
+    },
+    {
+      "id": "include-sporuri",
+      "text": "Câștigul pe oră lucrată include sporuri, plăți neregulate și compensații pentru condiții, dar nu pensia. Salariul de bază românesc pus alături nu include sporuri, care în proiect pot adăuga până la 20% peste — plus sporurile exceptate de la plafon.",
+      "affects": [
+        "gross"
+      ],
+      "severity": "material"
+    }
+  ]
+}

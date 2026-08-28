@@ -162,6 +162,30 @@ number also carries the caveat that a market rate says how large a number is, no
 buys — Danish price levels are substantially higher, so a converted salary is not the same
 standard of living.
 
+## The same job, two systems
+
+`Meserii RO–DK` regroups the grid by **occupation** rather than by annex, then sets each
+group beside what the same job earns in the Danish public sector. Every group states the
+rule that selected it and how many positions it caught, so the grouping can be disputed
+rather than only the numbers.
+
+Both sides are expressed against the middle of their own system — the median base salary
+of the Romanian grid, the median earnings of all Danish public employees — so the units
+cancel and the ratios compare. As multiples of that middle:
+
+| | România | Danemarca |
+| --- | --- | --- |
+| Medici | 1,15–1,63× | 1,17–**2,41×** |
+| Asistenți medicali | 0,84–1,05× | 0,94–1,18× |
+| Învățători și profesori de gimnaziu | **0,97–1,04×** | 1,06–1,22× |
+| Personal administrativ, studii medii | 0,74–0,94× | 0,84–1,06× |
+| Conducere | 1,29–2,23× | 1,84–2,26× |
+
+The asymmetry is deliberate and labelled: Romania's figure is what the law sets, before
+supplements; Denmark's is what people are actually paid, because for these occupations
+there is no grid at all — pay is negotiated over a collective-agreement floor. Reporting
+one as the other would be the easiest lie available here.
+
 ## Naming: institution and statute, or occupation and expertise
 
 Denmark names a post by what the person does and what it requires — *engineer*,
