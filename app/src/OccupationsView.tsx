@@ -31,8 +31,8 @@ export default function OccupationsView({
   danish: DkOccupation[];
   benchmarks: OccupationBenchmarks;
   rates: Rates;
-  /** What Romania actually paid, keyed by the budget chapter the importer scoped to. */
-  roComposition: Record<string, Shares> | null;
+  /** What Romania paid, by budget chapter and then by year. */
+  roComposition: Record<string, Record<string, Shares>> | null;
 }) {
   const [showLegal, setShowLegal] = useState(false);
   const [withCap, setWithCap] = useState(true);
@@ -353,16 +353,24 @@ function CompositionSection({
   resolved,
   danish,
 }: {
-  roComposition: Record<string, Shares> | null;
+  roComposition: Record<string, Record<string, Shares>> | null;
   resolved: ResolvedGroup[];
   danish: DkOccupation[];
 }) {
+  /** The most recent year in a scope, which is what every bar on this page shows. */
+  const latest = (scope: string): Shares | undefined => {
+    const byYear = roComposition?.[scope];
+    if (!byYear) return undefined;
+    const years = Object.keys(byYear).sort();
+    return byYear[years[years.length - 1]];
+  };
   const national = useMemo(() => {
     // The all-employees row is not one of the occupation groups — it is the Danish
     // total, and it has to come from the raw table or the headline silently disappears.
     const dkTotal = danish.find((o) => o.occupation.startsWith('Public employees'))?.composition;
-    if (!roComposition?.national) return null;
-    return compareComposition(roComposition.national, (dkTotal ?? {}) as Shares);
+    const ro = latest('national');
+    if (!ro) return null;
+    return compareComposition(ro, (dkTotal ?? {}) as Shares);
   }, [roComposition, danish]);
 
   const bySector = useMemo(() => {
@@ -408,7 +416,7 @@ function CompositionSection({
 
       {bySector.map(([sector, rows]) => {
         const scope = SECTOR_SCOPE[sector];
-        const shares = scope ? roComposition[scope] : undefined;
+        const shares = scope ? latest(scope) : undefined;
         if (!shares) return null;
         return (
           <div className="card" key={sector} style={{ marginTop: 16 }}>
@@ -429,6 +437,43 @@ function CompositionSection({
           </div>
         );
       })}
+
+      {(() => {
+        // One series, so no legend and no palette: the question is simply whether the
+        // layer above base pay is growing, and a single bar per year answers it. The
+        // figures come from the same execution series the bars above use.
+        const byYear = roComposition?.national ?? {};
+        const years = Object.keys(byYear).sort();
+        if (years.length < 2) return null;
+        const points = years.map((y) => ({
+          year: y,
+          share: compareComposition(byYear[y], {}).ro.supplements,
+        }));
+        const max = Math.max(...points.map((p) => p.share)) * 1.15;
+        const first = points[0];
+        const last = points[points.length - 1];
+        const change = last.share - first.share;
+        return (
+          <div className="card" style={{ marginTop: 16 }}>
+            <h3>Crește stratul de peste salariul de bază?</h3>
+            <p className="hint">
+              Ponderea a tot ce se plătește peste salariul de bază, în fiecare an de execuție.{' '}
+              {Math.abs(change) < 0.005
+                ? 'Practic neschimbată de la un capăt la altul.'
+                : `${change > 0 ? 'A urcat' : 'A scăzut'} cu ${(Math.abs(change) * 100).toLocaleString('ro-RO', { maximumFractionDigits: 1 })} puncte procentuale între ${first.year} și ${last.year} — o schimbare de pondere, nu de procent.`}
+            </p>
+            <div className="trend">
+              {points.map((p) => (
+                <div className="trend-col" key={p.year}>
+                  <span className="trend-value">{pctOf(p.share)}</span>
+                  <div className="trend-bar" style={{ height: `${(p.share / max) * 100}%` }} />
+                  <span className="trend-year">{p.year}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })()}
 
       {national && (
         <details className="table-view">

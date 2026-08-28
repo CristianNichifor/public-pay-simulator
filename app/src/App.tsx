@@ -98,7 +98,7 @@ export default function App() {
   const [dkOcc, setDkOcc] = useState<DkOccupation[] | null>(null);
   const [occBench, setOccBench] = useState<{ roMedianBase: number; dkMedian: number } | null>(null);
   /** What Romania actually paid, by budget chapter, keyed by the scope the importer used. */
-  const [roComposition, setRoComposition] = useState<Record<string, Shares> | null>(null);
+  const [roComposition, setRoComposition] = useState<Record<string, Record<string, Shares>> | null>(null);
   /** The 20% ceiling measured per ordonator principal and per funding source. */
   const [capSeries, setCapSeries] = useState<CapSeries[] | null>(null);
 
@@ -167,12 +167,16 @@ export default function App() {
         // The Romanian side of the composition: the rollup series, latest year, per
         // budget chapter. The paragraph-level series stay in the file for anyone who
         // wants to regroup them differently.
-        const roShares: Record<string, Shares> = {};
+        // Every year, not only the last: whether the supplement layer is growing is a
+        // live political question, and the answer was already in the file.
+        const roShares: Record<string, Record<string, Shares>> = {};
         for (const s of execDoc.series) {
           if (s.dims?.kind !== 'composition') continue;
           const scope = s.dims.scope as string;
-          const value = s.observations.at(-1)?.value ?? 0;
-          roShares[scope] = { ...roShares[scope], [s.dims.component]: value };
+          for (const o of s.observations) {
+            const byYear = (roShares[scope] ??= {});
+            byYear[o.period] = { ...byYear[o.period], [s.dims.component]: o.value };
+          }
         }
         setRoComposition(roShares);
         // The quartiles arrive as three separate series per occupation; fold them back.

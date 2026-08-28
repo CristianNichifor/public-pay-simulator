@@ -286,6 +286,16 @@ Nothing moves for four years. The phased dignitary coefficients spend them below
 that is not phased at all — *Manager TIC*, at 7,392 — so the eșalonare is invisible until
 2030. That is only visible if you can walk the years one at a time.
 
+## Is the supplement layer growing?
+
+The execution importer pulls 2021–2025 and the page had been showing only the last year.
+It is not growing. The share of public pay above base salary went **25,5% → 18,8%** over
+those five years, down 6,7 percentage points, most of it since 2023.
+
+That matters for how the 20% ceiling should be read. It is not a brake on something
+accelerating; it lands on a layer that has been shrinking on its own, and it would already
+bind on 40,4% of the wage bill the day it commenced.
+
 ## Who the 20% ceiling actually binds
 
 Art. 21(2) caps supplements at 20% of the base wage bill **per ordonator principal de
