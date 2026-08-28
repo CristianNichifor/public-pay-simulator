@@ -21,6 +21,7 @@ import StructureView from './StructureView';
 const AVAILABLE = ['ro-153-2017', 'ro-draft-2026-07-16', 'dk-stat-2026'];
 const PROPOSAL_ID = 'propunere-v1';
 const CROSSWALK_ID = 'ro-draft-2026-07-16--dk-stat-2026';
+const ASSIMILATION_ID = 'ro-153-2017--ro-draft-2026-07-16';
 const FX_ID = 'ecb-fx';
 const BENCHMARKS_ID = 'benchmarks';
 const FISCAL_ID = 'eurostat-compensation-2026-08';
@@ -88,6 +89,8 @@ export default function App() {
   const [copied, setCopied] = useState(false);
   const [proposal, setProposal] = useState<Proposal | null>(null);
   const [crosswalk, setCrosswalk] = useState<Crosswalk | null>(null);
+  /** 153/2017 -> draft, so a payslip can say what the post used to be called. */
+  const [assimilation, setAssimilation] = useState<Crosswalk | null>(null);
   const [fx, setFx] = useState<{ dkkToRon: number; eurToRon: number; date: string } | null>(null);
   const [benchmarks, setBenchmarks] = useState<{
     avgRo: number; avgDk: number; govRo: number; govDk: number;
@@ -124,6 +127,11 @@ export default function App() {
     fetch(`${base}data/crosswalks/${CROSSWALK_ID}.json`)
       .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`crosswalk: ${r.status}`))))
       .then(setCrosswalk)
+      .catch((e: Error) => setError(e.message));
+
+    fetch(`${base}data/crosswalks/${ASSIMILATION_ID}.json`)
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`assimilation: ${r.status}`))))
+      .then(setAssimilation)
       .catch((e: Error) => setError(e.message));
 
     // The rate is read from the committed ECB document rather than hard-coded, so a
@@ -267,11 +275,13 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    // Both these views put the two systems side by side regardless of which regimes the
-    // scenario selected. Leaving it to `wanted` meant the landing page — headed "three
-    // ways to pay the state" — rendered its entire Danish column as explained dashes.
-    const SIDE_BY_SIDE: ViewId[] = ['compare', 'echivalente'];
-    const needed = SIDE_BY_SIDE.includes(scenario.view) ? AVAILABLE : wanted;
+    // These views read regimes the scenario did not select. compare and echivalente put
+    // the systems side by side; payslip needs the law in force to say what a post used to
+    // be called, and without it that block renders with the titles and no coefficients.
+    // Leaving it to `wanted` once left the landing page — headed "ways to pay the state" —
+    // with its entire Danish column as explained dashes.
+    const NEEDS_ALL: ViewId[] = ['compare', 'echivalente', 'payslip'];
+    const needed = NEEDS_ALL.includes(scenario.view) ? AVAILABLE : wanted;
     const missing = needed.filter((id) => !regimes[id] && AVAILABLE.includes(id));
     if (missing.length === 0) return;
     Promise.all(
@@ -447,6 +457,8 @@ export default function App() {
           scenario={scenario}
           onChange={setScenario}
           rates={fx}
+          assimilation={assimilation}
+          inForce={regimes['ro-153-2017'] ?? null}
         />
       )}
 

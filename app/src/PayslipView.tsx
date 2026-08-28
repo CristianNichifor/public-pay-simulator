@@ -3,7 +3,7 @@ import { useMemo, useState } from 'react';
 import { payslip } from '../../engine/payslip';
 import type { Payslip, Person } from '../../engine/payslip';
 import type { Scenario } from '../../engine/scenario';
-import type { Position, Regime } from '../../engine/types';
+import type { Crosswalk, Position, Regime } from '../../engine/types';
 import { amountLine } from './money';
 import type { Rates } from './money';
 function pct(n: number, digits = 1): string {
@@ -17,11 +17,16 @@ export default function PayslipView({
   scenario,
   onChange,
   rates,
+  assimilation,
+  inForce,
 }: {
   regimes: Regime[];
   scenario: Scenario;
   onChange: (next: Scenario) => void;
   rates: Rates;
+  /** 153/2017 -> draft. A reconstruction, never a statement of anyone's rights. */
+  assimilation: Crosswalk | null;
+  inForce: Regime | null;
 }) {
   const primary = regimes[0];
   const [query, setQuery] = useState('');
@@ -79,6 +84,37 @@ export default function PayslipView({
   const comparable =
     slips.length > 1 &&
     new Set(slips.map((s) => `${s.regime.currency}|${s.slip.period}`)).size === 1;
+
+  // What this post was called before the draft abrogated the law that named it. Art. 32
+  // requires everyone to be reassigned but publishes no mapping, so this is reconstructed
+  // and says so — the link is evidence for an argument, not a claim about entitlement.
+  const wasCalled = useMemo(() => {
+    if (!assimilation || !chosen) return null;
+    const link = assimilation.links.find((l) =>
+      l.to.some((e) => e.positionCode === chosen.code),
+    );
+    if (!link) return null;
+    const before = link.from
+      .map((e) => {
+        const position = inForce?.positions.find((p) => p.code === e.positionCode);
+        const values = position?.variants
+          .map((v) => (typeof v.value === 'number' ? v.value : null))
+          .filter((n): n is number => n !== null);
+        return {
+          title: e.title ?? e.positionCode,
+          coefficient: values && values.length ? Math.min(...values) : null,
+        };
+      })
+      .filter((b) => b.title);
+    const after = chosen.variants
+      .map((v) => (typeof v.value === 'number' ? v.value : null))
+      .filter((n): n is number => n !== null);
+    return {
+      link,
+      before,
+      after: after.length ? Math.min(...after) : null,
+    };
+  }, [assimilation, chosen, inForce]);
 
   const set = (patch: Partial<Scenario>) => onChange({ ...scenario, ...patch });
 
@@ -153,6 +189,43 @@ export default function PayslipView({
               onChange={(e) => set({ seniorityYears: Number(e.target.value) })}
             />
           </label>
+
+          {wasCalled && (
+            <div className="was-called">
+              <div className="was-head">
+                <strong>Sub legea în vigoare, postul ăsta se numea</strong>
+                <span className={`badge ${wasCalled.link.confidence === 'assumed' ? 'weak' : ''}`}>
+                  {wasCalled.link.confidence === 'assumed'
+                    ? 'potrivire presupusă'
+                    : 'potrivire derivată'}
+                </span>
+              </div>
+              <ul>
+                {wasCalled.before.map((b) => (
+                  <li key={b.title}>
+                    {b.title}
+                    {b.coefficient !== null && (
+                      <em> — coeficient {b.coefficient.toLocaleString('ro-RO')}</em>
+                    )}
+                  </li>
+                ))}
+              </ul>
+              {wasCalled.after !== null && wasCalled.before[0]?.coefficient != null && (
+                <p className="was-move">
+                  {wasCalled.before[0].coefficient.toLocaleString('ro-RO')} →{' '}
+                  <b>{wasCalled.after.toLocaleString('ro-RO')}</b> ={' '}
+                  {pct(wasCalled.after / wasCalled.before[0].coefficient - 1, 1)} ca poziție în
+                  grilă. Nu e schimbarea salariului: valoarea de referință trece de la 2.500 lei la
+                  4.100 lei, deci coeficienții măsoară locul în ierarhie, nu suma.
+                </p>
+              )}
+              <p className="was-caveat">
+                Nicio lege nu publică asimilarea. Art. 32 cere reîncadrarea fiecărui angajat, dar
+                lasă decizia la fiecare ordonator de credite — deci legătura de mai sus e o
+                reconstrucție după denumire și familie ocupațională, nu un drept.
+              </p>
+            </div>
+          )}
 
           {chosen && chosen.variants.length > 1 && chosen.variants[0].dims && (
             <label className="field">

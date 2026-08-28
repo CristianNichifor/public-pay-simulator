@@ -119,8 +119,30 @@ The model splits this in two, on purpose:
   never changes what a law says.
 
 Crosswalks are typed by cardinality — `merge`, `split`, `abolished`, `new` — because a
-nine-to-one merge and a rename are different claims. `abolished` is the one worth watching:
-a former title with no destination.
+nine-to-one merge and a rename are different claims.
+
+`scripts/build_crosswalk_153.py` now reconstructs the 153/2017 → draft mapping, and the
+hard part is that the two laws name jobs differently on purpose: 153/2017 keeps every
+qualifier inside the title (*Profesor studii superioare de lungă durată grad didactic I*)
+while the draft moved qualifiers into dimensions (*Profesor* carrying a `grad`). Matching
+the strings directly fails on exactly the posts that did not change.
+
+So it matches twice and refuses more than it accepts — exact title within a family
+(`derived`), then the same title with qualifiers stripped, one-to-one only (`assumed`).
+**221 links, covering 34% of the old grid and 38% of the new.** An exact match is allowed
+to be wide, because both laws print the same title once per employer and *Director*
+legitimately joins twelve former posts to eight new ones; a stem match is not.
+
+`abolished` is never emitted, and that is deliberate. Calling every unmatched former post
+abolished would roughly double the apparent coverage and would assert something the
+evidence does not support: a post with no same-named counterpart is usually one the script
+could not resolve, not one the draft deleted.
+
+Across the 117 one-to-one links, the median post keeps its place almost exactly — a
+coefficient ratio of **1,014**, with p10 at 0,84 and p90 at 1,21. That is a change in
+*standing*, not in pay: the reference value moves from 2 500 lei to 4 100 lei, so
+coefficients measure position in the hierarchy rather than an amount. The payslip says so
+next to every figure it shows.
 
 ## The law in force, and what it shows
 

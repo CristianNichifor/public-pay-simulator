@@ -617,3 +617,14 @@ i.k-ro-cap { background: repeating-linear-gradient(135deg, var(--series-1) 0 3px
              border-radius: 4px 4px 0 0; min-height: 3px; }
 .trend-year { font-size: 12px; color: var(--text-muted); }
 .cmp-fill.fill-inForce { background: var(--mark-quiet); }
+
+/* "What this post used to be called" — a reconstruction, styled as one. */
+.was-called { border: 1px dashed var(--border); border-radius: 8px; padding: 12px 14px;
+              background: var(--surface-0); display: grid; gap: 6px; }
+.was-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.was-head strong { font-size: 13.5px; }
+.was-called ul { margin: 0; padding-left: 18px; font-size: 13.5px; }
+.was-called li em { color: var(--text-muted); font-style: normal; }
+.was-move { margin: 2px 0 0; font-size: 13px; color: var(--text-secondary); }
+.was-move b { color: var(--text-primary); }
+.was-caveat { margin: 0; font-size: 12px; color: var(--text-muted); line-height: 1.4; }
