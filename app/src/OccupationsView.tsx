@@ -138,6 +138,56 @@ export default function OccupationsView({
       ))}
 
       <section>
+        <h2>Din ce e făcut salariul</h2>
+        <p className="lede">
+          Danemarca plătește spor de condiții acolo unde munca chiar diferă — ture, îngrijire,
+          poliție — și aproape deloc la birou. România pune același plafon de 20% peste toată
+          lumea. Nu e o diferență de mărime, ci de proiectare.
+        </p>
+        <div className="card chart-scroll">
+          <table className="data">
+            <thead>
+              <tr>
+                <th>Meseria</th>
+                <th className="num">Spor de condiții, Danemarca</th>
+                <th className="num">Plafon românesc</th>
+              </tr>
+            </thead>
+            <tbody>
+              {resolved
+                .filter((r) => r.dkComposition?.conditions !== undefined)
+                .sort((a, b) => (b.dkComposition!.conditions ?? 0) - (a.dkComposition!.conditions ?? 0))
+                .map((r) => {
+                  const cond = r.dkComposition!.conditions ?? 0;
+                  return (
+                    <tr key={r.group.id}>
+                      <td>{r.group.label}</td>
+                      <td className="num">
+                        <div className="mini-track">
+                          <div className="mini-fill dk" style={{ width: `${(cond / 0.2) * 100}%` }} />
+                        </div>
+                        {(cond * 100).toLocaleString('ro-RO', { maximumFractionDigits: 1 })}%
+                      </td>
+                      <td className="num">
+                        <div className="mini-track">
+                          <div className="mini-fill ro" style={{ width: '100%' }} />
+                        </div>
+                        până la 20%
+                      </td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        </div>
+        <p className="cmp-foot">
+          Partea daneză e cât se plătește efectiv; cea românească e cât permite legea. România nu
+          publică defalcarea salariu de bază / sporuri pentru sectorul bugetar, deci nu poate fi
+          măsurată la fel — iar asta e în sine o diferență între cele două sisteme.
+        </p>
+      </section>
+
+      <section>
         <h2>Cum au fost făcute grupele</h2>
         <div className="card readme-grid">
           <p>

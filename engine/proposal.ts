@@ -27,13 +27,21 @@ export interface Patch {
     | 'makeGradeBandsContiguous'
     | 'collapseSchedule'
     | 'setSupplementCounts'
+    | 'setSupplementRate'
     | 'unifySeniority';
   decimals?: number;
   dimension?: string;
   keep?: 'first' | 'last';
   supplementIds?: string[];
   countsToCap?: boolean | 'partial';
+  rate?: number;
   ladder?: string;
+  /**
+   * True when the patch moves money between people rather than repairing a defect. The
+   * other patches deliberately leave distribution alone; one that does not must say so,
+   * or the whole proposal loses the claim that it only fixes what is broken.
+   */
+  policyChange?: boolean;
 }
 
 export interface Proposal {
@@ -190,19 +198,31 @@ export function applyProposal(base: Regime, proposal: Proposal): AppliedProposal
           effect.supplementsTouched += 1;
           return { ...s, countsToCap: patch.countsToCap ?? true };
         });
-        // The cap's exclusion list has to lose them too, or the numerator still skips them.
-        const caps = regime.caps.map((cap) =>
-          cap.numerator?.exclude?.some((id) => ids.has(id))
-            ? {
-                ...cap,
-                numerator: {
-                  ...cap.numerator,
-                  exclude: cap.numerator.exclude!.filter((id) => !ids.has(id)),
-                },
-              }
-            : cap,
-        );
+        // Keep the cap's exclusion list in step with the flag, in both directions.
+        // Stripping ids from the list unconditionally — as this did — silently pulled a
+        // supplement into the ceiling even when the patch was declaring it exempt.
+        const bringingIn = (patch.countsToCap ?? true) !== false;
+        const caps = regime.caps.map((cap) => {
+          if (!cap.numerator) return cap;
+          const current = cap.numerator.exclude ?? [];
+          const next = bringingIn
+            ? current.filter((id) => !ids.has(id))
+            : [...new Set([...current, ...ids])];
+          if (next.length === current.length && next.every((id, i) => id === current[i])) return cap;
+          return { ...cap, numerator: { ...cap.numerator, exclude: next } };
+        });
         regime = { ...regime, supplements, caps };
+        break;
+      }
+
+      case 'setSupplementRate': {
+        const ids = new Set(patch.supplementIds ?? []);
+        const supplements = regime.supplements.map((s) => {
+          if (!ids.has(s.id) || patch.rate === undefined) return s;
+          effect.supplementsTouched += 1;
+          return { ...s, rate: patch.rate };
+        });
+        regime = { ...regime, supplements };
         break;
       }
 

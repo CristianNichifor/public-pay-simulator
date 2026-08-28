@@ -5,7 +5,7 @@
   "base": "ro-draft-2026-07-16",
   "status": "proposal",
   "summary": "Cinci corecturi la proiectul MMFTSS. Niciuna nu schimbă cine cât ia unul față de altul: fiecare repară un defect pe care instrumentul îl arată deja în datele publicate. Este o versiune corectată a propunerii ministerului, nu o politică salarială alternativă.",
-  "notPolicy": "Această propunere nu ridică și nu scade salarii în raport unele cu altele. Compresia grilei, nivelul valorii de referință și repartiția între familii ocupaționale rămân exact cele propuse de minister. Ce se schimbă este dacă regulile scrise în lege pot fi de fapt aplicate.",
+  "notPolicy": "Această propunere nu ridică și nu scade salarii în raport unele cu altele. Compresia grilei, nivelul valorii de referință și repartiția între familii ocupaționale rămân exact cele propuse de minister. Ce se schimbă este dacă regulile scrise în lege pot fi de fapt aplicate. Excepția este ultima corectură, marcată ca atare: ea schimbă cine cât ia, pentru că mută sporuri legate de instituție în interiorul plafonului.",
   "provenance": {
     "source": "propunere-alternativa",
     "locator": "data/proposals/propunere-v1.json",
@@ -62,6 +62,19 @@
       "fixes": "doua-mecanisme-de-vechime",
       "rationale": "Art. 13 alin. (2) spune că toți coeficienții pentru funcții de execuție sunt stabiliți la gradația 0, urmând să crească cu 7,5/5/5/2,5/2,5%. Anexele I și V nu funcționează așa: publică un rând de coeficient pe fiecare tranșă de vechime, fiecare cu propriul cod. Pentru profesori și magistrați vechimea este deja în coeficient, deci aplicarea gradațiilor peste el ar plăti vechimea de două ori — iar neaplicarea lor înseamnă că aceleași cuvinte din lege produc rezultate diferite în funcție de anexă. Se păstrează gradațiile de la Art. 13 și se recalculează coeficienții acelor anexe la gradația 0.",
       "expectedEffect": "Vechimea devine calculabilă uniform. Salariul la vechimea maximă rămâne aproximativ cel din proiect; se schimbă drumul până acolo, nu capătul."
+    },
+    {
+      "id": "spor-de-conditii-proportionat",
+      "op": "setSupplementRate",
+      "supplementIds": [
+        "conditii-periculoase-i"
+      ],
+      "rate": 0.15,
+      "policyChange": true,
+      "title": "Sporul pentru condiții se aduce la un nivel proporțional cu munca",
+      "fixes": "plafon-20-nu-e-per-persoana",
+      "rationale": "Este o schimbare de politică, nu o reparație — mută bani între oameni. Temeiul e ce se plătește efectiv în Danemarca, unde sporul de condiții nu are plafon legal, ci rezultă din negociere: 8,8% din câștig la asistenții de îngrijire, 5,5% la asistenți medicali, 4,9% la polițiști și medici — dar 0,2% la învățători, 0,3% la personalul de birou și 0,0% la manageri. Adică se plătește acolo unde condițiile chiar diferă, proporțional cu cât diferă. Proiectul românesc permite până la 50% din salariul de bază pentru un singur spor de condiții, de peste cinci ori maximul danez observat, iar mărimea concretă o stabilește ordonatorul. Propunerea coboară plafonul la 15%, ceea ce lasă loc peste tot ce se plătește în Danemarca pentru cea mai grea muncă.",
+      "expectedEffect": "Diferența dintre două persoane cu aceeași funcție, în instituții diferite, scade substanțial. Sporul rămâne, dar nu mai poate dubla singur salariul."
     }
   ]
 }

@@ -53,6 +53,15 @@ export interface DkOccupation {
   q1: number;
   median: number;
   q3: number;
+  /** Shares of total pay, where published. */
+  composition?: {
+    basic?: number;
+    conditions?: number;
+    overtime?: number;
+    irregular?: number;
+    fringe?: number;
+    holiday?: number;
+  };
 }
 
 export interface ResolvedGroup {
@@ -85,6 +94,13 @@ export interface ResolvedGroup {
   /** Supplements the statute places outside that ceiling, so the reader can see what it omits. */
   exemptSupplements: Array<{ id: string; name: string; rate: number | null; basis: string }>;
   dk: { q1: number; median: number; q3: number } | null;
+  /**
+   * What Danish pay for this occupation is actually made of. The comparable line is the
+   * condition supplement: Denmark pays it where the work genuinely differs — shift work,
+   * care, policing — and at essentially zero for desk jobs. Romania's ceiling applies the
+   * same 20% to everyone, which is a different design rather than a different number.
+   */
+  dkComposition: DkOccupation['composition'] | null;
   /** Each side against its own country's public-sector benchmark. */
   roRatio: { min: number; max: number } | null;
   dkRatio: { q1: number; q3: number; median: number } | null;
@@ -194,6 +210,7 @@ export function resolveGroups(
       roCapped,
       exemptSupplements,
       dk,
+      dkComposition: parts.find((p) => p.composition)?.composition ?? null,
       roRatio:
         roMin !== null && roMax !== null && benchmarks.roPublicAverage > 0
           ? {

@@ -413,3 +413,9 @@ ul.matched li.more { list-style: none; margin-left: -16px; color: var(--text-mut
            opacity: 0.55; }
 i.k-ro-cap { background: repeating-linear-gradient(135deg, var(--series-1) 0 3px, transparent 3px 6px); opacity: 0.7; }
 .occ-caphint { color: var(--text-muted); font-style: normal; }
+.mini-track { display: inline-block; width: 90px; height: 7px; background: var(--surface-2);
+              border-radius: 3px; overflow: hidden; margin-right: 8px; vertical-align: middle; }
+.mini-fill { height: 100%; border-radius: 3px; }
+.mini-fill.dk { background: var(--series-dk); }
+.mini-fill.ro { background: var(--series-1); opacity: 0.55; }
+.patch-tags { display: inline-flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }

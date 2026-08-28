@@ -120,8 +120,12 @@ export default function App() {
         for (const s of occDoc.series) {
           const name = s.dims.occupation as string;
           const entry = byOcc.get(name) ?? { occupation: name, q1: 0, median: 0, q3: 0 };
-          (entry as unknown as Record<string, number>)[s.dims.quartile] =
-            s.observations.at(-1)?.value ?? 0;
+          const value = s.observations.at(-1)?.value ?? 0;
+          if (s.dims.kind === 'composition') {
+            entry.composition = { ...entry.composition, [s.dims.component]: value };
+          } else {
+            (entry as unknown as Record<string, number>)[s.dims.quartile] = value;
+          }
           byOcc.set(name, entry);
         }
         const all = [...byOcc.values()];

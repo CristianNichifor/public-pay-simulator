@@ -27,8 +27,21 @@ describe('the proposal is auditable', () => {
     // clothes. This test is what keeps the proposal honest as it grows.
     const declared = new Set(BASE.limitations.map((l) => l.id));
     for (const patch of PROPOSAL.patches) {
+      // A patch that redistributes has to admit it. Without this the proposal could grow
+      // policy under the cover of "five corrections that move nobody's pay".
       expect(patch.fixes, `${patch.id} must name what it fixes`).toBeTruthy();
       expect(declared, `${patch.id} fixes an unknown limitation`).toContain(patch.fixes!);
+    }
+  });
+
+  it('marks any patch that redistributes rather than repairs', () => {
+    const policy = PROPOSAL.patches.filter((p) => p.policyChange);
+    const repairs = PROPOSAL.patches.filter((p) => !p.policyChange);
+    expect(repairs.length).toBeGreaterThan(0);
+    // The claim in notPolicy is about the repairs; a policy patch must be flagged so the
+    // UI can separate the two rather than presenting them as one kind of change.
+    for (const p of policy) {
+      expect(p.rationale.toLowerCase()).toContain('politic');
     }
   });
 

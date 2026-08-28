@@ -58,8 +58,22 @@ OCCUPATIONS = {
 
 QUARTILES = {"NEDRE": "q1", "MEDIAN": "median", "OVRE": "q3"}
 
+# What Danish public pay is actually made of. Romania caps supplements at a share of base
+# and then exempts a long list; Denmark does not legislate a ceiling at all, so the only
+# way to ask whether Romania's supplement layer is unusually large is to measure what
+# Denmark's actually comes to.
+COMPONENTS = {
+    "FORINKL": "total",
+    "BASIS": "basic",
+    "GENE": "conditions",
+    "OVERB": "overtime",
+    "UREGEL": "irregular",
+    "GODE": "fringe",
+    "FERIE": "holiday",
+}
 
-def fetch_csv() -> list[dict]:
+
+def fetch_csv(measures: list[str]) -> list[dict]:
     body = json.dumps({
         "table": "LONSOFF", "format": "CSV", "lang": "en", "delimiter": "Semicolon",
         "variables": [
@@ -67,7 +81,7 @@ def fetch_csv() -> list[dict]:
             {"code": "GRP", "values": ["GRPTOT"]},
             {"code": "SEKTOR", "values": ["1032"]},
             {"code": "AFLOEN", "values": ["TIFA"]},
-            {"code": "LØNMÅL", "values": list(QUARTILES)},
+            {"code": "LØNMÅL", "values": measures},
             {"code": "KØN", "values": ["MOK"]},
             {"code": "Tid", "values": [YEAR]},
         ],
@@ -87,7 +101,7 @@ def quartile_of(label: str) -> str:
 
 def main() -> None:
     print("fetching LONSOFF from Danmarks Statistik ...")
-    rows = fetch_csv()
+    rows = fetch_csv(list(QUARTILES))
 
     # Keyed by the printed English label, since the CSV returns text rather than codes.
     by_label: dict[str, dict[str, float]] = {}
@@ -127,6 +141,47 @@ def main() -> None:
             })
         print(f"  {label[:44]:46} {values.get('q1',0):8,.0f} {values.get('median',0):8,.0f} {values.get('q3',0):8,.0f}".replace(",", " "))
 
+    print("\nfetching the composition of Danish public pay ...")
+    comp_rows = fetch_csv(list(COMPONENTS))
+    label_to_key = {
+        "EARNINGS IN DKK PER HOUR WORKED": "total",
+        "Basic earnings in DKK per hour worked": "basic",
+        "Nuisance bonus in DKK per hour worked": "conditions",
+        "Overtime payment in DKK per hour worked": "overtime",
+        "Irregular payments in DKK per hour worked": "irregular",
+        "Fringe benefits in DKK per hour worked": "fringe",
+        "..Holiday payments in DKK per hour worked": "holiday",
+    }
+    composition: dict[str, dict[str, float]] = {}
+    for row in comp_rows:
+        key = label_to_key.get(row["LØNMÅL"].strip())
+        if key:
+            composition.setdefault(row["OFFPERSGRP"].strip(), {})[key] = float(row["INDHOLD"])
+
+    for occupation, parts in composition.items():
+        total = parts.get("total", 0)
+        if not total:
+            continue
+        for component, value in parts.items():
+            if component == "total":
+                continue
+            series.append({
+                "id": f"dk-comp-{occupation.lower().replace(' ', '-')[:40]}-{component}",
+                "label": f"{occupation} — {component}",
+                "geo": "DK",
+                "unit": "PC_TOT",
+                "dims": {"kind": "composition", "occupation": occupation, "component": component},
+                "observations": [{"period": YEAR, "value": round(value / total, 5)}],
+                "provenance": {
+                    "source": "dst-lonsoff",
+                    "locator": f"Danmarks Statistik LONSOFF, {occupation}, {component} ÷ total, {YEAR}",
+                    "confidence": "derived",
+                },
+            })
+        share = lambda k: parts.get(k, 0) / total * 100  # noqa: E731
+        print(f"  {occupation[:42]:44} bază {share('basic'):5.1f}%  condiții {share('conditions'):4.1f}%"
+              f"  ore supl. {share('overtime'):4.1f}%  neregulate {share('irregular'):4.1f}%")
+
     document = {
         "$schema": "../../schema/fiscal.schema.json",
         "id": "dk-occupations",
@@ -154,6 +209,12 @@ def main() -> None:
                 "text": "Intervalul danez merge de la cuartila inferioară la cea superioară: jumătatea din mijloc a oamenilor din acea ocupație. Un sfert câștigă mai puțin decât capătul de jos și un sfert mai mult decât cel de sus. Nu e minimul și maximul posibil.",
                 "affects": ["gross"],
                 "severity": "note",
+            },
+            {
+                "id": "compozitie-vs-plafon",
+                "text": "Compoziția daneză este ce se plătește efectiv; plafonul românesc este ce permite legea. Comparația dintre ele este între un fapt și o limită, nu între două fapte — România nu publică defalcarea salariu de bază / sporuri pentru sectorul bugetar, deci partea românească nu poate fi măsurată la fel.",
+                "affects": ["structure"],
+                "severity": "material",
             },
             {
                 "id": "include-sporuri",

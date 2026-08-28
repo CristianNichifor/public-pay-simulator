@@ -33,7 +33,7 @@ interface Row {
 
 const COLUMNS: Array<{ key: Col; title: string; sub: string }> = [
   { key: 'ministry', title: 'Proiectul MMFTSS', sub: '16.07.2026' },
-  { key: 'ours', title: 'Propunerea alternativă', sub: 'cinci corecturi' },
+  { key: 'ours', title: 'Propunerea alternativă', sub: 'cinci reparații + o schimbare' },
   { key: 'dk', title: 'Danemarca', sub: 'sectorul de stat' },
 ];
 
@@ -144,7 +144,7 @@ export default function CompareView({
       <header className="masthead">
         <h1>Trei feluri de a plăti statul</h1>
         <p>
-          Ce propune ministerul, ce s-ar schimba cu cinci corecturi, și cum arată sistemul danez.
+          Ce propune ministerul, ce s-ar schimba cu șase corecturi, și cum arată sistemul danez.
           Aceleași șase întrebări puse tuturor.
         </p>
       </header>
@@ -221,7 +221,7 @@ export default function CompareView({
       </section>
 
       <section>
-        <h2>Cele cinci corecturi</h2>
+        <h2>Corecturile propuse</h2>
         <p className="lede">{proposal.notPolicy}</p>
         <ol className="patches">
           {proposal.patches.map((patch) => {
@@ -240,7 +240,14 @@ export default function CompareView({
               <li key={patch.id} className="card patch">
                 <div className="patch-head">
                   <h3>{patch.title}</h3>
-                  {touched && <span className="touched">{touched}</span>}
+                  <span className="patch-tags">
+                    {patch.policyChange ? (
+                      <span className="badge weak">schimbă distribuția</span>
+                    ) : (
+                      <span className="badge">reparație</span>
+                    )}
+                    {touched && <span className="touched">{touched}</span>}
+                  </span>
                 </div>
                 {patch.expectedEffect && <p className="effect">{patch.expectedEffect}</p>}
                 <details>
