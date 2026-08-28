@@ -62,6 +62,8 @@ QUARTILES = {"NEDRE": "q1", "MEDIAN": "median", "OVRE": "q3"}
 # and then exempts a long list; Denmark does not legislate a ceiling at all, so the only
 # way to ask whether Romania's supplement layer is unusually large is to measure what
 # Denmark's actually comes to.
+# These seven partition the total exactly — at 2024 they sum to 368,75 against a
+# published 368,74 — which is how we know nothing is missing and nothing is counted twice.
 COMPONENTS = {
     "FORINKL": "total",
     "BASIS": "basic",
@@ -69,8 +71,17 @@ COMPONENTS = {
     "OVERB": "overtime",
     "UREGEL": "irregular",
     "GODE": "fringe",
-    "FERIE": "holiday",
+    "PENS": "pension",
+    "SYGDOM": "sickness",
 }
+
+# Holiday pay is NOT one of them. Danmarks Statistik prints it with a leading ".." because
+# it is a sub-item *inside* basic earnings, not a component beside it — a Dane on holiday
+# keeps drawing salary, exactly as a Romanian does. Treating it as a peer and subtracting
+# it would remove twelve percent of Danish basic pay that is already counted once, and the
+# error is not cosmetic: it inverts which country leans more on its base salary. It is
+# imported so the page can say what holiday pay is worth, and marked so nothing sums it.
+SUB_ITEMS = {"FERIE": "holiday"}
 
 
 def fetch_csv(measures: list[str]) -> list[dict]:
@@ -142,7 +153,7 @@ def main() -> None:
         print(f"  {label[:44]:46} {values.get('q1',0):8,.0f} {values.get('median',0):8,.0f} {values.get('q3',0):8,.0f}".replace(",", " "))
 
     print("\nfetching the composition of Danish public pay ...")
-    comp_rows = fetch_csv(list(COMPONENTS))
+    comp_rows = fetch_csv(list(COMPONENTS) + list(SUB_ITEMS))
     label_to_key = {
         "EARNINGS IN DKK PER HOUR WORKED": "total",
         "Basic earnings in DKK per hour worked": "basic",
@@ -150,27 +161,53 @@ def main() -> None:
         "Overtime payment in DKK per hour worked": "overtime",
         "Irregular payments in DKK per hour worked": "irregular",
         "Fringe benefits in DKK per hour worked": "fringe",
+        "Pension including ATP in DKK per hour worked": "pension",
+        "Sickness with pay, etc. in DKK per hour worked": "sickness",
         "..Holiday payments in DKK per hour worked": "holiday",
     }
     composition: dict[str, dict[str, float]] = {}
     for row in comp_rows:
         key = label_to_key.get(row["LØNMÅL"].strip())
-        if key:
-            composition.setdefault(row["OFFPERSGRP"].strip(), {})[key] = float(row["INDHOLD"])
+        if not key:
+            continue
+        try:
+            value = float(row["INDHOLD"])
+        except ValueError:
+            continue  # Danmarks Statistik prints '..' where a cell is suppressed.
+        composition.setdefault(row["OFFPERSGRP"].strip(), {})[key] = value
+
+    partition = [c for c in COMPONENTS.values() if c != "total"]
 
     for occupation, parts in composition.items():
         total = parts.get("total", 0)
         if not total:
             continue
+
+        # The proof that the seven components are the whole of earnings, checked per
+        # occupation rather than assumed from the one group it was verified on by hand.
+        residual = total - sum(parts.get(c, 0) for c in partition)
+        if abs(residual) / total > 0.005:
+            raise SystemExit(
+                f"{occupation}: components miss {residual:.2f} of {total:.2f} DKK — the "
+                "partition is no longer complete, so shares would be wrong"
+            )
+
         for component, value in parts.items():
             if component == "total":
                 continue
+            # Holiday rides along as a memo line: readable, never summable.
+            kind = "composition" if component in partition else "composition-subitem"
+            note = (
+                " (sub-poziție, deja inclusă în salariul de bază)"
+                if kind == "composition-subitem"
+                else ""
+            )
             series.append({
                 "id": f"dk-comp-{occupation.lower().replace(' ', '-')[:40]}-{component}",
-                "label": f"{occupation} — {component}",
+                "label": f"{occupation} — {component}{note}",
                 "geo": "DK",
                 "unit": "PC_TOT",
-                "dims": {"kind": "composition", "occupation": occupation, "component": component},
+                "dims": {"kind": kind, "occupation": occupation, "component": component},
                 "observations": [{"period": YEAR, "value": round(value / total, 5)}],
                 "provenance": {
                     "source": "dst-lonsoff",
@@ -179,8 +216,9 @@ def main() -> None:
                 },
             })
         share = lambda k: parts.get(k, 0) / total * 100  # noqa: E731
-        print(f"  {occupation[:42]:44} bază {share('basic'):5.1f}%  condiții {share('conditions'):4.1f}%"
-              f"  ore supl. {share('overtime'):4.1f}%  neregulate {share('irregular'):4.1f}%")
+        print(f"  {occupation[:40]:42} bază {share('basic'):5.1f}%  condiții {share('conditions'):4.1f}%"
+              f"  ore supl. {share('overtime'):4.1f}%  neregulate {share('irregular'):4.1f}%"
+              f"  pensie {share('pension'):5.1f}%  boală {share('sickness'):4.1f}%")
 
     document = {
         "$schema": "../../schema/fiscal.schema.json",
@@ -212,8 +250,14 @@ def main() -> None:
             },
             {
                 "id": "compozitie-vs-plafon",
-                "text": "Compoziția daneză este ce se plătește efectiv; plafonul românesc este ce permite legea. Comparația dintre ele este între un fapt și o limită, nu între două fapte — România nu publică defalcarea salariu de bază / sporuri pentru sectorul bugetar, deci partea românească nu poate fi măsurată la fel.",
+                "text": "Compoziția daneză este ce s-a plătit efectiv. Partea românească pusă alături vine tot din execuția bugetară — clasificația economică, la nivel de paragraf — deci și ea e un fapt, nu un plafon. Ce rămâne necomparabil e altceva: execuția arată regimul actual, în timp ce plafonul de 20% aparține proiectului de lege, care nu s-a aplicat încă niciun an.",
                 "affects": ["structure"],
+                "severity": "note",
+            },
+            {
+                "id": "pensia-si-boala-ies-din-comparatie",
+                "text": "Din câștigul danez se scot pensia plătită de angajator (13,5%) și zilele de boală plătite (5,7%) înainte de comparație, fiindcă partea românească exclude contribuțiile angajatorului și plătește concediul medical din alt titlu bugetar. Concediul de odihnă, în schimb, nu se scade din nicio parte: Danemarca îl tipărește separat, dar ca sub-poziție a salariului de bază, exact cum în România salariul curge mai departe în concediu.",
+                "affects": ["gross", "structure"],
                 "severity": "material",
             },
             {

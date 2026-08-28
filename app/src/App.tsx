@@ -6,6 +6,7 @@ import type { AppliedProposal, Proposal } from '../../engine/proposal';
 import { decodeScenario, encodeScenario } from '../../engine/scenario';
 import type { Scenario } from '../../engine/scenario';
 import type { EnvelopeBaseline } from '../../engine/envelope';
+import type { Shares } from '../../engine/composition';
 import type { DkOccupation, GroupsDocument } from '../../engine/occupations';
 import type { Crosswalk, Regime } from '../../engine/types';
 import CompareView from './CompareView';
@@ -24,6 +25,7 @@ const FISCAL_ID = 'eurostat-compensation-2026-08';
 const HEADCOUNT_ID = 'posturi-ocupate-2026-06';
 const GROUPS_ID = 'ro-dk-occupations';
 const DK_OCC_ID = 'dk-occupations';
+const EXEC_ID = 'executie-personal';
 
 /**
  * The hash is the state. There is no store: every control writes a scenario into
@@ -64,6 +66,8 @@ export default function App() {
   const [occGroups, setOccGroups] = useState<GroupsDocument | null>(null);
   const [dkOcc, setDkOcc] = useState<DkOccupation[] | null>(null);
   const [occBench, setOccBench] = useState<{ roMedianBase: number; dkMedian: number } | null>(null);
+  /** What Romania actually paid, by budget chapter, keyed by the scope the importer used. */
+  const [roComposition, setRoComposition] = useState<Record<string, Shares> | null>(null);
 
   const wanted = scenario.regimeIds;
 
@@ -112,16 +116,32 @@ export default function App() {
     Promise.all([
       fetch(`${base}data/groups/${GROUPS_ID}.json`).then((r) => r.json()),
       fetch(`${base}data/fiscal/${DK_OCC_ID}.json`).then((r) => r.json()),
+      fetch(`${base}data/fiscal/${EXEC_ID}.json`).then((r) => r.json()),
     ])
-      .then(([groupsDoc, occDoc]) => {
+      .then(([groupsDoc, occDoc, execDoc]) => {
         setOccGroups(groupsDoc);
+
+        // The Romanian side of the composition: the rollup series, latest year, per
+        // budget chapter. The paragraph-level series stay in the file for anyone who
+        // wants to regroup them differently.
+        const roShares: Record<string, Shares> = {};
+        for (const s of execDoc.series) {
+          if (s.dims?.kind !== 'composition') continue;
+          const scope = s.dims.scope as string;
+          const value = s.observations.at(-1)?.value ?? 0;
+          roShares[scope] = { ...roShares[scope], [s.dims.component]: value };
+        }
+        setRoComposition(roShares);
         // The quartiles arrive as three separate series per occupation; fold them back.
         const byOcc = new Map<string, DkOccupation>();
         for (const s of occDoc.series) {
           const name = s.dims.occupation as string;
           const entry = byOcc.get(name) ?? { occupation: name, q1: 0, median: 0, q3: 0 };
           const value = s.observations.at(-1)?.value ?? 0;
-          if (s.dims.kind === 'composition') {
+          // 'composition-subitem' is holiday pay, which lives inside basic earnings. It
+          // is carried so the page can show what it is worth; the engine knows never to
+          // subtract it.
+          if (s.dims.kind === 'composition' || s.dims.kind === 'composition-subitem') {
             entry.composition = { ...entry.composition, [s.dims.component]: value };
           } else {
             (entry as unknown as Record<string, number>)[s.dims.quartile] = value;
@@ -306,6 +326,7 @@ export default function App() {
           danish={dkOcc}
           benchmarks={{ roMedianBase: medianBase ?? 0, dkMedian: occBench.dkMedian }}
           rates={fx}
+          roComposition={roComposition}
         />
       )}
       {scenario.view === 'echivalente' &&

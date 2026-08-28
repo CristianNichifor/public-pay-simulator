@@ -1,5 +1,7 @@
 import { useMemo, useState } from 'react';
 
+import { COMPONENT_LABELS, COMPONENTS, compareComposition } from '../../engine/composition';
+import type { Component, Shares, Side } from '../../engine/composition';
 import { resolveGroups } from '../../engine/occupations';
 import type { DkOccupation, GroupsDocument, ResolvedGroup } from '../../engine/occupations';
 import type { Regime } from '../../engine/types';
@@ -22,12 +24,15 @@ export default function OccupationsView({
   danish,
   benchmarks,
   rates,
+  roComposition,
 }: {
   regime: Regime;
   groups: GroupsDocument;
   danish: DkOccupation[];
   benchmarks: OccupationBenchmarks;
   rates: Rates;
+  /** What Romania actually paid, keyed by the budget chapter the importer scoped to. */
+  roComposition: Record<string, Shares> | null;
 }) {
   const [showLegal, setShowLegal] = useState(false);
   const [withCap, setWithCap] = useState(true);
@@ -137,55 +142,7 @@ export default function OccupationsView({
         </section>
       ))}
 
-      <section>
-        <h2>Din ce e făcut salariul</h2>
-        <p className="lede">
-          Danemarca plătește spor de condiții acolo unde munca chiar diferă — ture, îngrijire,
-          poliție — și aproape deloc la birou. România pune același plafon de 20% peste toată
-          lumea. Nu e o diferență de mărime, ci de proiectare.
-        </p>
-        <div className="card chart-scroll">
-          <table className="data">
-            <thead>
-              <tr>
-                <th>Meseria</th>
-                <th className="num">Spor de condiții, Danemarca</th>
-                <th className="num">Plafon românesc</th>
-              </tr>
-            </thead>
-            <tbody>
-              {resolved
-                .filter((r) => r.dkComposition?.conditions !== undefined)
-                .sort((a, b) => (b.dkComposition!.conditions ?? 0) - (a.dkComposition!.conditions ?? 0))
-                .map((r) => {
-                  const cond = r.dkComposition!.conditions ?? 0;
-                  return (
-                    <tr key={r.group.id}>
-                      <td>{r.group.label}</td>
-                      <td className="num">
-                        <div className="mini-track">
-                          <div className="mini-fill dk" style={{ width: `${(cond / 0.2) * 100}%` }} />
-                        </div>
-                        {(cond * 100).toLocaleString('ro-RO', { maximumFractionDigits: 1 })}%
-                      </td>
-                      <td className="num">
-                        <div className="mini-track">
-                          <div className="mini-fill ro" style={{ width: '100%' }} />
-                        </div>
-                        până la 20%
-                      </td>
-                    </tr>
-                  );
-                })}
-            </tbody>
-          </table>
-        </div>
-        <p className="cmp-foot">
-          Partea daneză e cât se plătește efectiv; cea românească e cât permite legea. România nu
-          publică defalcarea salariu de bază / sporuri pentru sectorul bugetar, deci nu poate fi
-          măsurată la fel — iar asta e în sine o diferență între cele două sisteme.
-        </p>
-      </section>
+      <CompositionSection roComposition={roComposition} resolved={resolved} danish={danish} />
 
       <section>
         <h2>Cum au fost făcute grupele</h2>
@@ -336,5 +293,175 @@ function OccupationRow({
         </ul>
       </details>
     </article>
+  );
+}
+
+/** Budget chapters are the finest cut Romania publishes; these are the page's sectors. */
+const SECTOR_SCOPE: Record<string, string> = {
+  'Sănătate': 'sanatate',
+  'Educație': 'invatamant',
+  'Administrație': 'administratie',
+  'Ordine publică': 'ordine-publica',
+};
+
+const pctOf = (n: number, digits = 1) =>
+  `${(n * 100).toLocaleString('ro-RO', { maximumFractionDigits: digits })}%`;
+
+/** One stacked bar. Segments under a hairline are dropped so they cannot look like a mark. */
+function Bar({ side, label, sub }: { side: Side; label: string; sub?: string }) {
+  return (
+    <div className="comp-row">
+      <div className="comp-name">
+        {label}
+        {sub && <small>{sub}</small>}
+      </div>
+      <div>
+        <div className="comp-bar">
+          {side.slices
+            .filter((s) => s.share > 0.002)
+            .map((s) => (
+              <div
+                key={s.component}
+                className={`comp-seg ${s.component}`}
+                style={{ width: `${s.share * 100}%` }}
+                title={`${COMPONENT_LABELS[s.component]}: ${pctOf(s.share)}`}
+              />
+            ))}
+        </div>
+        <div className="comp-tail">
+          <span>
+            bază <b>{pctOf(side.slices.find((s) => s.component === 'basic')?.share ?? 0, 0)}</b>
+          </span>
+          <span>
+            peste bază <b>{pctOf(side.supplements)}</b>
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/**
+ * The Romanian and Danish pay compositions, both measured from what was paid.
+ *
+ * Until the budget execution was imported this section could only put a Danish fact next
+ * to a Romanian legal ceiling. Both sides are now facts, which is why the comparison is
+ * finally worth drawing — and why the caveats that remain are about *which* facts.
+ */
+function CompositionSection({
+  roComposition,
+  resolved,
+  danish,
+}: {
+  roComposition: Record<string, Shares> | null;
+  resolved: ResolvedGroup[];
+  danish: DkOccupation[];
+}) {
+  const national = useMemo(() => {
+    // The all-employees row is not one of the occupation groups — it is the Danish
+    // total, and it has to come from the raw table or the headline silently disappears.
+    const dkTotal = danish.find((o) => o.occupation.startsWith('Public employees'))?.composition;
+    if (!roComposition?.national) return null;
+    return compareComposition(roComposition.national, (dkTotal ?? {}) as Shares);
+  }, [roComposition, danish]);
+
+  const bySector = useMemo(() => {
+    const map = new Map<string, ResolvedGroup[]>();
+    for (const r of resolved) {
+      if (!r.dkComposition) continue;
+      const list = map.get(r.group.sector) ?? [];
+      list.push(r);
+      map.set(r.group.sector, list);
+    }
+    return [...map.entries()];
+  }, [resolved]);
+
+  if (!roComposition) return null;
+
+  return (
+    <section>
+      <h2>Din ce e făcut salariul</h2>
+      <p className="lede">
+        Amândouă părțile sunt acum ce s-a plătit efectiv, nu ce permite legea: Danemarca din
+        statistica de câștiguri, România din execuția bugetară pe clasificația economică — acolo
+        unde „Salarii de bază” stă la 10.01.01 și sporurile la 10.01.05 și 10.01.06.
+      </p>
+
+      {national && national.timesLarger !== null && (
+        <>
+          <div className="comp-hero">
+            <span className="big">
+              {national.timesLarger.toLocaleString('ro-RO', { maximumFractionDigits: 1 })}×
+            </span>
+            <p>
+              Atât e de mare stratul de peste salariul de bază în România față de Danemarca:{' '}
+              {pctOf(national.ro.supplements)} din plată, față de {pctOf(national.dk.supplements)}.
+              Nu plafonul de 20% e neobișnuit — ci cât de mult atârnă deja plata de el.
+            </p>
+          </div>
+          <div className="card">
+            <Bar side={national.ro} label="România" sub="tot sectorul bugetar, execuție 2025" />
+            <Bar side={national.dk} label="Danemarca" sub="toți angajații publici, 2024" />
+          </div>
+        </>
+      )}
+
+      {bySector.map(([sector, rows]) => {
+        const scope = SECTOR_SCOPE[sector];
+        const shares = scope ? roComposition[scope] : undefined;
+        if (!shares) return null;
+        return (
+          <div className="card" key={sector} style={{ marginTop: 16 }}>
+            <h3>{sector}</h3>
+            <Bar
+              side={compareComposition(shares, {}).ro}
+              label="România"
+              sub="tot capitolul bugetar — statul nu publică defalcarea pe meserii"
+            />
+            {rows.map((r) => (
+              <Bar
+                key={r.group.id}
+                side={compareComposition({}, r.dkComposition as Shares).dk}
+                label={r.group.label}
+                sub="Danemarca"
+              />
+            ))}
+          </div>
+        );
+      })}
+
+      <div className="comp-key">
+        {COMPONENTS.map((c: Component) => (
+          <span key={c}>
+            <i style={{ background: `var(--comp-${c})` }} />
+            {COMPONENT_LABELS[c]}
+          </span>
+        ))}
+      </div>
+
+      {national && (
+        <div className="comp-excl">
+          <p>Ce s-a scos înainte de comparație, ca cele două să măsoare același lucru:</p>
+          <ul>
+            {[...national.dk.excluded, ...national.ro.excluded].map((e) => (
+              <li key={e.key}>
+                <b>{e.label}</b> ({pctOf(e.share)}) — {e.reason}
+              </li>
+            ))}
+            <li>
+              <b>Concediul de odihnă</b> nu se scade din nicio parte. Danemarca îl tipărește
+              separat, {pctOf(national.dk.holidayInsideBasic)} din câștig, dar ca sub-poziție a
+              salariului de bază — omul în concediu își primește salariul, exact ca în România.
+              Scăzut ca și cum ar fi o componentă aparte, ar răsturna concluzia.
+            </li>
+          </ul>
+          <p>
+            Execuția arată regimul actual, nu proiectul: plafonul de 20% n-a funcționat încă
+            niciun an. Iar clasificația economică e un vocabular contabil — ce intră la „Sporuri
+            pentru condiții de muncă” nu e exact mulțimea pe care Art. 21 o plafonează.
+          </p>
+        </div>
+      )}
+    </section>
   );
 }

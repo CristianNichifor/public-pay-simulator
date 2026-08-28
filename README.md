@@ -193,6 +193,50 @@ institutional average rather than anyone's payslip. And the statute lifts a long
 of it: night work, overtime, disability, three-shift health work, Delta isolation,
 EU-fund administration, and the performance premium. Three supplements remain inside.
 
+## How big the supplement layer already is
+
+For a long time this page could only put a Danish fact beside a Romanian legal ceiling:
+Denmark publishes what it paid, and Romania looked as though it published nothing below
+"personnel expenditure". It does. Every public entity files its budget execution against
+the economic classification, and that classification runs to paragraph depth — `10.01.01
+Salarii de baza` beside `10.01.05 Sporuri pentru conditii de munca` and `10.01.06 Alte
+sporuri`. [transparenta.eu](https://transparenta.eu) has those filings in a queryable
+database; summing the *ordonatori principali* gives a national figure without counting a
+subordinate institution twice. `scripts/import_executie.py` reads it over GraphQL.
+
+So both sides are now measured, and the answer is not the one the headline numbers
+suggest:
+
+| | România | Danemarca |
+| --- | --- | --- |
+| Tot sectorul public | 81% bază, **18,8%** peste | 94% bază, **5,5%** peste |
+| Sănătate | 72% bază, **27,6%** peste | medici 12%, asistenți 10% |
+| Educație | 86% bază, **14,4%** peste | profesori 1,9% |
+| Ordine publică | 74% bază, **26,2%** peste | poliție 8,6% |
+
+Romania's layer above base pay is about **3,4×** the Danish one. The interesting part is
+not that a 20% ceiling exists — it is that pay already leans on supplements this heavily,
+which is what makes the ceiling bind.
+
+Three adjustments make the two comparable, and `engine/composition.ts` does them in one
+place because getting them wrong changes the answer:
+
+- **Employer pension (13,5%) and paid sickness (5,7%) come out of the Danish side.**
+  Romania excludes title `10.03` and pays sick leave from a different title, so leaving
+  them in would compare pay against the cost of employment.
+- **Delegation and secondment come out of the Romanian side** — reimbursed expense, not
+  pay, and with no Danish counterpart.
+- **Holiday pay comes out of neither.** Danmarks Statistik prints it at ~12%, which invites
+  subtracting it — but it prints it with a leading `..` because it is a sub-item *inside*
+  basic earnings, not a component beside it. A Dane on holiday keeps drawing salary, as a
+  Romanian does. Subtract it and Denmark appears the more supplement-heavy system, which is
+  the opposite of the truth. The importer marks it `composition-subitem`, the engine refuses
+  to sum it, and a test pins the reversal.
+
+Two things this does not claim. The economic classification is an accounting vocabulary,
+not the law's: what lands in `10.01.05` is not the set Art. 21 caps. And the execution
+describes the *current* regime — the draft's ceiling has never applied to a single year.
+
 ## Naming: institution and statute, or occupation and expertise
 
 Denmark names a post by what the person does and what it requires — *engineer*,

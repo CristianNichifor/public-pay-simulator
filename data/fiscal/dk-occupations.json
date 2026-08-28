@@ -1119,12 +1119,56 @@
       }
     },
     {
-      "id": "dk-comp-public-employees,-total-(exclusiv-young--holiday",
-      "label": "Public employees, total (exclusiv young people and trainees) — holiday",
+      "id": "dk-comp-public-employees,-total-(exclusiv-young--pension",
+      "label": "Public employees, total (exclusiv young people and trainees) — pension",
       "geo": "DK",
       "unit": "PC_TOT",
       "dims": {
         "kind": "composition",
+        "occupation": "Public employees, total (exclusiv young people and trainees)",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.13473
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Public employees, total (exclusiv young people and trainees), pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-public-employees,-total-(exclusiv-young--sickness",
+      "label": "Public employees, total (exclusiv young people and trainees) — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Public employees, total (exclusiv young people and trainees)",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.0573
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Public employees, total (exclusiv young people and trainees), sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-public-employees,-total-(exclusiv-young--holiday",
+      "label": "Public employees, total (exclusiv young people and trainees) — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
         "occupation": "Public employees, total (exclusiv young people and trainees)",
         "component": "holiday"
       },
@@ -1251,12 +1295,56 @@
       }
     },
     {
-      "id": "dk-comp-doctors-(junior-doctors)-holiday",
-      "label": "Doctors (junior doctors) — holiday",
+      "id": "dk-comp-doctors-(junior-doctors)-pension",
+      "label": "Doctors (junior doctors) — pension",
       "geo": "DK",
       "unit": "PC_TOT",
       "dims": {
         "kind": "composition",
+        "occupation": "Doctors (junior doctors)",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.15201
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Doctors (junior doctors), pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-doctors-(junior-doctors)-sickness",
+      "label": "Doctors (junior doctors) — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Doctors (junior doctors)",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.06103
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Doctors (junior doctors), sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-doctors-(junior-doctors)-holiday",
+      "label": "Doctors (junior doctors) — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
         "occupation": "Doctors (junior doctors)",
         "component": "holiday"
       },
@@ -1383,12 +1471,56 @@
       }
     },
     {
-      "id": "dk-comp-senior-consultants-(medical)-holiday",
-      "label": "Senior consultants (medical) — holiday",
+      "id": "dk-comp-senior-consultants-(medical)-pension",
+      "label": "Senior consultants (medical) — pension",
       "geo": "DK",
       "unit": "PC_TOT",
       "dims": {
         "kind": "composition",
+        "occupation": "Senior consultants (medical)",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.16443
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Senior consultants (medical), pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-senior-consultants-(medical)-sickness",
+      "label": "Senior consultants (medical) — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Senior consultants (medical)",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.03113
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Senior consultants (medical), sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-senior-consultants-(medical)-holiday",
+      "label": "Senior consultants (medical) — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
         "occupation": "Senior consultants (medical)",
         "component": "holiday"
       },
@@ -1515,12 +1647,56 @@
       }
     },
     {
-      "id": "dk-comp-dentists-holiday",
-      "label": "Dentists — holiday",
+      "id": "dk-comp-dentists-pension",
+      "label": "Dentists — pension",
       "geo": "DK",
       "unit": "PC_TOT",
       "dims": {
         "kind": "composition",
+        "occupation": "Dentists",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.1749
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Dentists, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-dentists-sickness",
+      "label": "Dentists — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Dentists",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.06309
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Dentists, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-dentists-holiday",
+      "label": "Dentists — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
         "occupation": "Dentists",
         "component": "holiday"
       },
@@ -1647,12 +1823,56 @@
       }
     },
     {
-      "id": "dk-comp-nurses-holiday",
-      "label": "Nurses — holiday",
+      "id": "dk-comp-nurses-pension",
+      "label": "Nurses — pension",
       "geo": "DK",
       "unit": "PC_TOT",
       "dims": {
         "kind": "composition",
+        "occupation": "Nurses",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.1198
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Nurses, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-nurses-sickness",
+      "label": "Nurses — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Nurses",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.06884
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Nurses, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-nurses-holiday",
+      "label": "Nurses — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
         "occupation": "Nurses",
         "component": "holiday"
       },
@@ -1779,12 +1999,56 @@
       }
     },
     {
-      "id": "dk-comp-midwives-holiday",
-      "label": "Midwives — holiday",
+      "id": "dk-comp-midwives-pension",
+      "label": "Midwives — pension",
       "geo": "DK",
       "unit": "PC_TOT",
       "dims": {
         "kind": "composition",
+        "occupation": "Midwives",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.12279
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Midwives, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-midwives-sickness",
+      "label": "Midwives — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Midwives",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.08001
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Midwives, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-midwives-holiday",
+      "label": "Midwives — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
         "occupation": "Midwives",
         "component": "holiday"
       },
@@ -1911,12 +2175,56 @@
       }
     },
     {
-      "id": "dk-comp-physiotherapists-holiday",
-      "label": "Physiotherapists — holiday",
+      "id": "dk-comp-physiotherapists-pension",
+      "label": "Physiotherapists — pension",
       "geo": "DK",
       "unit": "PC_TOT",
       "dims": {
         "kind": "composition",
+        "occupation": "Physiotherapists",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.14716
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Physiotherapists, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-physiotherapists-sickness",
+      "label": "Physiotherapists — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Physiotherapists",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.07091
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Physiotherapists, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-physiotherapists-holiday",
+      "label": "Physiotherapists — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
         "occupation": "Physiotherapists",
         "component": "holiday"
       },
@@ -2043,12 +2351,56 @@
       }
     },
     {
-      "id": "dk-comp-social-and-health-care-assistants-holiday",
-      "label": "Social and health care assistants — holiday",
+      "id": "dk-comp-social-and-health-care-assistants-pension",
+      "label": "Social and health care assistants — pension",
       "geo": "DK",
       "unit": "PC_TOT",
       "dims": {
         "kind": "composition",
+        "occupation": "Social and health care assistants",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.10948
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Social and health care assistants, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-social-and-health-care-assistants-sickness",
+      "label": "Social and health care assistants — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Social and health care assistants",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.06643
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Social and health care assistants, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-social-and-health-care-assistants-holiday",
+      "label": "Social and health care assistants — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
         "occupation": "Social and health care assistants",
         "component": "holiday"
       },
@@ -2175,12 +2527,56 @@
       }
     },
     {
-      "id": "dk-comp-primary-and-lower-secondary-school-teach-holiday",
-      "label": "Primary and lower secondary school teachers — holiday",
+      "id": "dk-comp-primary-and-lower-secondary-school-teach-pension",
+      "label": "Primary and lower secondary school teachers — pension",
       "geo": "DK",
       "unit": "PC_TOT",
       "dims": {
         "kind": "composition",
+        "occupation": "Primary and lower secondary school teachers",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.14882
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Primary and lower secondary school teachers, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-primary-and-lower-secondary-school-teach-sickness",
+      "label": "Primary and lower secondary school teachers — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Primary and lower secondary school teachers",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.06741
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Primary and lower secondary school teachers, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-primary-and-lower-secondary-school-teach-holiday",
+      "label": "Primary and lower secondary school teachers — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
         "occupation": "Primary and lower secondary school teachers",
         "component": "holiday"
       },
@@ -2307,12 +2703,56 @@
       }
     },
     {
-      "id": "dk-comp-upper-secondary-school-teachers-holiday",
-      "label": "Upper secondary school teachers — holiday",
+      "id": "dk-comp-upper-secondary-school-teachers-pension",
+      "label": "Upper secondary school teachers — pension",
       "geo": "DK",
       "unit": "PC_TOT",
       "dims": {
         "kind": "composition",
+        "occupation": "Upper secondary school teachers",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.14678
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Upper secondary school teachers, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-upper-secondary-school-teachers-sickness",
+      "label": "Upper secondary school teachers — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Upper secondary school teachers",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.03956
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Upper secondary school teachers, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-upper-secondary-school-teachers-holiday",
+      "label": "Upper secondary school teachers — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
         "occupation": "Upper secondary school teachers",
         "component": "holiday"
       },
@@ -2439,12 +2879,56 @@
       }
     },
     {
-      "id": "dk-comp-pedagogues-/-educators-holiday",
-      "label": "Pedagogues / Educators — holiday",
+      "id": "dk-comp-pedagogues-/-educators-pension",
+      "label": "Pedagogues / Educators — pension",
       "geo": "DK",
       "unit": "PC_TOT",
       "dims": {
         "kind": "composition",
+        "occupation": "Pedagogues / Educators",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.13225
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Pedagogues / Educators, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-pedagogues-/-educators-sickness",
+      "label": "Pedagogues / Educators — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Pedagogues / Educators",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.0814
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Pedagogues / Educators, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-pedagogues-/-educators-holiday",
+      "label": "Pedagogues / Educators — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
         "occupation": "Pedagogues / Educators",
         "component": "holiday"
       },
@@ -2571,12 +3055,56 @@
       }
     },
     {
-      "id": "dk-comp-graduates-with-a-masters-degree-holiday",
-      "label": "Graduates with a Masters degree — holiday",
+      "id": "dk-comp-graduates-with-a-masters-degree-pension",
+      "label": "Graduates with a Masters degree — pension",
       "geo": "DK",
       "unit": "PC_TOT",
       "dims": {
         "kind": "composition",
+        "occupation": "Graduates with a Masters degree",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.1518
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Graduates with a Masters degree, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-graduates-with-a-masters-degree-sickness",
+      "label": "Graduates with a Masters degree — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Graduates with a Masters degree",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.04973
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Graduates with a Masters degree, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-graduates-with-a-masters-degree-holiday",
+      "label": "Graduates with a Masters degree — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
         "occupation": "Graduates with a Masters degree",
         "component": "holiday"
       },
@@ -2703,12 +3231,56 @@
       }
     },
     {
-      "id": "dk-comp-office-staff-holiday",
-      "label": "Office staff — holiday",
+      "id": "dk-comp-office-staff-pension",
+      "label": "Office staff — pension",
       "geo": "DK",
       "unit": "PC_TOT",
       "dims": {
         "kind": "composition",
+        "occupation": "Office staff",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.14196
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Office staff, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-office-staff-sickness",
+      "label": "Office staff — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Office staff",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.05155
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Office staff, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-office-staff-holiday",
+      "label": "Office staff — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
         "occupation": "Office staff",
         "component": "holiday"
       },
@@ -2835,12 +3407,56 @@
       }
     },
     {
-      "id": "dk-comp-public-sector-managers-holiday",
-      "label": "Public sector managers — holiday",
+      "id": "dk-comp-public-sector-managers-pension",
+      "label": "Public sector managers — pension",
       "geo": "DK",
       "unit": "PC_TOT",
       "dims": {
         "kind": "composition",
+        "occupation": "Public sector managers",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.16178
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Public sector managers, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-public-sector-managers-sickness",
+      "label": "Public sector managers — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Public sector managers",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.0209
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Public sector managers, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-public-sector-managers-holiday",
+      "label": "Public sector managers — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
         "occupation": "Public sector managers",
         "component": "holiday"
       },
@@ -2967,12 +3583,56 @@
       }
     },
     {
-      "id": "dk-comp-police-officers-holiday",
-      "label": "Police officers — holiday",
+      "id": "dk-comp-police-officers-pension",
+      "label": "Police officers — pension",
       "geo": "DK",
       "unit": "PC_TOT",
       "dims": {
         "kind": "composition",
+        "occupation": "Police officers",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.15741
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Police officers, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-police-officers-sickness",
+      "label": "Police officers — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Police officers",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.05134
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Police officers, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-police-officers-holiday",
+      "label": "Police officers — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
         "occupation": "Police officers",
         "component": "holiday"
       },
@@ -3009,8 +3669,17 @@
     },
     {
       "id": "compozitie-vs-plafon",
-      "text": "Compoziția daneză este ce se plătește efectiv; plafonul românesc este ce permite legea. Comparația dintre ele este între un fapt și o limită, nu între două fapte — România nu publică defalcarea salariu de bază / sporuri pentru sectorul bugetar, deci partea românească nu poate fi măsurată la fel.",
+      "text": "Compoziția daneză este ce s-a plătit efectiv. Partea românească pusă alături vine tot din execuția bugetară — clasificația economică, la nivel de paragraf — deci și ea e un fapt, nu un plafon. Ce rămâne necomparabil e altceva: execuția arată regimul actual, în timp ce plafonul de 20% aparține proiectului de lege, care nu s-a aplicat încă niciun an.",
       "affects": [
+        "structure"
+      ],
+      "severity": "note"
+    },
+    {
+      "id": "pensia-si-boala-ies-din-comparatie",
+      "text": "Din câștigul danez se scot pensia plătită de angajator (13,5%) și zilele de boală plătite (5,7%) înainte de comparație, fiindcă partea românească exclude contribuțiile angajatorului și plătește concediul medical din alt titlu bugetar. Concediul de odihnă, în schimb, nu se scade din nicio parte: Danemarca îl tipărește separat, dar ca sub-poziție a salariului de bază, exact cum în România salariul curge mai departe în concediu.",
+      "affects": [
+        "gross",
         "structure"
       ],
       "severity": "material"
