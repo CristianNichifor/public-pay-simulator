@@ -18,7 +18,7 @@ import EquivalenceView from './EquivalenceView';
 import PayslipView from './PayslipView';
 import StructureView from './StructureView';
 
-const AVAILABLE = ['ro-draft-2026-07-16', 'dk-stat-2026'];
+const AVAILABLE = ['ro-153-2017', 'ro-draft-2026-07-16', 'dk-stat-2026'];
 const PROPOSAL_ID = 'propunere-v1';
 const CROSSWALK_ID = 'ro-draft-2026-07-16--dk-stat-2026';
 const FX_ID = 'ecb-fx';
@@ -395,6 +395,7 @@ export default function App() {
         <CompareView
           ministry={ministry}
           ours={ours.regime}
+          inForce={regimes['ro-153-2017'] ?? null}
           denmark={regimes['dk-stat-2026'] ?? null}
           proposal={proposal}
           effects={ours.effects}

@@ -20,7 +20,7 @@ implementation.
 - [x] Two hand-written regimes, validating, arithmetic checked against published figures
 - [x] CI: schema validation gate + engine typecheck; Pages deploy wired
 - [x] `scripts/import_coeficienti.py` — 48 sheets → 1 049 positions, 2 929 variants, 16 tests
-- [ ] `ro-153-2017.json` — blocked on the consolidated 153/2017 annexes
+- [x] `ro-153-2017.json` — the law in force, 1 524 positions from the consolidated annexes
 - [x] `engine/structure.ts` + vitest — view 2's metric, 14 tests
 - [x] **View 2 — system shape, live**
 - [x] `payslip()` / `aggregate()` + tests — Danish figures reproduce to the krone
@@ -122,7 +122,45 @@ Crosswalks are typed by cardinality — `merge`, `split`, `abolished`, `new` —
 nine-to-one merge and a rename are different claims. `abolished` is the one worth watching:
 a former title with no destination.
 
-## Three systems, one screen
+## The law in force, and what it shows
+
+For most of this project's life there was no "today". The law actually paying people —
+153/2017 — was listed as blocked on "the consolidated annexes", which turned out to mean
+nobody had gone and fetched them. legislatie.just.ro serves the consolidated text with all
+annexes as HTML: 176 tables, each row giving the position, the study level, the 2022 base
+salary in lei, and the coefficient.
+
+`scripts/import_153.py` reads them, and it proves its own work. The source prints the
+salary beside the coefficient that produces it, so salary ÷ (coefficient ÷ 100) must land
+on the 2 500 lei reference. Headers alone were not enough — merged header cells make the
+parser repeat "Coeficient" across every column, which first produced a grid running 0,01
+to 12,00 with a 1:833 span and salaries out by a quarter of a million lei. Every
+coefficient is now confirmed against its printed salary **row by row**: 1 750 confirmed,
+worst deviation 9,90 lei (the law's own rounding), 11 dropped as unconfirmed.
+
+The result changes what the comparison is about:
+
+| | 153/2017, today | Proiectul MMFTSS | Propunerea | Danemarca |
+| --- | --- | --- | --- | --- |
+| Numbers to decide | **230** | 1 264 | 324 | 16 |
+| Back-solved (≥14 decimals) | **0%** | 60,3% | 0% | 0% |
+| Span | **1:7,02** | 1:7,39 → 1:8,00 | 1:7,00 | 1:3,55 |
+| Names hiding the institution | **0** | 37 | 0 | 0 |
+
+The draft is not simplifying a tangle. The law in force decides 230 numbers, every one
+printed to two decimals. The draft asks for 1 264, five and a half times as many, and
+60,3% of them carry fourteen decimal places or more — the residue of dividing existing
+salaries rather than the product of a decision. And it *widens* the gap between lowest and
+highest paid, from 1:7,02 to 1:7,39 on day one and 1:8,00 by 2031.
+
+Two things this regime deliberately does not do. It models **no supplements** — 153/2017
+scatters them across annexes and connected acts, so the comparison holds for base pay and
+not for total income. And it models **no levies**, so it yields no net figure: the Fiscal
+Code rates in this repo were marked `assumed`, with a note that they came from no source
+in `./sources`, and a law described as in force may not carry guessed provenance. Verify
+those rates and the net follows.
+
+## Four systems, one screen
 
 The landing page asks the same seven questions of the ministry's draft, our proposal, and
 Denmark. The strongest single result:

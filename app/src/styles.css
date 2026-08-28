@@ -311,7 +311,9 @@ section.hero { display: grid; grid-template-columns: auto 1fr; gap: 26px; align-
 
 /* --- comparison grid: one bar per system per question --- */
 .cmp { display: grid; gap: 2px; margin-top: 20px; }
-.cmp-head, .cmp-row { display: grid; grid-template-columns: minmax(190px, 1.3fr) repeat(3, 1fr); gap: 18px; }
+/* Four regimes now, not three: the law in force sits first, because "what changes
+   against today" is the question a reader actually arrives with. */
+.cmp-head, .cmp-row { display: grid; grid-template-columns: minmax(170px, 1.15fr) repeat(4, 1fr); gap: 13px; }
 @media (max-width: 860px) {
   .cmp-head { display: none; }
   .cmp-row { grid-template-columns: 1fr; gap: 6px; padding: 14px 0; }
@@ -323,6 +325,7 @@ section.hero { display: grid; grid-template-columns: auto 1fr; gap: 26px; align-
 .cmp-col .col-title { font-size: 13px; font-weight: 600; }
 .cmp-col .col-sub { font-size: 11.5px; color: var(--text-muted); }
 .col-ministry .col-title { color: var(--series-1); }
+.col-inForce .col-title { color: var(--text-secondary); }
 .col-ours .col-title { color: var(--accent); }
 .col-dk .col-title { color: var(--series-dk); }
 
@@ -613,3 +616,4 @@ i.k-ro-cap { background: repeating-linear-gradient(135deg, var(--series-1) 0 3px
 .trend-bar { width: 100%; max-width: 62px; background: var(--series-1);
              border-radius: 4px 4px 0 0; min-height: 3px; }
 .trend-year { font-size: 12px; color: var(--text-muted); }
+.cmp-fill.fill-inForce { background: var(--mark-quiet); }

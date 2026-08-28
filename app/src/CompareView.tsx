@@ -19,7 +19,7 @@ function ratio(n: number): string {
   return `1:${n.toLocaleString('ro-RO', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 
-type Col = 'ministry' | 'ours' | 'dk';
+type Col = 'inForce' | 'ministry' | 'ours' | 'dk';
 
 interface Cell {
   /** What the bar is drawn from. null renders as an explained dash, never as zero. */
@@ -46,6 +46,7 @@ function columnsFor(proposal: Proposal): Array<{ key: Col; title: string; sub: s
   const repairs = proposal.patches.length - changes;
   const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
   return [
+    { key: 'inForce', title: 'Legea în vigoare', sub: '153/2017, grila pentru 2022' },
     { key: 'ministry', title: 'Proiectul MMFTSS', sub: '16.07.2026' },
     {
       key: 'ours',
@@ -75,6 +76,7 @@ function fusedCount(regime: Regime): number {
 
 export default function CompareView({
   ministry,
+  inForce,
   ours,
   denmark,
   proposal,
@@ -85,6 +87,8 @@ export default function CompareView({
   period,
 }: {
   ministry: Regime;
+  /** Law 153/2017 — what people are paid under today. */
+  inForce: Regime | null;
   ours: Regime;
   denmark: Regime | null;
   proposal: Proposal;
@@ -101,6 +105,15 @@ export default function CompareView({
   // The whole schedule, unfiltered: "how many annual columns are there" is a fact about
   // the law, not about the year being viewed, and filtering would always answer one.
   const schedule = useMemo(() => structure(ministry).spanByPeriod, [ministry]);
+  const f: StructureMetrics | null = useMemo(
+    () => (inForce ? structure(inForce) : null),
+    [inForce],
+  );
+
+  // 153/2017 declares no salary grades and phases nothing, so two of the seven questions
+  // have no answer for it. An explained dash, never a zero that reads as "none".
+  const lawCell = (n: number | null, text: string, note?: string): Cell =>
+    f ? { n, text, note } : { n: null, text: '—', note: 'legea în vigoare nu e încărcată' };
   // The first column where the ratio actually moves. It is not the second: the phased
   // dignitary coefficients stay below a post that is not phased at all, so the eșalonare
   // is invisible for its first years — which is only visible if you can step through them.
@@ -137,6 +150,7 @@ export default function CompareView({
       hint: 'valori cu 14 zecimale sau mai multe — reziduul unei împărțiri, nu o decizie',
       better: 'lower',
       cells: {
+        inForce: lawCell(f?.backSolvedShare ?? 0, pct(f?.backSolvedShare ?? 0), 'coeficienții sunt tipăriți cu două zecimale'),
         ministry: { n: m.backSolvedShare, text: pct(m.backSolvedShare) },
         ours: { n: o.backSolvedShare, text: pct(o.backSolvedShare) },
         dk: dkCell(d?.backSolvedShare ?? 0, pct(d?.backSolvedShare ?? 0), 'treptele poartă direct suma'),
@@ -147,6 +161,7 @@ export default function CompareView({
       hint: 'valori distincte în toată grila',
       better: 'lower',
       cells: {
+        inForce: lawCell(f?.distinctValues ?? null, ro(f?.distinctValues ?? 0)),
         ministry: { n: m.distinctValues, text: ro(m.distinctValues) },
         ours: {
           n: o.distinctValues,
@@ -163,6 +178,7 @@ export default function CompareView({
       // measures how many institutions there are rather than how many occupations.
       better: 'lower',
       cells: {
+        inForce: lawCell(f?.positions ?? null, ro(f?.positions ?? 0)),
         ministry: {
           n: m.positions,
           text: ro(m.positions),
@@ -181,6 +197,7 @@ export default function CompareView({
       hint: 'aceeași denumire, coeficienți diferiți după categoria instituției — nu după meserie',
       better: 'lower',
       cells: {
+        inForce: lawCell(inForce ? fusedCount(inForce) : null, inForce ? ro(fusedCount(inForce)) : '—'),
         ministry: {
           n: fusedCount(ministry),
           text: ro(fusedCount(ministry)),
@@ -195,6 +212,7 @@ export default function CompareView({
       hint: 'cad în golurile dintre intervalele din Art. 9 alin. (2)',
       better: 'lower',
       cells: {
+        inForce: lawCell(null, '—', 'legea în vigoare nu declară grade salariale'),
         ministry: { n: m.variantsInGaps, text: ro(m.variantsInGaps) },
         ours: { n: o.variantsInGaps, text: ro(o.variantsInGaps) },
         dk: dkCell(0, '0', 'fiecare treaptă e o sumă — deși scara sare peste treapta 3'),
@@ -205,6 +223,7 @@ export default function CompareView({
       hint: 'Art. 5 o fixează la 1 la 8',
       better: 'none',
       cells: {
+        inForce: lawCell(f?.span.ratio ?? null, ratio(f?.span.ratio ?? 0), 'nedeclarat în lege; rezultă din anexe'),
         ministry: {
           n: m.span.ratio,
           text: ratio(m.span.ratio),
@@ -221,6 +240,7 @@ export default function CompareView({
       hint: 'câte coloane anuale trebuie parcurse',
       better: 'lower',
       cells: {
+        inForce: lawCell(0, '0', 'eșalonarea din art. 38 s-a încheiat în 2022'),
         ministry: { n: schedule.length, text: ro(schedule.length) },
         ours: { n: 0, text: '0' },
         dk: dkCell(0, '0', 'treptele se renegociază, nu se eșalonează în lege'),
@@ -231,10 +251,11 @@ export default function CompareView({
   return (
     <>
       <header className="masthead">
-        <h1>Trei feluri de a plăti statul</h1>
+        <h1>Patru feluri de a plăti statul</h1>
         <p>
-          Ce propune ministerul, ce s-ar schimba cu {ro(proposal.patches.length)} corecturi, și cum
-          arată sistemul danez. Aceleași {ro(rows.length)} întrebări puse tuturor.
+          Ce se plătește azi, ce propune ministerul, ce s-ar schimba cu{' '}
+          {ro(proposal.patches.length)} corecturi, și cum arată sistemul danez. Aceleași{' '}
+          {ro(rows.length)} întrebări puse tuturor.
         </p>
       </header>
 
@@ -293,14 +314,35 @@ export default function CompareView({
 
       <section className="hero">
         <div className="hero-figure">
-          <span className="from">{ro(m.distinctValues)}</span>
+          {f && (
+            <>
+              <span className="from">{ro(f.distinctValues)}</span>
+              <span className="arrow">→</span>
+            </>
+          )}
+          <span className="to">{ro(m.distinctValues)}</span>
           <span className="arrow">→</span>
-          <span className="to">{ro(o.distinctValues)}</span>
+          <span className="from">{ro(o.distinctValues)}</span>
         </div>
         <p className="hero-text">
-          Atâtea numere distincte are grila acum, și atâtea i-ar rămâne dacă ar fi rotunjită la două
-          zecimale. Restul de {ro(m.distinctValues - o.distinctValues)} nu sunt decizii de politică
-          salarială, ci resturi ale unei împărțiri: grila a fost dedusă din salariile existente.
+          {f ? (
+            <>
+              Legea în vigoare decide {ro(f.distinctValues)} numere, toate tipărite cu două
+              zecimale. Proiectul cere {ro(m.distinctValues)} — de{' '}
+              {(m.distinctValues / f.distinctValues).toLocaleString('ro-RO', {
+                maximumFractionDigits: 1,
+              })}{' '}
+              ori mai multe — și {pct(m.backSolvedShare)} dintre ele au paisprezece zecimale sau
+              mai multe. Nu e o grilă proiectată, ci una dedusă din salariile existente prin
+              împărțire. Rotunjită la două zecimale, s-ar întoarce la {ro(o.distinctValues)}.
+            </>
+          ) : (
+            <>
+              Atâtea numere distincte are grila acum, și atâtea i-ar rămâne dacă ar fi rotunjită la
+              două zecimale. Restul de {ro(m.distinctValues - o.distinctValues)} nu sunt decizii de
+              politică salarială, ci resturi ale unei împărțiri.
+            </>
+          )}
         </p>
       </section>
 
