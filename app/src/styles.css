@@ -738,3 +738,21 @@ i.k-measured { background: var(--series-1); border-radius: 50% !important; }
 .cmp-value .sampled { color: var(--accent); font-style: normal; font-weight: 600;
                       margin-left: 2px; }
 .cmp-foot .sampled { color: var(--accent); font-style: normal; font-weight: 600; }
+
+/* The first screen — mostly navigation, deliberately short. */
+.home-masthead h1 { font-size: 30px; max-width: 22ch; }
+.home-masthead p { font-size: 16px; max-width: 72ch; }
+.home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+             gap: 12px; }
+.home-card { font: inherit; text-align: left; cursor: pointer; display: grid; gap: 5px;
+             align-content: start; padding: 16px 17px;
+             background: var(--surface-1); border: 1px solid var(--border);
+             border-radius: 10px; }
+.home-card:hover { border-color: var(--series-1); }
+.home-card strong { font-size: 15px; color: var(--text-primary); }
+.home-card span { font-size: 13px; line-height: 1.45; color: var(--text-secondary); }
+.home-sources ul { margin: 0; padding-left: 18px; display: grid; gap: 7px; }
+.home-sources li { font-size: 13.5px; line-height: 1.5; color: var(--text-secondary); }
+.home-sources li b { color: var(--text-primary); }
+.home-sources li em { color: var(--text-muted); font-style: normal; }
+.home-sources p { margin: 14px 0 0; font-size: 13px; color: var(--text-muted); }

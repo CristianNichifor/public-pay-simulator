@@ -32,14 +32,16 @@ describe('scenario codec', () => {
 
   it('falls back to a valid scenario rather than throwing on rubbish', () => {
     const result = decodeScenario('#/nonsense?r=&y=abc');
-    expect(result.view).toBe('compare');
+    // The default, whatever it is — a first visit should land somewhere sensible, and
+    // pinning the literal here only records which view happened to be first that week.
+    expect(result.view).toBe(DEFAULT_SCENARIO.view);
     expect(result.regimeIds).toEqual(['ro-draft-2026-07-16']);
     expect(result.seniorityYears).toBeUndefined();
   });
 
   it('handles an empty hash', () => {
     expect(decodeScenario('')).toEqual({
-      view: 'compare',
+      view: DEFAULT_SCENARIO.view,
       regimeIds: ['ro-draft-2026-07-16'],
       positionCode: undefined,
       seniorityYears: undefined,

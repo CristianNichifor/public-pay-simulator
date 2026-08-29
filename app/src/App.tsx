@@ -13,6 +13,7 @@ import type { Shares } from '../../engine/composition';
 import type { DkOccupation, GroupsDocument } from '../../engine/occupations';
 import type { Crosswalk, Regime } from '../../engine/types';
 import CompareView from './CompareView';
+import HomeView from './HomeView';
 import DistributionView from './DistributionView';
 import EnvelopeView from './EnvelopeView';
 import OccupationsView from './OccupationsView';
@@ -45,6 +46,7 @@ const INS_ID = 'ins-ocupatii';
  * what changes, what people are paid, and whether it is affordable — in that order.
  */
 const VIEW_META: Record<ViewId, { label: string; blurb: string }> = {
+  acasa: { label: 'Despre proiect', blurb: 'ce este, pe ce date stă, ce nu poate spune' },
   compare: { label: 'Ce se schimbă', blurb: 'proiectul, propunerea și Danemarca, față în față' },
   structure: { label: 'Cum e construită grila', blurb: 'zecimalele, golurile, funcțiile comasate' },
   distributie: {
@@ -61,6 +63,7 @@ const VIEW_META: Record<ViewId, { label: string; blurb: string }> = {
 const PHASED_VIEWS: ViewId[] = ['compare', 'structure', 'payslip'];
 
 const NAV_GROUPS: Array<{ title: string; ask: string; views: ViewId[] }> = [
+  { title: 'Începe aici', ask: 'Ce e asta?', views: ['acasa'] },
   { title: 'Reforma', ask: 'Ce se schimbă?', views: ['compare', 'distributie', 'structure'] },
   { title: 'Oamenii', ask: 'Cine cât ia?', views: ['meserii', 'payslip', 'echivalente'] },
   { title: 'Banii', ask: 'Ne permitem?', views: ['envelope'] },
@@ -291,7 +294,7 @@ export default function App() {
     // be called, and without it that block renders with the titles and no coefficients.
     // Leaving it to `wanted` once left the landing page — headed "ways to pay the state" —
     // with its entire Danish column as explained dashes.
-    const NEEDS_ALL: ViewId[] = ['compare', 'echivalente', 'payslip', 'distributie'];
+    const NEEDS_ALL: ViewId[] = ['compare', 'echivalente', 'payslip', 'distributie', 'acasa'];
     const needed = NEEDS_ALL.includes(scenario.view) ? AVAILABLE : wanted;
     const missing = needed.filter((id) => !regimes[id] && AVAILABLE.includes(id));
     if (missing.length === 0) return;
@@ -412,6 +415,14 @@ export default function App() {
       {error && <p className="loading">Nu s-au putut încărca datele: {error}</p>}
       {!error && loaded.length === 0 && <p className="loading">Se încarcă grila…</p>}
 
+      {scenario.view === 'acasa' && (
+        <HomeView
+          ministry={ministry ?? null}
+          inForce={regimes['ro-153-2017'] ?? null}
+          denmark={regimes['dk-stat-2026'] ?? null}
+          onOpen={(view) => setScenario({ ...scenario, view })}
+        />
+      )}
       {scenario.view === 'compare' && ministry && ours && proposal && fx && (
         <CompareView
           ministry={ministry}

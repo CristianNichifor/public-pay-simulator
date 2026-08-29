@@ -25,7 +25,8 @@ document and article it came from.
 - `dk-stat-2026` — 16 positions transcribed from the IDA tables, plus 165 measured series
   from Danmarks Statistik
 - Budget execution, the 20% ceiling per *ordonator*, and INS measured base pay
-- Seven views, a year control, and every scenario in the URL
+- A home page explaining the scope, seven views behind it, a year control, and every
+  scenario in the URL
 - 27 Python tests over the importers, schema validation in CI, Pages deploy
 
 **Blocked, and not by us**

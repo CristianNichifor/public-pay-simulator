@@ -16,6 +16,7 @@
 import type { Person, SupplementClaim } from './payslip';
 
 export type ViewId =
+  | 'acasa'
   | 'compare'
   | 'meserii'
   | 'echivalente'
@@ -80,7 +81,9 @@ function decodeMove(text: string): EnvelopeMove | null {
 }
 
 export const DEFAULT_SCENARIO: Scenario = {
-  view: 'compare',
+  // A first visit lands on an explanation, not on a table of structural metrics. Links
+  // already shared into #/compare keep working; only the bare URL changes.
+  view: 'acasa',
   regimeIds: ['ro-draft-2026-07-16'],
 };
 
@@ -142,7 +145,8 @@ export function decodeScenario(hash: string): Scenario {
     path === 'compare' ||
     path === 'meserii' ||
     path === 'echivalente' ||
-    path === 'distributie'
+    path === 'distributie' ||
+    path === 'acasa'
       ? path
       : DEFAULT_SCENARIO.view;
 
