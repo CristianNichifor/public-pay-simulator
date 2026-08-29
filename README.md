@@ -10,37 +10,51 @@ by side. Everything runs in the browser; a scenario is a URL.
 
 ## Status
 
-Design stage. The schema is settled and validates; the engine is a contract, not yet an
-implementation.
+Built and live. The three views the brief asked for are there, both Romanian regimes and
+the Danish comparator are imported from their sources, and every number carries the
+document and article it came from.
 
-- [x] Read the draft law and the annexes
-- [x] `schema/regime.schema.json` — one document type for every regime, RO and DK alike
-- [x] `schema/crosswalk.schema.json` — position assimilation between regimes
-- [x] `engine/types.ts` — engine contract and type signatures
-- [x] Two hand-written regimes, validating, arithmetic checked against published figures
-- [x] CI: schema validation gate + engine typecheck; Pages deploy wired
-- [x] `scripts/import_coeficienti.py` — 48 sheets → 1 049 positions, 2 929 variants, 16 tests
-- [x] `ro-153-2017.json` — the law in force, 1 524 positions from the consolidated annexes
-- [x] `engine/structure.ts` + vitest — view 2's metric, 14 tests
-- [x] **View 2 — system shape, live**
-- [x] `payslip()` / `aggregate()` + tests — Danish figures reproduce to the krone
-- [ ] `data/headcount/` — blocked: no filled-post counts are published per position
-- [x] **View 1 — payslip diff, live.** Scenario lives in the URL hash
-- [x] **Comparison view — three systems side by side, the landing page**
-- [x] `data/proposals/propunere-v1.json` — our proposal, as eight auditable patches
-- [x] `data/headcount/` — real filled-post counts, June 2026, per ordonator
-- [x] **View 3 — envelope mode.** Fix total spend; every increase names the reduction paying for it
+**Done**
 
-`aggregate()` is implemented and tested, but no headcount document is committed, because
-none is published. Romania releases no per-position filled-post counts, and inventing them
-would break the provenance rule. The function is exercised against fixtures in its test
-file; the moment a real state of posts exists it drops straight in.
+- `schema/` — regime, crosswalk and fiscal document types; one schema swallows RO and DK
+- `engine/` — pure, no runtime dependencies, 124 tests. `payslip()` reproduces the Danish
+  published figures to the krone
+- `ro-draft-2026-07-16` — 1 049 positions, 2 929 variants, from the ministry's workbook
+- `ro-153-2017` — 1 524 positions, from the consolidated annexes; every coefficient
+  confirmed against the salary printed beside it
+- `dk-stat-2026` — 16 positions transcribed from the IDA tables, plus 165 measured series
+  from Danmarks Statistik
+- Budget execution, the 20% ceiling per *ordonator*, and INS measured base pay
+- Seven views, a year control, and every scenario in the URL
+- 27 Python tests over the importers, schema validation in CI, Pages deploy
+
+**Blocked, and not by us**
+
+These are properties of what Romania publishes. They are recorded in the data, surfaced
+on the pages they affect, and are not work waiting to be done.
+
+- **Filled posts per position.** Nothing published maps headcount to the 1 049 functions.
+  The MF report stops at the *ordonator*; INS stops at ten ISCO groups and omits public
+  administration entirely. `aggregate()` is implemented and tested and has nothing to run
+  on, which is why envelope mode is top-down.
+- **Art. 33, the transitional difference.** Needs individual November 2026 income, which is
+  not published. Bounded as far as the data allows: no matched post's base falls below its
+  2022 grid value, because the reference rise more than covers the largest fall in standing.
+- **The ±15% band for health units.** Set by a Government decision that is not published.
+- **Two seniority mechanisms.** Art. 13(2) and the Annex I seniority rows contradict each
+  other. That is a finding about the law, not a defect to repair.
+
+**Editorial, and better done by someone who knows the job families**
+
+- Crosswalk coverage past 34%. Matching by title is exhausted — a study-level tiebreaker
+  was tried and resolved none of the seven ambiguous groups. Going further means reading
+  duty descriptions.
+- 97 positions where the importer refused to split a merged title and said so.
+- The Danish comparator is 16 transcribed positions against 1 049 Romanian ones. Counts
+  and spans derived from it are marked as a sample on the landing page and do not win
+  their row; the measured comparison on *Meserii RO–DK* is the one to trust.
 
 Live: <https://cristiannichifor.github.io/public-pay-simulator/>
-
-View 2 shipped first because it needs only the imported grid, not the pay engine — so the
-most legible finding reaches a URL without anything unverified being rendered. Views 1 and 3
-wait on `payslip()` and `aggregate()`.
 
 ## Two constraints that shape everything
 
@@ -48,9 +62,14 @@ wait on `payslip()` and `aggregate()`.
    schema. The engine is a pure function. Changing a coefficient means editing JSON — never
    TypeScript. If the schema cannot express a system without special-casing it, the schema
    is wrong and gets fixed.
-2. **Never compare Romanian and Danish pay levels.** RON and DKK amounts are never placed
-   side by side. Denmark is in here to compare *shape*: how a ladder is built, who sets what,
-   how much of pay is base and how much is supplement, how far apart the top and bottom sit.
+2. **Compare levels only against each system's own middle.** This started as "never compare
+   RON and DKK", which was too blunt to be useful: a reader shown 38 264 DKK has to leave the
+   page to know whether that is a lot. So amounts are compared, under two rules that hold
+   everywhere. A figure in a currency the reader does not think in never appears alone —
+   `money.ts` is the one place that decides this, and it always adds RON and EUR. And a
+   cross-country *comparison* is always a ratio to that country's own median, never a
+   converted amount set beside another converted amount. Denmark is still mainly here for
+   shape: how a ladder is built, how much of pay is base, how far apart the ends sit.
 
 ## What the same schema had to swallow
 

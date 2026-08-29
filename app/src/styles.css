@@ -735,3 +735,6 @@ i.k-measured { background: var(--series-1); border-radius: 50% !important; }
   .meas-row { grid-template-columns: 1fr 68px; }
   .meas-track { grid-column: 1 / -1; }
 }
+.cmp-value .sampled { color: var(--accent); font-style: normal; font-weight: 600;
+                      margin-left: 2px; }
+.cmp-foot .sampled { color: var(--accent); font-style: normal; font-weight: 600; }

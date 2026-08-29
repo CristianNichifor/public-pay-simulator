@@ -207,6 +207,15 @@
   ],
   "limitations": [
     {
+      "id": "forma-consolidata-neoficiala",
+      "severity": "material",
+      "affects": [
+        "gross",
+        "structure"
+      ],
+      "text": "Anexele de aici sunt citite din forma consolidata publicata pe legislatie.just.ro. Portalul spune explicit ca formele consolidate sunt neoficiale, ca referirile din documente oficiale trebuie facute la textul tiparit in Monitorul Oficial si ca cine citeaza consolidarea isi asuma raspunderea. Cifrele sunt bune pentru o dezbatere publica si nu sunt o sursa de drept: intr-un act oficial se citeaza Monitorul, nu acest fisier."
+    },
+    {
       "id": "anexele-sunt-pentru-2022",
       "severity": "material",
       "affects": [

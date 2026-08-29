@@ -26,6 +26,16 @@ interface Cell {
   n: number | null;
   text: string;
   note?: string;
+  /**
+   * The figure comes from a sample too thin to be scored against a full grid.
+   *
+   * The Danish regime is 16 hand-built positions against Romania's 1 049. For a share
+   * that does not matter — 0% back-solved is 0% either way. For a *count*, and for a
+   * span computed from the extremes of a count, it decides the answer: a 16-row table
+   * will always look simpler than a 1 049-row one, partly because it is and partly
+   * because it is 16 rows. Such a cell still shows its number, but never wins the row.
+   */
+  sampled?: boolean;
 }
 interface Row {
   label: string;
@@ -144,6 +154,10 @@ export default function CompareView({
   const dkCell = (n: number | null, text: string, note?: string): Cell =>
     d ? { n, text, note } : { n: null, text: '—', note: 'regimul danez nu e încărcat' };
 
+  /** The same, for rows where the count of Danish rows is what produces the number. */
+  const dkSample = (n: number | null, text: string, note?: string): Cell =>
+    d ? { n, text, note, sampled: true } : { n: null, text: '—', note: 'regimul danez nu e încărcat' };
+
   const rows: Row[] = [
     {
       label: 'Coeficienți retro-calculați',
@@ -168,7 +182,7 @@ export default function CompareView({
           text: ro(o.distinctValues),
           note: `cu ${ro(m.distinctValues - o.distinctValues)} mai puține`,
         },
-        dk: dkCell(d?.distinctValues ?? null, ro(d?.distinctValues ?? 0), 'atâtea sume distincte apar în tabele'),
+        dk: dkSample(d?.distinctValues ?? null, ro(d?.distinctValues ?? 0), `din ${ro(d?.positions ?? 0)} posturi transcrise, nu din toată grila daneză`),
       },
     },
     {
@@ -189,7 +203,7 @@ export default function CompareView({
           text: ro(o.positions),
           note: `cu ${ro(m.positions - o.positions)} mai puține — aceeași meserie, un singur nume`,
         },
-        dk: dkCell(d?.positions ?? null, ro(d?.positions ?? 0), 'documentul IDA numește circa 20'),
+        dk: dkSample(d?.positions ?? null, ro(d?.positions ?? 0), 'atâtea am transcris din tabelele IDA — nu e numărul de posturi din Danemarca'),
       },
     },
     {
@@ -232,7 +246,7 @@ export default function CompareView({
             : undefined,
         },
         ours: { n: o.span.ratio, text: ratio(o.span.ratio), note: 'fix, nu se mai schimbă' },
-        dk: dkCell(d?.span.ratio ?? null, ratio(d?.span.ratio ?? 0), 'nu e declarat în lege, rezultă din tabele'),
+        dk: dkSample(d?.span.ratio ?? null, ratio(d?.span.ratio ?? 0), `nedeclarat în lege; între extremele celor ${ro(d?.positions ?? 0)} posturi transcrise`),
       },
     },
     {
@@ -362,13 +376,19 @@ export default function CompareView({
             const values = COLUMNS.map((c) => row.cells[c.key].n).filter(
               (n): n is number => n !== null,
             );
+            // A sampled cell is drawn and labelled but kept out of the contest: it
+            // cannot win a row whose metric is a function of how many rows there are.
+            const contested = COLUMNS.map((c) => row.cells[c.key])
+              .filter((cell) => !cell.sampled)
+              .map((cell) => cell.n)
+              .filter((n): n is number => n !== null);
             const max = Math.max(...values, 1e-9);
             const best =
-              row.better === 'none'
+              row.better === 'none' || contested.length === 0
                 ? null
                 : row.better === 'lower'
-                  ? Math.min(...values)
-                  : Math.max(...values);
+                  ? Math.min(...contested)
+                  : Math.max(...contested);
 
             return (
               <div key={row.label} className="cmp-row">
@@ -378,7 +398,8 @@ export default function CompareView({
                 </div>
                 {COLUMNS.map((c) => {
                   const cell = row.cells[c.key];
-                  const isBest = best !== null && cell.n !== null && cell.n === best;
+                  const isBest =
+                    best !== null && cell.n !== null && cell.n === best && !cell.sampled;
                   return (
                     <div key={c.key} className={`cmp-cell col-${c.key}`}>
                       <div className="cmp-track">
@@ -389,7 +410,10 @@ export default function CompareView({
                           }}
                         />
                       </div>
-                      <span className={`cmp-value${isBest ? ' best' : ''}`}>{cell.text}</span>
+                      <span className={`cmp-value${isBest ? ' best' : ''}`}>
+                        {cell.text}
+                        {cell.sampled && <em className="sampled" title="eșantion, nu grilă întreagă">*</em>}
+                      </span>
                       {cell.note && <span className="cmp-note">{cell.note}</span>}
                     </div>
                   );
@@ -400,7 +424,13 @@ export default function CompareView({
         </div>
         <p className="cmp-foot">
           Barele din fiecare rând sunt proporționale între ele, nu între rânduri. Unde nu există
-          cifră, scrie de ce.
+          cifră, scrie de ce. Celulele cu <em className="sampled">*</em> vin dintr-un eșantion:
+          regimul danez de aici are {ro(d?.positions ?? 0)} posturi transcrise din tabelele IDA,
+          față de {ro(m.positions)} în grila românească. Pentru o pondere asta nu contează, dar
+          pentru un <em>număr</em> de posturi și pentru distanța dintre extremele lui contează
+          decisiv — un tabel cu {ro(d?.positions ?? 0)} rânduri va părea mereu mai simplu. De aceea
+          acele celule nu câștigă rândul. Comparația daneză serioasă, pe câștiguri măsurate, e pe
+          pagina „Meserii, RO vs DK”.
         </p>
       </section>
 
