@@ -331,6 +331,49 @@ Two things this does not claim. The economic classification is an accounting voc
 not the law's: what lands in `10.01.05` is not the set Art. 21 caps. And the execution
 describes the *current* regime — the draft's ceiling has never applied to a single year.
 
+## The grid against a measurement
+
+Every Romanian number in this project came from a statute — a coefficient times a reference
+value, which is what the law *says*. The Danish side has had measured earnings since the
+first import, and the asymmetry sat as a limitation on nearly every page.
+
+INS matrix **FOM121A** closes it for two sectors. It carries employee counts, the **salariul
+brut de bază** and gross income, split by ownership, CAEN activity and ISCO major group —
+so the public sector can be isolated and the *base* salary compared with the grid's own
+quantity. `scripts/import_ins_ocupatii.py` reads it.
+
+| 2024, proprietate publică | angajați | bază măsurată | mediana grilei (proiect) | |
+| --- | --- | --- | --- | --- |
+| Învățământ | 289 396 | 9 596 lei | 7 848 lei | **+22%** |
+| Sănătate | 280 405 | 7 280 lei | 7 322 lei | **−1%** |
+
+**The draft's health grid lands within one percent of what health workers are actually paid.
+Its education grid sits 22% below.** Whatever else the draft does, in education it either
+moves teachers down or leans hard on the transitional difference.
+
+It also settles a caveat that had been asserted rather than measured. The Art. 33 bound is
+stated against the 2022 grid printed in the annexes, and the reason is now a number: that
+grid gives an education median of 5 525 lei against 9 596 measured in 2024 — **42% below**.
+The annexes are not what anyone is paid.
+
+Three limits ship with it, one of them blocking:
+
+- **Ten ISCO major groups, not 1 049 positions.** It answers "what does a public-sector
+  specialist in education earn", never "what does an auditor earn", and cannot weight the
+  grid by position — that gap stays exactly where it was.
+- **The grid counts positions; the survey counts people.** A grid median treats a post held
+  by forty thousand teachers and one held by a single chief inspector as one vote each.
+  Weighting the grid properly needs per-position headcount, which is the thing nobody
+  publishes. The comparison is informative and is not an equality test.
+- **No CAEN section O.** Sections A–S are covered, O — public administration and defence —
+  is not. Education and health are in; ministries, police and the army are out.
+
+The transport is worth recording. The data POST goes to `/tempo-ins/pivot` with a
+colon-separated `encQuery` string, not to `/tempo-ins/matrix/{code}` with a JSON array —
+five plausible shapes against the latter all return 400. transparenta.eu mirrors 1 898 INS
+datasets but lists this one as `SYNCED` with zero observations, so it had to come from INS
+directly. The contract was read off `github.com/mark-veres/tempo.py`.
+
 ## The four tax rates, finally verified
 
 Four levies — CAS, CASS, income tax, CAM — sat in the draft's frame marked `assumed`, with

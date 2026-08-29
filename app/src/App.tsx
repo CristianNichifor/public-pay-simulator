@@ -7,6 +7,7 @@ import { decodeScenario, encodeScenario } from '../../engine/scenario';
 import type { Scenario, ViewId } from '../../engine/scenario';
 import type { EnvelopeBaseline } from '../../engine/envelope';
 import type { CapSeries } from '../../engine/cap';
+import type { MeasuredSeries } from '../../engine/measured';
 import { asOfForYear, periodForYear, phaseYears, yearOfAsOf } from '../../engine/phase';
 import type { Shares } from '../../engine/composition';
 import type { DkOccupation, GroupsDocument } from '../../engine/occupations';
@@ -31,6 +32,7 @@ const GROUPS_ID = 'ro-dk-occupations';
 const DK_OCC_ID = 'dk-occupations';
 const EXEC_ID = 'executie-personal';
 const CAP_ID = 'plafon-sporuri';
+const INS_ID = 'ins-ocupatii';
 
 /**
  * Six views used to sit in one undifferentiated row, named after their mechanics —
@@ -109,6 +111,8 @@ export default function App() {
   const [roComposition, setRoComposition] = useState<Record<string, Record<string, Shares>> | null>(null);
   /** The 20% ceiling measured per ordonator principal and per funding source. */
   const [capSeries, setCapSeries] = useState<CapSeries[] | null>(null);
+  /** What INS measured people are actually paid, for education and health. */
+  const [measured, setMeasured] = useState<MeasuredSeries[] | null>(null);
 
   const wanted = scenario.regimeIds;
 
@@ -172,9 +176,11 @@ export default function App() {
       fetch(`${base}data/fiscal/${DK_OCC_ID}.json`).then((r) => r.json()),
       fetch(`${base}data/fiscal/${EXEC_ID}.json`).then((r) => r.json()),
       fetch(`${base}data/fiscal/${CAP_ID}.json`).then((r) => r.json()),
+      fetch(`${base}data/fiscal/${INS_ID}.json`).then((r) => r.json()),
     ])
-      .then(([groupsDoc, occDoc, execDoc, capDoc]) => {
+      .then(([groupsDoc, occDoc, execDoc, capDoc, insDoc]) => {
         setCapSeries(capDoc.series);
+        setMeasured(insDoc.series);
         setOccGroups(groupsDoc);
 
         // The Romanian side of the composition: the rollup series, latest year, per
@@ -437,6 +443,8 @@ export default function App() {
           roComposition={roComposition}
           scenario={scenario}
           onScenario={setScenario}
+          measured={measured}
+          inForce={regimes['ro-153-2017'] ?? null}
         />
       )}
       {scenario.view === 'echivalente' &&

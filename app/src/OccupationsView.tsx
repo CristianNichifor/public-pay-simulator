@@ -8,6 +8,8 @@ import type { Regime } from '../../engine/types';
 import { amountLine, amountRange } from './money';
 import type { Rates } from './money';
 import type { Scenario } from '../../engine/scenario';
+import { checkAgainstMeasured, gridPay } from '../../engine/measured';
+import type { MeasuredSeries, SectorCheck } from '../../engine/measured';
 
 const times = (n: number) =>
   `${n.toLocaleString('ro-RO', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}×`;
@@ -28,6 +30,8 @@ export default function OccupationsView({
   roComposition,
   scenario,
   onScenario,
+  measured,
+  inForce,
 }: {
   regime: Regime;
   groups: GroupsDocument;
@@ -38,6 +42,9 @@ export default function OccupationsView({
   roComposition: Record<string, Record<string, Shares>> | null;
   scenario: Scenario;
   onScenario: (next: Scenario) => void;
+  /** What INS measured public employees are paid, education and health only. */
+  measured: MeasuredSeries[] | null;
+  inForce: Regime | null;
 }) {
   const [showLegal, setShowLegal] = useState(false);
   const [withCap, setWithCap] = useState(true);
@@ -173,6 +180,8 @@ export default function OccupationsView({
           </div>
         </section>
       ))}
+
+      <MeasuredSection regime={regime} inForce={inForce} measured={measured} rates={rates} />
 
       <CompositionSection roComposition={roComposition} resolved={resolved} danish={danish} />
 
@@ -567,6 +576,145 @@ function CompositionSection({
           </p>
         </div>
       )}
+    </section>
+  );
+}
+
+const SECTORS: Array<{ activity: string; family: string; label: string }> = [
+  { activity: 'invatamant', family: 'I-invatamant', label: 'Învățământ' },
+  { activity: 'sanatate', family: 'II-sanatate-asistenta-sociala', label: 'Sănătate și asistență socială' },
+];
+
+/**
+ * The grid against a measurement, for the two sectors where one exists.
+ *
+ * Every Romanian number on this page so far has been what a statute says. INS publishes
+ * the *base* salary — the same quantity the grid holds — for public employees in education
+ * and health, so for those two the law can be checked rather than only described.
+ */
+function MeasuredSection({
+  regime,
+  inForce,
+  measured,
+  rates,
+}: {
+  regime: Regime;
+  inForce: Regime | null;
+  measured: MeasuredSeries[] | null;
+  rates: Rates;
+}) {
+  const checks = useMemo(
+    () =>
+      measured
+        ? SECTORS.map((s) => ({
+            ...s,
+            draft: checkAgainstMeasured(regime, measured, s.activity, s.family),
+            old: inForce ? checkAgainstMeasured(inForce, measured, s.activity, s.family) : null,
+          })).filter((s) => s.draft)
+        : [],
+    [regime, inForce, measured],
+  );
+
+  if (!checks.length) return null;
+
+  return (
+    <section>
+      <h2>Grila față de ce se plătește de fapt</h2>
+      <p className="lede">
+        Până aici, fiecare cifră românească a fost ce spune legea. Institutul Național de
+        Statistică publică salariul brut <strong>de bază</strong> — exact mărimea pe care o dă și
+        grila — pentru angajații publici din învățământ și sănătate. Atât cât ține de cele două
+        sectoare, legea poate fi verificată, nu doar descrisă.
+      </p>
+
+      {checks.map((sector) => {
+        const d = sector.draft!;
+        const axis = Math.max(d.grid.max, ...d.measured.map((m) => m.base)) * 1.05;
+        return (
+          <div className="card" key={sector.activity} style={{ marginTop: 14 }}>
+            <div className="meas-head">
+              <h3>{sector.label}</h3>
+              <span className="meas-verdict">
+                Mediana grilei {amountLine(d.grid.median, 'RON', rates)} · măsurat{' '}
+                {amountLine(d.overall!.base, 'RON', rates)}{' '}
+                <b className={d.ratio! > 1.05 ? 'fall' : ''}>
+                  ({d.ratio! >= 1 ? '+' : ''}
+                  {((d.ratio! - 1) * 100).toLocaleString('ro-RO', { maximumFractionDigits: 0 })}%)
+                </b>
+              </span>
+            </div>
+
+            <div className="meas-rows">
+              {d.measured.map((m) => (
+                <div className="meas-row" key={m.occupation}>
+                  <div className="meas-name">
+                    {m.occupation}
+                    <small>{m.employees.toLocaleString('ro-RO')} salariați</small>
+                  </div>
+                  <div className="meas-track">
+                    {/* The grid's range sits behind, the measurement on top of it. */}
+                    <div
+                      className="meas-grid"
+                      style={{
+                        left: `${(d.grid.min / axis) * 100}%`,
+                        width: `${((d.grid.max - d.grid.min) / axis) * 100}%`,
+                      }}
+                    />
+                    <div className="meas-median" style={{ left: `${(d.grid.median / axis) * 100}%` }} />
+                    <div
+                      className="meas-dot"
+                      style={{ left: `${(m.base / axis) * 100}%` }}
+                      title={`${m.occupation}: ${Math.round(m.base).toLocaleString('ro-RO')} lei`}
+                    />
+                  </div>
+                  <div className="meas-num">{Math.round(m.base).toLocaleString('ro-RO')}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="occ-key" style={{ marginTop: 10 }}>
+              <span><i className="k-grid-range" /> intervalul grilei ({d.grid.positions} funcții)</span>
+              <span><i className="k-grid-median" /> mediana grilei</span>
+              <span><i className="k-measured" /> măsurat de INS, {d.period}</span>
+            </div>
+
+            {sector.old?.ratio && (
+              <p className="cmp-foot">
+                Grila din anexele legii în vigoare, tipărită pentru 2022, dă o mediană de{' '}
+                {amountLine(sector.old.grid.median, 'RON', rates)} — cu{' '}
+                {(((sector.old.ratio ?? 1) - 1) * 100).toLocaleString('ro-RO', {
+                  maximumFractionDigits: 0,
+                })}
+                % sub ce se plătea în {d.period}. Peste ea s-au aplicat majorări an de an, care nu
+                sunt în anexe.
+              </p>
+            )}
+          </div>
+        );
+      })}
+
+      <div className="limits" style={{ marginTop: 16 }}>
+        <div className="limit blocking">
+          <div className="sev">blocant</div>
+          <p>
+            <strong>Grila se numără pe funcții, măsurătoarea pe oameni.</strong> Mediana grilei
+            tratează un post ocupat de patruzeci de mii de învățători și unul ocupat de un singur
+            inspector-șef ca pe două voturi egale. Cifra INS e ponderată cu numărul de angajați,
+            fiindcă e o anchetă pe salariați. Ca să fie ponderată și grila ar trebui numărul de
+            posturi pe fiecare funcție, iar România nu îl publică — exact golul pe care datele
+            astea <em>nu</em> îl acoperă. Comparația e informativă, nu un test de egalitate.
+          </p>
+        </div>
+        <div className="limit material">
+          <div className="sev">de reținut</div>
+          <p>
+            Ancheta acoperă secțiunile CAEN A–S și omite secțiunea O — administrație publică și
+            apărare. Învățământul și sănătatea sunt înăuntru; ministerele, poliția și armata nu.
+            Și numără doar salariații cu program complet plătiți întreaga lună octombrie, ceea ce
+            împinge media în sus față de statul de plată real.
+          </p>
+        </div>
+      </div>
     </section>
   );
 }
