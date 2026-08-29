@@ -435,6 +435,8 @@ export default function App() {
           benchmarks={{ roMedianBase: medianBase ?? 0, dkMedian: occBench.dkMedian }}
           rates={fx}
           roComposition={roComposition}
+          scenario={scenario}
+          onScenario={setScenario}
         />
       )}
       {scenario.view === 'echivalente' &&

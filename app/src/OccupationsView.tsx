@@ -7,6 +7,7 @@ import type { DkOccupation, GroupsDocument, ResolvedGroup } from '../../engine/o
 import type { Regime } from '../../engine/types';
 import { amountLine, amountRange } from './money';
 import type { Rates } from './money';
+import type { Scenario } from '../../engine/scenario';
 
 const times = (n: number) =>
   `${n.toLocaleString('ro-RO', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}×`;
@@ -25,6 +26,8 @@ export default function OccupationsView({
   benchmarks,
   rates,
   roComposition,
+  scenario,
+  onScenario,
 }: {
   regime: Regime;
   groups: GroupsDocument;
@@ -33,6 +36,8 @@ export default function OccupationsView({
   rates: Rates;
   /** What Romania paid, by budget chapter and then by year. */
   roComposition: Record<string, Record<string, Shares>> | null;
+  scenario: Scenario;
+  onScenario: (next: Scenario) => void;
 }) {
   const [showLegal, setShowLegal] = useState(false);
   const [withCap, setWithCap] = useState(true);
@@ -55,6 +60,12 @@ export default function OccupationsView({
     }
     return [...map.entries()];
   }, [resolved]);
+
+  // Four sectors' worth of paired range bars ran to five and a half thousand pixels, which
+  // is a list dumped rather than a page. Narrowing to one sector is the fix, and the
+  // choice goes in the hash so a narrowed page is still a link.
+  const sector = scenario.sector ?? null;
+  const shown = sector ? bySector.filter(([name]) => name === sector) : bySector;
 
   // One axis for the whole page, so a bar in health is directly comparable with one in
   // administration. Per-row scaling would make every occupation look the same width.
@@ -130,7 +141,28 @@ export default function OccupationsView({
         </div>
       </section>
 
-      {bySector.map(([sector, rows]) => (
+      <section>
+        <div className="sector-filter">
+          <span className="sector-label">Arată</span>
+          <button
+            className={sector === null ? 'on' : ''}
+            onClick={() => onScenario({ ...scenario, sector: undefined })}
+          >
+            toate ({resolved.length})
+          </button>
+          {bySector.map(([name, rows]) => (
+            <button
+              key={name}
+              className={sector === name ? 'on' : ''}
+              onClick={() => onScenario({ ...scenario, sector: name })}
+            >
+              {name} ({rows.length})
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {shown.map(([sector, rows]) => (
         <section key={sector}>
           <h2>{sector}</h2>
           <div className="occ-list">

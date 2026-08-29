@@ -166,6 +166,42 @@ export default function DistributionView({
       </section>
 
       <section>
+        <h2>Diferența salarială tranzitorie (Art. 33)</h2>
+        <p className="lede">
+          Art. 33 păstrează venitul din noiembrie 2026 acolo unde noua plată ar fi mai mică. Dacă
+          prinde pe cineva nu se poate calcula — România nu publică venituri individuale — dar
+          jumătate din întrebare se poate închide.
+        </p>
+        <div className="card">
+          <div className="comp-hero">
+            <span className="big">{d.transition.below}</span>
+            <p>
+              Atâtea posturi dintre cele {d.coverage.priced} regăsite ar avea salariul de bază mai
+              mic în proiect decât în grila legii în vigoare. Valoarea de referință urcă de la{' '}
+              {d.transition.oldReference.toLocaleString('ro-RO')} la{' '}
+              {d.transition.newReference.toLocaleString('ro-RO')} lei, deci un post iese în pierdere
+              doar dacă scade în ierarhie sub {pct(d.transition.breakeven, 1)} din locul lui de azi.
+              Cea mai mare cădere observată se oprește la {pct(d.transition.worstRatio, 1)}.
+            </p>
+          </div>
+        </div>
+        <div className="limits" style={{ marginTop: 14 }}>
+          <div className="limit blocking">
+            <div className="sev">blocant</div>
+            <p>
+              Asta <strong>nu</strong> înseamnă că nu pierde nimeni. Comparația de mai sus e cu
+              grila pentru 2022 tipărită în anexele legii în vigoare, nu cu ce se plătește în
+              noiembrie 2026: peste acele sume s-au aplicat majorări an de an, iar Art. 33 se uită
+              la venitul total, cu sporuri cu tot. Ce se poate spune este că, la nivel de salariu de
+              bază și față de grila din 2022, creșterea referinței acoperă chiar și cea mai mare
+              cădere în ierarhie. Întrebarea propriu-zisă rămâne deschisă și nu poate fi închisă cu
+              date publice.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
         <h2>Ce nu spune pagina asta</h2>
         <div className="limits">
           <div className="limit material">

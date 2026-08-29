@@ -20,6 +20,7 @@
  *     one-to-one links carry a ratio. The many-to-many ones are counted and set aside.
  */
 
+import { resolveSeries } from './structure';
 import type { Crosswalk, Position, Regime } from './types';
 
 /** Bands are fixed and symmetric, so a move down is as visible as a move up. */
@@ -72,6 +73,30 @@ export interface Distribution {
   median: number;
   /** Share of matched one-to-one posts that lost standing. */
   losing: number;
+  /**
+   * How far the Art. 33 transitional difference could reach, bounded from above.
+   *
+   * Art. 33 preserves November 2026 income where the new pay would be lower. Whether it
+   * bites for a given person cannot be computed — Romania publishes no individual income
+   * — but one half of the question can be settled. The reference value rises from 2 500 to
+   * 4 100 lei, so a post only ends up with a smaller base if it falls further in standing
+   * than that rise compensates. `breakeven` is that threshold and `below` counts the posts
+   * past it.
+   *
+   * This bounds the *base salary* question against the *2022 grid*. It does not answer
+   * Art. 33, which compares total income in November 2026 — supplements included, and
+   * after every increase granted since 2022, none of which are in the annexes.
+   */
+  transition: {
+    /** oldReference / newReference. Below this a post's base actually shrinks. */
+    breakeven: number;
+    /** Matched posts whose draft base is below their base in the old grid. */
+    below: number;
+    /** The largest fall in standing observed, for comparison with the threshold. */
+    worstRatio: number;
+    oldReference: number;
+    newReference: number;
+  };
   coverage: {
     /** One-to-one links, which are the only ones that can carry a ratio. */
     priced: number;
@@ -162,10 +187,21 @@ export function distribution(
     // Most affected first, so the reader meets the families that move at all.
     .sort((a, b) => a.median - b.median);
 
+  const oldReference = resolveSeries(inForce.reference.amount, inForce.reference.baseDate);
+  const newReference = resolveSeries(draft.reference.amount, draft.reference.baseDate);
+  const breakeven = newReference > 0 ? oldReference / newReference : 0;
+
   return {
     moves,
     bands,
     byFamily,
+    transition: {
+      breakeven,
+      below: moves.filter((m) => m.after * newReference < m.before * oldReference).length,
+      worstRatio: ratios.length ? Math.min(...ratios) : 0,
+      oldReference,
+      newReference,
+    },
     median: median(ratios),
     losing: moves.length ? moves.filter((m) => m.ratio < 0.98).length / moves.length : 0,
     coverage: {

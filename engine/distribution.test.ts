@@ -80,3 +80,26 @@ describe('who moves up and who moves down', () => {
     expect(empty.bands.every((b) => b.share === 0)).toBe(true);
   });
 });
+
+describe('how far the Art. 33 transitional difference could reach', () => {
+  it('settles the half of the question the data can settle', () => {
+    // The reference rises 2500 -> 4100, so a post keeps a smaller base only if it falls
+    // further in standing than that rise makes up. Nothing observed comes close.
+    const t = d.transition;
+    expect(t.oldReference).toBe(2500);
+    expect(t.newReference).toBe(4100);
+    expect(t.breakeven).toBeCloseTo(0.6098, 3);
+    expect(t.worstRatio).toBeGreaterThan(t.breakeven);
+    expect(t.below).toBe(0);
+  });
+
+  it('does not let that be read as "nobody loses"', () => {
+    // The bound is against the 2022 grid printed in the annexes, not against November
+    // 2026 income, which includes supplements and every increase granted since. This test
+    // exists so the distinction cannot quietly disappear: if a future change starts
+    // pricing the old regime at something other than its own published reference, the
+    // breakeven moves and this fails.
+    expect(d.transition.breakeven).toBeLessThan(1);
+    expect(d.coverage.priced).toBeLessThan(d.coverage.oldPositions);
+  });
+});

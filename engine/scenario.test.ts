@@ -105,3 +105,17 @@ describe('envelope scenarios survive a link', () => {
     expect(decodeScenario('#/envelope?m=nu-e-un-numar').envelopeMoves).toBeUndefined();
   });
 });
+
+describe('the sector filter travels in the link', () => {
+  it('round-trips, so a narrowed page can be sent to someone', () => {
+    const round = decodeScenario(
+      encodeScenario({ ...DEFAULT_SCENARIO, view: 'meserii', sector: 'Sănătate' }),
+    );
+    expect(round.sector).toBe('Sănătate');
+    expect(round.view).toBe('meserii');
+  });
+
+  it('is absent rather than empty when nothing is selected', () => {
+    expect(decodeScenario('#/meserii').sector).toBeUndefined();
+  });
+});

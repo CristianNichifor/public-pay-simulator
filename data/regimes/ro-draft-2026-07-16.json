@@ -628,10 +628,10 @@
       "base": "gross",
       "order": 1,
       "provenance": {
-        "source": "cod-fiscal",
-        "locator": "Legea 227/2015, art. 138 lit. a)",
-        "confidence": "assumed",
-        "note": "NU provine din niciunul dintre documentele din ./sources. De verificat inainte de publicare."
+        "source": "oug-79-2017",
+        "locator": "Legea 227/2015, art. 138 lit. a), in forma data de OUG 79/2017 pct. 62",
+        "confidence": "verbatim",
+        "note": "„Cotele de contributii de asigurari sociale sunt urmatoarele: a) 25% datorata de catre persoanele fizice care au calitatea de angajati”. Verificat in textul OUG 79/2017 (sources/oug-79-2017.html). Atentie: forma originala din 2015 a Codului fiscal are alte cote - CAS 26,3%, CASS 5,5%, impozit 16% - fiindca OUG 79/2017 a mutat contributiile in sarcina angajatului. Cine verifica in textul din 2015 confirma cifre gresite."
       }
     },
     {
@@ -643,10 +643,10 @@
       "base": "gross",
       "order": 2,
       "provenance": {
-        "source": "cod-fiscal",
-        "locator": "Legea 227/2015, art. 156",
-        "confidence": "assumed",
-        "note": "Idem - de verificat."
+        "source": "oug-79-2017",
+        "locator": "Legea 227/2015, art. 156, in forma data de OUG 79/2017 pct. 69",
+        "confidence": "verbatim",
+        "note": "„Cota de contributie de asigurari sociale de sanatate este de 10% si se datoreaza de catre persoanele fizice care au calitatea de angajati”. Verificat in textul OUG 79/2017 (sources/oug-79-2017.html). Atentie: forma originala din 2015 a Codului fiscal are alte cote - CAS 26,3%, CASS 5,5%, impozit 16% - fiindca OUG 79/2017 a mutat contributiile in sarcina angajatului. Cine verifica in textul din 2015 confirma cifre gresite."
       }
     },
     {
@@ -662,10 +662,10 @@
       ],
       "order": 3,
       "provenance": {
-        "source": "cod-fiscal",
-        "locator": "Legea 227/2015, art. 64 si art. 78",
-        "confidence": "assumed",
-        "note": "Deducerea personala nu e modelata - vezi limitation 'deducere-personala'."
+        "source": "oug-79-2017",
+        "locator": "Legea 227/2015, art. 64 alin. (1), in forma data de OUG 79/2017 pct. 14",
+        "confidence": "verbatim",
+        "note": "Deducerea personala nu e modelata - vezi limitation 'deducere-personala'. „Cota de impozit este de 10% si se aplica asupra venitului impozabil […] b) salarii si asimilate salariilor”. Verificat in textul OUG 79/2017 (sources/oug-79-2017.html). Atentie: forma originala din 2015 a Codului fiscal are alte cote - CAS 26,3%, CASS 5,5%, impozit 16% - fiindca OUG 79/2017 a mutat contributiile in sarcina angajatului. Cine verifica in textul din 2015 confirma cifre gresite."
       }
     },
     {
@@ -677,10 +677,10 @@
       "base": "gross",
       "order": 4,
       "provenance": {
-        "source": "cod-fiscal",
-        "locator": "Legea 227/2015, art. 220^3",
-        "confidence": "assumed",
-        "note": "Idem - de verificat."
+        "source": "oug-79-2017",
+        "locator": "Legea 227/2015, art. 220^3, introdus prin OUG 79/2017 pct. 82",
+        "confidence": "verbatim",
+        "note": "„Cota contributiei asiguratorie pentru munca este de 2,25%”. Verificat in textul OUG 79/2017 (sources/oug-79-2017.html). Atentie: forma originala din 2015 a Codului fiscal are alte cote - CAS 26,3%, CASS 5,5%, impozit 16% - fiindca OUG 79/2017 a mutat contributiile in sarcina angajatului. Cine verifica in textul din 2015 confirma cifre gresite."
       }
     }
   ],

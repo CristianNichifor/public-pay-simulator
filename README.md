@@ -133,6 +133,13 @@ So it matches twice and refuses more than it accepts — exact title within a fa
 to be wide, because both laws print the same title once per employer and *Director*
 legitimately joins twelve former posts to eight new ones; a stem match is not.
 
+A third pass was written and removed. Where a stem matched several posts on each side, the
+study level looked like it should decide which is which — *Consilier* with an S row and an
+M row on both sides is two unambiguous pairs, not one ambiguous group. It resolved **none**
+of the seven candidate groups; the levels do not line up on the remaining collisions. So
+coverage stays at 34%, and going further means reading duties rather than titles, which is
+editorial judgement a script should not fake.
+
 `abolished` is never emitted, and that is deliberate. Calling every unmatched former post
 abolished would roughly double the apparent coverage and would assert something the
 evidence does not support: a post with no same-named counterpart is usually one the script
@@ -323,6 +330,39 @@ place because getting them wrong changes the answer:
 Two things this does not claim. The economic classification is an accounting vocabulary,
 not the law's: what lands in `10.01.05` is not the set Art. 21 caps. And the execution
 describes the *current* regime — the draft's ceiling has never applied to a single year.
+
+## The four tax rates, finally verified
+
+Four levies — CAS, CASS, income tax, CAM — sat in the draft's frame marked `assumed`, with
+a note saying they came from no source in `./sources` and were "de verificat inainte de
+publicare". They now quote OUG 79/2017 verbatim: **CAS 25%** (art. 138), **CASS 10%**
+(art. 156), **impozit 10%** (art. 64), **CAM 2,25%** (art. 220³).
+
+The detour is worth recording, because it is a trap. Fetching "Codul fiscal" from
+legislatie.just.ro returns the **2015** text, and reading art. 138 there gives **26,3%**,
+art. 156 gives **5,5%**, art. 64 gives **16%**, and CAM does not exist at all — the word
+*asiguratorie* never appears. Those are the pre-2018 rates. OUG 79/2017 is what moved the
+contributions onto the employee, so it is the amending act, not the consolidated code,
+that states the numbers in force. A verification against the obvious source would have
+confirmed the wrong figures with full confidence.
+
+With provenance upgraded, 153/2017 gets its levies back and produces a net, which it could
+not before: a law described as `in-force` may not carry guessed provenance, and rather than
+mislabel its status the regime had shipped with no levies at all.
+
+## How far Art. 33 could reach
+
+Art. 33 preserves November 2026 income where the new pay would be lower. Whether it catches
+any particular person cannot be computed — Romania publishes no individual income — but
+half the question closes. The reference rises from 2 500 to 4 100 lei, so a post ends up
+with a smaller base only if it falls below **61%** of its current standing. The worst fall
+observed is **65%**. So **0 of 117** matched posts have a lower base under the draft.
+
+That is not "nobody loses", and the page says so in a blocking limitation. The comparison
+is against the **2022 grid printed in the annexes**, not against what is paid in November
+2026 — annual increases since 2022 sit on top of those figures — and Art. 33 looks at
+*total* income, supplements included. What is settled is the base-salary question against
+the published grid. The real one stays open and cannot be closed with public data.
 
 ## Who moves up and who moves down
 

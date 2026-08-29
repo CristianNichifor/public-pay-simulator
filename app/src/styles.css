@@ -691,3 +691,14 @@ td.num.rise { color: var(--dist-up-2); font-weight: 600; }
   .fam-track { grid-column: 1 / -1; }
   .dist-label { font-size: 10px; }
 }
+
+/* Sector filter — progressive disclosure rather than a dumped list. */
+.sector-filter { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.sector-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.07em;
+                color: var(--text-muted); margin-right: 2px; }
+.sector-filter button { font: inherit; font-size: 13px; padding: 6px 12px; cursor: pointer;
+  background: var(--surface-1); color: var(--text-secondary);
+  border: 1px solid var(--border); border-radius: 999px; }
+.sector-filter button:hover { border-color: var(--series-1); }
+.sector-filter button.on { background: var(--series-1); border-color: var(--series-1);
+                           color: #fff; }

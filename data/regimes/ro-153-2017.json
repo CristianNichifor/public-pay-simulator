@@ -139,7 +139,72 @@
   },
   "supplements": [],
   "caps": [],
-  "levies": [],
+  "levies": [
+    {
+      "id": "cas",
+      "label": "Contributia de asigurari sociale",
+      "kind": "socialInsurance",
+      "payer": "employee",
+      "rate": 0.25,
+      "base": "gross",
+      "order": 1,
+      "provenance": {
+        "source": "oug-79-2017",
+        "locator": "Legea 227/2015, art. 138 lit. a), in forma data de OUG 79/2017 pct. 62",
+        "confidence": "verbatim",
+        "note": "„Cotele de contributii de asigurari sociale sunt urmatoarele: a) 25% datorata de catre persoanele fizice care au calitatea de angajati”. Verificat in textul OUG 79/2017 (sources/oug-79-2017.html). Atentie: forma originala din 2015 a Codului fiscal are alte cote - CAS 26,3%, CASS 5,5%, impozit 16% - fiindca OUG 79/2017 a mutat contributiile in sarcina angajatului. Cine verifica in textul din 2015 confirma cifre gresite. „Cotele de contributii de asigurari sociale sunt urmatoarele: a) 25% datorata de catre persoanele fizice care au calitatea de angajati”. Verificat in textul OUG 79/2017 (sources/oug-79-2017.html). Atentie: forma originala din 2015 a Codului fiscal are alte cote - CAS 26,3%, CASS 5,5%, impozit 16% - fiindca OUG 79/2017 a mutat contributiile in sarcina angajatului. Cine verifica in textul din 2015 confirma cifre gresite."
+      }
+    },
+    {
+      "id": "cass",
+      "label": "Contributia de asigurari sociale de sanatate",
+      "kind": "health",
+      "payer": "employee",
+      "rate": 0.1,
+      "base": "gross",
+      "order": 2,
+      "provenance": {
+        "source": "oug-79-2017",
+        "locator": "Legea 227/2015, art. 156, in forma data de OUG 79/2017 pct. 69",
+        "confidence": "verbatim",
+        "note": "„Cota de contributie de asigurari sociale de sanatate este de 10% si se datoreaza de catre persoanele fizice care au calitatea de angajati”. Verificat in textul OUG 79/2017 (sources/oug-79-2017.html). Atentie: forma originala din 2015 a Codului fiscal are alte cote - CAS 26,3%, CASS 5,5%, impozit 16% - fiindca OUG 79/2017 a mutat contributiile in sarcina angajatului. Cine verifica in textul din 2015 confirma cifre gresite. „Cota de contributie de asigurari sociale de sanatate este de 10% si se datoreaza de catre persoanele fizice care au calitatea de angajati”. Verificat in textul OUG 79/2017 (sources/oug-79-2017.html). Atentie: forma originala din 2015 a Codului fiscal are alte cote - CAS 26,3%, CASS 5,5%, impozit 16% - fiindca OUG 79/2017 a mutat contributiile in sarcina angajatului. Cine verifica in textul din 2015 confirma cifre gresite."
+      }
+    },
+    {
+      "id": "impozit",
+      "label": "Impozitul pe venit",
+      "kind": "incomeTax",
+      "payer": "employee",
+      "rate": 0.1,
+      "base": "grossLessDeductions",
+      "deducts": [
+        "cas",
+        "cass"
+      ],
+      "order": 3,
+      "provenance": {
+        "source": "oug-79-2017",
+        "locator": "Legea 227/2015, art. 64 alin. (1), in forma data de OUG 79/2017 pct. 14",
+        "confidence": "verbatim",
+        "note": "Deducerea personala nu e modelata - vezi limitation 'deducere-personala'. „Cota de impozit este de 10% si se aplica asupra venitului impozabil […] b) salarii si asimilate salariilor”. Verificat in textul OUG 79/2017 (sources/oug-79-2017.html). Atentie: forma originala din 2015 a Codului fiscal are alte cote - CAS 26,3%, CASS 5,5%, impozit 16% - fiindca OUG 79/2017 a mutat contributiile in sarcina angajatului. Cine verifica in textul din 2015 confirma cifre gresite. „Cota de impozit este de 10% si se aplica asupra venitului impozabil […] b) salarii si asimilate salariilor”. Verificat in textul OUG 79/2017 (sources/oug-79-2017.html). Atentie: forma originala din 2015 a Codului fiscal are alte cote - CAS 26,3%, CASS 5,5%, impozit 16% - fiindca OUG 79/2017 a mutat contributiile in sarcina angajatului. Cine verifica in textul din 2015 confirma cifre gresite."
+      }
+    },
+    {
+      "id": "cam",
+      "label": "Contributia asiguratorie pentru munca",
+      "kind": "employerContribution",
+      "payer": "employer",
+      "rate": 0.0225,
+      "base": "gross",
+      "order": 4,
+      "provenance": {
+        "source": "oug-79-2017",
+        "locator": "Legea 227/2015, art. 220^3, introdus prin OUG 79/2017 pct. 82",
+        "confidence": "verbatim",
+        "note": "„Cota contributiei asiguratorie pentru munca este de 2,25%”. Verificat in textul OUG 79/2017 (sources/oug-79-2017.html). Atentie: forma originala din 2015 a Codului fiscal are alte cote - CAS 26,3%, CASS 5,5%, impozit 16% - fiindca OUG 79/2017 a mutat contributiile in sarcina angajatului. Cine verifica in textul din 2015 confirma cifre gresite. „Cota contributiei asiguratorie pentru munca este de 2,25%”. Verificat in textul OUG 79/2017 (sources/oug-79-2017.html). Atentie: forma originala din 2015 a Codului fiscal are alte cote - CAS 26,3%, CASS 5,5%, impozit 16% - fiindca OUG 79/2017 a mutat contributiile in sarcina angajatului. Cine verifica in textul din 2015 confirma cifre gresite."
+      }
+    }
+  ],
   "limitations": [
     {
       "id": "anexele-sunt-pentru-2022",
@@ -175,14 +240,6 @@
         "gross"
       ],
       "text": "Art. 38 esaloneaza aplicarea intre 2018 si 2022 si a fost modificat aproape in fiecare an. Grila din anexe este destinatia, nu ce s-a platit pe drum - aceeasi problema pe care o are si proiectul din 2026 cu esalonarea lui."
-    },
-    {
-      "id": "fara-retineri-modelate",
-      "severity": "material",
-      "affects": [
-        "net"
-      ],
-      "text": "Regimul acesta nu are retineri modelate, deci nu produce un salariu net. Cotele din Codul fiscal existau in proiect marcate 'assumed', cu nota ca nu provin din niciun document din ./sources, iar o lege in vigoare nu are voie sa poarte provenienta nesigura. Pana cand cotele sunt verificate in textul Legii 227/2015, 153/2017 descrie doar salariul brut de baza - ceea ce e suficient pentru comparatia de grila cu proiectul, care se face oricum pe brut."
     }
   ],
   "positions": [

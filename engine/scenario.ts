@@ -32,6 +32,8 @@ export interface Scenario {
   dims?: Record<string, string>;
   claims?: SupplementClaim[];
   asOf?: string;
+  /** Which occupational sector the meserii page is narrowed to, if any. */
+  sector?: string;
   /** Envelope mode: the ceiling on total spend, as a proportion of today's bill. */
   envelopeTarget?: number;
   /** Envelope mode: a proportional change per occupational family, and its reason. */
@@ -40,7 +42,7 @@ export interface Scenario {
   extra?: Record<string, string>;
 }
 
-const KNOWN = new Set(['r', 'p', 'y', 'd', 's', 'a', 't', 'm']);
+const KNOWN = new Set(['r', 'p', 'y', 'd', 's', 'a', 't', 'm', 'f']);
 
 export interface EnvelopeMove {
   family: string;
@@ -119,6 +121,7 @@ export function encodeScenario(scenario: Scenario): string {
   }
   if (scenario.claims?.length) params.set('s', scenario.claims.map(encodeClaim).join(','));
   if (scenario.asOf) params.set('a', scenario.asOf);
+  if (scenario.sector) params.set('f', scenario.sector);
   if (scenario.envelopeTarget !== undefined) params.set('t', String(scenario.envelopeTarget));
   if (scenario.envelopeMoves?.length) {
     params.set('m', scenario.envelopeMoves.map(encodeMove).join(','));
@@ -183,6 +186,7 @@ export function decodeScenario(hash: string): Scenario {
     dims: Object.keys(dims).length ? dims : undefined,
     claims: claims.length ? claims : undefined,
     asOf: params.get('a') ?? undefined,
+    sector: params.get('f') ?? undefined,
     envelopeTarget:
       Number.isFinite(target) && params.get('t') !== null ? target : undefined,
     envelopeMoves: moves.length ? moves : undefined,

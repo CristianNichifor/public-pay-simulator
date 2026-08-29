@@ -68,15 +68,22 @@ def test_coefficients_are_printed_rounded(regime):
     assert long_ones == []
 
 
-def test_no_levies_so_no_net_is_claimed(regime):
-    """The Fiscal Code rates were never verified against their source.
+def test_levies_are_verified_not_assumed(regime):
+    """A law described as in force may not carry guessed provenance.
 
-    A law described as in force must not carry guessed provenance, so the regime models
-    gross pay only and payslip() returns a null net rather than a plausible wrong one.
+    These four rates were `assumed` for most of this project's life, with a note saying
+    they came from no source in ./sources. They are now quoted from OUG 79/2017, which is
+    what moved the contributions onto the employee — and reading the *original* 2015 Fiscal
+    Code instead gives 26,3% / 5,5% / 16%, which would have "confirmed" the wrong numbers.
+    So the test pins the values and the source together.
     """
-    assert regime["levies"] == []
+    rates = {l["id"]: l["rate"] for l in regime["levies"]}
+    assert rates == {"cas": 0.25, "cass": 0.10, "impozit": 0.10, "cam": 0.0225}
+    for levy in regime["levies"]:
+        assert levy["provenance"]["confidence"] == "verbatim"
+        assert "79/2017" in levy["provenance"]["locator"]
     assert regime["status"] == "in-force"
-    assert any(l["id"] == "fara-retineri-modelate" for l in regime["limitations"])
+    assert not any(l["id"] == "fara-retineri-modelate" for l in regime["limitations"])
 
 
 def test_families_line_up_with_the_draft(regime):

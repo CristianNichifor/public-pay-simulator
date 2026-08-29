@@ -24,6 +24,13 @@ So matching runs twice, and refuses more than it accepts:
   2. **Stem.** The same title with its qualifiers stripped, for posts pass 1 missed —
      and only 1:1, only for stems long enough to be a job. Confidence `assumed`.
 
+A third pass was tried and removed. Where a stem matched several posts on each side, the
+study level looked like it should decide which is which — "Consilier" with an S row and an
+M row on both sides is two unambiguous pairs rather than one ambiguous group. It resolved
+**none** of the seven candidate groups: the levels do not line up one-to-one on the
+remaining collisions. Coverage past this point needs reading duties rather than titles,
+which is editorial judgement and not something a script should fake.
+
 Everything else is left unmatched and counted. It is tempting to call an unmatched former
 post `abolished`, and it would roughly double the apparent coverage, but the evidence does
 not support it: a post with no same-named counterpart is usually one this script could not
@@ -234,6 +241,7 @@ def main() -> None:
     print(f"  confidence: derived {stats['confidence:derived']}, assumed {stats['confidence:assumed']}")
     print(f"  refused: weak key {stats['refused_weak_key']}, too many {stats['refused_too_many']}, "
           f"stem ambiguous {stats['refused_stem_ambiguous']}, "
+          
           f"already linked {stats['refused_already_linked']}")
     print(f"\n  covered: {len(used_old)}/{len(old_positions)} old "
           f"({len(used_old) / len(old_positions) * 100:.0f}%), "
@@ -242,8 +250,10 @@ def main() -> None:
     print(f"  unmatched: {len(unmatched_old)} old, {len(unmatched_new)} new")
 
     moves = [
-        (entry_value(next(p for p in old_positions if p["code"] == link["from"][0])),
-         entry_value(next(p for p in new_positions if p["code"] == link["to"][0])))
+        (entry_value(next(p for p in old_positions
+                          if p["code"] == link["from"][0]["positionCode"])),
+         entry_value(next(p for p in new_positions
+                          if p["code"] == link["to"][0]["positionCode"])))
         for link in links
         if link["relation"] in {"identity", "rename", "regrade"}
     ]
