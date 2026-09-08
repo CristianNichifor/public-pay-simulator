@@ -29,10 +29,10 @@ interface Cell {
   /**
    * The figure comes from a sample too thin to be scored against a full grid.
    *
-   * The Danish regime is 16 hand-built positions against Romania's 1 049. For a share
+   * The Danish regime is 16 hand-built positions against Romania's much larger draft grid. For a share
    * that does not matter — 0% back-solved is 0% either way. For a *count*, and for a
    * span computed from the extremes of a count, it decides the answer: a 16-row table
-   * will always look simpler than a 1 049-row one, partly because it is and partly
+   * will always look simpler than a national draft grid, partly because it is and partly
    * because it is 16 rows. Such a cell still shows its number, but never wins the row.
    */
   sampled?: boolean;
@@ -57,7 +57,7 @@ function columnsFor(proposal: Proposal): Array<{ key: Col; title: string; sub: s
   const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`;
   return [
     { key: 'inForce', title: 'Legea în vigoare', sub: '153/2017, grila pentru 2022' },
-    { key: 'ministry', title: 'Proiectul MMFTSS', sub: '16.07.2026' },
+    { key: 'ministry', title: 'Proiectul MMFTSS', sub: '20.08.2026' },
     {
       key: 'ours',
       title: 'Propunerea alternativă',

@@ -46,7 +46,7 @@ def test_the_span_is_narrower_than_the_draft(regime):
     span = max(values) / min(values)
     assert 6.9 < span < 7.1
 
-    draft = json.loads((ROOT / "data/regimes/ro-draft-2026-07-16.json").read_text(encoding="utf-8"))
+    draft = json.loads((ROOT / "data/regimes/ro-draft-2026-08-20.json").read_text(encoding="utf-8"))
     draft_values = [
         v["value"]
         for p in draft["positions"]
@@ -88,6 +88,6 @@ def test_levies_are_verified_not_assumed(regime):
 
 def test_families_line_up_with_the_draft(regime):
     """Same annex numbering in both laws, which is what makes them comparable at all."""
-    draft = json.loads((ROOT / "data/regimes/ro-draft-2026-07-16.json").read_text(encoding="utf-8"))
+    draft = json.loads((ROOT / "data/regimes/ro-draft-2026-08-20.json").read_text(encoding="utf-8"))
     shared = {p["family"] for p in regime["positions"]} & {p["family"] for p in draft["positions"]}
     assert len(shared) >= 6

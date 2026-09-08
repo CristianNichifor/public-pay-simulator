@@ -11,7 +11,7 @@ import type { Position, Regime } from './types';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const BASE: Regime = JSON.parse(
-  readFileSync(resolve(here, '../data/regimes/ro-draft-2026-07-16.json'), 'utf8'),
+  readFileSync(resolve(here, '../data/regimes/ro-draft-2026-08-20.json'), 'utf8'),
 );
 const PROPOSAL: Proposal = JSON.parse(
   readFileSync(resolve(here, '../data/proposals/propunere-v1.json'), 'utf8'),
@@ -46,7 +46,7 @@ describe('the proposal is auditable', () => {
   });
 
   it('leaves the base regime untouched', () => {
-    expect(BASE.id).toBe('ro-draft-2026-07-16');
+    expect(BASE.id).toBe('ro-draft-2026-08-20');
     expect(before.distinctValues).toBeGreaterThan(1000);
     expect(applied.regime.positions).not.toBe(BASE.positions);
   });
@@ -59,7 +59,7 @@ describe('the proposal is auditable', () => {
 
 describe('each patch fixes its stated defect', () => {
   it('rounding collapses the back-solved coefficients', () => {
-    expect(before.backSolvedShare).toBeGreaterThan(0.6);
+    expect(before.backSolvedShare).toBeGreaterThan(0.35);
     expect(after.backSolvedShare).toBe(0);
     expect(after.roundedShare).toBe(1);
     expect(after.distinctValues).toBeLessThan(before.distinctValues);

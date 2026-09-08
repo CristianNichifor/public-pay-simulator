@@ -151,6 +151,72 @@
       }
     },
     {
+      "id": "dk-occ-military-officers-q1",
+      "label": "Military officers — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Military officers",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 65868.14
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Military officers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-military-officers-median",
+      "label": "Military officers — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Military officers",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 78624.26
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Military officers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-military-officers-q3",
+      "label": "Military officers — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Military officers",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 93931.28
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Military officers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
       "id": "dk-occ-dentists-q1",
       "label": "Dentists — q1",
       "geo": "DK",
@@ -279,6 +345,204 @@
       "provenance": {
         "source": "dst-lonsoff",
         "locator": "Danmarks Statistik LONSOFF, Doctors (junior doctors), general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-lawyers-and-economists-q1",
+      "label": "Lawyers and economists — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Lawyers and economists",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 62699.95
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Lawyers and economists, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-lawyers-and-economists-median",
+      "label": "Lawyers and economists — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Lawyers and economists",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 70912.23
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Lawyers and economists, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-lawyers-and-economists-q3",
+      "label": "Lawyers and economists — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Lawyers and economists",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 79020.28
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Lawyers and economists, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-legal-and-judicial-clerks-q1",
+      "label": "Legal and judicial clerks — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Legal and judicial clerks",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 62602.15
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Legal and judicial clerks, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-legal-and-judicial-clerks-median",
+      "label": "Legal and judicial clerks — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Legal and judicial clerks",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 70176.3
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Legal and judicial clerks, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-legal-and-judicial-clerks-q3",
+      "label": "Legal and judicial clerks — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Legal and judicial clerks",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 79272.01
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Legal and judicial clerks, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-psychologists-q1",
+      "label": "Psychologists — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Psychologists",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 59802.73
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Psychologists, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-psychologists-median",
+      "label": "Psychologists — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Psychologists",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 69525.34
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Psychologists, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-psychologists-q3",
+      "label": "Psychologists — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Psychologists",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 76964.81
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Psychologists, general government, 2024",
         "confidence": "verbatim"
       }
     },
@@ -415,6 +679,72 @@
       }
     },
     {
+      "id": "dk-occ-researchers-q1",
+      "label": "Researchers — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Researchers",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 56382.82
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Researchers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-researchers-median",
+      "label": "Researchers — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Researchers",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 66430.91
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Researchers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-researchers-q3",
+      "label": "Researchers — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Researchers",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 80410.37
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Researchers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
       "id": "dk-occ-primary-and-lower-secondary-school-teachers-q1",
       "label": "Primary and lower secondary school teachers — q1",
       "geo": "DK",
@@ -481,6 +811,204 @@
       }
     },
     {
+      "id": "dk-occ-librarians-q1",
+      "label": "Librarians — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Librarians",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 58447.91
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Librarians, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-librarians-median",
+      "label": "Librarians — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Librarians",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 61276.19
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Librarians, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-librarians-q3",
+      "label": "Librarians — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Librarians",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 65666.12
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Librarians, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-it-staff-q1",
+      "label": "IT staff — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "IT staff",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 52667.9
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, IT staff, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-it-staff-median",
+      "label": "IT staff — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "IT staff",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 61152.74
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, IT staff, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-it-staff-q3",
+      "label": "IT staff — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "IT staff",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 70958.72
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, IT staff, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-law-administration-and-regulatory-enforcement-q1",
+      "label": "Law Administration and Regulatory Enforcement — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Law Administration and Regulatory Enforcement",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 48757.37
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Law Administration and Regulatory Enforcement, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-law-administration-and-regulatory-enforcement-median",
+      "label": "Law Administration and Regulatory Enforcement — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Law Administration and Regulatory Enforcement",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 61018.06
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Law Administration and Regulatory Enforcement, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-law-administration-and-regulatory-enforcement-q3",
+      "label": "Law Administration and Regulatory Enforcement — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Law Administration and Regulatory Enforcement",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 71450.95
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Law Administration and Regulatory Enforcement, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
       "id": "dk-occ-nurses-q1",
       "label": "Nurses — q1",
       "geo": "DK",
@@ -543,6 +1071,72 @@
       "provenance": {
         "source": "dst-lonsoff",
         "locator": "Danmarks Statistik LONSOFF, Nurses, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-paramedics-q1",
+      "label": "Paramedics — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Paramedics",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 53548.13
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Paramedics, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-paramedics-median",
+      "label": "Paramedics — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Paramedics",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 57830.63
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Paramedics, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-paramedics-q3",
+      "label": "Paramedics — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Paramedics",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 62751.26
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Paramedics, general government, 2024",
         "confidence": "verbatim"
       }
     },
@@ -745,6 +1339,72 @@
       }
     },
     {
+      "id": "dk-occ-social-workers-and-mediators-q1",
+      "label": "Social workers and mediators — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Social workers and mediators",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 50511.41
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Social workers and mediators, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-social-workers-and-mediators-median",
+      "label": "Social workers and mediators — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Social workers and mediators",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 54571.05
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Social workers and mediators, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-social-workers-and-mediators-q3",
+      "label": "Social workers and mediators — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Social workers and mediators",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 60628.45
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Social workers and mediators, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
       "id": "dk-occ-physiotherapists-q1",
       "label": "Physiotherapists — q1",
       "geo": "DK",
@@ -807,6 +1467,72 @@
       "provenance": {
         "source": "dst-lonsoff",
         "locator": "Danmarks Statistik LONSOFF, Physiotherapists, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-prison-officers-q1",
+      "label": "Prison officers — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Prison officers",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 50246.86
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Prison officers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-prison-officers-median",
+      "label": "Prison officers — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Prison officers",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 53888.03
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Prison officers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-prison-officers-q3",
+      "label": "Prison officers — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Prison officers",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 57548.44
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Prison officers, general government, 2024",
         "confidence": "verbatim"
       }
     },
@@ -943,6 +1669,72 @@
       }
     },
     {
+      "id": "dk-occ-employment-officers--job-placement-officers-q1",
+      "label": "Employment officers / Job placement officers — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Employment officers / Job placement officers",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 50763.14
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Employment officers / Job placement officers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-employment-officers--job-placement-officers-median",
+      "label": "Employment officers / Job placement officers — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Employment officers / Job placement officers",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 53184.17
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Employment officers / Job placement officers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-employment-officers--job-placement-officers-q3",
+      "label": "Employment officers / Job placement officers — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Employment officers / Job placement officers",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 56374.8
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Employment officers / Job placement officers, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
       "id": "dk-occ-office-staff-q1",
       "label": "Office staff — q1",
       "geo": "DK",
@@ -1005,6 +1797,204 @@
       "provenance": {
         "source": "dst-lonsoff",
         "locator": "Danmarks Statistik LONSOFF, Office staff, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-other-military-personnel-q1",
+      "label": "Other military personnel — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Other military personnel",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 39894.14
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Other military personnel, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-other-military-personnel-median",
+      "label": "Other military personnel — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Other military personnel",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 47639.84
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Other military personnel, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-other-military-personnel-q3",
+      "label": "Other military personnel — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Other military personnel",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 57351.23
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Other military personnel, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-technical-service-staff-q1",
+      "label": "Technical service staff — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Technical service staff",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 43022.24
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Technical service staff, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-technical-service-staff-median",
+      "label": "Technical service staff — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Technical service staff",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 47271.08
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Technical service staff, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-technical-service-staff-q3",
+      "label": "Technical service staff — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "Technical service staff",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 52521.99
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Technical service staff, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-phd-fellows-q1",
+      "label": "PhD fellows — q1",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "PhD fellows",
+        "quartile": "q1"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 42578.12
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, PhD fellows, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-phd-fellows-median",
+      "label": "PhD fellows — median",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "PhD fellows",
+        "quartile": "median"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 46899.1
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, PhD fellows, general government, 2024",
+        "confidence": "verbatim"
+      }
+    },
+    {
+      "id": "dk-occ-phd-fellows-q3",
+      "label": "PhD fellows — q3",
+      "geo": "DK",
+      "unit": "CP_MNAC",
+      "dims": {
+        "kind": "occupation",
+        "occupation": "PhD fellows",
+        "quartile": "q3"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 50876.97
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, PhD fellows, general government, 2024",
         "confidence": "verbatim"
       }
     },
@@ -1181,6 +2171,1590 @@
       "provenance": {
         "source": "dst-lonsoff",
         "locator": "Danmarks Statistik LONSOFF, Public employees, total (exclusiv young people and trainees), holiday ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-legal-and-judicial-clerks-basic",
+      "label": "Legal and judicial clerks — basic",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Legal and judicial clerks",
+        "component": "basic"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.79057
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Legal and judicial clerks, basic ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-legal-and-judicial-clerks-conditions",
+      "label": "Legal and judicial clerks — conditions",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Legal and judicial clerks",
+        "component": "conditions"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.0
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Legal and judicial clerks, conditions ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-legal-and-judicial-clerks-overtime",
+      "label": "Legal and judicial clerks — overtime",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Legal and judicial clerks",
+        "component": "overtime"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.0
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Legal and judicial clerks, overtime ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-legal-and-judicial-clerks-irregular",
+      "label": "Legal and judicial clerks — irregular",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Legal and judicial clerks",
+        "component": "irregular"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00577
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Legal and judicial clerks, irregular ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-legal-and-judicial-clerks-fringe",
+      "label": "Legal and judicial clerks — fringe",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Legal and judicial clerks",
+        "component": "fringe"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00013
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Legal and judicial clerks, fringe ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-legal-and-judicial-clerks-pension",
+      "label": "Legal and judicial clerks — pension",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Legal and judicial clerks",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.14177
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Legal and judicial clerks, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-legal-and-judicial-clerks-sickness",
+      "label": "Legal and judicial clerks — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Legal and judicial clerks",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.06173
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Legal and judicial clerks, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-legal-and-judicial-clerks-holiday",
+      "label": "Legal and judicial clerks — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
+        "occupation": "Legal and judicial clerks",
+        "component": "holiday"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.1195
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Legal and judicial clerks, holiday ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-paramedics-basic",
+      "label": "Paramedics — basic",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Paramedics",
+        "component": "basic"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.72497
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Paramedics, basic ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-paramedics-conditions",
+      "label": "Paramedics — conditions",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Paramedics",
+        "component": "conditions"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.04429
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Paramedics, conditions ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-paramedics-overtime",
+      "label": "Paramedics — overtime",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Paramedics",
+        "component": "overtime"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.0348
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Paramedics, overtime ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-paramedics-irregular",
+      "label": "Paramedics — irregular",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Paramedics",
+        "component": "irregular"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.02837
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Paramedics, irregular ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-paramedics-fringe",
+      "label": "Paramedics — fringe",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Paramedics",
+        "component": "fringe"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 8e-05
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Paramedics, fringe ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-paramedics-pension",
+      "label": "Paramedics — pension",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Paramedics",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.10217
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Paramedics, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-paramedics-sickness",
+      "label": "Paramedics — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Paramedics",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.06526
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Paramedics, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-paramedics-holiday",
+      "label": "Paramedics — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
+        "occupation": "Paramedics",
+        "component": "holiday"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.11017
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Paramedics, holiday ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-law-administration-and-regulatory-enforc-basic",
+      "label": "Law Administration and Regulatory Enforcement — basic",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Law Administration and Regulatory Enforcement",
+        "component": "basic"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.78266
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Law Administration and Regulatory Enforcement, basic ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-law-administration-and-regulatory-enforc-conditions",
+      "label": "Law Administration and Regulatory Enforcement — conditions",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Law Administration and Regulatory Enforcement",
+        "component": "conditions"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00075
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Law Administration and Regulatory Enforcement, conditions ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-law-administration-and-regulatory-enforc-overtime",
+      "label": "Law Administration and Regulatory Enforcement — overtime",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Law Administration and Regulatory Enforcement",
+        "component": "overtime"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00034
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Law Administration and Regulatory Enforcement, overtime ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-law-administration-and-regulatory-enforc-irregular",
+      "label": "Law Administration and Regulatory Enforcement — irregular",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Law Administration and Regulatory Enforcement",
+        "component": "irregular"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.01784
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Law Administration and Regulatory Enforcement, irregular ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-law-administration-and-regulatory-enforc-fringe",
+      "label": "Law Administration and Regulatory Enforcement — fringe",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Law Administration and Regulatory Enforcement",
+        "component": "fringe"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00021
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Law Administration and Regulatory Enforcement, fringe ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-law-administration-and-regulatory-enforc-pension",
+      "label": "Law Administration and Regulatory Enforcement — pension",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Law Administration and Regulatory Enforcement",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.14331
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Law Administration and Regulatory Enforcement, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-law-administration-and-regulatory-enforc-sickness",
+      "label": "Law Administration and Regulatory Enforcement — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Law Administration and Regulatory Enforcement",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.05487
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Law Administration and Regulatory Enforcement, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-law-administration-and-regulatory-enforc-holiday",
+      "label": "Law Administration and Regulatory Enforcement — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
+        "occupation": "Law Administration and Regulatory Enforcement",
+        "component": "holiday"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.12015
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Law Administration and Regulatory Enforcement, holiday ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-librarians-basic",
+      "label": "Librarians — basic",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Librarians",
+        "component": "basic"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.77308
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Librarians, basic ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-librarians-conditions",
+      "label": "Librarians — conditions",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Librarians",
+        "component": "conditions"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.0003
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Librarians, conditions ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-librarians-overtime",
+      "label": "Librarians — overtime",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Librarians",
+        "component": "overtime"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.0
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Librarians, overtime ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-librarians-irregular",
+      "label": "Librarians — irregular",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Librarians",
+        "component": "irregular"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00742
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Librarians, irregular ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-librarians-fringe",
+      "label": "Librarians — fringe",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Librarians",
+        "component": "fringe"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00038
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Librarians, fringe ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-librarians-pension",
+      "label": "Librarians — pension",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Librarians",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.16313
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Librarians, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-librarians-sickness",
+      "label": "Librarians — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Librarians",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.05566
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Librarians, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-librarians-holiday",
+      "label": "Librarians — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
+        "occupation": "Librarians",
+        "component": "holiday"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.12009
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Librarians, holiday ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-researchers-basic",
+      "label": "Researchers — basic",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Researchers",
+        "component": "basic"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.82465
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Researchers, basic ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-researchers-conditions",
+      "label": "Researchers — conditions",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Researchers",
+        "component": "conditions"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00027
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Researchers, conditions ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-researchers-overtime",
+      "label": "Researchers — overtime",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Researchers",
+        "component": "overtime"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.0
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Researchers, overtime ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-researchers-irregular",
+      "label": "Researchers — irregular",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Researchers",
+        "component": "irregular"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.0124
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Researchers, irregular ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-researchers-fringe",
+      "label": "Researchers — fringe",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Researchers",
+        "component": "fringe"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00055
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Researchers, fringe ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-researchers-pension",
+      "label": "Researchers — pension",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Researchers",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.13708
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Researchers, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-researchers-sickness",
+      "label": "Researchers — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Researchers",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.02507
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Researchers, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-researchers-holiday",
+      "label": "Researchers — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
+        "occupation": "Researchers",
+        "component": "holiday"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.11921
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Researchers, holiday ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-prison-officers-basic",
+      "label": "Prison officers — basic",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Prison officers",
+        "component": "basic"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.72609
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Prison officers, basic ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-prison-officers-conditions",
+      "label": "Prison officers — conditions",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Prison officers",
+        "component": "conditions"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.05155
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Prison officers, conditions ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-prison-officers-overtime",
+      "label": "Prison officers — overtime",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Prison officers",
+        "component": "overtime"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.02811
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Prison officers, overtime ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-prison-officers-irregular",
+      "label": "Prison officers — irregular",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Prison officers",
+        "component": "irregular"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.02859
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Prison officers, irregular ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-prison-officers-fringe",
+      "label": "Prison officers — fringe",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Prison officers",
+        "component": "fringe"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00015
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Prison officers, fringe ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-prison-officers-pension",
+      "label": "Prison officers — pension",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Prison officers",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.13491
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Prison officers, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-prison-officers-sickness",
+      "label": "Prison officers — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Prison officers",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.03063
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Prison officers, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-prison-officers-holiday",
+      "label": "Prison officers — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
+        "occupation": "Prison officers",
+        "component": "holiday"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.09943
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Prison officers, holiday ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-it-staff-basic",
+      "label": "IT staff — basic",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "IT staff",
+        "component": "basic"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.79763
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, IT staff, basic ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-it-staff-conditions",
+      "label": "IT staff — conditions",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "IT staff",
+        "component": "conditions"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00537
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, IT staff, conditions ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-it-staff-overtime",
+      "label": "IT staff — overtime",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "IT staff",
+        "component": "overtime"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.0026
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, IT staff, overtime ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-it-staff-irregular",
+      "label": "IT staff — irregular",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "IT staff",
+        "component": "irregular"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.01719
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, IT staff, irregular ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-it-staff-fringe",
+      "label": "IT staff — fringe",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "IT staff",
+        "component": "fringe"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00051
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, IT staff, fringe ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-it-staff-pension",
+      "label": "IT staff — pension",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "IT staff",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.13037
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, IT staff, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-it-staff-sickness",
+      "label": "IT staff — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "IT staff",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.04637
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, IT staff, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-it-staff-holiday",
+      "label": "IT staff — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
+        "occupation": "IT staff",
+        "component": "holiday"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.11779
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, IT staff, holiday ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-employment-officers-/-job-placement-offi-basic",
+      "label": "Employment officers / Job placement officers — basic",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Employment officers / Job placement officers",
+        "component": "basic"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.78197
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Employment officers / Job placement officers, basic ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-employment-officers-/-job-placement-offi-conditions",
+      "label": "Employment officers / Job placement officers — conditions",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Employment officers / Job placement officers",
+        "component": "conditions"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00038
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Employment officers / Job placement officers, conditions ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-employment-officers-/-job-placement-offi-overtime",
+      "label": "Employment officers / Job placement officers — overtime",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Employment officers / Job placement officers",
+        "component": "overtime"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 9e-05
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Employment officers / Job placement officers, overtime ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-employment-officers-/-job-placement-offi-irregular",
+      "label": "Employment officers / Job placement officers — irregular",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Employment officers / Job placement officers",
+        "component": "irregular"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00794
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Employment officers / Job placement officers, irregular ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-employment-officers-/-job-placement-offi-fringe",
+      "label": "Employment officers / Job placement officers — fringe",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Employment officers / Job placement officers",
+        "component": "fringe"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00015
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Employment officers / Job placement officers, fringe ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-employment-officers-/-job-placement-offi-pension",
+      "label": "Employment officers / Job placement officers — pension",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Employment officers / Job placement officers",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.14649
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Employment officers / Job placement officers, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-employment-officers-/-job-placement-offi-sickness",
+      "label": "Employment officers / Job placement officers — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Employment officers / Job placement officers",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.06295
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Employment officers / Job placement officers, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-employment-officers-/-job-placement-offi-holiday",
+      "label": "Employment officers / Job placement officers — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
+        "occupation": "Employment officers / Job placement officers",
+        "component": "holiday"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.12334
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Employment officers / Job placement officers, holiday ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-lawyers-and-economists-basic",
+      "label": "Lawyers and economists — basic",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Lawyers and economists",
+        "component": "basic"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.78132
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Lawyers and economists, basic ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-lawyers-and-economists-conditions",
+      "label": "Lawyers and economists — conditions",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Lawyers and economists",
+        "component": "conditions"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00027
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Lawyers and economists, conditions ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-lawyers-and-economists-overtime",
+      "label": "Lawyers and economists — overtime",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Lawyers and economists",
+        "component": "overtime"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 2e-05
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Lawyers and economists, overtime ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-lawyers-and-economists-irregular",
+      "label": "Lawyers and economists — irregular",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Lawyers and economists",
+        "component": "irregular"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.01887
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Lawyers and economists, irregular ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-lawyers-and-economists-fringe",
+      "label": "Lawyers and economists — fringe",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Lawyers and economists",
+        "component": "fringe"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.0004
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Lawyers and economists, fringe ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-lawyers-and-economists-pension",
+      "label": "Lawyers and economists — pension",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Lawyers and economists",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.15002
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Lawyers and economists, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-lawyers-and-economists-sickness",
+      "label": "Lawyers and economists — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Lawyers and economists",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.04907
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Lawyers and economists, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-lawyers-and-economists-holiday",
+      "label": "Lawyers and economists — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
+        "occupation": "Lawyers and economists",
+        "component": "holiday"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.11834
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Lawyers and economists, holiday ÷ total, 2024",
         "confidence": "derived"
       }
     },
@@ -3473,6 +6047,358 @@
       }
     },
     {
+      "id": "dk-comp-military-officers-basic",
+      "label": "Military officers — basic",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Military officers",
+        "component": "basic"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.71455
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Military officers, basic ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-military-officers-conditions",
+      "label": "Military officers — conditions",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Military officers",
+        "component": "conditions"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.02511
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Military officers, conditions ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-military-officers-overtime",
+      "label": "Military officers — overtime",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Military officers",
+        "component": "overtime"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.0
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Military officers, overtime ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-military-officers-irregular",
+      "label": "Military officers — irregular",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Military officers",
+        "component": "irregular"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.07036
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Military officers, irregular ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-military-officers-fringe",
+      "label": "Military officers — fringe",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Military officers",
+        "component": "fringe"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00028
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Military officers, fringe ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-military-officers-pension",
+      "label": "Military officers — pension",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Military officers",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.15246
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Military officers, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-military-officers-sickness",
+      "label": "Military officers — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Military officers",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.03725
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Military officers, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-military-officers-holiday",
+      "label": "Military officers — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
+        "occupation": "Military officers",
+        "component": "holiday"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.10656
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Military officers, holiday ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-phd-fellows-basic",
+      "label": "PhD fellows — basic",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "PhD fellows",
+        "component": "basic"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.84707
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, PhD fellows, basic ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-phd-fellows-conditions",
+      "label": "PhD fellows — conditions",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "PhD fellows",
+        "component": "conditions"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 3e-05
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, PhD fellows, conditions ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-phd-fellows-overtime",
+      "label": "PhD fellows — overtime",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "PhD fellows",
+        "component": "overtime"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.0
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, PhD fellows, overtime ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-phd-fellows-irregular",
+      "label": "PhD fellows — irregular",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "PhD fellows",
+        "component": "irregular"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00689
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, PhD fellows, irregular ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-phd-fellows-fringe",
+      "label": "PhD fellows — fringe",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "PhD fellows",
+        "component": "fringe"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 3e-05
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, PhD fellows, fringe ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-phd-fellows-pension",
+      "label": "PhD fellows — pension",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "PhD fellows",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.12026
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, PhD fellows, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-phd-fellows-sickness",
+      "label": "PhD fellows — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "PhD fellows",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.02569
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, PhD fellows, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-phd-fellows-holiday",
+      "label": "PhD fellows — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
+        "occupation": "PhD fellows",
+        "component": "holiday"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.12239
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, PhD fellows, holiday ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
       "id": "dk-comp-police-officers-basic",
       "label": "Police officers — basic",
       "geo": "DK",
@@ -3645,6 +6571,710 @@
       "provenance": {
         "source": "dst-lonsoff",
         "locator": "Danmarks Statistik LONSOFF, Police officers, holiday ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-psychologists-basic",
+      "label": "Psychologists — basic",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Psychologists",
+        "component": "basic"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.75732
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Psychologists, basic ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-psychologists-conditions",
+      "label": "Psychologists — conditions",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Psychologists",
+        "component": "conditions"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00039
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Psychologists, conditions ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-psychologists-overtime",
+      "label": "Psychologists — overtime",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Psychologists",
+        "component": "overtime"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 9e-05
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Psychologists, overtime ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-psychologists-irregular",
+      "label": "Psychologists — irregular",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Psychologists",
+        "component": "irregular"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.01043
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Psychologists, irregular ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-psychologists-fringe",
+      "label": "Psychologists — fringe",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Psychologists",
+        "component": "fringe"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00014
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Psychologists, fringe ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-psychologists-pension",
+      "label": "Psychologists — pension",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Psychologists",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.15957
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Psychologists, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-psychologists-sickness",
+      "label": "Psychologists — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Psychologists",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.07204
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Psychologists, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-psychologists-holiday",
+      "label": "Psychologists — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
+        "occupation": "Psychologists",
+        "component": "holiday"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.12108
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Psychologists, holiday ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-social-workers-and-mediators-basic",
+      "label": "Social workers and mediators — basic",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Social workers and mediators",
+        "component": "basic"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.76881
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Social workers and mediators, basic ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-social-workers-and-mediators-conditions",
+      "label": "Social workers and mediators — conditions",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Social workers and mediators",
+        "component": "conditions"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00455
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Social workers and mediators, conditions ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-social-workers-and-mediators-overtime",
+      "label": "Social workers and mediators — overtime",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Social workers and mediators",
+        "component": "overtime"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00094
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Social workers and mediators, overtime ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-social-workers-and-mediators-irregular",
+      "label": "Social workers and mediators — irregular",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Social workers and mediators",
+        "component": "irregular"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.01076
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Social workers and mediators, irregular ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-social-workers-and-mediators-fringe",
+      "label": "Social workers and mediators — fringe",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Social workers and mediators",
+        "component": "fringe"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00014
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Social workers and mediators, fringe ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-social-workers-and-mediators-pension",
+      "label": "Social workers and mediators — pension",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Social workers and mediators",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.13974
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Social workers and mediators, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-social-workers-and-mediators-sickness",
+      "label": "Social workers and mediators — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Social workers and mediators",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.07504
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Social workers and mediators, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-social-workers-and-mediators-holiday",
+      "label": "Social workers and mediators — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
+        "occupation": "Social workers and mediators",
+        "component": "holiday"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.12299
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Social workers and mediators, holiday ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-technical-service-staff-basic",
+      "label": "Technical service staff — basic",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Technical service staff",
+        "component": "basic"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.79595
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Technical service staff, basic ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-technical-service-staff-conditions",
+      "label": "Technical service staff — conditions",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Technical service staff",
+        "component": "conditions"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.01773
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Technical service staff, conditions ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-technical-service-staff-overtime",
+      "label": "Technical service staff — overtime",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Technical service staff",
+        "component": "overtime"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00339
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Technical service staff, overtime ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-technical-service-staff-irregular",
+      "label": "Technical service staff — irregular",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Technical service staff",
+        "component": "irregular"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.01375
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Technical service staff, irregular ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-technical-service-staff-fringe",
+      "label": "Technical service staff — fringe",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Technical service staff",
+        "component": "fringe"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.00059
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Technical service staff, fringe ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-technical-service-staff-pension",
+      "label": "Technical service staff — pension",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Technical service staff",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.11572
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Technical service staff, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-technical-service-staff-sickness",
+      "label": "Technical service staff — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Technical service staff",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.05289
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Technical service staff, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-technical-service-staff-holiday",
+      "label": "Technical service staff — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
+        "occupation": "Technical service staff",
+        "component": "holiday"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.12451
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Technical service staff, holiday ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-other-military-personnel-basic",
+      "label": "Other military personnel — basic",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Other military personnel",
+        "component": "basic"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.74216
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Other military personnel, basic ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-other-military-personnel-conditions",
+      "label": "Other military personnel — conditions",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Other military personnel",
+        "component": "conditions"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.04745
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Other military personnel, conditions ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-other-military-personnel-overtime",
+      "label": "Other military personnel — overtime",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Other military personnel",
+        "component": "overtime"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.0
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Other military personnel, overtime ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-other-military-personnel-irregular",
+      "label": "Other military personnel — irregular",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Other military personnel",
+        "component": "irregular"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.06776
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Other military personnel, irregular ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-other-military-personnel-fringe",
+      "label": "Other military personnel — fringe",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Other military personnel",
+        "component": "fringe"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 3e-05
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Other military personnel, fringe ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-other-military-personnel-pension",
+      "label": "Other military personnel — pension",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Other military personnel",
+        "component": "pension"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.09789
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Other military personnel, pension ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-other-military-personnel-sickness",
+      "label": "Other military personnel — sickness",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition",
+        "occupation": "Other military personnel",
+        "component": "sickness"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.04475
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Other military personnel, sickness ÷ total, 2024",
+        "confidence": "derived"
+      }
+    },
+    {
+      "id": "dk-comp-other-military-personnel-holiday",
+      "label": "Other military personnel — holiday (sub-poziție, deja inclusă în salariul de bază)",
+      "geo": "DK",
+      "unit": "PC_TOT",
+      "dims": {
+        "kind": "composition-subitem",
+        "occupation": "Other military personnel",
+        "component": "holiday"
+      },
+      "observations": [
+        {
+          "period": "2024",
+          "value": 0.11174
+        }
+      ],
+      "provenance": {
+        "source": "dst-lonsoff",
+        "locator": "Danmarks Statistik LONSOFF, Other military personnel, holiday ÷ total, 2024",
         "confidence": "derived"
       }
     }

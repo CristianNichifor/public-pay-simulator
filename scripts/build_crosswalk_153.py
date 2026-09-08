@@ -1,8 +1,12 @@
 """Match the posts in the law in force onto the posts in the draft.
 
     uv run python scripts/build_crosswalk_153.py
+    uv run python scripts/build_crosswalk_153.py --new data/regimes/ro-draft-2026-08-20.json \
+      --out data/crosswalks/ro-153-2017--ro-draft-2026-08-20.json \
+      --source proiect-lege-2026-08-20 --locator "Art. 32; Art. 40 pct. 1" \
+      --new-reference-value 4000
 
-Writes data/crosswalks/ro-153-2017--ro-draft-2026-07-16.json.
+Writes data/crosswalks/ro-153-2017--ro-draft-2026-07-16.json by default.
 
 Art. 37 abrogates 153/2017 outright and Art. 32 requires everyone to be reassigned onto a
 new post — but the draft publishes no mapping. Each *ordonator de credite* decides, so the
@@ -40,6 +44,7 @@ which is the whole reason a crosswalk carries a confidence field.
 
 from __future__ import annotations
 
+import argparse
 import json
 import re
 import unicodedata
@@ -47,9 +52,13 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-OLD = ROOT / "data/regimes/ro-153-2017.json"
-NEW = ROOT / "data/regimes/ro-draft-2026-07-16.json"
-OUT = ROOT / "data/crosswalks/ro-153-2017--ro-draft-2026-07-16.json"
+DEFAULT_OLD = ROOT / "data/regimes/ro-153-2017.json"
+DEFAULT_NEW = ROOT / "data/regimes/ro-draft-2026-07-16.json"
+DEFAULT_OUT = ROOT / "data/crosswalks/ro-153-2017--ro-draft-2026-07-16.json"
+DEFAULT_SOURCE = "proiect-lege-2026-07-16"
+DEFAULT_LEGAL_BASIS = "Art. 32 alin. (1)-(2) din proiect"
+DEFAULT_LOCATOR = "Art. 32; Art. 37 pct. 1"
+DEFAULT_NEW_REFERENCE_VALUE = 4100
 
 # Qualifiers the draft moved out of the title and into a dimension. Stripping them is what
 # lets "Profesor studii superioare de lungă durată grad didactic I" meet "Profesor".
@@ -77,6 +86,34 @@ MAX_STEM = 1
 # A coefficient move smaller than this is the same post at a slightly different number;
 # larger, and the draft has regraded it.
 REGRADE_THRESHOLD = 0.02
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--old", type=Path, default=DEFAULT_OLD, help="regime in force JSON")
+    parser.add_argument("--new", type=Path, default=DEFAULT_NEW, help="draft regime JSON")
+    parser.add_argument("--out", type=Path, default=DEFAULT_OUT, help="crosswalk JSON to write")
+    parser.add_argument("--source", default=DEFAULT_SOURCE, help="draft source id")
+    parser.add_argument("--legal-basis", default=DEFAULT_LEGAL_BASIS)
+    parser.add_argument("--locator", default=DEFAULT_LOCATOR)
+    parser.add_argument(
+        "--new-reference-value",
+        type=int,
+        default=DEFAULT_NEW_REFERENCE_VALUE,
+        help="reference value, in lei, used in note text for coefficient comparisons",
+    )
+    return parser.parse_args()
+
+
+def rooted(path: Path) -> Path:
+    return path if path.is_absolute() else ROOT / path
+
+
+def display_path(path: Path) -> str:
+    try:
+        return str(path.relative_to(ROOT))
+    except ValueError:
+        return str(path)
 
 
 def base(text: str) -> str:
@@ -117,9 +154,43 @@ def index(positions: list[dict], key) -> dict[tuple, list[dict]]:
     return out
 
 
+def fresh_document(old: dict, new: dict, args: argparse.Namespace) -> dict:
+    return {
+        "$schema": "../../schema/crosswalk.schema.json",
+        "id": f"{old['id']}--{new['id']}",
+        "kind": "assimilation",
+        "from": old["id"],
+        "to": new["id"],
+        "legalBasis": args.legal_basis,
+        "authority": "reconstructed",
+        "provenance": {
+            "source": args.source,
+            "locator": args.locator,
+            "confidence": "derived",
+            "note": (
+                "Articolul de abrogare indicat in locator scoate din vigoare Legea-cadru "
+                "nr. 153/2017, cu exceptiile prevazute in proiect. Art. 32 alin. (1) "
+                "impune reincadrarea personalului pe noile functii, iar alin. (2) spune "
+                "ca daca functia detinuta nu se regaseste in lege, reincadrarea se face "
+                "pe una dintre functiile din anexe conform atributiilor si conditiilor de "
+                "ocupare a postului. Legea cere deci exercitiul de asimilare, dar nu "
+                "publica rezultatul lui - decizia ramane la fiecare ordonator de credite. "
+                "De aceea authority este 'reconstructed', niciodata 'published', si de "
+                "aceea orice link de aici trebuie afisat ca reconstructie, nu ca drept."
+            ),
+        },
+        "links": [],
+    }
+
+
 def main() -> None:
-    old = json.loads(OLD.read_text(encoding="utf-8"))
-    new = json.loads(NEW.read_text(encoding="utf-8"))
+    args = parse_args()
+    old_path = rooted(args.old)
+    new_path = rooted(args.new)
+    out_path = rooted(args.out)
+
+    old = json.loads(old_path.read_text(encoding="utf-8"))
+    new = json.loads(new_path.read_text(encoding="utf-8"))
     old_positions, new_positions = old["positions"], new["positions"]
     print(f"153/2017 {len(old_positions)} posts  ->  draft {len(new_positions)} posts\n")
 
@@ -168,7 +239,7 @@ def main() -> None:
                 note = (
                     f"Coeficient {before:.2f} -> {after:.2f} "
                     f"({(after / before - 1) * 100:+.1f}%). Coeficientii nu sunt direct comparabili: "
-                    f"referinta e 2500 lei in 153/2017 si 4100 lei in proiect."
+                    f"referinta e 2500 lei in 153/2017 si {args.new_reference_value} lei in proiect."
                 )
 
         links.append({
@@ -221,9 +292,8 @@ def main() -> None:
     unmatched_old = [p for p in old_positions if p["code"] not in used_old]
     unmatched_new = [p for p in new_positions if p["code"] not in used_new]
 
-    document = json.loads(OUT.read_text(encoding="utf-8"))
+    document = fresh_document(old, new, args)
     document["links"] = links
-    document.pop("needs", None)
     document["provenance"]["note"] = (
         document["provenance"]["note"]
         + f" Reconstructia acopera {len(used_old)} din {len(old_positions)} functii din legea "
@@ -232,7 +302,7 @@ def main() -> None:
           "desfiintata, ci ca scriptul nu a putut-o rezolva, iar 'abolished' ar fi o "
           "afirmatie mai tare decat dovezile."
     )
-    OUT.write_text(json.dumps(document, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    out_path.write_text(json.dumps(document, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     print(f"  links {len(links)}")
     for key in ("identity", "rename", "regrade", "merge", "split"):
@@ -263,7 +333,7 @@ def main() -> None:
         print(f"\n  coefficient ratio new/old across {len(ratios)} one-to-one links:")
         print(f"    median {ratios[len(ratios) // 2]:.3f}   "
               f"p10 {ratios[len(ratios) // 10]:.3f}   p90 {ratios[len(ratios) * 9 // 10]:.3f}")
-    print(f"\nwrote {OUT.relative_to(ROOT)}")
+    print(f"\nwrote {display_path(out_path)}")
 
 
 if __name__ == "__main__":

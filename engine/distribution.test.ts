@@ -11,8 +11,8 @@ const here = dirname(fileURLToPath(import.meta.url));
 const read = (p: string) => JSON.parse(readFileSync(resolve(here, '..', p), 'utf8'));
 
 const IN_FORCE: Regime = read('data/regimes/ro-153-2017.json');
-const DRAFT: Regime = read('data/regimes/ro-draft-2026-07-16.json');
-const CROSSWALK: Crosswalk = read('data/crosswalks/ro-153-2017--ro-draft-2026-07-16.json');
+const DRAFT: Regime = read('data/regimes/ro-draft-2026-08-20.json');
+const CROSSWALK: Crosswalk = read('data/crosswalks/ro-153-2017--ro-draft-2026-08-20.json');
 
 const d = distribution(IN_FORCE, DRAFT, CROSSWALK);
 
@@ -83,12 +83,12 @@ describe('who moves up and who moves down', () => {
 
 describe('how far the Art. 33 transitional difference could reach', () => {
   it('settles the half of the question the data can settle', () => {
-    // The reference rises 2500 -> 4100, so a post keeps a smaller base only if it falls
+    // The reference rises 2500 -> 4000, so a post keeps a smaller base only if it falls
     // further in standing than that rise makes up. Nothing observed comes close.
     const t = d.transition;
     expect(t.oldReference).toBe(2500);
-    expect(t.newReference).toBe(4100);
-    expect(t.breakeven).toBeCloseTo(0.6098, 3);
+    expect(t.newReference).toBe(4000);
+    expect(t.breakeven).toBeCloseTo(0.625, 3);
     expect(t.worstRatio).toBeGreaterThan(t.breakeven);
     expect(t.below).toBe(0);
   });

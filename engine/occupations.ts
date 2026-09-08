@@ -108,7 +108,7 @@ export interface ResolvedGroup {
   dkRatio: { q1: number; q3: number; median: number } | null;
 }
 
-function matches(
+export function matchesRule(
   position: { family: string; kind: string; studyLevel?: string; name: string },
   rule: GroupRule,
 ): boolean {
@@ -142,7 +142,7 @@ export function resolveGroups(
 
   return document.groups.map((group) => {
     const matched = regime.positions.filter((p) =>
-      matches({ family: p.family, kind: p.kind, studyLevel: p.studyLevel, name: p.name }, group.ro),
+      matchesRule({ family: p.family, kind: p.kind, studyLevel: p.studyLevel, name: p.name }, group.ro),
     );
 
     // The range is what the law permits across the group: the cheapest position at no

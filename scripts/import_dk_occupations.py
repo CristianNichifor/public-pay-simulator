@@ -36,10 +36,20 @@ YEAR = "2024"
 # Danish standard week is 37 hours; the source is hourly, the comparison is monthly.
 HOURS_PER_MONTH = 37 * 52 / 12
 
-# The occupations worth putting beside the Romanian grid, and nothing else: a table of
-# all 67 would bury the ones that answer the question.
+# The occupations worth putting beside the Romanian grid, and nothing else. The selection
+# follows the public-sector domains surfaced by the app; a table of all 67 LONSOFF groups
+# would bury the cases where the Romanian grid can actually be compared.
 OCCUPATIONS = {
     "TOT": "Toți angajații publici",
+    "100": "Grefieri și personal juridic auxiliar",
+    "101": "Paramedici",
+    "102": "Administrarea legii și control de reglementare",
+    "105": "Bibliotecari",
+    "116": "Cercetători",
+    "118": "Personal penitenciar",
+    "121": "Personal IT",
+    "123": "Consilieri ocupare",
+    "126": "Juriști și economiști",
     "130": "Medici (rezidenți și specialiști tineri)",
     "138": "Medici primari / consultanți seniori",
     "157": "Medici stomatologi",
@@ -53,7 +63,13 @@ OCCUPATIONS = {
     "133": "Absolvenți de master (administrație)",
     "127": "Personal de birou",
     "135": "Manageri din sectorul public",
+    "136": "Ofițeri militari",
+    "139": "Doctoranzi",
     "140": "Polițiști",
+    "142": "Psihologi",
+    "152": "Asistenți sociali și mediatori",
+    "161": "Personal tehnic de servicii",
+    "164": "Alt personal militar",
 }
 
 QUARTILES = {"NEDRE": "q1", "MEDIAN": "median", "OVRE": "q3"}
