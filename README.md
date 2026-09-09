@@ -1,5 +1,24 @@
 # Public Pay Simulator (Romania)
 
+## Current Location
+
+The maintained simulator is now in
+[romania-reforms/simulators/salarizare](https://github.com/CristianNichifor/romania-reforms/tree/main/simulators/salarizare),
+with the live application at
+[romania-reforms/salarizare](https://cristiannichifor.github.io/romania-reforms/salarizare/).
+Please make application changes and report current application issues in that repository.
+
+This repository retains the earlier source and documentation. Its
+[Pages workflow](.github/workflows/deploy.yml) publishes only the files in
+[`redirect/`](redirect/), not the historical simulator source. The old Pages URL redirects to the
+canonical application; JavaScript preserves both the query string and scenario hash.
+The no-JavaScript fallback opens the canonical home page without those parameters.
+
+The descriptions, counts and commands below document this retained version and are
+not a statement of the current application's features or test totals.
+
+## Historical Documentation
+
 Compare Romanian public-sector pay regimes against each other and against the Danish
 model — the 2017 framework law, the July 2026 unified draft, and your own proposal, side
 by side. Everything runs in the browser; a scenario is a URL.
