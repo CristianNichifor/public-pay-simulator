@@ -3,8 +3,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "test": "npm run test:engine && npm run test:redirect",
+    "typecheck": "tsc --noEmit",
+    "test:engine": "vitest run engine",
+    "test:redirect": "node --test tests/redirect.test.cjs"
   },
   "devDependencies": {
     "@types/node": "^22.20.1",
