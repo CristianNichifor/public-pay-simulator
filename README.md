@@ -5,7 +5,7 @@
 The maintained simulator is now in
 [romania-reforms/simulators/salarizare](https://github.com/CristianNichifor/romania-reforms/tree/main/simulators/salarizare),
 with the live application at
-[romania-reforms/salarizare](https://cristiannichifor.github.io/romania-reforms/salarizare/).
+[romania-reforms/public-pay](https://projects.cristian-nichifor.com/romania-reforms/public-pay/).
 Please make application changes and report current application issues in that repository.
 
 This repository retains the earlier source and documentation. Its
