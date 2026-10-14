@@ -5,7 +5,8 @@
 The maintained simulator is now in
 [romania-reforms/simulators/salarizare](https://github.com/CristianNichifor/romania-reforms/tree/main/simulators/salarizare),
 with the live application at
-[romania-reforms/public-pay](https://projects.cristian-nichifor.com/romania-reforms/public-pay/).
+[projects.cristian-nichifor.com/romania-reforms/public-pay](https://projects.cristian-nichifor.com/romania-reforms/public-pay/)
+in the [projects hub](https://projects.cristian-nichifor.com/).
 Please make application changes and report current application issues in that repository.
 
 This repository retains the earlier source and documentation. Its
@@ -74,7 +75,8 @@ on the pages they affect, and are not work waiting to be done.
   and spans derived from it are marked as a sample on the landing page and do not win
   their row; the measured comparison on *Meserii RO–DK* is the one to trust.
 
-Live: <https://cristiannichifor.github.io/public-pay-simulator/>
+Live: [projects.cristian-nichifor.com/romania-reforms/public-pay](https://projects.cristian-nichifor.com/romania-reforms/public-pay/)
+(the old `cristiannichifor.github.io/public-pay-simulator/` address redirects there).
 
 ## Two constraints that shape everything
 
